@@ -1,0 +1,483 @@
+{
+ "_meta": {
+  "description": "専門家・情報源の血統見解の台帳。本文は転載せず要点と出典のみ。keiba/experts.py が実績で検証する。",
+  "schema": {
+   "sire|sire_line|damsire|damsire_line": "対象",
+   "condition": "surface, band(sprint/mile/middle/long), going(good/soft), course, straight_cat(長/中/短), slope(坂/平坦), turn(大回り/小回り), dchg(延長/短縮/同), pace(瞬発/持続/消耗/平均), sex, age_min/max, distance_min/max, style, pop_min/pop_max（人気。『人気でも消し』は direction '-' と pop_max で登録）, grade（クラス）, gate_min/gate_max（枠）",
+   "direction": "+ / -"
+  }
+ },
+ "notes": [
+  {
+   "id": "kame_us_short_ストームキャット系",
+   "author": "亀谷敬正（血統ビーム・米国型の考え方の要約）",
+   "url": "https://k-beam.com/",
+   "date": "2026-10-01",
+   "sire_line": "ストームキャット系",
+   "condition": {
+    "dchg": "短縮"
+   },
+   "direction": "+",
+   "summary": "米国型はスピードの持続に優れ、距離短縮で前に行けるときに浮上する"
+  },
+  {
+   "id": "kame_us_short_ミスタープロスペクター系",
+   "author": "亀谷敬正（血統ビーム・米国型の考え方の要約）",
+   "url": "https://k-beam.com/",
+   "date": "2026-10-01",
+   "sire_line": "ミスタープロスペクター系",
+   "condition": {
+    "dchg": "短縮"
+   },
+   "direction": "+",
+   "summary": "米国型はスピードの持続に優れ、距離短縮で前に行けるときに浮上する"
+  },
+  {
+   "id": "kame_us_short_エーピーインディ系",
+   "author": "亀谷敬正（血統ビーム・米国型の考え方の要約）",
+   "url": "https://k-beam.com/",
+   "date": "2026-10-01",
+   "sire_line": "エーピーインディ系",
+   "condition": {
+    "dchg": "短縮"
+   },
+   "direction": "+",
+   "summary": "米国型はスピードの持続に優れ、距離短縮で前に行けるときに浮上する"
+  },
+  {
+   "id": "kame_us_short_デピュティミニスター系",
+   "author": "亀谷敬正（血統ビーム・米国型の考え方の要約）",
+   "url": "https://k-beam.com/",
+   "date": "2026-10-01",
+   "sire_line": "デピュティミニスター系",
+   "condition": {
+    "dchg": "短縮"
+   },
+   "direction": "+",
+   "summary": "米国型はスピードの持続に優れ、距離短縮で前に行けるときに浮上する"
+  },
+  {
+   "id": "kame_eu_soft_サドラーズウェルズ系",
+   "author": "亀谷敬正（血統ビーム・欧州型の考え方の要約）",
+   "url": "https://k-beam.com/",
+   "date": "2026-10-01",
+   "sire_line": "サドラーズウェルズ系",
+   "condition": {
+    "surface": "芝",
+    "going": "soft"
+   },
+   "direction": "+",
+   "summary": "欧州型は時計のかかるタフな芝・道悪で浮上"
+  },
+  {
+   "id": "kame_eu_kire_サドラーズウェルズ系",
+   "author": "亀谷敬正（血統ビーム・欧州型の考え方の要約）",
+   "url": "https://k-beam.com/",
+   "date": "2026-10-01",
+   "sire_line": "サドラーズウェルズ系",
+   "condition": {
+    "surface": "芝",
+    "pace": "瞬発"
+   },
+   "direction": "-",
+   "summary": "欧州型は軽い芝の瞬発力勝負では苦戦しやすい"
+  },
+  {
+   "id": "kame_eu_soft_デインヒル系",
+   "author": "亀谷敬正（血統ビーム・欧州型の考え方の要約）",
+   "url": "https://k-beam.com/",
+   "date": "2026-10-01",
+   "sire_line": "デインヒル系",
+   "condition": {
+    "surface": "芝",
+    "going": "soft"
+   },
+   "direction": "+",
+   "summary": "欧州型は時計のかかるタフな芝・道悪で浮上"
+  },
+  {
+   "id": "kame_eu_kire_デインヒル系",
+   "author": "亀谷敬正（血統ビーム・欧州型の考え方の要約）",
+   "url": "https://k-beam.com/",
+   "date": "2026-10-01",
+   "sire_line": "デインヒル系",
+   "condition": {
+    "surface": "芝",
+    "pace": "瞬発"
+   },
+   "direction": "-",
+   "summary": "欧州型は軽い芝の瞬発力勝負では苦戦しやすい"
+  },
+  {
+   "id": "kame_eu_soft_ガリレオ系",
+   "author": "亀谷敬正（血統ビーム・欧州型の考え方の要約）",
+   "url": "https://k-beam.com/",
+   "date": "2026-10-01",
+   "sire_line": "ガリレオ系",
+   "condition": {
+    "surface": "芝",
+    "going": "soft"
+   },
+   "direction": "+",
+   "summary": "欧州型は時計のかかるタフな芝・道悪で浮上"
+  },
+  {
+   "id": "kame_eu_kire_ガリレオ系",
+   "author": "亀谷敬正（血統ビーム・欧州型の考え方の要約）",
+   "url": "https://k-beam.com/",
+   "date": "2026-10-01",
+   "sire_line": "ガリレオ系",
+   "condition": {
+    "surface": "芝",
+    "pace": "瞬発"
+   },
+   "direction": "-",
+   "summary": "欧州型は軽い芝の瞬発力勝負では苦戦しやすい"
+  },
+  {
+   "id": "kame_eu_soft_ドイツ系",
+   "author": "亀谷敬正（血統ビーム・欧州型の考え方の要約）",
+   "url": "https://k-beam.com/",
+   "date": "2026-10-01",
+   "sire_line": "ドイツ系",
+   "condition": {
+    "surface": "芝",
+    "going": "soft"
+   },
+   "direction": "+",
+   "summary": "欧州型は時計のかかるタフな芝・道悪で浮上"
+  },
+  {
+   "id": "kame_eu_kire_ドイツ系",
+   "author": "亀谷敬正（血統ビーム・欧州型の考え方の要約）",
+   "url": "https://k-beam.com/",
+   "date": "2026-10-01",
+   "sire_line": "ドイツ系",
+   "condition": {
+    "surface": "芝",
+    "pace": "瞬発"
+   },
+   "direction": "-",
+   "summary": "欧州型は軽い芝の瞬発力勝負では苦戦しやすい"
+  },
+  {
+   "id": "kame_ss_long_straight",
+   "author": "亀谷敬正（血統ビーム・日本型(SS系)の考え方の要約）",
+   "url": "https://k-beam.com/",
+   "date": "2026-10-01",
+   "sire_line": "サンデーサイレンス系",
+   "condition": {
+    "surface": "芝",
+    "straight_cat": "長"
+   },
+   "direction": "+",
+   "summary": "日本型(SS系)は直線の長いコースの瞬発力勝負で浮上"
+  },
+  {
+   "id": "mizu_stay_soft",
+   "author": "水上学（道悪で変わる血統に注目・方針の要約）",
+   "url": "https://www.baken.co.jp/yosouka/profile.html?yid=mizukami",
+   "date": "2026-10-01",
+   "sire_line": "ステイゴールド系",
+   "condition": {
+    "surface": "芝",
+    "going": "soft"
+   },
+   "direction": "+",
+   "summary": "ステイゴールド系は道悪で浮上"
+  },
+  {
+   "id": "mizu_roberto_soft",
+   "author": "水上学（道悪で変わる血統に注目・方針の要約）",
+   "url": "https://www.baken.co.jp/yosouka/profile.html?yid=mizukami",
+   "date": "2026-10-01",
+   "sire_line": "ロベルト系",
+   "condition": {
+    "surface": "芝",
+    "going": "soft"
+   },
+   "direction": "+",
+   "summary": "ロベルト系は道悪・タフな芝で浮上"
+  },
+  {
+   "id": "blog_duramente_soft_ext",
+   "author": "血統データ備忘録（ブログ）",
+   "url": "https://keibamemo.hateblo.jp/entry/2025/01/01/223437",
+   "date": "2025-01-01",
+   "sire": "ドゥラメンテ",
+   "condition": {
+    "surface": "芝",
+    "going": "soft",
+    "dchg": "延長",
+    "distance_min": 1800
+   },
+   "direction": "+",
+   "summary": "ドゥラメンテ産駒は芝中長距離の道悪で距離延長が好転"
+  },
+  {
+   "id": "blog_silverstate_soft",
+   "author": "血統データ備忘録（ブログ）",
+   "url": "https://keibamemo.hateblo.jp/entry/2025/01/01/223437",
+   "date": "2025-01-01",
+   "sire": "シルバーステート",
+   "condition": {
+    "surface": "芝",
+    "going": "soft",
+    "distance_min": 1800,
+    "sex": [
+     "牡",
+     "セ"
+    ]
+   },
+   "direction": "+",
+   "summary": "シルバーステート産駒の牡・セン馬は芝中長距離の道悪で好成績"
+  },
+  {
+   "id": "blog_silverstate_soft_ext",
+   "author": "血統データ備忘録（ブログ）",
+   "url": "https://keibamemo.hateblo.jp/entry/2025/01/01/223437",
+   "date": "2025-01-01",
+   "sire": "シルバーステート",
+   "condition": {
+    "surface": "芝",
+    "going": "soft",
+    "dchg": "延長"
+   },
+   "direction": "-",
+   "summary": "シルバーステート産駒は道悪での距離延長は割引"
+  },
+  {
+   "id": "kame_jiten_alain_turf_sprint",
+   "author": "亀谷敬正（競馬血統辞典・動画タイトルの要約）",
+   "url": "https://k-beam.com/30716",
+   "date": "2026-09-04",
+   "sire": "アルアイン",
+   "condition": {
+    "surface": "芝",
+    "band": "sprint"
+   },
+   "direction": "+",
+   "summary": "アルアインは芝短距離戦で本領発揮のディープ系種牡馬（代表産駒の中距離実績だけで判断するのは危険）"
+  },
+  {
+   "id": "jravan_maurice_late",
+   "author": "JRA-VAN（血統の重要性・記事の要約）",
+   "url": "https://jra-van.jp/fun/baken/index.html（JRA-VAN 競馬における血統の重要性）",
+   "date": "2026-10-01",
+   "sire": "モーリス",
+   "condition": {
+    "age_min": 4
+   },
+   "direction": "+",
+   "summary": "モーリス産駒は4歳以降に本格化する晩成型の可能性"
+  },
+  {
+   "id": "jravan_kanaloa_sprint",
+   "author": "JRA-VAN（血統の重要性・記事の要約）",
+   "url": "https://jra-van.jp/fun/baken/index.html（JRA-VAN 競馬における血統の重要性）",
+   "date": "2026-10-01",
+   "sire": "ロードカナロア",
+   "condition": {
+    "band": "sprint"
+   },
+   "direction": "+",
+   "summary": "ロードカナロア産駒は短距離に強い"
+  },
+  {
+   "id": "mochida_kyotodaishoten_deep",
+   "author": "望田潤（netkeiba コラム【京都大賞典予想】の要約）",
+   "url": "https://news.netkeiba.com/?pid=column_writer_backnumber（望田潤 netkeiba コラム, 2026-09）",
+   "date": "2026-09-27",
+   "sire": "ディープインパクト",
+   "condition": {
+    "course": "京都",
+    "surface": "芝",
+    "distance_min": 2400,
+    "distance_max": 2400
+   },
+   "direction": "+",
+   "summary": "京都芝外2400の京都大賞典はディープインパクト産駒が3連覇中"
+  },
+  {
+   "id": "mochida_mainichi_deep_kire",
+   "author": "望田潤（netkeiba コラム【毎日王冠予想】の要約）",
+   "url": "https://news.netkeiba.com/?pid=column_writer_backnumber（望田潤 netkeiba コラム, 2026-09）",
+   "date": "2026-09-27",
+   "sire_line": "ディープインパクト系",
+   "condition": {
+    "course": "東京",
+    "surface": "芝",
+    "distance_min": 1800,
+    "distance_max": 1800,
+    "pace": "瞬発"
+   },
+   "direction": "+",
+   "summary": "東京芝1800（毎日王冠）は後傾ラップならディープインパクト、前傾ならトニービン"
+  },
+  {
+   "id": "mochida_sirius_roberto_sire",
+   "author": "望田潤（netkeiba コラム【シリウスS予想】の要約）",
+   "url": "https://news.netkeiba.com/?pid=column_writer_backnumber（望田潤 netkeiba コラム, 2026-09）",
+   "date": "2026-09-22",
+   "sire_line": "ロベルト系",
+   "condition": {
+    "course": "阪神",
+    "surface": "ダ",
+    "distance_min": 2000,
+    "distance_max": 2000
+   },
+   "direction": "+",
+   "summary": "阪神ダ2000のオープンはロベルトの血が好走（リピート好走が美味しい）"
+  },
+  {
+   "id": "mochida_sirius_roberto_dam",
+   "author": "望田潤（netkeiba コラム【シリウスS予想】の要約）",
+   "url": "https://news.netkeiba.com/?pid=column_writer_backnumber（望田潤 netkeiba コラム, 2026-09）",
+   "date": "2026-09-22",
+   "damsire_line": "ロベルト系",
+   "condition": {
+    "course": "阪神",
+    "surface": "ダ",
+    "distance_min": 2000,
+    "distance_max": 2000
+   },
+   "direction": "+",
+   "summary": "阪神ダ2000のオープンはロベルトの血が好走（母系のロベルトも）"
+  },
+  {
+   "id": "mochida_sprinters_roberto_inner",
+   "author": "望田潤（netkeiba コラム【スプリンターズS予想】の要約）",
+   "url": "https://news.netkeiba.com/?pid=column_writer_backnumber（望田潤 netkeiba コラム, 2026-09）",
+   "date": "2026-09-22",
+   "sire_line": "ロベルト系",
+   "condition": {
+    "course": "中山",
+    "surface": "芝",
+    "distance_min": 1200,
+    "distance_max": 1200,
+    "gate_max": 3
+   },
+   "direction": "+",
+   "summary": "中山芝1200（スプリンターズS）は内枠に入ったロベルトの血が好走"
+  },
+  {
+   "id": "mochida_blog_hotrod_dirt_soft",
+   "author": "望田潤（血は水よりも濃し ブログの要約）",
+   "url": "https://nas-quillo.hatenablog.com/entry/2026/09/24/090609",
+   "date": "2026-09-24",
+   "sire": "ホットロッドチャーリー",
+   "condition": {
+    "surface": "ダ",
+    "going": "soft"
+   },
+   "direction": "+",
+   "summary": "ホットロッドチャーリー産駒は芝馬のようなしなやかなストライドで、本領はダート、それも脚抜きのいい（道悪）ダート"
+  },
+  {
+   "id": "mochida_blog_hotrod_turf_q",
+   "author": "望田潤（血は水よりも濃し ブログの要約）",
+   "url": "https://nas-quillo.hatenablog.com/entry/2026/09/24/090609",
+   "date": "2026-09-24",
+   "sire": "ホットロッドチャーリー",
+   "condition": {
+    "qualitative": true
+   },
+   "direction": "+",
+   "summary": "ホットロッドチャーリー産駒は脚長でスラッとした芝馬のような体型。芝でも掲示板は多く芝ダ兼用型もいる（母父Indian CharlieのCaro～Grey Sovereignのしなやかさ）"
+  },
+  {
+   "id": "mochida_blog_indychamp_soft",
+   "author": "望田潤（血は水よりも濃し ブログの要約）",
+   "url": "https://nas-quillo.hatenablog.com/entry/2026/09/22/090833",
+   "date": "2026-09-22",
+   "sire": "インディチャンプ",
+   "condition": {
+    "surface": "芝",
+    "going": "soft"
+   },
+   "direction": "+",
+   "summary": "インディチャンプ産駒は時計や上がりがかかるタフな芝（重馬場）がプラス"
+  },
+  {
+   "id": "mochida_blog_kizuna_kk_soft",
+   "author": "望田潤（血は水よりも濃し ブログの要約）",
+   "url": "https://nas-quillo.hatenablog.com/entry/2026/09/21/084723",
+   "date": "2026-09-21",
+   "sire": "キズナ",
+   "damsire_line": "キングカメハメハ系",
+   "condition": {
+    "going": "soft"
+   },
+   "direction": "+",
+   "summary": "キズナ×キングカメハメハの重賞勝ちはダートと重馬場ばかり（カゼノランナー、重の札幌2歳Sのマジックサンズ）"
+  },
+  {
+   "id": "mochida_blog_kizuna_kk_dirt",
+   "author": "望田潤（血は水よりも濃し ブログの要約）",
+   "url": "https://nas-quillo.hatenablog.com/entry/2026/09/21/084723",
+   "date": "2026-09-21",
+   "sire": "キズナ",
+   "damsire_line": "キングカメハメハ系",
+   "condition": {
+    "surface": "ダ"
+   },
+   "direction": "+",
+   "summary": "キズナ×キングカメハメハはダート・重馬場で重賞を勝つパワー型"
+  },
+  {
+   "id": "mochida_blog_fierement_middle",
+   "author": "望田潤（血は水よりも濃し ブログの要約）",
+   "url": "https://nas-quillo.hatenablog.com/entry/2026/09/27/084657",
+   "date": "2026-09-27",
+   "sire": "フィエールマン",
+   "condition": {
+    "surface": "芝",
+    "band": "middle",
+    "turn": "大回り"
+   },
+   "direction": "+",
+   "summary": "フィエールマンは春天・菊の重厚なディープ系。産駒は斜尻脚長の中距離質な差しで、大箱（大回り）で後傾ラップを差す"
+  },
+  {
+   "id": "mochida_blog_rosesinmay_late",
+   "author": "望田潤（血は水よりも濃し ブログの要約）",
+   "url": "https://nas-quillo.hatenablog.com/entry/2026/09/24/090609",
+   "date": "2026-09-24",
+   "sire": "ロージズインメイ",
+   "condition": {
+    "age_min": 4
+   },
+   "direction": "+",
+   "summary": "ロージズインメイはスカスカのアウトブリードで、産駒は概ね晩成"
+  },
+  {
+   "id": "mochida_blog_calichrome_q",
+   "author": "望田潤（血は水よりも濃し ブログの要約）",
+   "url": "https://nas-quillo.hatenablog.com/entry/2026/09/26/090651",
+   "date": "2026-09-26",
+   "sire": "カリフォルニアクローム",
+   "damsire": "ゴールドアリュール",
+   "condition": {
+    "qualitative": true
+   },
+   "direction": "+",
+   "summary": "カリフォルニアクローム×ゴールドアリュールはAureole魂の配合。揉まれず外の番手で運べると良い"
+  },
+  {
+   "id": "mochida_blog_kitasan_cup_q",
+   "author": "望田潤（血は水よりも濃し ブログの要約）",
+   "url": "https://nas-quillo.hatenablog.com/entry/2026/09/21/084723",
+   "date": "2026-09-21",
+   "sire": "キタサンブラック",
+   "condition": {
+    "qualitative": true,
+    "course": "中山",
+    "surface": "芝",
+    "distance_min": 2200,
+    "distance_max": 2200
+   },
+   "direction": "+",
+   "summary": "中山内回り2200は母父のスピードで機動力のある中距離馬を狙う（キタサンブラック×Invincible Spirit 等）"
+  }
+ ]
+}

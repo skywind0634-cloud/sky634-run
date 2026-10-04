@@ -1,0 +1,710 @@
+{
+"runners": [
+{
+"year": 2025,
+"pos": 1,
+"draw": 2,
+"horse": "Daryz",
+"age": 3,
+"country": "FR"
+},
+{
+"year": 2025,
+"pos": 2,
+"draw": 1,
+"horse": "Minnie Hauk",
+"age": 3,
+"country": "IRE"
+},
+{
+"year": 2025,
+"pos": 3,
+"draw": 3,
+"horse": "Sosie",
+"age": 4,
+"country": "FR"
+},
+{
+"year": 2025,
+"pos": 4,
+"draw": 5,
+"horse": "Giavellotto",
+"age": 6,
+"country": "GB"
+},
+{
+"year": 2025,
+"pos": 5,
+"draw": 15,
+"horse": "Byzantine Dream",
+"age": 4,
+"country": "JPN"
+},
+{
+"year": 2025,
+"pos": 6,
+"draw": 16,
+"horse": "Arrow Eagle",
+"age": 4,
+"country": "FR"
+},
+{
+"year": 2025,
+"pos": 7,
+"draw": 10,
+"horse": "Kalpana",
+"age": 4,
+"country": "GB"
+},
+{
+"year": 2025,
+"pos": 8,
+"draw": 6,
+"horse": "Leffard",
+"age": 3,
+"country": "FR"
+},
+{
+"year": 2025,
+"pos": 9,
+"draw": 7,
+"horse": "Quisisana",
+"age": 5,
+"country": "FR"
+},
+{
+"year": 2025,
+"pos": 10,
+"draw": 11,
+"horse": "Hotazhell",
+"age": 3,
+"country": "IRE"
+},
+{
+"year": 2025,
+"pos": 11,
+"draw": 12,
+"horse": "Aventure",
+"age": 4,
+"country": "FR"
+},
+{
+"year": 2025,
+"pos": 12,
+"draw": 9,
+"horse": "White Birch",
+"age": 5,
+"country": "IRE"
+},
+{
+"year": 2025,
+"pos": 13,
+"draw": 13,
+"horse": "Gezora",
+"age": 3,
+"country": "FR"
+},
+{
+"year": 2025,
+"pos": 14,
+"draw": 17,
+"horse": "Croix Du Nord",
+"age": 3,
+"country": "JPN"
+},
+{
+"year": 2025,
+"pos": 15,
+"draw": 8,
+"horse": "Cualificar",
+"age": 3,
+"country": "FR"
+},
+{
+"year": 2025,
+"pos": 16,
+"draw": 4,
+"horse": "Alohi Alii",
+"age": 3,
+"country": "JPN"
+},
+{
+"year": 2025,
+"pos": 17,
+"draw": 14,
+"horse": "Los Angeles",
+"age": 4,
+"country": "IRE"
+},
+{
+"year": 2024,
+"pos": 1,
+"draw": 3,
+"horse": "Bluestocking",
+"age": 4,
+"country": "GB"
+},
+{
+"year": 2024,
+"pos": 2,
+"draw": 4,
+"horse": "Aventure",
+"age": 3,
+"country": "FR"
+},
+{
+"year": 2024,
+"pos": 3,
+"draw": 10,
+"horse": "Los Angeles",
+"age": 3,
+"country": "IRE"
+},
+{
+"year": 2024,
+"pos": 4,
+"draw": 5,
+"horse": "Sosie",
+"age": 3,
+"country": "FR"
+},
+{
+"year": 2024,
+"pos": 5,
+"draw": 12,
+"horse": "Sevenna's Knight",
+"age": 4,
+"country": "FR"
+},
+{
+"year": 2024,
+"pos": 6,
+"draw": 1,
+"horse": "Zarakem",
+"age": 4,
+"country": "FR"
+},
+{
+"year": 2024,
+"pos": 7,
+"draw": 6,
+"horse": "Survie",
+"age": 3,
+"country": "FR"
+},
+{
+"year": 2024,
+"pos": 8,
+"draw": 7,
+"horse": "Delius",
+"age": 3,
+"country": "FR"
+},
+{
+"year": 2024,
+"pos": 9,
+"draw": 2,
+"horse": "Fantastic Moon",
+"age": 4,
+"country": "GER"
+},
+{
+"year": 2024,
+"pos": 10,
+"draw": 15,
+"horse": "Sunway",
+"age": 3,
+"country": "GB"
+},
+{
+"year": 2024,
+"pos": 11,
+"draw": 9,
+"horse": "Al Riffa",
+"age": 4,
+"country": "IRE"
+},
+{
+"year": 2024,
+"pos": 12,
+"draw": 11,
+"horse": "Shin Emperor",
+"age": 3,
+"country": "JPN"
+},
+{
+"year": 2024,
+"pos": 13,
+"draw": 8,
+"horse": "Look de Vega",
+"age": 3,
+"country": "FR"
+},
+{
+"year": 2024,
+"pos": 14,
+"draw": 16,
+"horse": "Mqse de Sevigne",
+"age": 5,
+"country": "FR"
+},
+{
+"year": 2024,
+"pos": 15,
+"draw": 14,
+"horse": "Continuous",
+"age": 4,
+"country": "IRE"
+},
+{
+"year": 2024,
+"pos": 16,
+"draw": 13,
+"horse": "Haya Zark",
+"age": 5,
+"country": "FR"
+},
+{
+"year": 2023,
+"pos": 1,
+"draw": 8,
+"horse": "Ace Impact",
+"age": 3,
+"country": "FR"
+},
+{
+"year": 2023,
+"pos": 2,
+"draw": 1,
+"horse": "Westover",
+"age": 4,
+"country": "GB"
+},
+{
+"year": 2023,
+"pos": 3,
+"draw": 9,
+"horse": "Onesto",
+"age": 4,
+"country": "FR"
+},
+{
+"year": 2023,
+"pos": 4,
+"draw": 5,
+"horse": "Through Seven Seas",
+"age": 5,
+"country": "JPN"
+},
+{
+"year": 2023,
+"pos": 5,
+"draw": 7,
+"horse": "Continuous",
+"age": 3,
+"country": "IRE"
+},
+{
+"year": 2023,
+"pos": 6,
+"draw": 6,
+"horse": "Bay Bridge",
+"age": 5,
+"country": "GB"
+},
+{
+"year": 2023,
+"pos": 7,
+"draw": 13,
+"horse": "Sisfahan",
+"age": 5,
+"country": "GER"
+},
+{
+"year": 2023,
+"pos": 8,
+"draw": 2,
+"horse": "Feed The Flame",
+"age": 3,
+"country": "FR"
+},
+{
+"year": 2023,
+"pos": 9,
+"draw": 14,
+"horse": "Hukum",
+"age": 6,
+"country": "GB"
+},
+{
+"year": 2023,
+"pos": 10,
+"draw": 15,
+"horse": "Simca Mille",
+"age": 4,
+"country": "FR"
+},
+{
+"year": 2023,
+"pos": 11,
+"draw": 12,
+"horse": "Fantastic Moon",
+"age": 3,
+"country": "GER"
+},
+{
+"year": 2023,
+"pos": 12,
+"draw": 11,
+"horse": "Place Du Carrousel",
+"age": 4,
+"country": "FR"
+},
+{
+"year": 2023,
+"pos": 13,
+"draw": 3,
+"horse": "Free Wind",
+"age": 5,
+"country": "GB"
+},
+{
+"year": 2023,
+"pos": 14,
+"draw": 4,
+"horse": "Haya Zark",
+"age": 4,
+"country": "FR"
+},
+{
+"year": 2023,
+"pos": 15,
+"draw": 10,
+"horse": "Mr Hollywood",
+"age": 3,
+"country": "GER"
+},
+{
+"year": 2022,
+"pos": 1,
+"draw": 6,
+"horse": "Alpinista",
+"age": 5,
+"country": "GB"
+},
+{
+"year": 2022,
+"pos": 2,
+"draw": 2,
+"horse": "Vadeni",
+"age": 3,
+"country": "FR"
+},
+{
+"year": 2022,
+"pos": 3,
+"draw": 18,
+"horse": "Torquator Tasso",
+"age": 5,
+"country": "GER"
+},
+{
+"year": 2022,
+"pos": 4,
+"draw": 4,
+"horse": "Al Hakeem",
+"age": 3,
+"country": "FR"
+},
+{
+"year": 2022,
+"pos": 5,
+"draw": 12,
+"horse": "Deep Bond",
+"age": 5,
+"country": "JPN"
+},
+{
+"year": 2021,
+"pos": 1,
+"draw": 12,
+"horse": "Torquator Tasso",
+"age": 4,
+"country": "GER"
+},
+{
+"year": 2021,
+"pos": 2,
+"draw": 3,
+"horse": "Tarnawa",
+"age": 5,
+"country": "IRE"
+},
+{
+"year": 2021,
+"pos": 3,
+"draw": 2,
+"horse": "Hurricane Lane",
+"age": 3,
+"country": "GB"
+},
+{
+"year": 2021,
+"pos": 4,
+"draw": 11,
+"horse": "Adayar",
+"age": 3,
+"country": "GB"
+},
+{
+"year": 2021,
+"pos": 5,
+"draw": 10,
+"horse": "Sealiway",
+"age": 3,
+"country": "FR"
+},
+{
+"year": 2021,
+"pos": 6,
+"draw": 9,
+"horse": "Snowfall",
+"age": 3,
+"country": "IRE"
+},
+{
+"year": 2021,
+"pos": 7,
+"draw": 14,
+"horse": "Chrono Genesis",
+"age": 5,
+"country": "JPN"
+},
+{
+"year": 2021,
+"pos": 8,
+"draw": 6,
+"horse": "Bubble Gift",
+"age": 3,
+"country": "FR"
+},
+{
+"year": 2021,
+"pos": 9,
+"draw": 8,
+"horse": "Alenquer",
+"age": 3,
+"country": "GB"
+},
+{
+"year": 2021,
+"pos": 10,
+"draw": 1,
+"horse": "Mojo Star",
+"age": 3,
+"country": "GB"
+},
+{
+"year": 2021,
+"pos": 11,
+"draw": 7,
+"horse": "Broome",
+"age": 5,
+"country": "IRE"
+},
+{
+"year": 2021,
+"pos": 12,
+"draw": 15,
+"horse": "Raabihah",
+"age": 4,
+"country": "FR"
+},
+{
+"year": 2021,
+"pos": 13,
+"draw": 13,
+"horse": "Baby Rider",
+"age": 3,
+"country": "FR"
+},
+{
+"year": 2021,
+"pos": 14,
+"draw": 5,
+"horse": "Deep Bond",
+"age": 4,
+"country": "JPN"
+},
+{
+"year": 2020,
+"pos": 1,
+"draw": 7,
+"horse": "Sottsass",
+"age": 4,
+"country": "FR"
+},
+{
+"year": 2020,
+"pos": 2,
+"draw": 12,
+"horse": "In Swoop",
+"age": 3,
+"country": "FR"
+},
+{
+"year": 2020,
+"pos": 3,
+"draw": 1,
+"horse": "Persian King",
+"age": 4,
+"country": "FR"
+},
+{
+"year": 2020,
+"pos": 4,
+"draw": 10,
+"horse": "Gold Trip",
+"age": 3,
+"country": "FR"
+},
+{
+"year": 2020,
+"pos": 5,
+"draw": 15,
+"horse": "Raabihah",
+"age": 3,
+"country": "FR"
+},
+{
+"year": 2020,
+"pos": 6,
+"draw": 8,
+"horse": "Enable",
+"age": 6,
+"country": "GB"
+},
+{
+"year": 2020,
+"pos": 7,
+"draw": 6,
+"horse": "Stradivarius",
+"age": 6,
+"country": "GB"
+},
+{
+"year": 2020,
+"pos": 8,
+"draw": 9,
+"horse": "Deirdre",
+"age": 6,
+"country": "JPN"
+},
+{
+"year": 2020,
+"pos": 9,
+"draw": 3,
+"horse": "Way To Paris",
+"age": 7,
+"country": "FR"
+},
+{
+"year": 2020,
+"pos": 10,
+"draw": 2,
+"horse": "Royal Julius",
+"age": 7,
+"country": "FR"
+},
+{
+"year": 2020,
+"pos": 11,
+"draw": 11,
+"horse": "Chachnak",
+"age": 3,
+"country": "FR"
+},
+{
+"year": 2019,
+"pos": 1,
+"draw": 2,
+"horse": "3",
+"age": 4,
+"country": null
+},
+{
+"year": 2017,
+"pos": 1,
+"draw": 2,
+"horse": "3",
+"age": 4,
+"country": null
+}
+],
+"meta": {
+"2025": {
+"going": "Very Soft",
+"field": 17
+},
+"2024": {
+"going": "Very Soft",
+"field": 16
+},
+"2023": {
+"going": "Good to Soft",
+"field": 15
+},
+"2022": {
+"going": "Very Soft",
+"field": 5
+},
+"2021": {
+"going": "Heavy",
+"field": 14
+},
+"2020": {
+"going": "Heavy",
+"field": 11
+},
+"2019": {
+"going": "Very Soft",
+"field": 1
+},
+"2018": {
+"going": null,
+"field": 0
+},
+"2017": {
+"going": "Soft",
+"field": 1
+},
+"2016": {
+"going": "Good",
+"field": 0
+},
+"2015": {
+"going": "Good",
+"field": 0
+},
+"2014": {
+"going": "Good",
+"field": 0
+},
+"2013": {
+"going": "Soft",
+"field": 0
+},
+"2012": {
+"going": "Heavy",
+"field": 0
+},
+"2011": {
+"going": "Good",
+"field": 0
+},
+"2010": {
+"going": "Very Soft",
+"field": 0
+}
+}
+}

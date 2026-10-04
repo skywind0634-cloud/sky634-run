@@ -1,0 +1,35 @@
+{
+  "_meta": {
+    "description": "ニックス（父×母父、父系×母父系の好相性）の事前知識。rating は -2〜+2。data/keiba.db の実績から算出する『実測ニックス』(keiba/analysis.py: nick_stats) と合成して使う。",
+    "match": "sire / sire_line と damsire / damsire_line のいずれかの組み合わせで照合。個別名が一致する方を優先。"
+  },
+  "nicks": [
+    {"sire_line": "ディープインパクト系", "damsire": "Storm Cat", "rating": 2, "why": "ディープの瞬発力にStorm Catのスピードと仕上がりの早さ。", "examples": ["キズナ", "リアルスティール", "ラヴズオンリーユー", "エイシンヒカリ"]},
+    {"sire_line": "ディープインパクト系", "damsire_line": "ストームキャット系", "rating": 1.5, "why": "上記の系統拡張。"},
+    {"sire_line": "ステイゴールド系", "damsire": "メジロマックイーン", "rating": 2, "why": "『黄金配合』。スタミナと底力の増幅。", "examples": ["オルフェーヴル", "ゴールドシップ", "ドリームジャーニー"]},
+    {"sire_line": "ステイゴールド系", "damsire_line": "ノーザンダンサー系", "rating": 0.5, "why": "欧州ノーザンダンサーのパワーを加えると道悪・長距離で強化。"},
+    {"sire": "ロードカナロア", "damsire_line": "サンデーサイレンス系", "rating": 1.5, "why": "カナロアのスピードにSSの瞬発力と距離延長。中距離G1馬(アーモンドアイ、サートゥルナーリア)の典型。", "examples": ["アーモンドアイ", "サートゥルナーリア"]},
+    {"sire": "ロードカナロア", "damsire": "ディープインパクト", "rating": 1, "why": "マイル〜中距離の瞬発力型が出やすい。"},
+    {"sire": "エピファネイア", "damsire_line": "サンデーサイレンス系", "rating": 1.5, "why": "サンデーサイレンスのクロス（4×3等）が成立し、瞬発力と勝負根性が強化。", "examples": ["エフフォーリア", "アリストテレス"]},
+    {"sire": "エピファネイア", "damsire": "キングカメハメハ", "rating": 1, "examples": ["デアリングタクト"]},
+    {"sire": "キズナ", "damsire_line": "シンボリクリスエス系", "rating": 1.5, "why": "ロベルト系のパワーでキズナの持続力を強化。", "examples": ["ソングライン", "アカイイト"]},
+    {"sire": "キズナ", "damsire_line": "キングカメハメハ系", "rating": 1, "why": "非SSの母父で配合がしやすく、芝ダ兼用の万能型。"},
+    {"sire": "キズナ", "damsire_line": "リファール系", "rating": 1, "examples": ["ディープボンド"]},
+    {"sire": "キタサンブラック", "damsire_line": "リファール系", "rating": 1, "why": "キングヘイロー等の母父で瞬発力と底力。", "examples": ["イクイノックス"]},
+    {"sire": "キタサンブラック", "damsire_line": "サドラーズウェルズ系", "rating": 1, "why": "欧州スタミナで中長距離の持続力。", "examples": ["ソールオリエンス"]},
+    {"sire": "ドゥラメンテ", "damsire_line": "サドラーズウェルズ系", "rating": 1.5, "why": "Motivator等の欧州スタミナ母父で長距離G1。", "examples": ["タイトルホルダー"]},
+    {"sire": "ドゥラメンテ", "damsire_line": "スマートストライク系", "rating": 1, "examples": ["スターズオンアース"]},
+    {"sire": "ルーラーシップ", "damsire_line": "サンデーサイレンス系", "rating": 1, "examples": ["キセキ"]},
+    {"sire": "モーリス", "damsire_line": "サンデーサイレンス系", "rating": 1, "why": "非SSの父にSS牝馬の王道。", "examples": ["ジェラルディーナ"]},
+    {"sire": "モーリス", "damsire_line": "リファール系", "rating": 1, "examples": ["ピクシーナイト"]},
+    {"sire": "ハービンジャー", "damsire_line": "サンデーサイレンス系", "rating": 1, "why": "欧州の持続力にSSの瞬発力を補完。", "examples": ["ペルシアンナイト", "ディアドラ"]},
+    {"sire": "ハービンジャー", "damsire_line": "キングカメハメハ系", "rating": 0.5, "examples": ["ブラストワンピース"]},
+    {"sire": "リアルスティール", "damsire_line": "スマートストライク系", "rating": 1, "why": "米国ダート血統の母父でダート大物。", "examples": ["フォーエバーヤング"]},
+    {"sire": "スワーヴリチャード", "damsire_line": "ノーザンダンサー系", "rating": 0.5, "examples": ["レガレイラ"]},
+    {"sire_line": "ヘネシー系", "damsire_line": "サンデーサイレンス系", "rating": 1, "why": "ダート短距離のスピードにSSの瞬発力。芝短距離もこなす（ピューロマジック：父アジアエクスプレス×母父ディープインパクト）。", "examples": ["ピューロマジック"]},
+    {"sire_line": "ゴールドアリュール系", "damsire_line": "ノーザンダンサー系", "rating": 0.5},
+    {"sire_line": "エーピーインディ系", "damsire_line": "サンデーサイレンス系", "rating": 1, "why": "米国パワーにSSの瞬発力。ダート中距離の王道配合。"},
+    {"sire_line": "エーピーインディ系", "damsire_line": "キングカメハメハ系", "rating": 1},
+    {"sire_line": "サンデーサイレンス系", "damsire_line": "サンデーサイレンス系", "rating": -0.5, "why": "SS同士はクロスが濃くなりすぎ、配合として選ばれにくく成績も落ちる傾向（実測で要検証）。"}
+  ]
+}

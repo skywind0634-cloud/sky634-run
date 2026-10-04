@@ -1,0 +1,4676 @@
+{
+ "_meta": "妙味条件（value.py が生成）。strict が本番用、win/place は確認済みの条件（予想では回収率の突出度に応じた相対指標として使う）。base は人気帯ごとの全体回収率",
+ "periods": {
+  "発見": [
+   "2000-01-01",
+   "2022-12-31"
+  ],
+  "確認": [
+   "2023-01-01",
+   "2024-12-31"
+  ],
+  "テスト": [
+   "2025-01-01",
+   "2099-12-31"
+  ]
+ },
+ "base": {
+  "10番人気以下": {
+   "win": 0.673,
+   "place": 0.656,
+   "top3": 0.052
+  },
+  "7-9番人気": {
+   "win": 0.753,
+   "place": 0.747,
+   "top3": 0.1414
+  },
+  "4-6番人気": {
+   "win": 0.767,
+   "place": 0.778,
+   "top3": 0.2758
+  },
+  "1-3番人気": {
+   "win": 0.781,
+   "place": 0.821,
+   "top3": 0.5074
+  }
+ },
+ "strict": [
+  {
+   "dim": "調教師",
+   "key": [
+    "松永幹夫"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 71,
+    "wins": 5,
+    "win_roi": 1.552,
+    "place_roi": 0.818
+   },
+   "confirm": {
+    "n": 69,
+    "wins": 3,
+    "win_roi": 1.278,
+    "place_roi": 0.967
+   },
+   "test": {
+    "n": 79,
+    "wins": 8,
+    "win_roi": 2.22,
+    "place_roi": 1.037
+   }
+  },
+  {
+   "dim": "枠×コース",
+   "key": [
+    "内枠(1-3)",
+    "東京ダ1400"
+   ],
+   "pop": "4-6番人気",
+   "kind": "win",
+   "discover": {
+    "n": 77,
+    "wins": 10,
+    "win_roi": 1.648,
+    "place_roi": 0.999
+   },
+   "confirm": {
+    "n": 91,
+    "wins": 12,
+    "win_roi": 1.379,
+    "place_roi": 0.604
+   },
+   "test": {
+    "n": 84,
+    "wins": 9,
+    "win_roi": 1.339,
+    "place_roi": 0.906
+   }
+  },
+  {
+   "dim": "父×馬場",
+   "key": [
+    "ハーツクライ",
+    "ダ",
+    "良"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 62,
+    "wins": 4,
+    "win_roi": 1.353,
+    "place_roi": 0.684
+   },
+   "confirm": {
+    "n": 72,
+    "wins": 4,
+    "win_roi": 1.472,
+    "place_roi": 0.767
+   },
+   "test": {
+    "n": 26,
+    "wins": 0,
+    "win_roi": 0.0,
+    "place_roi": 1.235
+   }
+  },
+  {
+   "dim": "騎手",
+   "key": [
+    "武豊"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 121,
+    "wins": 9,
+    "win_roi": 1.26,
+    "place_roi": 0.81
+   },
+   "confirm": {
+    "n": 88,
+    "wins": 5,
+    "win_roi": 1.545,
+    "place_roi": 0.868
+   },
+   "test": {
+    "n": 79,
+    "wins": 5,
+    "win_roi": 1.277,
+    "place_roi": 0.801
+   }
+  },
+  {
+   "dim": "母父系統×距離帯",
+   "key": [
+    "キングカメハメハ系",
+    "ダ",
+    "middle"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 61,
+    "wins": 4,
+    "win_roi": 1.446,
+    "place_roi": 0.526
+   },
+   "confirm": {
+    "n": 70,
+    "wins": 8,
+    "win_roi": 2.26,
+    "place_roi": 1.12
+   },
+   "test": {
+    "n": 104,
+    "wins": 6,
+    "win_roi": 1.591,
+    "place_roi": 1.051
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "寺島良"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 76,
+    "wins": 3,
+    "win_roi": 1.446,
+    "place_roi": 0.922
+   },
+   "confirm": {
+    "n": 89,
+    "wins": 3,
+    "win_roi": 1.496,
+    "place_roi": 0.701
+   },
+   "test": {
+    "n": 51,
+    "wins": 3,
+    "win_roi": 1.555,
+    "place_roi": 1.0
+   }
+  },
+  {
+   "dim": "父系統",
+   "key": [
+    "シーキングザゴールド系"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 130,
+    "wins": 9,
+    "win_roi": 1.745,
+    "place_roi": 0.955
+   },
+   "confirm": {
+    "n": 122,
+    "wins": 10,
+    "win_roi": 1.8,
+    "place_roi": 0.793
+   },
+   "test": {
+    "n": 73,
+    "wins": 5,
+    "win_roi": 1.459,
+    "place_roi": 0.873
+   }
+  },
+  {
+   "dim": "父",
+   "key": [
+    "マクフィ"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 71,
+    "wins": 5,
+    "win_roi": 1.768,
+    "place_roi": 1.089
+   },
+   "confirm": {
+    "n": 97,
+    "wins": 6,
+    "win_roi": 1.341,
+    "place_roi": 0.642
+   },
+   "test": {
+    "n": 64,
+    "wins": 4,
+    "win_roi": 1.258,
+    "place_roi": 0.948
+   }
+  }
+ ],
+ "fade": [
+  {
+   "dim": "父×頭数",
+   "key": [
+    "ダイワメジャー",
+    "芝",
+    "多頭数(15〜)"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 68,
+    "wins": 1,
+    "top3": 3,
+    "t3": 0.0441,
+    "base_t3": 0.1385,
+    "win_roi": 0.21,
+    "place_roi": 0.206
+   },
+   "confirm": {
+    "n": 63,
+    "wins": 0,
+    "top3": 2,
+    "t3": 0.0317,
+    "base_t3": 0.1406,
+    "win_roi": 0.0,
+    "place_roi": 0.171
+   },
+   "test": {
+    "n": 39,
+    "wins": 3,
+    "top3": 15,
+    "t3": 0.3846,
+    "base_t3": 0.1459,
+    "win_roi": 1.374,
+    "place_roi": 1.774
+   }
+  },
+  {
+   "dim": "父×頭数",
+   "key": [
+    "ハーツクライ",
+    "芝",
+    "少頭数(〜10)"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 57,
+    "wins": 0,
+    "top3": 4,
+    "t3": 0.0702,
+    "base_t3": 0.1385,
+    "win_roi": 0.0,
+    "place_roi": 0.244
+   },
+   "confirm": {
+    "n": 45,
+    "wins": 0,
+    "top3": 1,
+    "t3": 0.0222,
+    "base_t3": 0.1406,
+    "win_roi": 0.0,
+    "place_roi": 0.093
+   },
+   "test": {
+    "n": 27,
+    "wins": 0,
+    "top3": 4,
+    "t3": 0.1481,
+    "base_t3": 0.1459,
+    "win_roi": 0.0,
+    "place_roi": 0.663
+   }
+  },
+  {
+   "dim": "枠×コース",
+   "key": [
+    "内枠(1-3)",
+    "東京芝1800"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 40,
+    "wins": 0,
+    "top3": 0,
+    "t3": 0.0,
+    "base_t3": 0.1385,
+    "win_roi": 0.0,
+    "place_roi": 0.0
+   },
+   "confirm": {
+    "n": 50,
+    "wins": 1,
+    "top3": 5,
+    "t3": 0.1,
+    "base_t3": 0.1406,
+    "win_roi": 0.378,
+    "place_roi": 0.74
+   },
+   "test": {
+    "n": 48,
+    "wins": 3,
+    "top3": 5,
+    "t3": 0.1042,
+    "base_t3": 0.1459,
+    "win_roi": 2.737,
+    "place_roi": 0.669
+   }
+  },
+  {
+   "dim": "前走脚質×コース",
+   "key": [
+    "追込",
+    "新潟ダ1800"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 78,
+    "wins": 1,
+    "top3": 3,
+    "t3": 0.0385,
+    "base_t3": 0.1385,
+    "win_roi": 0.336,
+    "place_roi": 0.19
+   },
+   "confirm": {
+    "n": 75,
+    "wins": 0,
+    "top3": 5,
+    "t3": 0.0667,
+    "base_t3": 0.1406,
+    "win_roi": 0.0,
+    "place_roi": 0.429
+   },
+   "test": {
+    "n": 47,
+    "wins": 0,
+    "top3": 1,
+    "t3": 0.0213,
+    "base_t3": 0.1459,
+    "win_roi": 0.0,
+    "place_roi": 0.157
+   }
+  },
+  {
+   "dim": "父×馬場",
+   "key": [
+    "ダイワメジャー",
+    "芝",
+    "良"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 115,
+    "wins": 2,
+    "top3": 9,
+    "t3": 0.0783,
+    "base_t3": 0.1385,
+    "win_roi": 0.215,
+    "place_roi": 0.408
+   },
+   "confirm": {
+    "n": 105,
+    "wins": 1,
+    "top3": 3,
+    "t3": 0.0286,
+    "base_t3": 0.1406,
+    "win_roi": 0.191,
+    "place_roi": 0.123
+   },
+   "test": {
+    "n": 51,
+    "wins": 4,
+    "top3": 16,
+    "t3": 0.3137,
+    "base_t3": 0.1459,
+    "win_roi": 1.49,
+    "place_roi": 1.673
+   }
+  },
+  {
+   "dim": "父×ローテ",
+   "key": [
+    "ダイワメジャー",
+    "休み明け"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 58,
+    "wins": 0,
+    "top3": 3,
+    "t3": 0.0517,
+    "base_t3": 0.1385,
+    "win_roi": 0.0,
+    "place_roi": 0.324
+   },
+   "confirm": {
+    "n": 49,
+    "wins": 0,
+    "top3": 3,
+    "t3": 0.0612,
+    "base_t3": 0.1406,
+    "win_roi": 0.0,
+    "place_roi": 0.316
+   },
+   "test": {
+    "n": 23,
+    "wins": 1,
+    "top3": 5,
+    "t3": 0.2174,
+    "base_t3": 0.1459,
+    "win_roi": 0.726,
+    "place_roi": 1.539
+   }
+  },
+  {
+   "dim": "母父系統×距離帯",
+   "key": [
+    "ブライアンズタイム系",
+    "芝",
+    "middle"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 54,
+    "wins": 0,
+    "top3": 3,
+    "t3": 0.0556,
+    "base_t3": 0.1385,
+    "win_roi": 0.0,
+    "place_roi": 0.281
+   },
+   "confirm": {
+    "n": 49,
+    "wins": 0,
+    "top3": 3,
+    "t3": 0.0612,
+    "base_t3": 0.1406,
+    "win_roi": 0.0,
+    "place_roi": 0.249
+   },
+   "test": {
+    "n": 35,
+    "wins": 1,
+    "top3": 3,
+    "t3": 0.0857,
+    "base_t3": 0.1459,
+    "win_roi": 0.591,
+    "place_roi": 0.409
+   }
+  },
+  {
+   "dim": "父系統×直線",
+   "key": [
+    "ダイワメジャー系",
+    "芝",
+    "直線長"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 47,
+    "wins": 0,
+    "top3": 2,
+    "t3": 0.0426,
+    "base_t3": 0.1385,
+    "win_roi": 0.0,
+    "place_roi": 0.285
+   },
+   "confirm": {
+    "n": 40,
+    "wins": 0,
+    "top3": 3,
+    "t3": 0.075,
+    "base_t3": 0.1406,
+    "win_roi": 0.0,
+    "place_roi": 0.388
+   },
+   "test": {
+    "n": 20,
+    "wins": 1,
+    "top3": 3,
+    "t3": 0.15,
+    "base_t3": 0.1459,
+    "win_roi": 1.155,
+    "place_roi": 1.195
+   }
+  },
+  {
+   "dim": "騎手",
+   "key": [
+    "江田照男"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 103,
+    "wins": 1,
+    "top3": 8,
+    "t3": 0.0777,
+    "base_t3": 0.1385,
+    "win_roi": 0.244,
+    "place_roi": 0.379
+   },
+   "confirm": {
+    "n": 43,
+    "wins": 1,
+    "top3": 2,
+    "t3": 0.0465,
+    "base_t3": 0.1406,
+    "win_roi": 0.484,
+    "place_roi": 0.251
+   },
+   "test": {
+    "n": 46,
+    "wins": 1,
+    "top3": 5,
+    "t3": 0.1087,
+    "base_t3": 0.1459,
+    "win_roi": 0.415,
+    "place_roi": 0.68
+   }
+  },
+  {
+   "dim": "騎手",
+   "key": [
+    "国分優作"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 84,
+    "wins": 2,
+    "top3": 8,
+    "t3": 0.0952,
+    "base_t3": 0.1385,
+    "win_roi": 0.605,
+    "place_roi": 0.532
+   },
+   "confirm": {
+    "n": 59,
+    "wins": 0,
+    "top3": 2,
+    "t3": 0.0339,
+    "base_t3": 0.1406,
+    "win_roi": 0.0,
+    "place_roi": 0.186
+   },
+   "test": {
+    "n": 46,
+    "wins": 1,
+    "top3": 5,
+    "t3": 0.1087,
+    "base_t3": 0.1459,
+    "win_roi": 0.787,
+    "place_roi": 0.739
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "昆貢"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 67,
+    "wins": 0,
+    "top3": 3,
+    "t3": 0.0448,
+    "base_t3": 0.1385,
+    "win_roi": 0.0,
+    "place_roi": 0.234
+   },
+   "confirm": {
+    "n": 65,
+    "wins": 1,
+    "top3": 6,
+    "t3": 0.0923,
+    "base_t3": 0.1406,
+    "win_roi": 0.226,
+    "place_roi": 0.729
+   },
+   "test": {
+    "n": 32,
+    "wins": 0,
+    "top3": 3,
+    "t3": 0.0938,
+    "base_t3": 0.1459,
+    "win_roi": 0.0,
+    "place_roi": 0.447
+   }
+  },
+  {
+   "dim": "父系統×直線",
+   "key": [
+    "その他",
+    "芝",
+    "直線長"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 55,
+    "wins": 0,
+    "top3": 4,
+    "t3": 0.0727,
+    "base_t3": 0.1385,
+    "win_roi": 0.0,
+    "place_roi": 0.58
+   },
+   "confirm": {
+    "n": 45,
+    "wins": 1,
+    "top3": 3,
+    "t3": 0.0667,
+    "base_t3": 0.1406,
+    "win_roi": 0.356,
+    "place_roi": 0.244
+   },
+   "test": {
+    "n": 34,
+    "wins": 0,
+    "top3": 4,
+    "t3": 0.1176,
+    "base_t3": 0.1459,
+    "win_roi": 0.0,
+    "place_roi": 0.476
+   }
+  },
+  {
+   "dim": "騎手",
+   "key": [
+    "武藤雅"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 89,
+    "wins": 1,
+    "top3": 9,
+    "t3": 0.1011,
+    "base_t3": 0.1385,
+    "win_roi": 0.447,
+    "place_roi": 0.537
+   },
+   "confirm": {
+    "n": 75,
+    "wins": 0,
+    "top3": 3,
+    "t3": 0.04,
+    "base_t3": 0.1406,
+    "win_roi": 0.0,
+    "place_roi": 0.264
+   },
+   "test": {
+    "n": 49,
+    "wins": 1,
+    "top3": 3,
+    "t3": 0.0612,
+    "base_t3": 0.1459,
+    "win_roi": 0.349,
+    "place_roi": 0.239
+   }
+  },
+  {
+   "dim": "父×ローテ",
+   "key": [
+    "ハービンジャー",
+    "休み明け"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 49,
+    "wins": 0,
+    "top3": 4,
+    "t3": 0.0816,
+    "base_t3": 0.1385,
+    "win_roi": 0.0,
+    "place_roi": 0.431
+   },
+   "confirm": {
+    "n": 45,
+    "wins": 1,
+    "top3": 3,
+    "t3": 0.0667,
+    "base_t3": 0.1406,
+    "win_roi": 0.242,
+    "place_roi": 0.262
+   },
+   "test": {
+    "n": 36,
+    "wins": 2,
+    "top3": 5,
+    "t3": 0.1389,
+    "base_t3": 0.1459,
+    "win_roi": 1.236,
+    "place_roi": 0.811
+   }
+  },
+  {
+   "dim": "母父系統×距離帯",
+   "key": [
+    "ミスタープロスペクター系",
+    "ダ",
+    "middle"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 88,
+    "wins": 0,
+    "top3": 7,
+    "t3": 0.0795,
+    "base_t3": 0.1385,
+    "win_roi": 0.0,
+    "place_roi": 0.399
+   },
+   "confirm": {
+    "n": 70,
+    "wins": 1,
+    "top3": 5,
+    "t3": 0.0714,
+    "base_t3": 0.1406,
+    "win_roi": 0.287,
+    "place_roi": 0.343
+   },
+   "test": {
+    "n": 36,
+    "wins": 4,
+    "top3": 10,
+    "t3": 0.2778,
+    "base_t3": 0.1459,
+    "win_roi": 2.472,
+    "place_roi": 1.756
+   }
+  },
+  {
+   "dim": "父×季節",
+   "key": [
+    "キズナ",
+    "芝",
+    "冬"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 60,
+    "wins": 1,
+    "top3": 6,
+    "t3": 0.1,
+    "base_t3": 0.1385,
+    "win_roi": 0.615,
+    "place_roi": 0.543
+   },
+   "confirm": {
+    "n": 54,
+    "wins": 0,
+    "top3": 3,
+    "t3": 0.0556,
+    "base_t3": 0.1406,
+    "win_roi": 0.0,
+    "place_roi": 0.38
+   },
+   "test": {
+    "n": 44,
+    "wins": 2,
+    "top3": 5,
+    "t3": 0.1136,
+    "base_t3": 0.1459,
+    "win_roi": 1.914,
+    "place_roi": 0.527
+   }
+  },
+  {
+   "dim": "父×距離変化",
+   "key": [
+    "ハーツクライ",
+    "芝",
+    "同"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 91,
+    "wins": 1,
+    "top3": 8,
+    "t3": 0.0879,
+    "base_t3": 0.1385,
+    "win_roi": 0.265,
+    "place_roi": 0.377
+   },
+   "confirm": {
+    "n": 85,
+    "wins": 2,
+    "top3": 6,
+    "t3": 0.0706,
+    "base_t3": 0.1406,
+    "win_roi": 0.413,
+    "place_roi": 0.295
+   },
+   "test": {
+    "n": 33,
+    "wins": 1,
+    "top3": 7,
+    "t3": 0.2121,
+    "base_t3": 0.1459,
+    "win_roi": 0.9,
+    "place_roi": 1.321
+   }
+  },
+  {
+   "dim": "父系統×坂",
+   "key": [
+    "フォーティナイナー系",
+    "芝",
+    "平坦"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 44,
+    "wins": 0,
+    "top3": 3,
+    "t3": 0.0682,
+    "base_t3": 0.1385,
+    "win_roi": 0.0,
+    "place_roi": 0.459
+   },
+   "confirm": {
+    "n": 53,
+    "wins": 2,
+    "top3": 5,
+    "t3": 0.0943,
+    "base_t3": 0.1406,
+    "win_roi": 0.525,
+    "place_roi": 0.436
+   },
+   "test": {
+    "n": 38,
+    "wins": 3,
+    "top3": 8,
+    "t3": 0.2105,
+    "base_t3": 0.1459,
+    "win_roi": 2.529,
+    "place_roi": 1.205
+   }
+  },
+  {
+   "dim": "枠×コース",
+   "key": [
+    "内枠(1-3)",
+    "東京芝2000"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 51,
+    "wins": 0,
+    "top3": 5,
+    "t3": 0.098,
+    "base_t3": 0.1385,
+    "win_roi": 0.0,
+    "place_roi": 0.486
+   },
+   "confirm": {
+    "n": 46,
+    "wins": 1,
+    "top3": 3,
+    "t3": 0.0652,
+    "base_t3": 0.1406,
+    "win_roi": 0.313,
+    "place_roi": 0.437
+   },
+   "test": {
+    "n": 19,
+    "wins": 0,
+    "top3": 3,
+    "t3": 0.1579,
+    "base_t3": 0.1459,
+    "win_roi": 0.0,
+    "place_roi": 0.684
+   }
+  },
+  {
+   "dim": "父×クラス",
+   "key": [
+    "ドゥラメンテ",
+    "ダ",
+    "1勝"
+   ],
+   "pop": "4-6番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 40,
+    "wins": 1,
+    "top3": 5,
+    "t3": 0.125,
+    "base_t3": 0.2753,
+    "win_roi": 0.345,
+    "place_roi": 0.312
+   },
+   "confirm": {
+    "n": 49,
+    "wins": 2,
+    "top3": 10,
+    "t3": 0.2041,
+    "base_t3": 0.2768,
+    "win_roi": 0.508,
+    "place_roi": 0.686
+   },
+   "test": {
+    "n": 29,
+    "wins": 3,
+    "top3": 12,
+    "t3": 0.4138,
+    "base_t3": 0.2751,
+    "win_roi": 1.169,
+    "place_roi": 1.007
+   }
+  },
+  {
+   "dim": "父×馬場",
+   "key": [
+    "ブラックタイド",
+    "芝",
+    "良"
+   ],
+   "pop": "4-6番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 51,
+    "wins": 1,
+    "top3": 8,
+    "t3": 0.1569,
+    "base_t3": 0.2753,
+    "win_roi": 0.18,
+    "place_roi": 0.357
+   },
+   "confirm": {
+    "n": 40,
+    "wins": 1,
+    "top3": 7,
+    "t3": 0.175,
+    "base_t3": 0.2768,
+    "win_roi": 0.215,
+    "place_roi": 0.438
+   },
+   "test": {
+    "n": 24,
+    "wins": 3,
+    "top3": 5,
+    "t3": 0.2083,
+    "base_t3": 0.2751,
+    "win_roi": 2.292,
+    "place_roi": 0.525
+   }
+  },
+  {
+   "dim": "父系統×直線",
+   "key": [
+    "キングマンボ系",
+    "芝",
+    "直線短"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 74,
+    "wins": 0,
+    "top3": 5,
+    "t3": 0.0676,
+    "base_t3": 0.1385,
+    "win_roi": 0.0,
+    "place_roi": 0.373
+   },
+   "confirm": {
+    "n": 49,
+    "wins": 1,
+    "top3": 5,
+    "t3": 0.102,
+    "base_t3": 0.1406,
+    "win_roi": 0.51,
+    "place_roi": 0.498
+   },
+   "test": {
+    "n": 28,
+    "wins": 2,
+    "top3": 4,
+    "t3": 0.1429,
+    "base_t3": 0.1459,
+    "win_roi": 1.514,
+    "place_roi": 0.536
+   }
+  },
+  {
+   "dim": "母父系統×距離帯",
+   "key": [
+    "ディープインパクト系",
+    "芝",
+    "sprint"
+   ],
+   "pop": "4-6番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 64,
+    "wins": 4,
+    "top3": 10,
+    "t3": 0.1562,
+    "base_t3": 0.2753,
+    "win_roi": 0.583,
+    "place_roi": 0.497
+   },
+   "confirm": {
+    "n": 100,
+    "wins": 3,
+    "top3": 18,
+    "t3": 0.18,
+    "base_t3": 0.2768,
+    "win_roi": 0.291,
+    "place_roi": 0.479
+   },
+   "test": {
+    "n": 154,
+    "wins": 10,
+    "top3": 40,
+    "t3": 0.2597,
+    "base_t3": 0.2751,
+    "win_roi": 0.547,
+    "place_roi": 0.682
+   }
+  },
+  {
+   "dim": "父×ローテ",
+   "key": [
+    "エピファネイア",
+    "休み明け"
+   ],
+   "pop": "4-6番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 62,
+    "wins": 2,
+    "top3": 9,
+    "t3": 0.1452,
+    "base_t3": 0.2753,
+    "win_roi": 0.263,
+    "place_roi": 0.398
+   },
+   "confirm": {
+    "n": 98,
+    "wins": 4,
+    "top3": 19,
+    "t3": 0.1939,
+    "base_t3": 0.2768,
+    "win_roi": 0.557,
+    "place_roi": 0.576
+   },
+   "test": {
+    "n": 88,
+    "wins": 5,
+    "top3": 23,
+    "t3": 0.2614,
+    "base_t3": 0.2751,
+    "win_roi": 0.656,
+    "place_roi": 0.695
+   }
+  },
+  {
+   "dim": "父×馬場",
+   "key": [
+    "ドゥラメンテ",
+    "ダ",
+    "良"
+   ],
+   "pop": "4-6番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 40,
+    "wins": 1,
+    "top3": 7,
+    "t3": 0.175,
+    "base_t3": 0.2753,
+    "win_roi": 0.345,
+    "place_roi": 0.427
+   },
+   "confirm": {
+    "n": 60,
+    "wins": 1,
+    "top3": 10,
+    "t3": 0.1667,
+    "base_t3": 0.2768,
+    "win_roi": 0.267,
+    "place_roi": 0.512
+   },
+   "test": {
+    "n": 40,
+    "wins": 1,
+    "top3": 13,
+    "t3": 0.325,
+    "base_t3": 0.2751,
+    "win_roi": 0.253,
+    "place_roi": 0.738
+   }
+  },
+  {
+   "dim": "父系統×直線",
+   "key": [
+    "ステイゴールド系",
+    "芝",
+    "直線長"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 122,
+    "wins": 2,
+    "top3": 10,
+    "t3": 0.082,
+    "base_t3": 0.1385,
+    "win_roi": 0.277,
+    "place_roi": 0.394
+   },
+   "confirm": {
+    "n": 88,
+    "wins": 2,
+    "top3": 8,
+    "t3": 0.0909,
+    "base_t3": 0.1406,
+    "win_roi": 0.607,
+    "place_roi": 0.482
+   },
+   "test": {
+    "n": 70,
+    "wins": 4,
+    "top3": 12,
+    "t3": 0.1714,
+    "base_t3": 0.1459,
+    "win_roi": 2.657,
+    "place_roi": 1.269
+   }
+  },
+  {
+   "dim": "騎手",
+   "key": [
+    "吉田豊"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 97,
+    "wins": 0,
+    "top3": 10,
+    "t3": 0.1031,
+    "base_t3": 0.1385,
+    "win_roi": 0.0,
+    "place_roi": 0.434
+   },
+   "confirm": {
+    "n": 94,
+    "wins": 0,
+    "top3": 7,
+    "t3": 0.0745,
+    "base_t3": 0.1406,
+    "win_roi": 0.0,
+    "place_roi": 0.37
+   },
+   "test": {
+    "n": 84,
+    "wins": 2,
+    "top3": 15,
+    "t3": 0.1786,
+    "base_t3": 0.1459,
+    "win_roi": 0.488,
+    "place_roi": 0.95
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "鈴木孝志"
+   ],
+   "pop": "4-6番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 60,
+    "wins": 1,
+    "top3": 11,
+    "t3": 0.1833,
+    "base_t3": 0.2753,
+    "win_roi": 0.095,
+    "place_roi": 0.753
+   },
+   "confirm": {
+    "n": 45,
+    "wins": 3,
+    "top3": 8,
+    "t3": 0.1778,
+    "base_t3": 0.2768,
+    "win_roi": 0.587,
+    "place_roi": 0.453
+   },
+   "test": {
+    "n": 41,
+    "wins": 3,
+    "top3": 14,
+    "t3": 0.3415,
+    "base_t3": 0.2751,
+    "win_roi": 0.656,
+    "place_roi": 0.973
+   }
+  },
+  {
+   "dim": "枠×コース",
+   "key": [
+    "内枠(1-3)",
+    "中京ダ1400"
+   ],
+   "pop": "4-6番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 73,
+    "wins": 3,
+    "top3": 13,
+    "t3": 0.1781,
+    "base_t3": 0.2753,
+    "win_roi": 0.536,
+    "place_roi": 0.437
+   },
+   "confirm": {
+    "n": 43,
+    "wins": 3,
+    "top3": 8,
+    "t3": 0.186,
+    "base_t3": 0.2768,
+    "win_roi": 0.53,
+    "place_roi": 0.519
+   },
+   "test": {
+    "n": 43,
+    "wins": 1,
+    "top3": 9,
+    "t3": 0.2093,
+    "base_t3": 0.2751,
+    "win_roi": 0.167,
+    "place_roi": 0.528
+   }
+  },
+  {
+   "dim": "父系統×直線",
+   "key": [
+    "ダイワメジャー系",
+    "芝",
+    "直線中"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 44,
+    "wins": 1,
+    "top3": 4,
+    "t3": 0.0909,
+    "base_t3": 0.1385,
+    "win_roi": 0.236,
+    "place_roi": 0.377
+   },
+   "confirm": {
+    "n": 53,
+    "wins": 2,
+    "top3": 5,
+    "t3": 0.0943,
+    "base_t3": 0.1406,
+    "win_roi": 0.636,
+    "place_roi": 0.406
+   },
+   "test": {
+    "n": 27,
+    "wins": 1,
+    "top3": 5,
+    "t3": 0.1852,
+    "base_t3": 0.1459,
+    "win_roi": 0.57,
+    "place_roi": 0.711
+   }
+  },
+  {
+   "dim": "父×クラス",
+   "key": [
+    "モーリス",
+    "芝",
+    "1勝"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 46,
+    "wins": 1,
+    "top3": 4,
+    "t3": 0.087,
+    "base_t3": 0.1385,
+    "win_roi": 0.45,
+    "place_roi": 0.643
+   },
+   "confirm": {
+    "n": 70,
+    "wins": 1,
+    "top3": 7,
+    "t3": 0.1,
+    "base_t3": 0.1406,
+    "win_roi": 0.544,
+    "place_roi": 0.64
+   },
+   "test": {
+    "n": 67,
+    "wins": 2,
+    "top3": 10,
+    "t3": 0.1493,
+    "base_t3": 0.1459,
+    "win_roi": 0.539,
+    "place_roi": 0.716
+   }
+  },
+  {
+   "dim": "母父系統×距離帯",
+   "key": [
+    "フジキセキ系",
+    "ダ",
+    "middle"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 51,
+    "wins": 1,
+    "top3": 5,
+    "t3": 0.098,
+    "base_t3": 0.1385,
+    "win_roi": 0.384,
+    "place_roi": 0.42
+   },
+   "confirm": {
+    "n": 44,
+    "wins": 0,
+    "top3": 4,
+    "t3": 0.0909,
+    "base_t3": 0.1406,
+    "win_roi": 0.0,
+    "place_roi": 0.475
+   },
+   "test": {
+    "n": 39,
+    "wins": 0,
+    "top3": 1,
+    "t3": 0.0256,
+    "base_t3": 0.1459,
+    "win_roi": 0.0,
+    "place_roi": 0.074
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "金成貴史"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 66,
+    "wins": 2,
+    "top3": 6,
+    "t3": 0.0909,
+    "base_t3": 0.1385,
+    "win_roi": 0.644,
+    "place_roi": 0.705
+   },
+   "confirm": {
+    "n": 70,
+    "wins": 1,
+    "top3": 7,
+    "t3": 0.1,
+    "base_t3": 0.1406,
+    "win_roi": 0.376,
+    "place_roi": 0.526
+   },
+   "test": {
+    "n": 62,
+    "wins": 3,
+    "top3": 9,
+    "t3": 0.1452,
+    "base_t3": 0.1459,
+    "win_roi": 1.495,
+    "place_roi": 0.769
+   }
+  },
+  {
+   "dim": "父系統×コース",
+   "key": [
+    "キングカメハメハ系",
+    "中山ダ1800"
+   ],
+   "pop": "4-6番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 52,
+    "wins": 2,
+    "top3": 10,
+    "t3": 0.1923,
+    "base_t3": 0.2753,
+    "win_roi": 0.412,
+    "place_roi": 0.485
+   },
+   "confirm": {
+    "n": 68,
+    "wins": 4,
+    "top3": 13,
+    "t3": 0.1912,
+    "base_t3": 0.2768,
+    "win_roi": 0.528,
+    "place_roi": 0.576
+   },
+   "test": {
+    "n": 46,
+    "wins": 4,
+    "top3": 10,
+    "t3": 0.2174,
+    "base_t3": 0.2751,
+    "win_roi": 1.239,
+    "place_roi": 0.676
+   }
+  },
+  {
+   "dim": "騎手",
+   "key": [
+    "富田暁"
+   ],
+   "pop": "4-6番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 91,
+    "wins": 2,
+    "top3": 18,
+    "t3": 0.1978,
+    "base_t3": 0.2753,
+    "win_roi": 0.313,
+    "place_roi": 0.627
+   },
+   "confirm": {
+    "n": 122,
+    "wins": 4,
+    "top3": 23,
+    "t3": 0.1885,
+    "base_t3": 0.2768,
+    "win_roi": 0.343,
+    "place_roi": 0.58
+   },
+   "test": {
+    "n": 62,
+    "wins": 3,
+    "top3": 17,
+    "t3": 0.2742,
+    "base_t3": 0.2751,
+    "win_roi": 0.552,
+    "place_roi": 0.739
+   }
+  },
+  {
+   "dim": "父",
+   "key": [
+    "エイシンフラッシュ"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 181,
+    "wins": 4,
+    "top3": 17,
+    "t3": 0.0939,
+    "base_t3": 0.1385,
+    "win_roi": 0.625,
+    "place_roi": 0.422
+   },
+   "confirm": {
+    "n": 88,
+    "wins": 2,
+    "top3": 9,
+    "t3": 0.1023,
+    "base_t3": 0.1406,
+    "win_roi": 0.481,
+    "place_roi": 0.502
+   },
+   "test": {
+    "n": 20,
+    "wins": 1,
+    "top3": 2,
+    "t3": 0.1,
+    "base_t3": 0.1459,
+    "win_roi": 0.615,
+    "place_roi": 0.395
+   }
+  },
+  {
+   "dim": "父系統×直線",
+   "key": [
+    "ゴールドアリュール系",
+    "ダ",
+    "直線中"
+   ],
+   "pop": "7-9番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 124,
+    "wins": 0,
+    "top3": 12,
+    "t3": 0.0968,
+    "base_t3": 0.1385,
+    "win_roi": 0.0,
+    "place_roi": 0.466
+   },
+   "confirm": {
+    "n": 59,
+    "wins": 1,
+    "top3": 6,
+    "t3": 0.1017,
+    "base_t3": 0.1406,
+    "win_roi": 0.425,
+    "place_roi": 0.505
+   },
+   "test": {
+    "n": 41,
+    "wins": 0,
+    "top3": 1,
+    "t3": 0.0244,
+    "base_t3": 0.1459,
+    "win_roi": 0.0,
+    "place_roi": 0.083
+   }
+  },
+  {
+   "dim": "騎手×競馬場",
+   "key": [
+    "横山武史",
+    "東京芝"
+   ],
+   "pop": "4-6番人気",
+   "kind": "fade",
+   "discover": {
+    "n": 50,
+    "wins": 2,
+    "top3": 10,
+    "t3": 0.2,
+    "base_t3": 0.2753,
+    "win_roi": 0.348,
+    "place_roi": 0.488
+   },
+   "confirm": {
+    "n": 41,
+    "wins": 1,
+    "top3": 8,
+    "t3": 0.1951,
+    "base_t3": 0.2768,
+    "win_roi": 0.127,
+    "place_roi": 0.712
+   },
+   "test": {
+    "n": 43,
+    "wins": 4,
+    "top3": 10,
+    "t3": 0.2326,
+    "base_t3": 0.2751,
+    "win_roi": 0.933,
+    "place_roi": 0.64
+   }
+  }
+ ],
+ "win": [
+  {
+   "dim": "母父系統×距離帯",
+   "key": [
+    "ノーザンダンサー系",
+    "芝",
+    "sprint"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 92,
+    "win_roi": 2.577,
+    "place_roi": 1.44
+   },
+   "confirm": {
+    "n": 62,
+    "win_roi": 3.01,
+    "place_roi": 1.437
+   },
+   "test": {
+    "n": 75,
+    "win_roi": 2.631,
+    "place_roi": 0.472
+   }
+  },
+  {
+   "dim": "枠×コース",
+   "key": [
+    "中枠(4-6)",
+    "中京ダ1200"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 129,
+    "win_roi": 2.382,
+    "place_roi": 0.878
+   },
+   "confirm": {
+    "n": 79,
+    "win_roi": 3.028,
+    "place_roi": 0.644
+   },
+   "test": {
+    "n": 56,
+    "win_roi": 0.871,
+    "place_roi": 0.286
+   }
+  },
+  {
+   "dim": "父系統×直線",
+   "key": [
+    "デインヒル系",
+    "芝",
+    "直線中"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 61,
+    "win_roi": 2.038,
+    "place_roi": 0.705
+   },
+   "confirm": {
+    "n": 78,
+    "win_roi": 2.637,
+    "place_roi": 1.082
+   },
+   "test": {
+    "n": 57,
+    "win_roi": 0.565,
+    "place_roi": 0.623
+   }
+  },
+  {
+   "dim": "コース",
+   "key": [
+    "札幌芝2000"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 84,
+    "win_roi": 2.033,
+    "place_roi": 1.243
+   },
+   "confirm": {
+    "n": 90,
+    "win_roi": 3.158,
+    "place_roi": 1.094
+   },
+   "test": {
+    "n": 77,
+    "win_roi": 0.873,
+    "place_roi": 0.891
+   }
+  },
+  {
+   "dim": "母父系統×距離帯",
+   "key": [
+    "シンボリクリスエス系",
+    "芝",
+    "middle"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 63,
+    "win_roi": 1.96,
+    "place_roi": 1.476
+   },
+   "confirm": {
+    "n": 74,
+    "win_roi": 2.978,
+    "place_roi": 1.623
+   },
+   "test": {
+    "n": 64,
+    "win_roi": 0.0,
+    "place_roi": 0.552
+   }
+  },
+  {
+   "dim": "父系統×直線",
+   "key": [
+    "ブライアンズタイム系",
+    "ダ",
+    "直線短"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 70,
+    "win_roi": 1.931,
+    "place_roi": 0.637
+   },
+   "confirm": {
+    "n": 68,
+    "win_roi": 1.934,
+    "place_roi": 0.606
+   },
+   "test": {
+    "n": 24,
+    "win_roi": 0.0,
+    "place_roi": 1.258
+   }
+  },
+  {
+   "dim": "前走脚質×コース",
+   "key": [
+    "差し",
+    "中京ダ1200"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 88,
+    "win_roi": 3.374,
+    "place_roi": 1.27
+   },
+   "confirm": {
+    "n": 66,
+    "win_roi": 1.861,
+    "place_roi": 0.562
+   },
+   "test": {
+    "n": 60,
+    "win_roi": 5.18,
+    "place_roi": 0.55
+   }
+  },
+  {
+   "dim": "前走脚質×コース",
+   "key": [
+    "先行",
+    "東京ダ1400"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 86,
+    "win_roi": 1.786,
+    "place_roi": 1.515
+   },
+   "confirm": {
+    "n": 90,
+    "win_roi": 3.379,
+    "place_roi": 1.757
+   },
+   "test": {
+    "n": 78,
+    "win_roi": 0.0,
+    "place_roi": 0.744
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "久保田貴士"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 76,
+    "win_roi": 7.229,
+    "place_roi": 1.553
+   },
+   "confirm": {
+    "n": 69,
+    "win_roi": 1.764,
+    "place_roi": 1.216
+   },
+   "test": {
+    "n": 54,
+    "win_roi": 1.58,
+    "place_roi": 1.12
+   }
+  },
+  {
+   "dim": "父×ローテ",
+   "key": [
+    "ロードカナロア",
+    "中5-8週"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 147,
+    "win_roi": 1.748,
+    "place_roi": 0.568
+   },
+   "confirm": {
+    "n": 140,
+    "win_roi": 2.085,
+    "place_roi": 0.833
+   },
+   "test": {
+    "n": 82,
+    "win_roi": 0.0,
+    "place_roi": 0.52
+   }
+  },
+  {
+   "dim": "父系統",
+   "key": [
+    "シーキングザゴールド系"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 130,
+    "win_roi": 1.745,
+    "place_roi": 0.955
+   },
+   "confirm": {
+    "n": 122,
+    "win_roi": 1.8,
+    "place_roi": 0.793
+   },
+   "test": {
+    "n": 73,
+    "win_roi": 1.459,
+    "place_roi": 0.873
+   }
+  },
+  {
+   "dim": "父",
+   "key": [
+    "マツリダゴッホ"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 171,
+    "win_roi": 3.115,
+    "place_roi": 1.135
+   },
+   "confirm": {
+    "n": 99,
+    "win_roi": 1.732,
+    "place_roi": 0.44
+   },
+   "test": {
+    "n": 41,
+    "win_roi": 0.0,
+    "place_roi": 1.356
+   }
+  },
+  {
+   "dim": "父系統",
+   "key": [
+    "サンデーサイレンス系"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 372,
+    "win_roi": 1.831,
+    "place_roi": 0.94
+   },
+   "confirm": {
+    "n": 173,
+    "win_roi": 1.667,
+    "place_roi": 0.368
+   },
+   "test": {
+    "n": 62,
+    "win_roi": 0.0,
+    "place_roi": 0.897
+   }
+  },
+  {
+   "dim": "枠×コース",
+   "key": [
+    "外枠(7-8)",
+    "新潟ダ1800"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 98,
+    "win_roi": 1.631,
+    "place_roi": 1.182
+   },
+   "confirm": {
+    "n": 88,
+    "win_roi": 2.408,
+    "place_roi": 0.764
+   },
+   "test": {
+    "n": 66,
+    "win_roi": 0.339,
+    "place_roi": 0.317
+   }
+  },
+  {
+   "dim": "父×距離変化",
+   "key": [
+    "エピファネイア",
+    "芝",
+    "同"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 61,
+    "win_roi": 1.602,
+    "place_roi": 1.067
+   },
+   "confirm": {
+    "n": 98,
+    "win_roi": 2.474,
+    "place_roi": 0.485
+   },
+   "test": {
+    "n": 74,
+    "win_roi": 0.0,
+    "place_roi": 0.419
+   }
+  },
+  {
+   "dim": "父系統×坂",
+   "key": [
+    "ファピアノ系",
+    "ダ",
+    "坂"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 179,
+    "win_roi": 1.586,
+    "place_roi": 0.958
+   },
+   "confirm": {
+    "n": 94,
+    "win_roi": 1.932,
+    "place_roi": 0.6
+   },
+   "test": {
+    "n": 102,
+    "win_roi": 0.0,
+    "place_roi": 0.732
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "藤岡健一"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 86,
+    "win_roi": 1.567,
+    "place_roi": 0.54
+   },
+   "confirm": {
+    "n": 95,
+    "win_roi": 2.838,
+    "place_roi": 0.585
+   },
+   "test": {
+    "n": 61,
+    "win_roi": 0.0,
+    "place_roi": 0.936
+   }
+  },
+  {
+   "dim": "父系統×コース",
+   "key": [
+    "キングカメハメハ系",
+    "小倉芝1200"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 72,
+    "win_roi": 2.282,
+    "place_roi": 0.775
+   },
+   "confirm": {
+    "n": 63,
+    "win_roi": 1.525,
+    "place_roi": 1.632
+   },
+   "test": {
+    "n": 48,
+    "win_roi": 0.0,
+    "place_roi": 0.0
+   }
+  },
+  {
+   "dim": "父×距離変化",
+   "key": [
+    "ルーラーシップ",
+    "ダ",
+    "同"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 73,
+    "win_roi": 1.522,
+    "place_roi": 0.977
+   },
+   "confirm": {
+    "n": 75,
+    "win_roi": 1.683,
+    "place_roi": 0.855
+   },
+   "test": {
+    "n": 48,
+    "win_roi": 0.0,
+    "place_roi": 0.327
+   }
+  },
+  {
+   "dim": "父×頭数",
+   "key": [
+    "ドゥラメンテ",
+    "芝",
+    "多頭数(15〜)"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 63,
+    "win_roi": 1.933,
+    "place_roi": 0.462
+   },
+   "confirm": {
+    "n": 146,
+    "win_roi": 1.52,
+    "place_roi": 0.666
+   },
+   "test": {
+    "n": 139,
+    "win_roi": 0.0,
+    "place_roi": 0.578
+   }
+  },
+  {
+   "dim": "父系統×坂",
+   "key": [
+    "フジキセキ系",
+    "芝",
+    "坂"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 114,
+    "win_roi": 1.514,
+    "place_roi": 0.466
+   },
+   "confirm": {
+    "n": 102,
+    "win_roi": 3.404,
+    "place_roi": 0.729
+   },
+   "test": {
+    "n": 83,
+    "win_roi": 0.595,
+    "place_roi": 1.72
+   }
+  },
+  {
+   "dim": "父",
+   "key": [
+    "ドゥラメンテ"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 131,
+    "win_roi": 1.513,
+    "place_roi": 0.701
+   },
+   "confirm": {
+    "n": 331,
+    "win_roi": 1.99,
+    "place_roi": 0.779
+   },
+   "test": {
+    "n": 264,
+    "win_roi": 0.0,
+    "place_roi": 0.597
+   }
+  },
+  {
+   "dim": "前走脚質×コース",
+   "key": [
+    "追込",
+    "中京芝1200"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 76,
+    "win_roi": 2.195,
+    "place_roi": 0.728
+   },
+   "confirm": {
+    "n": 66,
+    "win_roi": 1.474,
+    "place_roi": 1.195
+   },
+   "test": {
+    "n": 27,
+    "win_roi": 2.459,
+    "place_roi": 0.93
+   }
+  },
+  {
+   "dim": "父×馬場",
+   "key": [
+    "ドゥラメンテ",
+    "芝",
+    "良"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 69,
+    "win_roi": 1.765,
+    "place_roi": 0.504
+   },
+   "confirm": {
+    "n": 175,
+    "win_roi": 1.466,
+    "place_roi": 0.484
+   },
+   "test": {
+    "n": 146,
+    "win_roi": 0.0,
+    "place_roi": 0.47
+   }
+  },
+  {
+   "dim": "母父系統×距離帯",
+   "key": [
+    "キングカメハメハ系",
+    "ダ",
+    "middle"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 61,
+    "win_roi": 1.446,
+    "place_roi": 0.526
+   },
+   "confirm": {
+    "n": 70,
+    "win_roi": 2.26,
+    "place_roi": 1.12
+   },
+   "test": {
+    "n": 104,
+    "win_roi": 1.591,
+    "place_roi": 1.051
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "寺島良"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 76,
+    "win_roi": 1.446,
+    "place_roi": 0.922
+   },
+   "confirm": {
+    "n": 89,
+    "win_roi": 1.496,
+    "place_roi": 0.701
+   },
+   "test": {
+    "n": 51,
+    "win_roi": 1.555,
+    "place_roi": 1.0
+   }
+  },
+  {
+   "dim": "前走脚質×コース",
+   "key": [
+    "先行",
+    "新潟ダ1200"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 80,
+    "win_roi": 1.439,
+    "place_roi": 0.591
+   },
+   "confirm": {
+    "n": 67,
+    "win_roi": 1.999,
+    "place_roi": 0.464
+   },
+   "test": {
+    "n": 44,
+    "win_roi": 2.041,
+    "place_roi": 0.414
+   }
+  },
+  {
+   "dim": "父×距離帯",
+   "key": [
+    "ハービンジャー",
+    "芝",
+    "middle"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 94,
+    "win_roi": 1.418,
+    "place_roi": 0.356
+   },
+   "confirm": {
+    "n": 125,
+    "win_roi": 1.448,
+    "place_roi": 0.502
+   },
+   "test": {
+    "n": 69,
+    "win_roi": 0.0,
+    "place_roi": 0.155
+   }
+  },
+  {
+   "dim": "枠×コース",
+   "key": [
+    "内枠(1-3)",
+    "東京ダ1400"
+   ],
+   "pop": "4-6番人気",
+   "kind": "win",
+   "discover": {
+    "n": 77,
+    "win_roi": 1.648,
+    "place_roi": 0.999
+   },
+   "confirm": {
+    "n": 91,
+    "win_roi": 1.379,
+    "place_roi": 0.604
+   },
+   "test": {
+    "n": 84,
+    "win_roi": 1.339,
+    "place_roi": 0.906
+   }
+  },
+  {
+   "dim": "前走脚質×コース",
+   "key": [
+    "追込",
+    "東京芝1400"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 116,
+    "win_roi": 1.377,
+    "place_roi": 0.505
+   },
+   "confirm": {
+    "n": 91,
+    "win_roi": 1.421,
+    "place_roi": 0.424
+   },
+   "test": {
+    "n": 87,
+    "win_roi": 4.822,
+    "place_roi": 1.323
+   }
+  },
+  {
+   "dim": "父×馬場",
+   "key": [
+    "ハーツクライ",
+    "ダ",
+    "良"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 62,
+    "win_roi": 1.353,
+    "place_roi": 0.684
+   },
+   "confirm": {
+    "n": 72,
+    "win_roi": 1.472,
+    "place_roi": 0.767
+   },
+   "test": {
+    "n": 26,
+    "win_roi": 0.0,
+    "place_roi": 1.235
+   }
+  },
+  {
+   "dim": "父",
+   "key": [
+    "マクフィ"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 71,
+    "win_roi": 1.768,
+    "place_roi": 1.089
+   },
+   "confirm": {
+    "n": 97,
+    "win_roi": 1.341,
+    "place_roi": 0.642
+   },
+   "test": {
+    "n": 64,
+    "win_roi": 1.258,
+    "place_roi": 0.948
+   }
+  },
+  {
+   "dim": "父系統×直線",
+   "key": [
+    "キングカメハメハ系",
+    "ダ",
+    "直線長"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 182,
+    "win_roi": 2.379,
+    "place_roi": 0.88
+   },
+   "confirm": {
+    "n": 226,
+    "win_roi": 1.331,
+    "place_roi": 0.832
+   },
+   "test": {
+    "n": 146,
+    "win_roi": 0.0,
+    "place_roi": 0.395
+   }
+  },
+  {
+   "dim": "コース",
+   "key": [
+    "阪神芝1200"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 147,
+    "win_roi": 1.327,
+    "place_roi": 0.862
+   },
+   "confirm": {
+    "n": 94,
+    "win_roi": 2.531,
+    "place_roi": 0.732
+   },
+   "test": {
+    "n": 115,
+    "win_roi": 3.187,
+    "place_roi": 1.595
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "松永幹夫"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 71,
+    "win_roi": 1.552,
+    "place_roi": 0.818
+   },
+   "confirm": {
+    "n": 69,
+    "win_roi": 1.278,
+    "place_roi": 0.967
+   },
+   "test": {
+    "n": 79,
+    "win_roi": 2.22,
+    "place_roi": 1.037
+   }
+  },
+  {
+   "dim": "騎手",
+   "key": [
+    "武豊"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 121,
+    "win_roi": 1.26,
+    "place_roi": 0.81
+   },
+   "confirm": {
+    "n": 88,
+    "win_roi": 1.545,
+    "place_roi": 0.868
+   },
+   "test": {
+    "n": 79,
+    "win_roi": 1.277,
+    "place_roi": 0.801
+   }
+  },
+  {
+   "dim": "騎手",
+   "key": [
+    "古川吉洋"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 220,
+    "win_roi": 1.751,
+    "place_roi": 1.15
+   },
+   "confirm": {
+    "n": 224,
+    "win_roi": 1.241,
+    "place_roi": 0.606
+   },
+   "test": {
+    "n": 201,
+    "win_roi": 0.182,
+    "place_roi": 0.523
+   }
+  },
+  {
+   "dim": "父",
+   "key": [
+    "フリオーソ"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 110,
+    "win_roi": 1.229,
+    "place_roi": 0.628
+   },
+   "confirm": {
+    "n": 99,
+    "win_roi": 1.328,
+    "place_roi": 0.496
+   },
+   "test": {
+    "n": 45,
+    "win_roi": 0.0,
+    "place_roi": 0.671
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "梅田智之"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 110,
+    "win_roi": 3.034,
+    "place_roi": 1.007
+   },
+   "confirm": {
+    "n": 129,
+    "win_roi": 1.223,
+    "place_roi": 0.793
+   },
+   "test": {
+    "n": 120,
+    "win_roi": 0.0,
+    "place_roi": 0.577
+   }
+  },
+  {
+   "dim": "コース",
+   "key": [
+    "中京ダ1200"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 347,
+    "win_roi": 1.217,
+    "place_roi": 0.916
+   },
+   "confirm": {
+    "n": 200,
+    "win_roi": 1.673,
+    "place_roi": 0.637
+   },
+   "test": {
+    "n": 157,
+    "win_roi": 1.98,
+    "place_roi": 0.436
+   }
+  },
+  {
+   "dim": "父系統",
+   "key": [
+    "キングマンボ系"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 489,
+    "win_roi": 1.212,
+    "place_roi": 0.68
+   },
+   "confirm": {
+    "n": 285,
+    "win_roi": 1.238,
+    "place_roi": 0.637
+   },
+   "test": {
+    "n": 186,
+    "win_roi": 0.0,
+    "place_roi": 0.745
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "吉村圭司"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 88,
+    "win_roi": 1.212,
+    "place_roi": 0.836
+   },
+   "confirm": {
+    "n": 60,
+    "win_roi": 1.583,
+    "place_roi": 0.728
+   },
+   "test": {
+    "n": 61,
+    "win_roi": 1.656,
+    "place_roi": 0.918
+   }
+  },
+  {
+   "dim": "騎手",
+   "key": [
+    "藤岡佑介"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 103,
+    "win_roi": 1.294,
+    "place_roi": 0.463
+   },
+   "confirm": {
+    "n": 123,
+    "win_roi": 1.193,
+    "place_roi": 0.703
+   },
+   "test": {
+    "n": 49,
+    "win_roi": 1.069,
+    "place_roi": 0.586
+   }
+  },
+  {
+   "dim": "コース",
+   "key": [
+    "札幌ダ1700"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 134,
+    "win_roi": 1.487,
+    "place_roi": 0.719
+   },
+   "confirm": {
+    "n": 131,
+    "win_roi": 1.193,
+    "place_roi": 1.06
+   },
+   "test": {
+    "n": 138,
+    "win_roi": 0.414,
+    "place_roi": 0.778
+   }
+  },
+  {
+   "dim": "父×馬場",
+   "key": [
+    "キズナ",
+    "ダ",
+    "良"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 87,
+    "win_roi": 1.193,
+    "place_roi": 0.676
+   },
+   "confirm": {
+    "n": 99,
+    "win_roi": 2.142,
+    "place_roi": 0.905
+   },
+   "test": {
+    "n": 65,
+    "win_roi": 0.0,
+    "place_roi": 0.438
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "高橋裕"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 96,
+    "win_roi": 1.192,
+    "place_roi": 1.14
+   },
+   "confirm": {
+    "n": 65,
+    "win_roi": 5.722,
+    "place_roi": 1.612
+   },
+   "test": {
+    "n": 0,
+    "win_roi": 0,
+    "place_roi": 0
+   }
+  },
+  {
+   "dim": "母父系統",
+   "key": [
+    "ゴーンウエスト系"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 200,
+    "win_roi": 1.782,
+    "place_roi": 0.948
+   },
+   "confirm": {
+    "n": 151,
+    "win_roi": 1.192,
+    "place_roi": 0.903
+   },
+   "test": {
+    "n": 109,
+    "win_roi": 0.316,
+    "place_roi": 0.332
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "高木登"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 90,
+    "win_roi": 1.19,
+    "place_roi": 0.633
+   },
+   "confirm": {
+    "n": 79,
+    "win_roi": 1.499,
+    "place_roi": 0.324
+   },
+   "test": {
+    "n": 78,
+    "win_roi": 4.015,
+    "place_roi": 1.619
+   }
+  },
+  {
+   "dim": "コース",
+   "key": [
+    "中京芝1400"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 130,
+    "win_roi": 1.189,
+    "place_roi": 0.852
+   },
+   "confirm": {
+    "n": 98,
+    "win_roi": 1.78,
+    "place_roi": 1.236
+   },
+   "test": {
+    "n": 96,
+    "win_roi": 1.306,
+    "place_roi": 0.851
+   }
+  },
+  {
+   "dim": "父×頭数",
+   "key": [
+    "ハービンジャー",
+    "芝",
+    "中頭数(11-14)"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 76,
+    "win_roi": 1.187,
+    "place_roi": 0.57
+   },
+   "confirm": {
+    "n": 73,
+    "win_roi": 1.684,
+    "place_roi": 0.655
+   },
+   "test": {
+    "n": 54,
+    "win_roi": 0.0,
+    "place_roi": 0.107
+   }
+  },
+  {
+   "dim": "騎手",
+   "key": [
+    "野中悠太郎"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 77,
+    "win_roi": 1.564,
+    "place_roi": 0.701
+   },
+   "confirm": {
+    "n": 70,
+    "win_roi": 1.184,
+    "place_roi": 1.091
+   },
+   "test": {
+    "n": 47,
+    "win_roi": 0.0,
+    "place_roi": 0.63
+   }
+  },
+  {
+   "dim": "母父系統×距離帯",
+   "key": [
+    "サンデーサイレンス系",
+    "芝",
+    "sprint"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 178,
+    "win_roi": 1.184,
+    "place_roi": 0.774
+   },
+   "confirm": {
+    "n": 118,
+    "win_roi": 1.213,
+    "place_roi": 1.079
+   },
+   "test": {
+    "n": 83,
+    "win_roi": 1.043,
+    "place_roi": 0.62
+   }
+  },
+  {
+   "dim": "父×距離変化",
+   "key": [
+    "ロードカナロア",
+    "芝",
+    "短縮"
+   ],
+   "pop": "4-6番人気",
+   "kind": "win",
+   "discover": {
+    "n": 67,
+    "win_roi": 1.278,
+    "place_roi": 0.842
+   },
+   "confirm": {
+    "n": 60,
+    "win_roi": 1.183,
+    "place_roi": 0.86
+   },
+   "test": {
+    "n": 43,
+    "win_roi": 0.93,
+    "place_roi": 1.079
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "武英智"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 67,
+    "win_roi": 1.667,
+    "place_roi": 0.949
+   },
+   "confirm": {
+    "n": 64,
+    "win_roi": 1.163,
+    "place_roi": 0.87
+   },
+   "test": {
+    "n": 55,
+    "win_roi": 0.889,
+    "place_roi": 1.122
+   }
+  },
+  {
+   "dim": "母父系統×距離帯",
+   "key": [
+    "ミスタープロスペクター系",
+    "ダ",
+    "mile"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 69,
+    "win_roi": 9.793,
+    "place_roi": 2.106
+   },
+   "confirm": {
+    "n": 67,
+    "win_roi": 1.161,
+    "place_roi": 0.599
+   },
+   "test": {
+    "n": 46,
+    "win_roi": 0.0,
+    "place_roi": 1.067
+   }
+  },
+  {
+   "dim": "父系統×坂",
+   "key": [
+    "ヘネシー系",
+    "ダ",
+    "坂"
+   ],
+   "pop": "4-6番人気",
+   "kind": "win",
+   "discover": {
+    "n": 225,
+    "win_roi": 1.148,
+    "place_roi": 0.843
+   },
+   "confirm": {
+    "n": 178,
+    "win_roi": 1.173,
+    "place_roi": 0.849
+   },
+   "test": {
+    "n": 131,
+    "win_roi": 0.823,
+    "place_roi": 0.636
+   }
+  },
+  {
+   "dim": "母父系統×距離帯",
+   "key": [
+    "サンデーサイレンス系",
+    "芝",
+    "sprint"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 342,
+    "win_roi": 1.4,
+    "place_roi": 0.802
+   },
+   "confirm": {
+    "n": 258,
+    "win_roi": 1.146,
+    "place_roi": 0.53
+   },
+   "test": {
+    "n": 177,
+    "win_roi": 0.141,
+    "place_roi": 0.979
+   }
+  },
+  {
+   "dim": "騎手",
+   "key": [
+    "西村淳也"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 200,
+    "win_roi": 1.137,
+    "place_roi": 0.68
+   },
+   "confirm": {
+    "n": 173,
+    "win_roi": 1.441,
+    "place_roi": 1.271
+   },
+   "test": {
+    "n": 77,
+    "win_roi": 1.314,
+    "place_roi": 0.361
+   }
+  },
+  {
+   "dim": "枠×コース",
+   "key": [
+    "中枠(4-6)",
+    "小倉ダ1700"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 122,
+    "win_roi": 1.249,
+    "place_roi": 0.711
+   },
+   "confirm": {
+    "n": 91,
+    "win_roi": 1.129,
+    "place_roi": 0.978
+   },
+   "test": {
+    "n": 77,
+    "win_roi": 0.253,
+    "place_roi": 0.497
+   }
+  },
+  {
+   "dim": "枠×コース",
+   "key": [
+    "外枠(7-8)",
+    "小倉芝1200"
+   ],
+   "pop": "1-3番人気",
+   "kind": "win",
+   "discover": {
+    "n": 72,
+    "win_roi": 1.119,
+    "place_roi": 0.979
+   },
+   "confirm": {
+    "n": 77,
+    "win_roi": 1.134,
+    "place_roi": 0.996
+   },
+   "test": {
+    "n": 60,
+    "win_roi": 0.863,
+    "place_roi": 0.775
+   }
+  },
+  {
+   "dim": "父系統×直線",
+   "key": [
+    "エーピーインディ系",
+    "ダ",
+    "直線短"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 111,
+    "win_roi": 3.168,
+    "place_roi": 1.405
+   },
+   "confirm": {
+    "n": 234,
+    "win_roi": 1.116,
+    "place_roi": 0.859
+   },
+   "test": {
+    "n": 194,
+    "win_roi": 1.091,
+    "place_roi": 1.046
+   }
+  },
+  {
+   "dim": "父系統×坂",
+   "key": [
+    "ファピアノ系",
+    "ダ",
+    "坂"
+   ],
+   "pop": "4-6番人気",
+   "kind": "win",
+   "discover": {
+    "n": 86,
+    "win_roi": 1.11,
+    "place_roi": 0.678
+   },
+   "confirm": {
+    "n": 61,
+    "win_roi": 1.372,
+    "place_roi": 1.056
+   },
+   "test": {
+    "n": 71,
+    "win_roi": 0.665,
+    "place_roi": 0.921
+   }
+  },
+  {
+   "dim": "枠×コース",
+   "key": [
+    "外枠(7-8)",
+    "小倉芝1200"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 159,
+    "win_roi": 1.109,
+    "place_roi": 1.365
+   },
+   "confirm": {
+    "n": 133,
+    "win_roi": 1.616,
+    "place_roi": 0.934
+   },
+   "test": {
+    "n": 127,
+    "win_roi": 0.172,
+    "place_roi": 0.728
+   }
+  },
+  {
+   "dim": "騎手",
+   "key": [
+    "国分恭介"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 133,
+    "win_roi": 1.102,
+    "place_roi": 1.302
+   },
+   "confirm": {
+    "n": 165,
+    "win_roi": 1.641,
+    "place_roi": 0.859
+   },
+   "test": {
+    "n": 122,
+    "win_roi": 0.0,
+    "place_roi": 0.348
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "深山雅史"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 84,
+    "win_roi": 1.162,
+    "place_roi": 0.829
+   },
+   "confirm": {
+    "n": 85,
+    "win_roi": 1.099,
+    "place_roi": 0.486
+   },
+   "test": {
+    "n": 44,
+    "win_roi": 0.0,
+    "place_roi": 0.361
+   }
+  },
+  {
+   "dim": "年齢×性別×季節",
+   "key": [
+    4,
+    "牝",
+    "春"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 374,
+    "win_roi": 1.091,
+    "place_roi": 0.62
+   },
+   "confirm": {
+    "n": 389,
+    "win_roi": 1.097,
+    "place_roi": 0.867
+   },
+   "test": {
+    "n": 402,
+    "win_roi": 0.92,
+    "place_roi": 0.689
+   }
+  },
+  {
+   "dim": "枠×コース",
+   "key": [
+    "内枠(1-3)",
+    "福島ダ1700"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 68,
+    "win_roi": 1.625,
+    "place_roi": 0.538
+   },
+   "confirm": {
+    "n": 66,
+    "win_roi": 1.089,
+    "place_roi": 1.195
+   },
+   "test": {
+    "n": 86,
+    "win_roi": 2.256,
+    "place_roi": 0.427
+   }
+  },
+  {
+   "dim": "騎手",
+   "key": [
+    "川須栄彦"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 151,
+    "win_roi": 1.088,
+    "place_roi": 1.493
+   },
+   "confirm": {
+    "n": 148,
+    "win_roi": 1.192,
+    "place_roi": 0.886
+   },
+   "test": {
+    "n": 65,
+    "win_roi": 0.943,
+    "place_roi": 1.029
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "梅田智之"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 65,
+    "win_roi": 1.817,
+    "place_roi": 0.755
+   },
+   "confirm": {
+    "n": 80,
+    "win_roi": 1.081,
+    "place_roi": 0.636
+   },
+   "test": {
+    "n": 61,
+    "win_roi": 0.438,
+    "place_roi": 0.631
+   }
+  },
+  {
+   "dim": "枠×コース",
+   "key": [
+    "外枠(7-8)",
+    "中京ダ1800"
+   ],
+   "pop": "4-6番人気",
+   "kind": "win",
+   "discover": {
+    "n": 79,
+    "win_roi": 1.073,
+    "place_roi": 0.714
+   },
+   "confirm": {
+    "n": 66,
+    "win_roi": 1.273,
+    "place_roi": 0.718
+   },
+   "test": {
+    "n": 56,
+    "win_roi": 0.734,
+    "place_roi": 0.768
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "奥村武"
+   ],
+   "pop": "1-3番人気",
+   "kind": "win",
+   "discover": {
+    "n": 69,
+    "win_roi": 1.071,
+    "place_roi": 0.836
+   },
+   "confirm": {
+    "n": 67,
+    "win_roi": 1.342,
+    "place_roi": 0.919
+   },
+   "test": {
+    "n": 41,
+    "win_roi": 0.488,
+    "place_roi": 0.795
+   }
+  },
+  {
+   "dim": "父×距離帯",
+   "key": [
+    "キンシャサノキセキ",
+    "芝",
+    "sprint"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 94,
+    "win_roi": 1.066,
+    "place_roi": 1.04
+   },
+   "confirm": {
+    "n": 78,
+    "win_roi": 1.962,
+    "place_roi": 0.647
+   },
+   "test": {
+    "n": 35,
+    "win_roi": 1.709,
+    "place_roi": 1.046
+   }
+  },
+  {
+   "dim": "母父",
+   "key": [
+    "ダンスインザダーク"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 273,
+    "win_roi": 1.062,
+    "place_roi": 0.701
+   },
+   "confirm": {
+    "n": 195,
+    "win_roi": 1.056,
+    "place_roi": 0.899
+   },
+   "test": {
+    "n": 94,
+    "win_roi": 0.702,
+    "place_roi": 0.549
+   }
+  },
+  {
+   "dim": "前走脚質×コース",
+   "key": [
+    "追込",
+    "中山ダ1800"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 86,
+    "win_roi": 1.056,
+    "place_roi": 0.559
+   },
+   "confirm": {
+    "n": 107,
+    "win_roi": 2.07,
+    "place_roi": 0.932
+   },
+   "test": {
+    "n": 98,
+    "win_roi": 0.595,
+    "place_roi": 0.668
+   }
+  },
+  {
+   "dim": "枠×コース",
+   "key": [
+    "中枠(4-6)",
+    "中山ダ1200"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 278,
+    "win_roi": 1.054,
+    "place_roi": 0.603
+   },
+   "confirm": {
+    "n": 234,
+    "win_roi": 1.175,
+    "place_roi": 0.637
+   },
+   "test": {
+    "n": 230,
+    "win_roi": 2.593,
+    "place_roi": 0.626
+   }
+  },
+  {
+   "dim": "父×ローテ",
+   "key": [
+    "モーリス",
+    "休み明け"
+   ],
+   "pop": "1-3番人気",
+   "kind": "win",
+   "discover": {
+    "n": 60,
+    "win_roi": 1.105,
+    "place_roi": 0.83
+   },
+   "confirm": {
+    "n": 117,
+    "win_roi": 1.054,
+    "place_roi": 0.831
+   },
+   "test": {
+    "n": 83,
+    "win_roi": 0.634,
+    "place_roi": 0.731
+   }
+  },
+  {
+   "dim": "父系統×坂",
+   "key": [
+    "キングマンボ系",
+    "ダ",
+    "坂"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 153,
+    "win_roi": 1.18,
+    "place_roi": 0.75
+   },
+   "confirm": {
+    "n": 94,
+    "win_roi": 1.053,
+    "place_roi": 0.614
+   },
+   "test": {
+    "n": 60,
+    "win_roi": 0.0,
+    "place_roi": 0.38
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "吉岡辰弥"
+   ],
+   "pop": "1-3番人気",
+   "kind": "win",
+   "discover": {
+    "n": 64,
+    "win_roi": 1.184,
+    "place_roi": 1.017
+   },
+   "confirm": {
+    "n": 81,
+    "win_roi": 1.053,
+    "place_roi": 0.895
+   },
+   "test": {
+    "n": 84,
+    "win_roi": 0.864,
+    "place_roi": 0.86
+   }
+  },
+  {
+   "dim": "父系統×坂",
+   "key": [
+    "デインヒル系",
+    "芝",
+    "平坦"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 99,
+    "win_roi": 1.052,
+    "place_roi": 0.624
+   },
+   "confirm": {
+    "n": 145,
+    "win_roi": 1.411,
+    "place_roi": 0.687
+   },
+   "test": {
+    "n": 100,
+    "win_roi": 0.322,
+    "place_roi": 0.14
+   }
+  },
+  {
+   "dim": "枠×コース",
+   "key": [
+    "外枠(7-8)",
+    "東京芝1400"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 102,
+    "win_roi": 1.05,
+    "place_roi": 0.277
+   },
+   "confirm": {
+    "n": 82,
+    "win_roi": 2.734,
+    "place_roi": 0.559
+   },
+   "test": {
+    "n": 79,
+    "win_roi": 5.715,
+    "place_roi": 2.041
+   }
+  },
+  {
+   "dim": "前走脚質×馬場",
+   "key": [
+    "先行",
+    "芝",
+    "道悪"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 340,
+    "win_roi": 1.043,
+    "place_roi": 0.642
+   },
+   "confirm": {
+    "n": 405,
+    "win_roi": 1.059,
+    "place_roi": 0.993
+   },
+   "test": {
+    "n": 303,
+    "win_roi": 1.582,
+    "place_roi": 0.988
+   }
+  },
+  {
+   "dim": "父×クラス",
+   "key": [
+    "キズナ",
+    "芝",
+    "1勝"
+   ],
+   "pop": "1-3番人気",
+   "kind": "win",
+   "discover": {
+    "n": 97,
+    "win_roi": 1.04,
+    "place_roi": 0.8
+   },
+   "confirm": {
+    "n": 128,
+    "win_roi": 1.1,
+    "place_roi": 0.939
+   },
+   "test": {
+    "n": 125,
+    "win_roi": 0.867,
+    "place_roi": 0.945
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "上村洋行"
+   ],
+   "pop": "1-3番人気",
+   "kind": "win",
+   "discover": {
+    "n": 72,
+    "win_roi": 1.171,
+    "place_roi": 0.829
+   },
+   "confirm": {
+    "n": 139,
+    "win_roi": 1.038,
+    "place_roi": 0.993
+   },
+   "test": {
+    "n": 120,
+    "win_roi": 1.039,
+    "place_roi": 0.905
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "杉山佳明"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 62,
+    "win_roi": 1.468,
+    "place_roi": 1.071
+   },
+   "confirm": {
+    "n": 71,
+    "win_roi": 1.034,
+    "place_roi": 0.892
+   },
+   "test": {
+    "n": 75,
+    "win_roi": 0.616,
+    "place_roi": 1.061
+   }
+  },
+  {
+   "dim": "距離変化×前走脚質",
+   "key": [
+    "芝",
+    "同",
+    "逃げ"
+   ],
+   "pop": "4-6番人気",
+   "kind": "win",
+   "discover": {
+    "n": 234,
+    "win_roi": 1.031,
+    "place_roi": 0.754
+   },
+   "confirm": {
+    "n": 216,
+    "win_roi": 1.076,
+    "place_roi": 0.802
+   },
+   "test": {
+    "n": 234,
+    "win_roi": 0.586,
+    "place_roi": 0.758
+   }
+  },
+  {
+   "dim": "年齢×性別×季節",
+   "key": [
+    5,
+    "牝",
+    "秋"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 436,
+    "win_roi": 1.078,
+    "place_roi": 0.695
+   },
+   "confirm": {
+    "n": 423,
+    "win_roi": 1.028,
+    "place_roi": 0.682
+   },
+   "test": {
+    "n": 287,
+    "win_roi": 0.235,
+    "place_roi": 0.635
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "吉村圭司"
+   ],
+   "pop": "1-3番人気",
+   "kind": "win",
+   "discover": {
+    "n": 74,
+    "win_roi": 1.027,
+    "place_roi": 0.884
+   },
+   "confirm": {
+    "n": 75,
+    "win_roi": 1.14,
+    "place_roi": 0.832
+   },
+   "test": {
+    "n": 44,
+    "win_roi": 0.866,
+    "place_roi": 0.777
+   }
+  },
+  {
+   "dim": "コース",
+   "key": [
+    "東京芝1400"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 163,
+    "win_roi": 1.023,
+    "place_roi": 0.596
+   },
+   "confirm": {
+    "n": 167,
+    "win_roi": 1.969,
+    "place_roi": 0.865
+   },
+   "test": {
+    "n": 133,
+    "win_roi": 0.947,
+    "place_roi": 1.065
+   }
+  },
+  {
+   "dim": "父×クラス",
+   "key": [
+    "ロードカナロア",
+    "ダ",
+    "1勝"
+   ],
+   "pop": "7-9番人気",
+   "kind": "win",
+   "discover": {
+    "n": 72,
+    "win_roi": 1.547,
+    "place_roi": 0.907
+   },
+   "confirm": {
+    "n": 72,
+    "win_roi": 1.021,
+    "place_roi": 0.833
+   },
+   "test": {
+    "n": 45,
+    "win_roi": 1.782,
+    "place_roi": 1.089
+   }
+  },
+  {
+   "dim": "母父系統×距離帯",
+   "key": [
+    "キングカメハメハ系",
+    "ダ",
+    "sprint"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 103,
+    "win_roi": 3.153,
+    "place_roi": 0.697
+   },
+   "confirm": {
+    "n": 133,
+    "win_roi": 1.02,
+    "place_roi": 1.044
+   },
+   "test": {
+    "n": 174,
+    "win_roi": 0.897,
+    "place_roi": 0.82
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "矢作芳人"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 139,
+    "win_roi": 1.02,
+    "place_roi": 1.114
+   },
+   "confirm": {
+    "n": 156,
+    "win_roi": 1.533,
+    "place_roi": 0.708
+   },
+   "test": {
+    "n": 118,
+    "win_roi": 0.34,
+    "place_roi": 0.737
+   }
+  },
+  {
+   "dim": "父系統×直線",
+   "key": [
+    "ヘネシー系",
+    "ダ",
+    "直線短"
+   ],
+   "pop": "4-6番人気",
+   "kind": "win",
+   "discover": {
+    "n": 108,
+    "win_roi": 1.325,
+    "place_roi": 0.886
+   },
+   "confirm": {
+    "n": 161,
+    "win_roi": 1.019,
+    "place_roi": 0.909
+   },
+   "test": {
+    "n": 111,
+    "win_roi": 1.635,
+    "place_roi": 0.911
+   }
+  },
+  {
+   "dim": "枠×コース",
+   "key": [
+    "中枠(4-6)",
+    "新潟ダ1800"
+   ],
+   "pop": "4-6番人気",
+   "kind": "win",
+   "discover": {
+    "n": 117,
+    "win_roi": 1.219,
+    "place_roi": 0.965
+   },
+   "confirm": {
+    "n": 90,
+    "win_roi": 1.011,
+    "place_roi": 0.819
+   },
+   "test": {
+    "n": 56,
+    "win_roi": 0.661,
+    "place_roi": 0.704
+   }
+  },
+  {
+   "dim": "年齢×性別×季節",
+   "key": [
+    3,
+    "牡",
+    "夏"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 297,
+    "win_roi": 1.063,
+    "place_roi": 0.778
+   },
+   "confirm": {
+    "n": 294,
+    "win_roi": 1.01,
+    "place_roi": 0.382
+   },
+   "test": {
+    "n": 231,
+    "win_roi": 0.91,
+    "place_roi": 0.6
+   }
+  },
+  {
+   "dim": "父×ローテ",
+   "key": [
+    "ルーラーシップ",
+    "中5-8週"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 76,
+    "win_roi": 1.009,
+    "place_roi": 0.895
+   },
+   "confirm": {
+    "n": 93,
+    "win_roi": 1.309,
+    "place_roi": 0.87
+   },
+   "test": {
+    "n": 79,
+    "win_roi": 0.0,
+    "place_roi": 0.105
+   }
+  },
+  {
+   "dim": "枠×コース",
+   "key": [
+    "中枠(4-6)",
+    "中京ダ1800"
+   ],
+   "pop": "4-6番人気",
+   "kind": "win",
+   "discover": {
+    "n": 107,
+    "win_roi": 1.006,
+    "place_roi": 0.957
+   },
+   "confirm": {
+    "n": 78,
+    "win_roi": 1.065,
+    "place_roi": 0.897
+   },
+   "test": {
+    "n": 64,
+    "win_roi": 0.4,
+    "place_roi": 0.616
+   }
+  },
+  {
+   "dim": "コース",
+   "key": [
+    "福島ダ1700"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 206,
+    "win_roi": 1.005,
+    "place_roi": 0.541
+   },
+   "confirm": {
+    "n": 222,
+    "win_roi": 1.241,
+    "place_roi": 0.71
+   },
+   "test": {
+    "n": 237,
+    "win_roi": 1.309,
+    "place_roi": 0.361
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "蛯名利弘"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 93,
+    "win_roi": 1.003,
+    "place_roi": 0.269
+   },
+   "confirm": {
+    "n": 137,
+    "win_roi": 1.396,
+    "place_roi": 0.68
+   },
+   "test": {
+    "n": 81,
+    "win_roi": 0.0,
+    "place_roi": 0.393
+   }
+  },
+  {
+   "dim": "前走脚質×コース",
+   "key": [
+    "先行",
+    "中京ダ1800"
+   ],
+   "pop": "1-3番人気",
+   "kind": "win",
+   "discover": {
+    "n": 91,
+    "win_roi": 1.037,
+    "place_roi": 0.787
+   },
+   "confirm": {
+    "n": 67,
+    "win_roi": 1.003,
+    "place_roi": 1.034
+   },
+   "test": {
+    "n": 57,
+    "win_roi": 1.044,
+    "place_roi": 0.796
+   }
+  },
+  {
+   "dim": "コース",
+   "key": [
+    "東京ダ2100"
+   ],
+   "pop": "4-6番人気",
+   "kind": "win",
+   "discover": {
+    "n": 138,
+    "win_roi": 1.12,
+    "place_roi": 1.147
+   },
+   "confirm": {
+    "n": 123,
+    "win_roi": 1.003,
+    "place_roi": 0.737
+   },
+   "test": {
+    "n": 93,
+    "win_roi": 1.131,
+    "place_roi": 0.673
+   }
+  },
+  {
+   "dim": "母父",
+   "key": [
+    "キングヘイロー"
+   ],
+   "pop": "1-3番人気",
+   "kind": "win",
+   "discover": {
+    "n": 96,
+    "win_roi": 1.003,
+    "place_roi": 0.983
+   },
+   "confirm": {
+    "n": 105,
+    "win_roi": 1.037,
+    "place_roi": 0.902
+   },
+   "test": {
+    "n": 78,
+    "win_roi": 0.559,
+    "place_roi": 0.751
+   }
+  },
+  {
+   "dim": "母父系統×距離帯",
+   "key": [
+    "ディープインパクト系",
+    "芝",
+    "mile"
+   ],
+   "pop": "1-3番人気",
+   "kind": "win",
+   "discover": {
+    "n": 67,
+    "win_roi": 1.164,
+    "place_roi": 0.945
+   },
+   "confirm": {
+    "n": 103,
+    "win_roi": 1.003,
+    "place_roi": 0.807
+   },
+   "test": {
+    "n": 126,
+    "win_roi": 0.656,
+    "place_roi": 0.855
+   }
+  },
+  {
+   "dim": "父×頭数",
+   "key": [
+    "マジェスティックウォリアー",
+    "ダ",
+    "多頭数(15〜)"
+   ],
+   "pop": "10番人気以下",
+   "kind": "win",
+   "discover": {
+    "n": 70,
+    "win_roi": 1.296,
+    "place_roi": 1.229
+   },
+   "confirm": {
+    "n": 118,
+    "win_roi": 1.001,
+    "place_roi": 0.52
+   },
+   "test": {
+    "n": 92,
+    "win_roi": 0.555,
+    "place_roi": 0.627
+   }
+  }
+ ],
+ "place": [
+  {
+   "dim": "前走脚質×コース",
+   "key": [
+    "先行",
+    "東京ダ1400"
+   ],
+   "pop": "10番人気以下",
+   "kind": "place",
+   "discover": {
+    "n": 86,
+    "win_roi": 1.786,
+    "place_roi": 1.515
+   },
+   "confirm": {
+    "n": 90,
+    "win_roi": 3.379,
+    "place_roi": 1.757
+   },
+   "test": {
+    "n": 78,
+    "win_roi": 0.0,
+    "place_roi": 0.744
+   }
+  },
+  {
+   "dim": "母父系統×距離帯",
+   "key": [
+    "シンボリクリスエス系",
+    "芝",
+    "middle"
+   ],
+   "pop": "10番人気以下",
+   "kind": "place",
+   "discover": {
+    "n": 63,
+    "win_roi": 1.96,
+    "place_roi": 1.476
+   },
+   "confirm": {
+    "n": 74,
+    "win_roi": 2.978,
+    "place_roi": 1.623
+   },
+   "test": {
+    "n": 64,
+    "win_roi": 0.0,
+    "place_roi": 0.552
+   }
+  },
+  {
+   "dim": "母父系統×距離帯",
+   "key": [
+    "ノーザンダンサー系",
+    "芝",
+    "sprint"
+   ],
+   "pop": "10番人気以下",
+   "kind": "place",
+   "discover": {
+    "n": 92,
+    "win_roi": 2.577,
+    "place_roi": 1.44
+   },
+   "confirm": {
+    "n": 62,
+    "win_roi": 3.01,
+    "place_roi": 1.437
+   },
+   "test": {
+    "n": 75,
+    "win_roi": 2.631,
+    "place_roi": 0.472
+   }
+  },
+  {
+   "dim": "母父系統×距離帯",
+   "key": [
+    "ナスルーラ系",
+    "ダ",
+    "middle"
+   ],
+   "pop": "10番人気以下",
+   "kind": "place",
+   "discover": {
+    "n": 73,
+    "win_roi": 4.568,
+    "place_roi": 1.329
+   },
+   "confirm": {
+    "n": 81,
+    "win_roi": 0.623,
+    "place_roi": 1.738
+   },
+   "test": {
+    "n": 71,
+    "win_roi": 1.328,
+    "place_roi": 0.732
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "西村真幸"
+   ],
+   "pop": "10番人気以下",
+   "kind": "place",
+   "discover": {
+    "n": 84,
+    "win_roi": 1.676,
+    "place_roi": 1.282
+   },
+   "confirm": {
+    "n": 106,
+    "win_roi": 0.305,
+    "place_roi": 1.252
+   },
+   "test": {
+    "n": 104,
+    "win_roi": 2.474,
+    "place_roi": 1.338
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "久保田貴士"
+   ],
+   "pop": "10番人気以下",
+   "kind": "place",
+   "discover": {
+    "n": 76,
+    "win_roi": 7.229,
+    "place_roi": 1.553
+   },
+   "confirm": {
+    "n": 69,
+    "win_roi": 1.764,
+    "place_roi": 1.216
+   },
+   "test": {
+    "n": 54,
+    "win_roi": 1.58,
+    "place_roi": 1.12
+   }
+  },
+  {
+   "dim": "母父系統×距離帯",
+   "key": [
+    "プリンスリーギフト系",
+    "芝",
+    "sprint"
+   ],
+   "pop": "10番人気以下",
+   "kind": "place",
+   "discover": {
+    "n": 88,
+    "win_roi": 0.3,
+    "place_roi": 1.172
+   },
+   "confirm": {
+    "n": 102,
+    "win_roi": 1.81,
+    "place_roi": 1.215
+   },
+   "test": {
+    "n": 90,
+    "win_roi": 3.274,
+    "place_roi": 1.019
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "高橋裕"
+   ],
+   "pop": "10番人気以下",
+   "kind": "place",
+   "discover": {
+    "n": 96,
+    "win_roi": 1.192,
+    "place_roi": 1.14
+   },
+   "confirm": {
+    "n": 65,
+    "win_roi": 5.722,
+    "place_roi": 1.612
+   },
+   "test": {
+    "n": 0,
+    "win_roi": 0,
+    "place_roi": 0
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "松下武士"
+   ],
+   "pop": "10番人気以下",
+   "kind": "place",
+   "discover": {
+    "n": 76,
+    "win_roi": 0.0,
+    "place_roi": 1.138
+   },
+   "confirm": {
+    "n": 86,
+    "win_roi": 2.714,
+    "place_roi": 1.356
+   },
+   "test": {
+    "n": 76,
+    "win_roi": 0.0,
+    "place_roi": 0.286
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "昆貢"
+   ],
+   "pop": "10番人気以下",
+   "kind": "place",
+   "discover": {
+    "n": 60,
+    "win_roi": 1.1,
+    "place_roi": 1.187
+   },
+   "confirm": {
+    "n": 69,
+    "win_roi": 0.0,
+    "place_roi": 1.128
+   },
+   "test": {
+    "n": 57,
+    "win_roi": 0.937,
+    "place_roi": 1.24
+   }
+  },
+  {
+   "dim": "年齢×性別×季節",
+   "key": [
+    4,
+    "セ",
+    "秋"
+   ],
+   "pop": "10番人気以下",
+   "kind": "place",
+   "discover": {
+    "n": 115,
+    "win_roi": 0.195,
+    "place_roi": 1.354
+   },
+   "confirm": {
+    "n": 88,
+    "win_roi": 0.0,
+    "place_roi": 1.124
+   },
+   "test": {
+    "n": 48,
+    "win_roi": 0.0,
+    "place_roi": 0.252
+   }
+  },
+  {
+   "dim": "父×距離変化",
+   "key": [
+    "ダイワメジャー",
+    "芝",
+    "同"
+   ],
+   "pop": "10番人気以下",
+   "kind": "place",
+   "discover": {
+    "n": 107,
+    "win_roi": 2.134,
+    "place_roi": 1.175
+   },
+   "confirm": {
+    "n": 90,
+    "win_roi": 0.0,
+    "place_roi": 1.113
+   },
+   "test": {
+    "n": 59,
+    "win_roi": 0.0,
+    "place_roi": 0.331
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "水野貴広"
+   ],
+   "pop": "10番人気以下",
+   "kind": "place",
+   "discover": {
+    "n": 88,
+    "win_roi": 0.0,
+    "place_roi": 1.15
+   },
+   "confirm": {
+    "n": 109,
+    "win_roi": 0.932,
+    "place_roi": 1.113
+   },
+   "test": {
+    "n": 107,
+    "win_roi": 0.39,
+    "place_roi": 0.29
+   }
+  },
+  {
+   "dim": "コース",
+   "key": [
+    "札幌芝2000"
+   ],
+   "pop": "10番人気以下",
+   "kind": "place",
+   "discover": {
+    "n": 84,
+    "win_roi": 2.033,
+    "place_roi": 1.243
+   },
+   "confirm": {
+    "n": 90,
+    "win_roi": 3.158,
+    "place_roi": 1.094
+   },
+   "test": {
+    "n": 77,
+    "win_roi": 0.873,
+    "place_roi": 0.891
+   }
+  },
+  {
+   "dim": "父×ローテ",
+   "key": [
+    "ダイワメジャー",
+    "中5-8週"
+   ],
+   "pop": "10番人気以下",
+   "kind": "place",
+   "discover": {
+    "n": 67,
+    "win_roi": 0.445,
+    "place_roi": 1.078
+   },
+   "confirm": {
+    "n": 66,
+    "win_roi": 0.324,
+    "place_roi": 1.074
+   },
+   "test": {
+    "n": 60,
+    "win_roi": 0.0,
+    "place_roi": 0.153
+   }
+  },
+  {
+   "dim": "騎手",
+   "key": [
+    "菊沢一樹"
+   ],
+   "pop": "10番人気以下",
+   "kind": "place",
+   "discover": {
+    "n": 277,
+    "win_roi": 1.603,
+    "place_roi": 1.159
+   },
+   "confirm": {
+    "n": 226,
+    "win_roi": 0.998,
+    "place_roi": 1.072
+   },
+   "test": {
+    "n": 271,
+    "win_roi": 1.193,
+    "place_roi": 0.583
+   }
+  },
+  {
+   "dim": "父×距離帯",
+   "key": [
+    "キズナ",
+    "芝",
+    "middle"
+   ],
+   "pop": "7-9番人気",
+   "kind": "place",
+   "discover": {
+    "n": 98,
+    "win_roi": 0.745,
+    "place_roi": 1.092
+   },
+   "confirm": {
+    "n": 111,
+    "win_roi": 1.095,
+    "place_roi": 1.028
+   },
+   "test": {
+    "n": 97,
+    "win_roi": 2.121,
+    "place_roi": 0.754
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "西園正都"
+   ],
+   "pop": "4-6番人気",
+   "kind": "place",
+   "discover": {
+    "n": 76,
+    "win_roi": 1.746,
+    "place_roi": 1.022
+   },
+   "confirm": {
+    "n": 94,
+    "win_roi": 0.956,
+    "place_roi": 1.153
+   },
+   "test": {
+    "n": 43,
+    "win_roi": 0.467,
+    "place_roi": 0.751
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "川村禎彦"
+   ],
+   "pop": "10番人気以下",
+   "kind": "place",
+   "discover": {
+    "n": 98,
+    "win_roi": 2.167,
+    "place_roi": 1.015
+   },
+   "confirm": {
+    "n": 81,
+    "win_roi": 0.0,
+    "place_roi": 1.626
+   },
+   "test": {
+    "n": 0,
+    "win_roi": 0,
+    "place_roi": 0
+   }
+  },
+  {
+   "dim": "調教師",
+   "key": [
+    "田村康仁"
+   ],
+   "pop": "10番人気以下",
+   "kind": "place",
+   "discover": {
+    "n": 67,
+    "win_roi": 3.616,
+    "place_roi": 1.612
+   },
+   "confirm": {
+    "n": 82,
+    "win_roi": 0.504,
+    "place_roi": 1.013
+   },
+   "test": {
+    "n": 57,
+    "win_roi": 3.096,
+    "place_roi": 1.228
+   }
+  },
+  {
+   "dim": "前走脚質×コース",
+   "key": [
+    "先行",
+    "小倉ダ1700"
+   ],
+   "pop": "10番人気以下",
+   "kind": "place",
+   "discover": {
+    "n": 87,
+    "win_roi": 0.9,
+    "place_roi": 1.008
+   },
+   "confirm": {
+    "n": 96,
+    "win_roi": 2.44,
+    "place_roi": 1.164
+   },
+   "test": {
+    "n": 57,
+    "win_roi": 0.0,
+    "place_roi": 0.428
+   }
+  },
+  {
+   "dim": "距離変化×前走脚質",
+   "key": [
+    "芝",
+    "短縮",
+    "逃げ"
+   ],
+   "pop": "7-9番人気",
+   "kind": "place",
+   "discover": {
+    "n": 101,
+    "win_roi": 0.686,
+    "place_roi": 1.004
+   },
+   "confirm": {
+    "n": 128,
+    "win_roi": 0.377,
+    "place_roi": 1.057
+   },
+   "test": {
+    "n": 103,
+    "win_roi": 0.772,
+    "place_roi": 1.178
+   }
+  },
+  {
+   "dim": "父",
+   "key": [
+    "アドマイヤムーン"
+   ],
+   "pop": "10番人気以下",
+   "kind": "place",
+   "discover": {
+    "n": 132,
+    "win_roi": 0.433,
+    "place_roi": 1.002
+   },
+   "confirm": {
+    "n": 69,
+    "win_roi": 0.0,
+    "place_roi": 1.423
+   },
+   "test": {
+    "n": 50,
+    "win_roi": 0.0,
+    "place_roi": 0.444
+   }
+  },
+  {
+   "dim": "コース",
+   "key": [
+    "福島芝2000"
+   ],
+   "pop": "4-6番人気",
+   "kind": "place",
+   "discover": {
+    "n": 66,
+    "win_roi": 1.844,
+    "place_roi": 1.002
+   },
+   "confirm": {
+    "n": 84,
+    "win_roi": 0.875,
+    "place_roi": 1.06
+   },
+   "test": {
+    "n": 81,
+    "win_roi": 1.456,
+    "place_roi": 1.109
+   }
+  }
+ ]
+}
