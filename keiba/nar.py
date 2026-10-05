@@ -140,23 +140,32 @@ def parse_deba(h: str) -> dict:
         if len(rows) < 5:
             continue
         cells = [[_txt(td) for td in r.find_all("td", recursive=False)] for r in rows]
+        # 近5走は各行の末尾5セル（枠番セルが2頭で共有される行は先頭の列数が1つ少ないので、末尾から数える）
+        tail = [c[-5:] if len(c) >= 5 else [""] * 5 for c in cells]
         past = []
-        r0 = cells[0][6:11]
-        for i, c0 in enumerate(r0):
-            mm = re.match(r"(\d+|\S+)\s+(\d{2})\.(\d{2})\.(\d{2})\s+(\S+)\s+(\d+)頭\s+(\S+)\s+(\S)(\d+)\s+(\d+)番", c0)
+        for i, c0 in enumerate(tail[0]):
+            mm = re.match(r"(\d+|\S+)\s+(\d{2})\.(\d{2})\.(\d{2})\s+(\S+)\s+(\d+)頭\s+(\S+)\s+(\S)?(\d+)\s+(\d+)番", c0)
             if not mm:
                 continue
-            g = lambda row, off: cells[row][off + i] if len(cells[row]) > off + i else ""   # noqa: E731
-            pn = re.match(r"(\d+)人\s+(\d+)?", g(2, 3))
-            tp = g(3, 2).split()
+            pn = re.match(r"(\d+)人\s+(\d+)?\s*(\S+)?\s*([\d.]+)?", tail[2][i])
+            tp = tail[3][i].split()
+            mg = tail[4][i].split()
             past.append({"fin": int(mm.group(1)) if mm.group(1).isdigit() else None,
                          "date": f"20{mm.group(2)}-{mm.group(3)}-{mm.group(4)}", "going": mm.group(5),
                          "heads": int(mm.group(6)), "course": mm.group(7), "dist": int(mm.group(9)),
-                         "num": int(mm.group(10)), "class": g(1, 4), "pop": int(pn.group(1)) if pn else None,
-                         "time": tp[0] if tp else None, "passing": tp[1] if len(tp) > 1 else None,
-                         "last3f": float(tp[2]) if len(tp) > 2 and re.match(r"^\d+\.\d$", tp[2]) else None,
-                         "margin": (g(4, 3).split() or [None])[0]})
-        out[int(_txt(num_td))] = {"sire": cells[2][0] if cells[2] else None, "dam": cells[3][0] if cells[3] else None,
+                         "num": int(mm.group(10)), "class": tail[1][i], "pop": int(pn.group(1)) if pn else None,
+                         "jockey": pn.group(3) if pn else None,
+                         "time": tp[0] if tp else None, "passing": tp[1] if len(tp) > 2 else None,
+                         "last3f": float(tp[-1]) if len(tp) > 1 and re.match(r"^\d+\.\d$", tp[-1]) else None,
+                         "margin": mg[0] if mg else None, "winner": " ".join(mg[1:]) or None})
+        head = cells[0][:len(cells[0]) - 5]
+        jidx = next((j for j, c in enumerate(head) if "（" in c), None)
+        out[int(_txt(num_td))] = {"name": head[jidx - 1] if jidx else None,
+                                  "jockey": head[jidx].split("（")[0].strip() if jidx is not None else None,
+                                  "jockey_belong": (re.search(r"（(.+?)）", head[jidx]) or [None, None])[1] if jidx is not None else None,
+                                  "wt": (re.match(r"([\d.]+)", cells[1][3]) or [None, None])[1] if len(cells[1]) > 3 else None,
+                                  "trainer": cells[2][1] if len(cells[2]) > 1 else None,
+                                  "sire": cells[2][0] if cells[2] else None, "dam": cells[3][0] if cells[3] else None,
                                   "damsire": (cells[4][0] if cells[4] else "").strip("（）()") or None, "past": past}
     return out
 
