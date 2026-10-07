@@ -1,0 +1,377 @@
+<!-- resources/views/home.blade.php -->
+
+<!-- resources/views/layouts/app.blade.php -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+        <title>オッズ｜地方競馬情報サイト</title>
+    
+    <!-- CSSファイルの読み込み -->
+            <link rel="stylesheet" href="/KeibaWeb/resources/css/reset.css?t=20260201_1" type="text/css" media="all" />
+            <link rel="stylesheet" href="/KeibaWeb/resources/css/common2.css?t=20260201_1" type="text/css" media="all" />
+            <link rel="stylesheet" href="/KeibaWeb/resources/css/raceinfo2.css?t=20260201_1" type="text/css" media="all" />
+            <link rel="stylesheet" href="/KeibaWeb/resources/css/odd.css?t=20260201_1" type="text/css" media="all" />
+            <link rel="stylesheet" href="/KeibaWeb/resources/css/RaceDataTitle.css?t=20260201_1" type="text/css" media="all" />
+    
+    <!-- JSファイルの読み込み -->
+            <script type="text/javascript" src="/KeibaWeb/resources/js/jquery-1.9.1.min.js?t=20260130_1"></script>
+            <script type="text/javascript" src="/KeibaWeb/resources/js/common.js?t=20260130_1"></script>
+            <script type="text/javascript" src="/KeibaWeb/resources/js/common2.js?t=20260130_1"></script>
+            <script type="text/javascript" src="/KeibaWeb/resources/js/monthltconveninfo.js?t=20260130_1"></script>
+            <script type="text/javascript" src="/KeibaWeb/resources/js/odd.js?t=20260130_1"></script>
+            <script type="text/javascript" src="/KeibaWeb/resources/js/recentButton.js?t=20260130_1"></script>
+        <link rel="shortcut icon" href="/KeibaWeb/resources/img/favicon.ico" />
+</head>
+<body>
+    <header>
+    <div class="headerInner">
+        <div class="titleArea">
+            <h1>
+                <span>地方競馬情報サイト</span>
+                <a href="/index.html">
+                    <img src="/KeibaWeb/resources/img/mainlogo.png?bld=20240319134801" alt="">
+                </a>
+            </h1>
+            <div class="vote">
+                <img id="headerbanner00" src="/KeibaWeb/resources/img/header_banner_00.png?bld=20240319134801" alt="">
+            </div>
+            <ul class="bannerArea clearfix">
+                <li>
+                    <a href="/jranet/" target="_blank">
+                        <img class="normal" src="/KeibaWeb/resources/img/header_banner_01.png?bld=20240319134801">
+                        <img class="min" src="/KeibaWeb/resources/img/header_banner_01_min.png?bld=20240319134801">
+                    </a>
+                </li>
+                                <li>
+                    <a href="https://www.spat4.jp/keiba/pc" target="_blank">
+                        <img class="normal" src="/KeibaWeb/resources/img/header_banner_02.png?bld=20240319134801">
+                        <img class="min" src="/KeibaWeb/resources/img/header_banner_02_min.png?bld=20240319134801">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://my.keiba.rakuten.co.jp/?scid=keiba_NAR_bet" target="_blank">
+                        <img class="normal" src="/KeibaWeb/resources/img/header_banner_03.png?bld=20240319134801">
+                        <img class="min" src="/KeibaWeb/resources/img/header_banner_03_min.png?bld=20240319134801">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.oddspark.com/keiba/auth/VoteKeibaTop.do" target="_blank">
+                        <img class="normal" src="/KeibaWeb/resources/img/header_banner_04.png?bld=20240319134801">
+                        <img class="min" src="/KeibaWeb/resources/img/header_banner_04_min.png?bld=20240319134801">
+                    </a>
+                </li>
+                            </ul>
+            <div class="topSearch clearfix">
+                <form id="cse-search-box" action="https://google.com/cse">
+                    <input type="hidden" name="cx" value="000374752549361390111:sr3uzpcoe-q" />
+                    <input type="hidden" name="ie" value="UTF-8" />
+                    <input type="text" name="q" size="31" class="searchBox"/ placeholder="サイト内検索">
+                    <input type="submit" name="sa" value="" class="searchBtn"/>
+                </form>
+                <script type="text/javascript"
+                                src="https://www.google.com/coop/cse/brand?form=cse-search-boxamp;lang=ja"></script>
+            </div>
+        </div>
+    </div>
+
+    <div class="globalNavi">
+        <ul class="gNavi clearfix">
+            <li class="gNaviitem1">
+                <a href="/KeibaWeb/TodayRaceInfo/TodayRaceInfoTop">
+                    <img src="/KeibaWeb/resources/img/icon_gnavi_08.png?bld=20240319134801" alt="">
+                    <p>レース情報</p>
+                </a>
+            </li>
+            <li class="gNaviitem2">
+                <a href="/KeibaWeb/MonthlyConveneInfo/MonthlyConveneInfoTop">
+                    <img src="/KeibaWeb/resources/img/icon_gnavi_01.png?bld=20240319134801" alt="">
+                                            <p>開催日程</p>
+                                    </a>
+            </li>
+            <li class="gNaviitem3">
+                <a href="/live/?20260804" target="_blank">
+                    <img src="/KeibaWeb/resources/img/icon_gnavi_02.png?bld=20240319134801" alt="">
+                    <p>ライブ中継</p>
+                </a>
+            </li>
+            <li class="gNaviitem4">
+                <a href="/dirtgraderace/">
+                    <img class="dart" src="/KeibaWeb/resources/img/icon_gnavi_12.png?bld=20240319134801" alt="">
+                    <p>ダートグレード競走</p>
+                </a>
+            </li>
+            <li class="gNaviitem5">
+                <a href="/gradedrace/">
+                    <img src="/KeibaWeb/resources/img/icon_gnavi_04.png?bld=20240319134801" alt="">
+                    <p>シリーズ･重賞競走</p>
+                </a>
+            </li>
+            <li class="gNaviitem6">
+                <a href="/KeibaWeb/DataRoom/DataRoomTop">
+                    <img src="/KeibaWeb/resources/img/icon_gnavi_05.png?bld=20240319134801" alt="">
+                    <p>データ検索</p>
+                </a>
+            </li>
+            <li class="gNaviitem7">
+                <a href="/guide/index.html">
+                    <img src="/KeibaWeb/resources/img/icon_gnavi_06.png?bld=20240319134801" alt="">
+                    <p>競馬場ガイド</p>
+                </a>
+            </li>
+            <!--<li>
+                <a href="about/">
+                    <img src="/KeibaWeb/resources/img/icon_gnavi_07.png?bld=20240319134801" alt="">
+                    <p>もっと！地方競馬</p>
+                </a>
+            </li>-->
+        </ul>
+    </div>
+</header>
+<div class="breadCrumb"></div>
+ <!-- Head部分の読み込み -->
+            <!-- <div class="pageHeader">
+<h2>開催日程</h2>
+</div> -->
+<div class="subMenu">
+    <ul class="clearfix">
+        <li>
+            <a id="TodayRaceInfoTop" href="../TodayRaceInfo/TodayRaceInfoTop">本日のレース情報</a>
+        </li>
+        <li>
+            <a id="MonthlyConveneInfoTop" href="../MonthlyConveneInfo/MonthlyConveneInfoTop">月別開催日程</a>
+        </li>
+                    <li>
+                <a id="RaceList" href="../TodayRaceInfo/RaceList?k_babaCode=20&amp;k_raceDate=2026%2F10%2F07&amp;k_raceNo=11">当日メニュー</a>
+            </li>
+            <li>
+                                    <a id="RefundMoneyList" href="../TodayRaceInfo/RefundMoneyList?k_babaCode=20&amp;k_raceDate=2026%2F10%2F07&amp;k_raceNo=11">当日払戻金</a>
+                            </li>
+            </ul>
+</div>
+ <!-- サブメニュー部分の読み込み -->
+        <main>
+                <div id="mainContainer" class="">
+        <article class="raceCard">
+            <div class="innerWrapper">
+                
+                <nav class="clearfix noWrapNav">
+    <div class="chartNavi clearfix trackNameNavi ">
+                     
+                                     
+                        <a
+                            class="cNaviBtn courseBtn " 
+                             href="/KeibaWeb/TodayRaceInfo/OddsWakuLenFukuTan?k_raceDate=2026%2F10%2F07&amp;k_raceNo=11&amp;k_babaCode=36"                         >門別</a>
+                                                         
+                        <a
+                            class="cNaviBtn courseBtn active" 
+                                                    >大井</a>
+                                                         
+                        <a
+                            class="cNaviBtn courseBtn " 
+                             href="/KeibaWeb/TodayRaceInfo/OddsWakuLenFukuTan?k_raceDate=2026%2F10%2F07&amp;k_raceNo=11&amp;k_babaCode=23"                         >笠松</a>
+                                                         
+                        <a
+                            class="cNaviBtn courseBtn " 
+                             href="/KeibaWeb/TodayRaceInfo/OddsWakuLenFukuTan?k_raceDate=2026%2F10%2F07&amp;k_raceNo=11&amp;k_babaCode=27"                         >園田</a>
+                                                            </div>
+</nav>
+<nav class="clearfix noWrapNav">
+    <div class="chartNavi clearfix raceNumNavi ">
+             
+                             
+                    <a 
+                        class="cNaviBtn raceNum " 
+                         href="/KeibaWeb/TodayRaceInfo/OddsWakuLenFukuTan?k_raceDate=2026%2F10%2F07&amp;k_raceNo=1&amp;k_babaCode=20"                     >1R</a>
+                                             
+                    <a 
+                        class="cNaviBtn raceNum " 
+                         href="/KeibaWeb/TodayRaceInfo/OddsWakuLenFukuTan?k_raceDate=2026%2F10%2F07&amp;k_raceNo=2&amp;k_babaCode=20"                     >2R</a>
+                                             
+                    <a 
+                        class="cNaviBtn raceNum " 
+                         href="/KeibaWeb/TodayRaceInfo/OddsWakuLenFukuTan?k_raceDate=2026%2F10%2F07&amp;k_raceNo=3&amp;k_babaCode=20"                     >3R</a>
+                                             
+                    <a 
+                        class="cNaviBtn raceNum " 
+                         href="/KeibaWeb/TodayRaceInfo/OddsTanFuku?k_raceDate=2026%2F10%2F07&amp;k_raceNo=4&amp;k_babaCode=20"                     >4R</a>
+                                             
+                    <a 
+                        class="cNaviBtn raceNum " 
+                         href="/KeibaWeb/TodayRaceInfo/OddsWakuLenFukuTan?k_raceDate=2026%2F10%2F07&amp;k_raceNo=5&amp;k_babaCode=20"                     >5R</a>
+                                             
+                    <a 
+                        class="cNaviBtn raceNum " 
+                         href="/KeibaWeb/TodayRaceInfo/OddsWakuLenFukuTan?k_raceDate=2026%2F10%2F07&amp;k_raceNo=6&amp;k_babaCode=20"                     >6R</a>
+                                             
+                    <a 
+                        class="cNaviBtn raceNum " 
+                         href="/KeibaWeb/TodayRaceInfo/OddsWakuLenFukuTan?k_raceDate=2026%2F10%2F07&amp;k_raceNo=7&amp;k_babaCode=20"                     >7R</a>
+                                             
+                    <a 
+                        class="cNaviBtn raceNum " 
+                         href="/KeibaWeb/TodayRaceInfo/OddsWakuLenFukuTan?k_raceDate=2026%2F10%2F07&amp;k_raceNo=8&amp;k_babaCode=20"                     >8R</a>
+                                             
+                    <a 
+                        class="cNaviBtn raceNum " 
+                         href="/KeibaWeb/TodayRaceInfo/OddsWakuLenFukuTan?k_raceDate=2026%2F10%2F07&amp;k_raceNo=9&amp;k_babaCode=20"                     >9R</a>
+                                             
+                    <a 
+                        class="cNaviBtn raceNum " 
+                         href="/KeibaWeb/TodayRaceInfo/OddsWakuLenFukuTan?k_raceDate=2026%2F10%2F07&amp;k_raceNo=10&amp;k_babaCode=20"                     >10R</a>
+                                             
+                    <a 
+                        class="cNaviBtn raceNum active" 
+                                            >11R</a>
+                                             
+                    <a 
+                        class="cNaviBtn raceNum " 
+                         href="/KeibaWeb/TodayRaceInfo/OddsWakuLenFukuTan?k_raceDate=2026%2F10%2F07&amp;k_raceNo=12&amp;k_babaCode=20"                     >12R</a>
+                                            </div>
+</nav>
+<h4>
+        2026年10月7日（水）　大　井　第11競走　20:05発走    </h4>
+    <p class="racetime">
+        農林水産大臣賞 特別区競馬組合管理者賞 日本中央競馬会理事長賞 日本馬主協会連合会長奨励賞 日本地方競馬馬主振興協会会長賞<br />
+        地方競馬全国協会理事長賞 東京都馬主会理事長賞 （一社）ＪＢＣ協会賞 ＮＡＲ生産牧場賞 <br />
+            
+    </p>
+    <section class="raceTitle">
+        <p class="roundInfo"></p>
+        <p class="date"></p>
+        <p class="subTitle">農林水産大臣賞典（指定交流）（シルバーステート賞）</p>
+        <h3>第２８回 ジャパンダートクラシックJpnＩ３歳選定馬重賞</h3>
+        <ul class="dataArea">
+            <li>ダート　2000ｍ（外コース・右）　　天候：曇　　馬場：良　　サラブレッド系　3歳 定量　　＊電話投票コード：33#            </li>
+                        <li>賞金　1着80,000,000円　2着28,000,000円　3着16,000,000円　4着8,000,000円　5着4,000,000円</li>
+        </ul>
+    </section>
+
+    <nav class="clearfix noWrapNav">
+        <div class="chartNavi clearfix ">
+            
+                                                                        <a class="cNaviBtn" href="/KeibaWeb/TodayRaceInfo/DebaTable?k_raceDate=2026%2F10%2F07&amp;k_raceNo=11&amp;k_babaCode=20">出馬表</a>
+                                                                <a class="cNaviBtn" href="/KeibaWeb/TodayRaceInfo/CompeteTable?k_raceDate=2026%2F10%2F07&amp;k_raceNo=11&amp;k_babaCode=20">対戦表</a>
+                                        <a class="cNaviBtn" target="_blank" href="/KeibaWeb/TodayRaceInfo/DebaTableSmall?k_raceDate=2026%2F10%2F07&amp;k_raceNo=11&amp;k_babaCode=20">印刷用出馬表</a>
+                                            <a class="cNaviBtn live" target="_blank" href="http://simple.keiba-lv-st.jp/?track=ooi">ライブ中継</a>
+                                                                <a class="cNaviBtn standby">競走成績</a>
+                    
+                                    </div>
+        
+                                    <div class="chartNavi clearfix">
+                    <h3 class="naviTitle">オッズ</h3>
+                                                                                                                    <a class="cNaviBtn "
+                                href="/KeibaWeb/TodayRaceInfo/OddsTanFuku?k_raceDate=2026%2F10%2F07&amp;k_raceNo=11&amp;k_babaCode=20">単・複</a>
+                                                                                                                        <a class="cNaviBtn live"
+                                href="/KeibaWeb/TodayRaceInfo/OddsWakuLenFukuTan?k_raceDate=2026%2F10%2F07&amp;k_raceNo=11&amp;k_babaCode=20">枠連</a>
+                                                                                                                        <a class="cNaviBtn "
+                                href="/KeibaWeb/TodayRaceInfo/OddsUmLenFuku?k_raceDate=2026%2F10%2F07&amp;k_raceNo=11&amp;k_babaCode=20">馬連複</a>
+                                                                                                                        <a class="cNaviBtn "
+                                href="/KeibaWeb/TodayRaceInfo/OddsUmLenTan?k_raceDate=2026%2F10%2F07&amp;k_raceNo=11&amp;k_babaCode=20">馬連単</a>
+                                                                                                                        <a class="cNaviBtn "
+                                href="/KeibaWeb/TodayRaceInfo/OddsWide?k_raceDate=2026%2F10%2F07&amp;k_raceNo=11&amp;k_babaCode=20">ワイド</a>
+                                                                                                                        <a class="cNaviBtn "
+                                href="/KeibaWeb/TodayRaceInfo/Odds3LenFuku?k_raceDate=2026%2F10%2F07&amp;k_raceNo=11&amp;k_babaCode=20">三連複</a>
+                                                                                                                        <a class="cNaviBtn "
+                                href="/KeibaWeb/TodayRaceInfo/Odds3LenTan?k_raceDate=2026%2F10%2F07&amp;k_raceNo=11&amp;k_babaCode=20">三連単</a>
+                                                            </div>
+                        </nav>
+                
+                <div id="odd_content">
+                    <div class="odd_header">
+                                                    <h4 class="odd_title">枠連複　オッズ  （17:01 現在）</h4>
+                                                <ul class="odd_sort">
+                                                                                        <a class="odd_sort_item active no_underline" href="/KeibaWeb/TodayRaceInfo/OddsWakuLenFukuTan?k_raceDate=2026%2F10%2F07&amp;k_raceNo=11&amp;k_babaCode=20&odds_flg=6">枠番順</a>
+                                                                                        <a class="odd_sort_item" href="/KeibaWeb/TodayRaceInfo/OddsWakuLenFukuTan?k_raceDate=2026%2F10%2F07&amp;k_raceNo=11&amp;k_babaCode=20&odds_flg=5">人気順</a>
+                                                    </ul>
+                    </div>
+                    <ul class="odd_list">
+                                                    <li class="odd_list_item active">
+                                <ul class="formList">
+                                    <li class="formList--item active">
+                                                                                    
+                                            <ul class="odd_horse_number_list">
+                                                <li><table><tr><th class="odd_post1" colspan="2">1</th></tr><tr><td>1</td><td>453.0</td></tr><tr><td>2</td><td>12.0</td></tr><tr><td>3</td><td>18.1</td></tr><tr><td>4</td><td>253.3</td></tr><tr><td>5</td><td>16.3</td></tr><tr><td>6</td><td>20.7</td></tr><tr><td>7</td><td>55.5</td></tr><tr><td>8</td><td class="odd_red">7.6</td></tr></table></li><li><table><tr><th class="odd_post2" colspan="2">2</th></tr><tr><td>2</td><td>879.4</td></tr><tr><td>3</td><td>13.9</td></tr><tr><td>4</td><td>364.6</td></tr><tr><td>5</td><td>16.3</td></tr><tr><td>6</td><td>16.8</td></tr><tr><td>7</td><td>47.0</td></tr><tr><td>8</td><td class="odd_red">5.6</td></tr></table></li><li><table><tr><th class="odd_post3" colspan="2">3</th></tr><tr><td>3</td><td>427.1</td></tr><tr><td>4</td><td>276.8</td></tr><tr><td>5</td><td>21.4</td></tr><tr><td>6</td><td>25.4</td></tr><tr><td>7</td><td>60.8</td></tr><tr><td>8</td><td>10.0</td></tr></table></li><li><table><tr><th class="odd_post4" colspan="2">4</th></tr><tr><td>4</td><td class="odd_blue">2135.7</td></tr><tr><td>5</td><td>287.5</td></tr><tr><td>6</td><td>378.4</td></tr><tr><td>7</td><td>241.1</td></tr><tr><td>8</td><td>154.1</td></tr></table></li><li><table><tr><th class="odd_post5" colspan="2">5</th></tr><tr><td>5</td><td>598.0</td></tr><tr><td>6</td><td>23.7</td></tr><tr><td>7</td><td>48.3</td></tr><tr><td>8</td><td class="odd_red">8.7</td></tr></table></li><li><table><tr><th class="odd_post6" colspan="2">6</th></tr><tr><td>6</td><td>474.6</td></tr><tr><td>7</td><td>69.6</td></tr><tr><td>8</td><td>13.5</td></tr></table></li><li><table><tr><th class="odd_post7" colspan="2">7</th></tr><tr><td>7</td><td>636.1</td></tr><tr><td>8</td><td>25.9</td></tr></table></li><li><table><tr><th class="odd_post8" colspan="2">8</th></tr><tr><td>8</td><td>194.1</td></tr></table></li>                                            </ul><br>
+                                                                                                                            
+                                                                                            <div class="odd_header">
+                                                    <h4 class="odd_title">枠連単　オッズ  （17:01 現在）</h4>
+                                                </div>
+                                                                                        <ul class="odd_horse_number_list">
+                                                <li><table><tr><th class="odd_post1" colspan="2">1</th></tr><tr><td>1</td><td>416.6</td></tr><tr><td>2</td><td>21.9</td></tr><tr><td>3</td><td>36.7</td></tr><tr><td>4</td><td>479.1</td></tr><tr><td>5</td><td>24.2</td></tr><tr><td>6</td><td>35.6</td></tr><tr><td>7</td><td>76.6</td></tr><tr><td>8</td><td>20.6</td></tr></table></li><li><table><tr><th class="odd_post2" colspan="2">2</th></tr><tr><td>1</td><td>23.2</td></tr><tr><td>2</td><td>416.6</td></tr><tr><td>3</td><td>38.0</td></tr><tr><td>4</td><td>456.3</td></tr><tr><td>5</td><td>31.8</td></tr><tr><td>6</td><td>41.4</td></tr><tr><td>7</td><td>76.6</td></tr><tr><td>8</td><td>21.2</td></tr></table></li><li><table><tr><th class="odd_post3" colspan="2">3</th></tr><tr><td>1</td><td>45.6</td></tr><tr><td>2</td><td>49.1</td></tr><tr><td>3</td><td>259.0</td></tr><tr><td>4</td><td>737.1</td></tr><tr><td>5</td><td>46.0</td></tr><tr><td>6</td><td>48.4</td></tr><tr><td>7</td><td>99.8</td></tr><tr><td>8</td><td>39.1</td></tr></table></li><li><table><tr><th class="odd_post4" colspan="2">4</th></tr><tr><td>1</td><td>871.2</td></tr><tr><td>2</td><td>737.1</td></tr><tr><td>3</td><td>871.2</td></tr><tr><td>4</td><td class="odd_blue">1369.0</td></tr><tr><td>5</td><td>504.3</td></tr><tr><td>6</td><td>737.1</td></tr><tr><td>7</td><td>871.2</td></tr><tr><td>8</td><td>532.4</td></tr></table></li><li><table><tr><th class="odd_post5" colspan="2">5</th></tr><tr><td>1</td><td>30.1</td></tr><tr><td>2</td><td>32.2</td></tr><tr><td>3</td><td>36.5</td></tr><tr><td>4</td><td>368.5</td></tr><tr><td>5</td><td>342.2</td></tr><tr><td>6</td><td>40.4</td></tr><tr><td>7</td><td>75.4</td></tr><tr><td>8</td><td>21.2</td></tr></table></li><li><table><tr><th class="odd_post6" colspan="2">6</th></tr><tr><td>1</td><td>46.0</td></tr><tr><td>2</td><td>42.9</td></tr><tr><td>3</td><td>53.5</td></tr><tr><td>4</td><td>504.3</td></tr><tr><td>5</td><td>52.9</td></tr><tr><td>6</td><td>504.3</td></tr><tr><td>7</td><td>145.2</td></tr><tr><td>8</td><td>31.2</td></tr></table></li><li><table><tr><th class="odd_post7" colspan="2">7</th></tr><tr><td>1</td><td>131.2</td></tr><tr><td>2</td><td>129.5</td></tr><tr><td>3</td><td>129.5</td></tr><tr><td>4</td><td>737.1</td></tr><tr><td>5</td><td>118.3</td></tr><tr><td>6</td><td>171.1</td></tr><tr><td>7</td><td>368.5</td></tr><tr><td>8</td><td>90.4</td></tr></table></li><li><table><tr><th class="odd_post8" colspan="2">8</th></tr><tr><td>1</td><td>10.9</td></tr><tr><td>2</td><td class="odd_red">8.7</td></tr><tr><td>3</td><td>16.4</td></tr><tr><td>4</td><td>252.1</td></tr><tr><td>5</td><td>15.0</td></tr><tr><td>6</td><td>14.9</td></tr><tr><td>7</td><td>31.2</td></tr><tr><td>8</td><td>245.7</td></tr></table></li>                                            </ul>
+                                                                            </li>
+                                </ul><br>
+                            </li>
+                                            </ul>
+                </div>
+                
+                <article class="attention">
+                    <div class="innerWrapper">
+                        <p>※本日のレース情報画面において競馬場名が空欄の日は、 <br>
+　その日に開催がないことを意味しています。<br></p>
+    <p>※減量騎手の負担重量は、★は４kg、▲は３kg、△及び◇は２kg、☆は１kg <br>　（ばんえいは、△は２０kg、☆は１０kg）を減じたものを表示しています。<br></p>
+    <p>※競走種類は、特は特別、準は準重賞、重は重賞、表示なしは普通競走<br>　を表しています。<br></p>
+    <p>※レース一覧画面においてレース名欄のＪ認はJRA認定競走、<br>　Ｊ交はJRA条件交流競走、Ｊ指はJRA指定競走を表しています。<br></p>
+    <p>※2014年4月以降、「ナ」と表示されるのは、南関東のナイター開催日における<br>　照明点灯時のレースに限られます。<br>　馬場別成績においてナイターとして集計されるのも同様の扱いとなります。<br></p>
+    <p>※勝馬投票に的中者がいない場合、その式別投票者全員に100円につき<br>　70円または80円の特払いがあります。表中の70円または80円は特払いを表示しています。<br></p>
+    <p>「勝馬投票券は、必ず正規の窓口または電話投票で購入してください。</p>
+    <p>　ノミ行為・代行業は、法律で禁止されています。</p>
+    <p>　20歳未満の者は、勝馬投票券を購入することはできません。</p>
+    <p>　出馬表・成績・オッズ等は、主催者発表のものと照合してください。」</p>
+                    </div>
+                </article>
+                
+            </div>
+        </article>
+    </div>
+    </main>
+</body>
+        <div class="innerWrapper2">
+    <footer>
+        <ul class="footerMenu">
+            <li>
+                <a href="/index.html">
+                    HOME
+                </a>
+            </li>
+            <li>
+                <a href="/association/">
+                    地方競馬全国協会（NAR）
+                </a>
+            </li>
+            <li>
+                <a href="/sitemap.html">
+                    サイトマップ
+                </a>
+            </li>
+            <li>
+                <a href="/link.html">
+                    関連リンク
+                </a>
+            </li>
+            <li>
+                <a href="/terms.html">
+                    利用規約
+                </a>
+            </li>
+            <li>
+                <a href="/qa.html">
+                    ご意見・ご要望／FAQ
+                </a>
+            </li>
+        </ul>
+        <div class="copyright">
+        copyright 1998-NAR (The National Association of Racing) All Rights Reserved
+        </div>
+        <!-- 言語選択 -->
+        <div class="language cp_sl01">
+            <select onChange="location.href=value;">
+                <option value="#">Language</option>
+                <option value="https://www.goracing.jp/english/">English</option>
+                <option value="https://www.goracing.jp/french/">Francais</option>
+                <option value="https://www.goracing.jp/chinese/">中文</option>
+                <option value="https://www.goracing.jp/korea/">한글</option>
+            </select>
+        </div>
+    </footer>
+</div></html>
