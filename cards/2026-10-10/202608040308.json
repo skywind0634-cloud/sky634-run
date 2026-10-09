@@ -20,8 +20,8 @@
    "weight": 56.0,
    "jockey": "幸英明",
    "trainer": "北出成人",
-   "odds": null,
-   "popularity": null,
+   "odds": 9.3,
+   "popularity": 4,
    "body_weight_diff": null,
    "sire": "タニノフランケル",
    "dam": "ニシノカグラ",
@@ -89,8 +89,8 @@
    "weight": 56.0,
    "jockey": "松山弘平",
    "trainer": "池江泰寿",
-   "odds": null,
-   "popularity": null,
+   "odds": 9.1,
+   "popularity": 3,
    "body_weight_diff": null,
    "sire": "ロードカナロア",
    "dam": "ナスティア",
@@ -118,15 +118,7 @@
      "behind": -0.0
     }
    ],
-   "pedigree": {
-    "S": "ロードカナロア",
-    "D": "ナスティア",
-    "DS": "Fortify",
-    "DD": "Stormy Nimble",
-    "SS": "キングカメハメハ",
-    "SSS": "Kingmambo",
-    "SSSS": "Mr. Prospector"
-   }
+   "pedigree": {}
   },
   {
    "gate": 3,
@@ -138,8 +130,8 @@
    "weight": 56.0,
    "jockey": "西村淳也",
    "trainer": "浜田多実雄",
-   "odds": null,
-   "popularity": null,
+   "odds": 10.7,
+   "popularity": 5,
    "body_weight_diff": null,
    "sire": "エピファネイア",
    "dam": "クライミングローズ",
@@ -188,8 +180,8 @@
    "weight": 55.0,
    "jockey": "坂井瑠星",
    "trainer": "新谷功一",
-   "odds": null,
-   "popularity": null,
+   "odds": 4.1,
+   "popularity": 2,
    "body_weight_diff": null,
    "sire": "キタサンブラック",
    "dam": "ゴーイントゥザウィンドウ",
@@ -237,8 +229,8 @@
    "weight": 55.0,
    "jockey": "松若風馬",
    "trainer": "田島俊明",
-   "odds": null,
-   "popularity": null,
+   "odds": 17.6,
+   "popularity": 6,
    "body_weight_diff": null,
    "sire": "エピファネイア",
    "dam": "アソルータ",
@@ -287,16 +279,7 @@
      "behind": 0.0
     }
    ],
-   "pedigree": {
-    "S": "エピファネイア",
-    "D": "アソルータ",
-    "DS": "ゼンノロブロイ",
-    "DD": "フレンチバレリーナ",
-    "SS": "シンボリクリスエス",
-    "SSS": "Kris S.",
-    "DSS": "サンデーサイレンス",
-    "DSSS": "Halo"
-   }
+   "pedigree": {}
   },
   {
    "gate": 6,
@@ -308,8 +291,8 @@
    "weight": 56.0,
    "jockey": "川田将雅",
    "trainer": "福永祐一",
-   "odds": null,
-   "popularity": null,
+   "odds": 1.5,
+   "popularity": 1,
    "body_weight_diff": null,
    "sire": "コントレイル",
    "dam": "メチャコルタ",
