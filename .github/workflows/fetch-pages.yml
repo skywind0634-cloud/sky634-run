@@ -1,0 +1,34 @@
+name: fetch-pages
+# 指定した URL（スペース区切り）のページを取得し、pages ブランチの pages/<tag>/ に保存（手動・答え合わせ用。2秒間隔）
+on:
+  workflow_dispatch:
+    inputs:
+      tag: {description: "保存先の名前", required: true}
+      urls: {description: "URL（スペース区切り）", required: true}
+permissions:
+  contents: write
+concurrency:
+  group: fetch-pages
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: fetch
+        run: |
+          mkdir -p /tmp/p; i=0
+          for u in ${{ inputs.urls }}; do
+            i=$((i+1)); curl -sL -A 'Mozilla/5.0' --max-time 30 "$u" -o "/tmp/p/$(printf %02d $i).html"; echo "$u" >> /tmp/p/urls.txt; sleep 2
+          done
+      - name: save
+        run: |
+          git config user.name "keiba-bot"
+          git config user.email "keiba-bot@users.noreply.github.com"
+          if git fetch -q origin pages; then git checkout -q -f -B pages origin/pages
+          else git checkout -q --orphan pages; git rm -rq --cached . >/dev/null 2>&1 || true; fi
+          rm -rf pages/${{ inputs.tag }}; mkdir -p pages/${{ inputs.tag }} && cp /tmp/p/* pages/${{ inputs.tag }}/
+          git add pages/${{ inputs.tag }}
+          git commit -qm "pages ${{ inputs.tag }}" || exit 0
+          git push -q origin HEAD:pages
