@@ -1,0 +1,15 @@
+name: probe-url
+# URL に届くか（HTTP状態・最終URL・タイトル・本文の長さ）だけを確認する。本文は保存しない（手動）
+on:
+  workflow_dispatch:
+    inputs:
+      url: {description: "URL", required: true}
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - run: |
+          curl -sL -A 'Mozilla/5.0' --max-time 30 -o /tmp/p.html -w '%{http_code} %{url_effective}\n' "${{ inputs.url }}" > /tmp/meta.txt
+          T=$(grep -o '<title>[^<]*' /tmp/p.html | head -1 | sed 's/<title>//')
+          echo "::notice::status=$(cat /tmp/meta.txt) bytes=$(wc -c < /tmp/p.html) title=$T"
