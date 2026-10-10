@@ -1,0 +1,31 @@
+name: day-results
+# 指定日の JRA 全レースの着順・人気・単勝を取得し、day-results ブランチの results/<日付>.json に保存（手動・答え合わせ用）
+on:
+  workflow_dispatch:
+    inputs:
+      date: {description: "開催日 YYYY-MM-DD", required: true}
+permissions:
+  contents: write
+concurrency:
+  group: day-results
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install -r requirements.txt
+      - run: python tools/day_results.py ${{ inputs.date }} /tmp/day.json
+      - name: save
+        run: |
+          git config user.name "keiba-bot"
+          git config user.email "keiba-bot@users.noreply.github.com"
+          if git fetch -q origin day-results; then git checkout -q -f -B day-results origin/day-results
+          else git checkout -q --orphan day-results; git rm -rq --cached . >/dev/null 2>&1 || true; fi
+          mkdir -p results && cp /tmp/day.json results/${{ inputs.date }}.json
+          git add results/${{ inputs.date }}.json
+          git commit -qm "results ${{ inputs.date }} $(date -u +%FT%H%M)" || exit 0
+          git push -q origin HEAD:day-results
