@@ -1,0 +1,964 @@
+{
+ "_meta": {
+  "description": "父系（サイアーライン）の系統樹と、系統ごとの既定適性ベクトル。個別種牡馬に適性が定義されていない場合、この系統値を事前分布として使う。",
+  "scale": "各適性は -2(不向き) 〜 +2(得意) の相対評価。0 は平均。",
+  "axes": {
+   "turf": "芝適性",
+   "dirt": "ダート適性",
+   "sprint": "短距離(〜1400m)",
+   "mile": "マイル(1500〜1700m)",
+   "middle": "中距離(1800〜2200m)",
+   "long": "長距離(2300m〜)",
+   "heavy": "道悪(稍重〜不良)",
+   "kire": "瞬発力(上がり勝負・ラスト2Fの加速)",
+   "jizoku": "持続力(ロングスパート・締まったペース)",
+   "power": "パワー(急坂・洋芝・時計の掛かる馬場)",
+   "early": "早熟性(2歳〜3歳春)",
+   "growth": "成長力(古馬になってからの上積み)"
+  },
+  "source": "一般に知られた血統知見に基づく事前評価。data/keiba.db に蓄積した実績で自動的に上書き・補正される（keiba/analysis.py の経験ベイズ縮約）。",
+  "esi": "産駒の平均的なテン指数(0=最後方〜1=先頭)の事前値。新馬など履歴のない馬の脚質推定に使う。実績(産駒の通過順)が貯まると自動で置き換え。"
+ },
+ "lines": {
+  "サンデーサイレンス系": {
+   "parent": "ヘイルトゥリーズン系",
+   "apt": {
+    "turf": 1.5,
+    "dirt": 0,
+    "sprint": 0,
+    "mile": 1,
+    "middle": 1,
+    "long": 0.5,
+    "heavy": -0.5,
+    "kire": 1.5,
+    "jizoku": 0.5,
+    "power": 0,
+    "early": 0.5,
+    "growth": 0.5
+   }
+  },
+  "ディープインパクト系": {
+   "parent": "サンデーサイレンス系",
+   "apt": {
+    "turf": 2,
+    "dirt": -0.5,
+    "sprint": 0,
+    "mile": 1,
+    "middle": 1.5,
+    "long": 0.5,
+    "heavy": -1,
+    "kire": 2,
+    "jizoku": 0.5,
+    "power": -0.5,
+    "early": 1,
+    "growth": 0
+   },
+   "note": "軽い芝の瞬発力勝負で最強。東京・京都外回り・阪神外回り向き。重い馬場・急坂の消耗戦はやや割引。母系から持続力やパワーを補う配合が成功パターン。",
+   "esi": 0.45
+  },
+  "ステイゴールド系": {
+   "parent": "サンデーサイレンス系",
+   "apt": {
+    "turf": 1.5,
+    "dirt": 0,
+    "sprint": -1,
+    "mile": 0,
+    "middle": 1,
+    "long": 2,
+    "heavy": 1.5,
+    "kire": 0,
+    "jizoku": 1.5,
+    "power": 1.5,
+    "early": -0.5,
+    "growth": 1.5
+   },
+   "note": "スタミナ・持続力・道悪。中山/阪神内回り・洋芝・長距離の消耗戦で激走。気性難も遺伝し、ムラ駆け（人気薄の一発）が多い。",
+   "esi": 0.45
+  },
+  "ハーツクライ系": {
+   "parent": "サンデーサイレンス系",
+   "apt": {
+    "turf": 1.5,
+    "dirt": 0,
+    "sprint": -1,
+    "mile": 0.5,
+    "middle": 1.5,
+    "long": 1.5,
+    "heavy": 0,
+    "kire": 1,
+    "jizoku": 1,
+    "power": 0.5,
+    "early": -0.5,
+    "growth": 2
+   },
+   "note": "東京の長い直線で長く良い脚。晩成で古馬になって本格化。",
+   "esi": 0.4
+  },
+  "ダイワメジャー系": {
+   "parent": "サンデーサイレンス系",
+   "apt": {
+    "turf": 1.5,
+    "dirt": 0,
+    "sprint": 1,
+    "mile": 2,
+    "middle": 0,
+    "long": -1.5,
+    "heavy": 0.5,
+    "kire": 0,
+    "jizoku": 1,
+    "power": 1,
+    "early": 1.5,
+    "growth": -0.5
+   },
+   "note": "先行力と持続力のマイラー。2歳戦から走る早熟傾向。",
+   "esi": 0.68
+  },
+  "ブラックタイド系": {
+   "parent": "サンデーサイレンス系",
+   "apt": {
+    "turf": 1.5,
+    "dirt": 0,
+    "sprint": -0.5,
+    "mile": 0.5,
+    "middle": 1.5,
+    "long": 1.5,
+    "heavy": 0.5,
+    "kire": 1,
+    "jizoku": 1.5,
+    "power": 1,
+    "early": 0,
+    "growth": 1.5
+   },
+   "esi": 0.6
+  },
+  "ゴールドアリュール系": {
+   "parent": "サンデーサイレンス系",
+   "apt": {
+    "turf": -1,
+    "dirt": 2,
+    "sprint": 0,
+    "mile": 1.5,
+    "middle": 1.5,
+    "long": 0,
+    "heavy": 0,
+    "kire": 0,
+    "jizoku": 1,
+    "power": 1.5,
+    "early": 0,
+    "growth": 1
+   },
+   "note": "ダート中距離の王道。砂を被らない外目の枠でしぶとい。",
+   "esi": 0.58
+  },
+  "フジキセキ系": {
+   "parent": "サンデーサイレンス系",
+   "apt": {
+    "turf": 1,
+    "dirt": 1,
+    "sprint": 1.5,
+    "mile": 1.5,
+    "middle": 0,
+    "long": -1.5,
+    "heavy": 0.5,
+    "kire": 0.5,
+    "jizoku": 0.5,
+    "power": 0.5,
+    "early": 1,
+    "growth": 0
+   },
+   "esi": 0.6
+  },
+  "マンハッタンカフェ系": {
+   "parent": "サンデーサイレンス系",
+   "apt": {
+    "turf": 1,
+    "dirt": 0.5,
+    "sprint": -0.5,
+    "mile": 0.5,
+    "middle": 1,
+    "long": 1.5,
+    "heavy": 0.5,
+    "kire": 0.5,
+    "jizoku": 1,
+    "power": 0.5,
+    "early": 0,
+    "growth": 1
+   }
+  },
+  "ネオユニヴァース系": {
+   "parent": "サンデーサイレンス系",
+   "apt": {
+    "turf": 1,
+    "dirt": 0.5,
+    "sprint": 0,
+    "mile": 0.5,
+    "middle": 1,
+    "long": 0.5,
+    "heavy": 0.5,
+    "kire": 0.5,
+    "jizoku": 1,
+    "power": 1,
+    "early": 0.5,
+    "growth": 0.5
+   }
+  },
+  "アグネスタキオン系": {
+   "parent": "サンデーサイレンス系",
+   "apt": {
+    "turf": 1,
+    "dirt": 0.5,
+    "sprint": 0.5,
+    "mile": 1,
+    "middle": 1,
+    "long": 0,
+    "heavy": 0,
+    "kire": 1,
+    "jizoku": 0.5,
+    "power": 0.5,
+    "early": 1,
+    "growth": -0.5
+   }
+  },
+  "スペシャルウィーク系": {
+   "parent": "サンデーサイレンス系",
+   "apt": {
+    "turf": 1,
+    "dirt": 0.5,
+    "sprint": -0.5,
+    "mile": 0.5,
+    "middle": 1,
+    "long": 1.5,
+    "heavy": 0,
+    "kire": 0.5,
+    "jizoku": 1,
+    "power": 0.5,
+    "early": 0,
+    "growth": 1
+   }
+  },
+  "キングマンボ系": {
+   "parent": "ミスタープロスペクター系",
+   "apt": {
+    "turf": 1,
+    "dirt": 1,
+    "sprint": 0.5,
+    "mile": 1,
+    "middle": 1,
+    "long": 0.5,
+    "heavy": 0.5,
+    "kire": 0.5,
+    "jizoku": 1.5,
+    "power": 1,
+    "early": 0.5,
+    "growth": 0.5
+   }
+  },
+  "キングカメハメハ系": {
+   "parent": "キングマンボ系",
+   "apt": {
+    "turf": 1.5,
+    "dirt": 1,
+    "sprint": 0.5,
+    "mile": 1,
+    "middle": 1.5,
+    "long": 0.5,
+    "heavy": 0.5,
+    "kire": 0.5,
+    "jizoku": 1.5,
+    "power": 1,
+    "early": 0.5,
+    "growth": 0.5
+   },
+   "note": "芝ダ兼用の万能系統。持続力型で、母系の特徴を引き出す。SS系牝馬との配合が王道。",
+   "esi": 0.55
+  },
+  "ロベルト系": {
+   "parent": "ヘイルトゥリーズン系",
+   "apt": {
+    "turf": 1,
+    "dirt": 0.5,
+    "sprint": -0.5,
+    "mile": 0.5,
+    "middle": 1.5,
+    "long": 1,
+    "heavy": 1.5,
+    "kire": -0.5,
+    "jizoku": 1.5,
+    "power": 2,
+    "early": 0,
+    "growth": 0.5
+   },
+   "note": "パワーと持続力。中山・阪神内回り・小回り・洋芝・道悪・冬の荒れ馬場で浮上。上がりの掛かる消耗戦向き。",
+   "esi": 0.55
+  },
+  "シンボリクリスエス系": {
+   "parent": "ロベルト系",
+   "apt": {
+    "turf": 1,
+    "dirt": 1,
+    "sprint": -0.5,
+    "mile": 0.5,
+    "middle": 1.5,
+    "long": 1,
+    "heavy": 1,
+    "kire": 0,
+    "jizoku": 1.5,
+    "power": 1.5,
+    "early": 0.5,
+    "growth": 0.5
+   },
+   "esi": 0.55
+  },
+  "スクリーンヒーロー系": {
+   "parent": "ロベルト系",
+   "apt": {
+    "turf": 1.5,
+    "dirt": 0.5,
+    "sprint": 0.5,
+    "mile": 1.5,
+    "middle": 1.5,
+    "long": 0,
+    "heavy": 1,
+    "kire": 0.5,
+    "jizoku": 1.5,
+    "power": 1.5,
+    "early": -0.5,
+    "growth": 1.5
+   },
+   "esi": 0.55
+  },
+  "ブライアンズタイム系": {
+   "parent": "ロベルト系",
+   "apt": {
+    "turf": 0.5,
+    "dirt": 1.5,
+    "sprint": -0.5,
+    "mile": 0.5,
+    "middle": 1.5,
+    "long": 1,
+    "heavy": 1,
+    "kire": -0.5,
+    "jizoku": 1.5,
+    "power": 2,
+    "early": 0,
+    "growth": 0.5
+   }
+  },
+  "クリスエス系": {
+   "parent": "ロベルト系",
+   "apt": {
+    "turf": 0,
+    "dirt": 1.5,
+    "sprint": 0.5,
+    "mile": 1,
+    "middle": 1,
+    "long": 0,
+    "heavy": 0.5,
+    "kire": -0.5,
+    "jizoku": 1,
+    "power": 1.5,
+    "early": 0,
+    "growth": 0.5
+   }
+  },
+  "ストームキャット系": {
+   "parent": "ノーザンダンサー系",
+   "apt": {
+    "turf": 0.5,
+    "dirt": 1.5,
+    "sprint": 1.5,
+    "mile": 1,
+    "middle": 0,
+    "long": -1.5,
+    "heavy": 0.5,
+    "kire": 0,
+    "jizoku": 0.5,
+    "power": 1,
+    "early": 1.5,
+    "growth": -0.5
+   },
+   "note": "スピードと仕上がりの早さ。母父ストームキャットはディープ系との黄金配合。",
+   "esi": 0.62
+  },
+  "ヘネシー系": {
+   "parent": "ストームキャット系",
+   "apt": {
+    "turf": -0.5,
+    "dirt": 2,
+    "sprint": 2,
+    "mile": 1,
+    "middle": -0.5,
+    "long": -2,
+    "heavy": 1,
+    "kire": 0,
+    "jizoku": 0.5,
+    "power": 1,
+    "early": 1.5,
+    "growth": -0.5
+   },
+   "note": "ダート短距離のスピード。脚抜きの良い(湿った)ダートで時計が速くなると一段と強い。",
+   "esi": 0.68
+  },
+  "ジャイアンツコーズウェイ系": {
+   "parent": "ストームキャット系",
+   "apt": {
+    "turf": 1.5,
+    "dirt": 0.5,
+    "sprint": 0.5,
+    "mile": 1.5,
+    "middle": 1,
+    "long": -0.5,
+    "heavy": 0.5,
+    "kire": 0.5,
+    "jizoku": 1,
+    "power": 1,
+    "early": 0.5,
+    "growth": 0.5
+   }
+  },
+  "テイルオブザキャット系": {
+   "parent": "ストームキャット系",
+   "apt": {
+    "turf": 0.5,
+    "dirt": 1.5,
+    "sprint": 1,
+    "mile": 1,
+    "middle": 0.5,
+    "long": -1,
+    "heavy": 0.5,
+    "kire": 0,
+    "jizoku": 0.5,
+    "power": 1,
+    "early": 1,
+    "growth": 0
+   }
+  },
+  "スキャットダディ系": {
+   "parent": "ストームキャット系",
+   "apt": {
+    "turf": 1,
+    "dirt": 1,
+    "sprint": 1.5,
+    "mile": 1.5,
+    "middle": 0,
+    "long": -1.5,
+    "heavy": 0,
+    "kire": 0.5,
+    "jizoku": 0.5,
+    "power": 0.5,
+    "early": 1.5,
+    "growth": -0.5
+   },
+   "esi": 0.64
+  },
+  "フォレストリー系": {
+   "parent": "ストームキャット系",
+   "apt": {
+    "turf": -0.5,
+    "dirt": 2,
+    "sprint": 2,
+    "mile": 0.5,
+    "middle": -1,
+    "long": -2,
+    "heavy": 1,
+    "kire": 0,
+    "jizoku": 0.5,
+    "power": 1,
+    "early": 1,
+    "growth": 0
+   },
+   "esi": 0.68
+  },
+  "ハーランズホリデー系": {
+   "parent": "ストームキャット系",
+   "apt": {
+    "turf": 0,
+    "dirt": 1.5,
+    "sprint": 1.5,
+    "mile": 1,
+    "middle": 0,
+    "long": -1.5,
+    "heavy": 0.5,
+    "kire": 0,
+    "jizoku": 0.5,
+    "power": 1,
+    "early": 1.5,
+    "growth": 0
+   },
+   "esi": 0.64
+  },
+  "ミスタープロスペクター系": {
+   "parent": "ネイティヴダンサー系",
+   "apt": {
+    "turf": 0.5,
+    "dirt": 1.5,
+    "sprint": 1.5,
+    "mile": 1,
+    "middle": 0,
+    "long": -1,
+    "heavy": 0.5,
+    "kire": 0,
+    "jizoku": 0.5,
+    "power": 1,
+    "early": 1,
+    "growth": 0
+   },
+   "esi": 0.62
+  },
+  "フォーティナイナー系": {
+   "parent": "ミスタープロスペクター系",
+   "apt": {
+    "turf": 0,
+    "dirt": 2,
+    "sprint": 2,
+    "mile": 0.5,
+    "middle": -1,
+    "long": -2,
+    "heavy": 1,
+    "kire": -0.5,
+    "jizoku": 0.5,
+    "power": 1,
+    "early": 1,
+    "growth": 0
+   },
+   "esi": 0.7
+  },
+  "ゴーンウエスト系": {
+   "parent": "ミスタープロスペクター系",
+   "apt": {
+    "turf": 1,
+    "dirt": 1,
+    "sprint": 1.5,
+    "mile": 1.5,
+    "middle": -0.5,
+    "long": -1.5,
+    "heavy": 0,
+    "kire": 0.5,
+    "jizoku": 0.5,
+    "power": 0.5,
+    "early": 1,
+    "growth": 0
+   },
+   "esi": 0.62
+  },
+  "マキャヴェリアン系": {
+   "parent": "ミスタープロスペクター系",
+   "apt": {
+    "turf": 0.5,
+    "dirt": 1.5,
+    "sprint": 0.5,
+    "mile": 1,
+    "middle": 1,
+    "long": 0,
+    "heavy": 0.5,
+    "kire": 0,
+    "jizoku": 1,
+    "power": 1,
+    "early": 0.5,
+    "growth": 0.5
+   }
+  },
+  "シーキングザゴールド系": {
+   "parent": "ミスタープロスペクター系",
+   "apt": {
+    "turf": 1,
+    "dirt": 1,
+    "sprint": 0.5,
+    "mile": 1.5,
+    "middle": 1,
+    "long": -0.5,
+    "heavy": 0,
+    "kire": 0.5,
+    "jizoku": 1,
+    "power": 1,
+    "early": 0.5,
+    "growth": 0.5
+   }
+  },
+  "ファピアノ系": {
+   "parent": "ミスタープロスペクター系",
+   "apt": {
+    "turf": 0,
+    "dirt": 2,
+    "sprint": 0.5,
+    "mile": 1,
+    "middle": 1,
+    "long": 0,
+    "heavy": 0.5,
+    "kire": -0.5,
+    "jizoku": 1,
+    "power": 1.5,
+    "early": 0.5,
+    "growth": 0.5
+   }
+  },
+  "スマートストライク系": {
+   "parent": "ミスタープロスペクター系",
+   "apt": {
+    "turf": 0.5,
+    "dirt": 2,
+    "sprint": 0,
+    "mile": 1,
+    "middle": 1.5,
+    "long": 0,
+    "heavy": 0.5,
+    "kire": -0.5,
+    "jizoku": 1.5,
+    "power": 1.5,
+    "early": 0,
+    "growth": 1
+   }
+  },
+  "エーピーインディ系": {
+   "parent": "ボールドルーラー系",
+   "apt": {
+    "turf": -1,
+    "dirt": 2,
+    "sprint": 0,
+    "mile": 1,
+    "middle": 1.5,
+    "long": 0.5,
+    "heavy": 0,
+    "kire": -1,
+    "jizoku": 1.5,
+    "power": 2,
+    "early": 0,
+    "growth": 1
+   },
+   "note": "ダート中距離のパワーと持続力。乾いた力の要るダートで浮上。",
+   "esi": 0.55
+  },
+  "デピュティミニスター系": {
+   "parent": "ノーザンダンサー系",
+   "apt": {
+    "turf": 0.5,
+    "dirt": 1.5,
+    "sprint": 1,
+    "mile": 1.5,
+    "middle": 0.5,
+    "long": -1,
+    "heavy": 0.5,
+    "kire": 0,
+    "jizoku": 1,
+    "power": 1,
+    "early": 1,
+    "growth": 0
+   },
+   "esi": 0.62
+  },
+  "ダンチヒ系": {
+   "parent": "ノーザンダンサー系",
+   "apt": {
+    "turf": 1,
+    "dirt": 0.5,
+    "sprint": 1,
+    "mile": 1.5,
+    "middle": 0.5,
+    "long": -0.5,
+    "heavy": 1,
+    "kire": 0,
+    "jizoku": 1,
+    "power": 1.5,
+    "early": 0.5,
+    "growth": 0.5
+   }
+  },
+  "デインヒル系": {
+   "parent": "ダンチヒ系",
+   "apt": {
+    "turf": 1.5,
+    "dirt": 0,
+    "sprint": 0.5,
+    "mile": 1,
+    "middle": 1.5,
+    "long": 0.5,
+    "heavy": 1.5,
+    "kire": 0,
+    "jizoku": 1.5,
+    "power": 1.5,
+    "early": 0,
+    "growth": 1
+   },
+   "note": "欧州型の持続力とパワー。洋芝・道悪・時計の掛かる芝で浮上。",
+   "esi": 0.5
+  },
+  "ウォーフロント系": {
+   "parent": "ダンチヒ系",
+   "apt": {
+    "turf": 1,
+    "dirt": 1,
+    "sprint": 1,
+    "mile": 1.5,
+    "middle": 0.5,
+    "long": -1,
+    "heavy": 0.5,
+    "kire": 0,
+    "jizoku": 1,
+    "power": 1,
+    "early": 1,
+    "growth": 0
+   }
+  },
+  "グリーンデザート系": {
+   "parent": "ダンチヒ系",
+   "apt": {
+    "turf": 1.5,
+    "dirt": 0,
+    "sprint": 1.5,
+    "mile": 1.5,
+    "middle": 0,
+    "long": -1.5,
+    "heavy": 0.5,
+    "kire": 0.5,
+    "jizoku": 0.5,
+    "power": 1,
+    "early": 1,
+    "growth": 0
+   }
+  },
+  "サドラーズウェルズ系": {
+   "parent": "ノーザンダンサー系",
+   "apt": {
+    "turf": 1.5,
+    "dirt": -0.5,
+    "sprint": -1,
+    "mile": 0.5,
+    "middle": 1.5,
+    "long": 2,
+    "heavy": 1.5,
+    "kire": -0.5,
+    "jizoku": 1.5,
+    "power": 1.5,
+    "early": -0.5,
+    "growth": 1
+   },
+   "note": "欧州の重厚なスタミナ。日本の高速馬場では瞬発力不足になりがちだが、母父に入ると底力を補う。",
+   "esi": 0.45
+  },
+  "ガリレオ系": {
+   "parent": "サドラーズウェルズ系",
+   "apt": {
+    "turf": 2,
+    "dirt": -1,
+    "sprint": -0.5,
+    "mile": 1,
+    "middle": 1.5,
+    "long": 1.5,
+    "heavy": 1,
+    "kire": 0,
+    "jizoku": 1.5,
+    "power": 1,
+    "early": 0.5,
+    "growth": 1
+   },
+   "esi": 0.5
+  },
+  "リファール系": {
+   "parent": "ノーザンダンサー系",
+   "apt": {
+    "turf": 1.5,
+    "dirt": 0,
+    "sprint": 1,
+    "mile": 1,
+    "middle": 0.5,
+    "long": 0,
+    "heavy": 0.5,
+    "kire": 1,
+    "jizoku": 0.5,
+    "power": 0.5,
+    "early": 0.5,
+    "growth": 0
+   }
+  },
+  "マルジュ系": {
+   "parent": "ノーザンダンサー系",
+   "apt": {
+    "turf": 1.5,
+    "dirt": 0,
+    "sprint": 0,
+    "mile": 1,
+    "middle": 1.5,
+    "long": 1,
+    "heavy": 1.5,
+    "kire": 0,
+    "jizoku": 1.5,
+    "power": 1.5,
+    "early": 0,
+    "growth": 1
+   }
+  },
+  "プリンスリーギフト系": {
+   "parent": "ナスルーラ系",
+   "apt": {
+    "turf": 1.5,
+    "dirt": 0.5,
+    "sprint": 2,
+    "mile": 0.5,
+    "middle": -1,
+    "long": -2,
+    "heavy": 0.5,
+    "kire": 0.5,
+    "jizoku": 0.5,
+    "power": 0.5,
+    "early": 1,
+    "growth": 0
+   },
+   "note": "サクラバクシンオー経由の日本的スプリント血脈。母父に入るとスピードを強化（キタサンブラックの母父）。",
+   "esi": 0.66
+  },
+  "ホーリーブル系": {
+   "parent": "その他",
+   "apt": {
+    "turf": -0.5,
+    "dirt": 2,
+    "sprint": 1.5,
+    "mile": 1,
+    "middle": 0,
+    "long": -1.5,
+    "heavy": 0.5,
+    "kire": -0.5,
+    "jizoku": 0.5,
+    "power": 1,
+    "early": 1,
+    "growth": 0
+   }
+  },
+  "グラスワンダー系": {
+   "parent": "ロベルト系",
+   "apt": {
+    "turf": 1.5,
+    "dirt": 0.5,
+    "sprint": 0,
+    "mile": 1,
+    "middle": 1.5,
+    "long": 0.5,
+    "heavy": 1,
+    "kire": 0,
+    "jizoku": 1.5,
+    "power": 1.5,
+    "early": 0,
+    "growth": 1
+   }
+  },
+  "その他": {
+   "parent": null,
+   "apt": {
+    "turf": 0,
+    "dirt": 0,
+    "sprint": 0,
+    "mile": 0,
+    "middle": 0,
+    "long": 0,
+    "heavy": 0,
+    "kire": 0,
+    "jizoku": 0,
+    "power": 0,
+    "early": 0,
+    "growth": 0
+   }
+  },
+  "ノーザンダンサー系": {
+   "parent": null,
+   "apt": {
+    "turf": 1,
+    "dirt": 0,
+    "sprint": 0,
+    "mile": 0.5,
+    "middle": 0.5,
+    "long": 0,
+    "heavy": 0.5,
+    "kire": 0,
+    "jizoku": 0.5,
+    "power": 0.5,
+    "early": 0,
+    "growth": 0
+   }
+  },
+  "ナスルーラ系": {
+   "parent": null,
+   "apt": {
+    "turf": 1,
+    "dirt": 0,
+    "sprint": 0,
+    "mile": 0,
+    "middle": 0.5,
+    "long": 0.5,
+    "heavy": 0,
+    "kire": 0.5,
+    "jizoku": 0,
+    "power": 0,
+    "early": 0,
+    "growth": 0.5
+   }
+  },
+  "ヘイルトゥリーズン系": {
+   "parent": null,
+   "apt": {
+    "turf": 1,
+    "dirt": 0,
+    "sprint": 0,
+    "mile": 0.5,
+    "middle": 0.5,
+    "long": 0,
+    "heavy": 0,
+    "kire": 0.5,
+    "jizoku": 0,
+    "power": 0,
+    "early": 0,
+    "growth": 0
+   }
+  },
+  "ボールドルーラー系": {
+   "parent": null,
+   "apt": {
+    "turf": 0,
+    "dirt": 1,
+    "sprint": 0,
+    "mile": 0.5,
+    "middle": 0.5,
+    "long": 0,
+    "heavy": 0,
+    "kire": 0,
+    "jizoku": 0,
+    "power": 0.5,
+    "early": 0,
+    "growth": 0
+   }
+  },
+  "ネイティヴダンサー系": {
+   "parent": null,
+   "apt": {
+    "turf": 0,
+    "dirt": 0.5,
+    "sprint": 0.5,
+    "mile": 0.5,
+    "middle": 0,
+    "long": 0,
+    "heavy": 0,
+    "kire": 0,
+    "jizoku": 0,
+    "power": 0,
+    "early": 0,
+    "growth": 0
+   }
+  },
+  "ドイツ系": {
+   "parent": null,
+   "apt": {
+    "turf": 1,
+    "dirt": -0.5,
+    "sprint": -1,
+    "mile": 0,
+    "middle": 1,
+    "long": 1.5,
+    "heavy": 1.5,
+    "kire": -0.5,
+    "jizoku": 1.5,
+    "power": 1.5,
+    "early": -0.5,
+    "growth": 1
+   },
+   "note": "Monsun・Acatenango などドイツの重厚なスタミナ血統。道悪・長距離・タフな馬場で浮上。"
+  }
+ }
+}

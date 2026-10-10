@@ -1,0 +1,145 @@
+{
+ "race": "2026年 凱旋門賞（JRA朝の参考オッズ / Racing Post 予想オッズ 10/2）",
+ "result": {
+  "1着": 1,
+  "2着": 7,
+  "3着": 16,
+  "馬連1-7": 6930,
+  "単勝1": 310,
+  "複勝": {
+   "1": 140,
+   "7": 1120,
+   "16": 400
+  }
+ },
+ "runners": [
+  {
+   "num": 12,
+   "name": "ベンヴェヌートチェッリーニ",
+   "global_odds": 11,
+   "jra_odds": 25.4,
+   "jra_pop": 9,
+   "jp": false
+  },
+  {
+   "num": 3,
+   "name": "チェスナットロケット",
+   "global_odds": 151,
+   "jra_odds": 110.5,
+   "jra_pop": 15,
+   "jp": false
+  },
+  {
+   "num": 15,
+   "name": "サンダリングオン",
+   "global_odds": 9,
+   "jra_odds": 16.1,
+   "jra_pop": 7,
+   "jp": false
+  },
+  {
+   "num": 11,
+   "name": "ヴァランディール",
+   "global_odds": 11,
+   "jra_odds": 15.6,
+   "jra_pop": 6,
+   "jp": false
+  },
+  {
+   "num": 1,
+   "name": "ダリズ",
+   "global_odds": 2.75,
+   "jra_odds": 4.5,
+   "jra_pop": 2,
+   "jp": false
+  },
+  {
+   "num": 9,
+   "name": "カルパナ",
+   "global_odds": 7,
+   "jra_odds": 8.0,
+   "jra_pop": 3,
+   "jp": false
+  },
+  {
+   "num": 10,
+   "name": "フレンドリーソウル",
+   "global_odds": 34,
+   "jra_odds": 30.9,
+   "jra_pop": 10,
+   "jp": false
+  },
+  {
+   "num": 13,
+   "name": "ブライトライト",
+   "global_odds": 101,
+   "jra_odds": 77.0,
+   "jra_pop": 14,
+   "jp": false
+  },
+  {
+   "num": 2,
+   "name": "サダッド",
+   "global_odds": 34,
+   "jra_odds": 70.8,
+   "jra_pop": 13,
+   "jp": false
+  },
+  {
+   "num": 8,
+   "name": "ミニーホーク",
+   "global_odds": 17,
+   "jra_odds": 48.6,
+   "jra_pop": 12,
+   "jp": false
+  },
+  {
+   "num": 14,
+   "name": "モルティーズクロス",
+   "global_odds": 6,
+   "jra_odds": 12.4,
+   "jra_pop": 5,
+   "jp": false
+  },
+  {
+   "num": 4,
+   "name": "アドマイヤテラ",
+   "global_odds": 41,
+   "jra_odds": 10.5,
+   "jra_pop": 4,
+   "jp": true
+  },
+  {
+   "num": 5,
+   "name": "メイショウタバル",
+   "global_odds": 34,
+   "jra_odds": 2.4,
+   "jra_pop": 1,
+   "jp": true
+  },
+  {
+   "num": 6,
+   "name": "アローイーグル",
+   "global_odds": 67,
+   "jra_odds": 118.4,
+   "jra_pop": 16,
+   "jp": false
+  },
+  {
+   "num": 7,
+   "name": "ベイシティローラー",
+   "global_odds": 21,
+   "jra_odds": 48.0,
+   "jra_pop": 11,
+   "jp": false
+  },
+  {
+   "num": 16,
+   "name": "ダイヤモンドネックレス",
+   "global_odds": 11,
+   "jra_odds": 20.9,
+   "jra_pop": 8,
+   "jp": false
+  }
+ ]
+}

@@ -1,0 +1,113 @@
+name: weekly-keiba-data
+
+# 毎週金曜 16:10 JST (07:10 UTC) に
+#   1) 先週末の全レース結果＋血統を取り込み  2) 集計を更新
+#   3) 今週末の出馬表カードを作成  4) 予想レポートを生成
+# して、リポジトリにコミットする。
+# 手動実行 mode=backfill で過去データを一括取り込み。1回あたり約5時間で区切って保存し、
+# 終わっていなければ自分自身を再実行して続きから取り込む（全期間完了まで自動で継続）。
+on:
+  schedule:
+    - cron: "10 7 * * 5"     # 金 16:10 JST
+    - cron: "10 10 * * 5"    # 金 19:10 JST（定時実行が飛ばされた場合の予備。取り込み済みの日はスキップされる）
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "weekly または backfill"
+        default: "weekly"
+      from:
+        description: "backfill 開始日 (YYYY-MM-DD / 3y=直近3年 / all=JRAで遡れる最古の月)"
+        default: "3y"
+      to:
+        description: "backfill 終了日 (YYYY-MM-DD, 空なら今日)"
+        default: ""
+      budget_min:
+        description: "1回の実行で取り込みに使う分数"
+        default: "300"
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: keiba-data
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+
+      - name: connectivity check
+        run: |
+          for u in https://db.netkeiba.com/ https://race.netkeiba.com/ https://www.jra.go.jp/; do
+            echo "$u -> $(curl -s -o /dev/null -w '%{http_code}' --max-time 20 -A 'Mozilla/5.0' $u)"
+          done
+
+      - name: weekly
+        if: ${{ github.event_name == 'schedule' || inputs.mode == 'weekly' }}
+        continue-on-error: true
+        run: python -m keiba.cli weekly
+
+      - name: backfill
+        id: bf
+        if: ${{ inputs.mode == 'backfill' }}
+        continue-on-error: true
+        run: |
+          TO="${{ inputs.to }}"
+          [ -z "$TO" ] && TO=$(date -u +%Y-%m-%d)
+          FROM="${{ inputs.from }}"
+          [ "$FROM" = "3y" ] && FROM=$(date -u -d '3 years ago' +%Y-%m-01)
+          [ "$FROM" = "all" ] && FROM=$(python -m keiba.cli jra-earliest)
+          echo "取り込み期間: $FROM 〜 $TO"
+          python -m keiba.cli update-results --from "$FROM" --to "$TO" \
+            --time-budget-min "${{ inputs.budget_min }}" --newest-first
+          python -m keiba.cli analyze
+
+      - name: deep analysis & model validation
+        # 取り込みの区切りごとに、徹底分析レポートと学習適性を更新し、バックテストで重みを調整
+        if: ${{ inputs.mode == 'backfill' || github.event_name == 'schedule' || inputs.mode == 'weekly' }}
+        continue-on-error: true
+        run: |
+          python -m keiba.cli deep-analysis
+          python -m keiba.cli validate --days 180
+          python -m keiba.cli learn
+
+      - name: commit
+        run: |
+          git config user.name "keiba-bot"
+          git config user.email "keiba-bot@users.noreply.github.com"
+          for f in data/keiba.db data/stats.json data/model_params.json data/knowledge data/model_clogit.json data/tail_female.json data/ped5.json docs/db_summary.md docs/analysis cards predictions; do
+            [ -e "$f" ] && git add "$f"
+          done
+          git diff --cached --quiet || git commit -m "data: update $(date -u +%Y-%m-%d) (${{ inputs.mode || 'weekly' }})"
+          git checkout -- . 2>/dev/null; git clean -fdq data docs 2>/dev/null   # 保存しない残りの変更は捨てる（残っていると pull --rebase が拒否される）
+          ok=0
+          for i in 1 2 3 4; do
+            git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && ok=1 && break
+            sleep $((i*10))
+          done
+          [ "$ok" = 1 ] || { echo "::error::push failed"; exit 1; }
+
+      - name: continue backfill
+        if: ${{ inputs.mode == 'backfill' && steps.bf.outputs.pending == 'true' && steps.bf.outputs.imported != '0' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run weekly-data.yml --ref "${GITHUB_REF_NAME}" \
+            -f mode=backfill -f from="${{ inputs.from }}" -f to="${{ inputs.to }}" -f budget_min="${{ inputs.budget_min }}"
+
+      - name: extend to all available years
+        # 直近分が完了したら、JRAで遡れる最古の月まで自動で取り込みを続ける
+        if: ${{ inputs.mode == 'backfill' && steps.bf.outputs.pending == 'false' && inputs.from != 'all' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run weekly-data.yml --ref "${GITHUB_REF_NAME}" \
+            -f mode=backfill -f from=all -f to="" -f budget_min="${{ inputs.budget_min }}"

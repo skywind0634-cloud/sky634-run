@@ -1,0 +1,361 @@
+{
+ "_meta": "血統コラム・予想コメントの取得元（一覧ページ）。link_keywords に合うリンクを同一サイト内で辿る。",
+ "seeds": [
+  {
+   "name": "亀谷敬正 血統ビーム",
+   "url": "https://k-beam.com/",
+   "link_keywords": [
+    "血統",
+    "辞典",
+    "傾向",
+    "GI",
+    "レース"
+   ]
+  },
+  {
+   "name": "亀谷敬正 競馬サロン（無料記事）",
+   "url": "https://www.keiba-salon.com/",
+   "link_keywords": [
+    "free",
+    "無料",
+    "亀レビュー",
+    "血統"
+   ]
+  },
+  {
+   "name": "亀谷敬正 netkeibaコラム",
+   "url": "https://news.netkeiba.com/?pid=column_writer_backnumber&wid=AJ01",
+   "link_keywords": [
+    "column",
+    "血統"
+   ]
+  },
+  {
+   "name": "望田潤 血統クリニック(netkeiba)",
+   "url": "https://news.netkeiba.com/?pid=column_writer_backnumber&wid=CH18",
+   "link_keywords": [
+    "column",
+    "血統"
+   ]
+  },
+  {
+   "name": "望田潤 重賞レース血統診断(netkeiba)",
+   "url": "https://news.netkeiba.com/?pid=column_writer_backnumber&wid=CH92",
+   "link_keywords": [
+    "column",
+    "血統"
+   ]
+  },
+  {
+   "name": "望田潤ブログ",
+   "url": "https://nas-quillo.hatenablog.com/",
+   "link_keywords": [
+    "entry"
+   ]
+  },
+  {
+   "name": "水上学 競馬ラボ",
+   "url": "https://www.keibalab.jp/yosou/treasure/",
+   "link_keywords": [
+    "treasure"
+   ]
+  },
+  {
+   "name": "水上学 予想一覧",
+   "url": "https://www.baken.co.jp/yosouka/yosou.html?yid=mizukami",
+   "link_keywords": [
+    "yosou",
+    "mizukami"
+   ]
+  },
+  {
+   "name": "JRA-VAN G1血統分析",
+   "url": "https://jra-van.jp/fun/tokusyu/g1/",
+   "link_keywords": [
+    "bloodline"
+   ]
+  },
+  {
+   "name": "坂上明大 重賞血統査定（東スポ競馬）",
+   "url": "https://tospo-keiba.jp/sakagamiblood",
+   "link_keywords": [
+    "sakagamiblood",
+    "血統"
+   ]
+  },
+  {
+   "name": "坂上明大 note",
+   "url": "https://note.com/keibaotaku/all",
+   "link_keywords": [
+    "/n/",
+    "血統",
+    "査定"
+   ]
+  },
+  {
+   "name": "坂上明大 競馬サロン",
+   "url": "https://www.keiba-salon.com/",
+   "link_keywords": [
+    "sakagami"
+   ]
+  },
+  {
+   "url": "https://k-beam.com/media",
+   "link_keywords": [
+    "血統辞典",
+    "k-beam.com/3"
+   ],
+   "note": "血統ビーム 動画ページ（血統辞典の各動画の記事）"
+  },
+  {
+   "url": "https://www.keiba-salon.com/free-20250420_66803/",
+   "link_keywords": [
+    "消しパターン",
+    "買いパターン",
+    "血統辞典"
+   ],
+   "note": "亀谷 買い/消しパターン該当馬の結果（無料記事, 過去分へのリンクを辿る）"
+  },
+  {
+   "url": "https://k-beam.com/26916",
+   "link_keywords": [
+    "消しパターン",
+    "買いパターン",
+    "血統辞典"
+   ],
+   "note": "亀谷 血統辞典 買い/消しパターン該当馬"
+  },
+  {
+   "url": "https://share.google/gjRwmdDgdodLkkoRS",
+   "link_keywords": [
+    "牝系",
+    "ファミリー",
+    "母系",
+    "family"
+   ],
+   "note": "牝系（ユーザー指定 2026-10-01）"
+  },
+  {
+   "url": "https://share.google/TBocJKhQjqSM0z2hW",
+   "link_keywords": [
+    "牝系",
+    "ファミリー",
+    "母系",
+    "family"
+   ],
+   "note": "牝系（ユーザー指定 2026-10-01）"
+  },
+  {
+   "url": "https://share.google/MN8NdXk3ji5wNoFk4",
+   "link_keywords": [
+    "牝系",
+    "ファミリー",
+    "母系",
+    "family"
+   ],
+   "note": "牝系（ユーザー指定 2026-10-01）"
+  },
+  {
+   "url": "https://note.com/peta1908/n/ne7fef29c6e90",
+   "link_keywords": [
+    "牝系",
+    "ファミリー",
+    "母系",
+    "family"
+   ],
+   "note": "牝系（ユーザー指定 2026-10-01）"
+  },
+  {
+   "url": "https://share.google/f49Lf20OgAhIdg9qN",
+   "link_keywords": [
+    "牝系",
+    "ファミリー",
+    "母系",
+    "family"
+   ],
+   "note": "牝系（ユーザー指定 2026-10-01）"
+  },
+  {
+   "url": "https://share.google/NRNqqMbMFbnjIcZN2",
+   "link_keywords": [
+    "牝系",
+    "ファミリー",
+    "母系",
+    "family"
+   ],
+   "note": "牝系（ユーザー指定 2026-10-01）"
+  },
+  {
+   "url": "https://share.google/JBX8JHggsQeZCYZyl",
+   "link_keywords": [
+    "牝系",
+    "ファミリー",
+    "母系",
+    "family"
+   ],
+   "note": "牝系（ユーザー指定 2026-10-01）"
+  },
+  {
+   "url": "https://note.com/merry_racoon8780/n/n2cdf80dad7f1",
+   "link_keywords": [
+    "牝系",
+    "ファミリー",
+    "母系",
+    "family"
+   ],
+   "note": "牝系（ユーザー指定 2026-10-01）"
+  },
+  {
+   "url": "https://share.google/E8oukILfndkAdXYke",
+   "link_keywords": [
+    "牝系",
+    "ファミリー",
+    "母系",
+    "family"
+   ],
+   "note": "牝系（ユーザー指定 2026-10-01）"
+  },
+  {
+   "url": "https://share.google/7YLnndz23yHEN7SLm",
+   "link_keywords": [
+    "牝系",
+    "ファミリー",
+    "母系",
+    "family"
+   ],
+   "note": "牝系（ユーザー指定 2026-10-01）"
+  },
+  {
+   "url": "https://share.google/sHaW8AYlBgpNEpnf4",
+   "link_keywords": [
+    "血統",
+    "系統",
+    "牝系"
+   ],
+   "note": "JRA サラブレッド講座: 3大始祖と世界の血統（ユーザー指定 2026-10-01）"
+  },
+  {
+   "url": "https://share.google/xaAb1oOa8Bj1tZ8KH",
+   "link_keywords": [
+    "血統",
+    "系統",
+    "牝系"
+   ],
+   "note": "【23年3月FC研修】サラブレッドの血統（PDF）（ユーザー指定 2026-10-01）"
+  },
+  {
+   "url": "https://share.google/N0vWTvfO5MIO6Dssd",
+   "link_keywords": [
+    "血統",
+    "系統",
+    "牝系"
+   ],
+   "note": "JRA-VAN: 競馬における血統の重要性（ユーザー指定 2026-10-01）"
+  },
+  {
+   "url": "https://share.google/2PkzSoskxtCWsuAgx",
+   "link_keywords": [
+    "血統",
+    "牝系",
+    "系統",
+    "種牡馬"
+   ],
+   "note": "京王線競馬同好会 競馬血統表（ユーザー指定 2026-10-01）"
+  },
+  {
+   "url": "https://share.google/UW1SzVDKbyxD4Bt2y",
+   "link_keywords": [
+    "血統の教室",
+    "亀谷",
+    "column"
+   ],
+   "note": "netkeiba 亀谷敬正の動画番組『血統の教室』（連載。記事内の連載一覧から各回を辿る, ユーザー指定 2026-10-01）"
+  },
+  {
+   "url": "https://share.google/wmmJAn9gS942vwcfv",
+   "link_keywords": [
+    "白井",
+    "血統",
+    "column",
+    "コラム"
+   ],
+   "note": "元調教師 白井寿昭氏の血統分析（連載。記事内の連載一覧から各回を辿る, ユーザー指定 2026-10-01）"
+  },
+  {
+   "url": "https://note.com/keen_mink364/n/nc939bc77eae6",
+   "link_keywords": [
+    "血統",
+    "牝系",
+    "種牡馬"
+   ],
+   "note": "note 記事（ユーザー指定 2026-10-01）"
+  },
+  {
+   "url": "https://share.google/ltX4PMaBvwANOL8R2",
+   "link_keywords": [
+    "クロス",
+    "インブリード",
+    "血統"
+   ],
+   "note": "血統学習成功法: クロスのメリットとデメリット（ユーザー指定 2026-10-01）"
+  },
+  {
+   "url": "https://note.com/brisk_serval1211/n/n35a64149a0b7",
+   "link_keywords": [
+    "brisk_serval1211",
+    "血統",
+    "AI",
+    "分析"
+   ],
+   "note": "note: AIによる血統分析の連載（同じ著者の他の回を辿る, ユーザー指定 2026-10-01）"
+  },
+  {
+   "url": "https://share.google/oywruK1i2D240kVgQ",
+   "link_keywords": [
+    "entry",
+    "archive",
+    "血統",
+    "産駒",
+    "配合",
+    "クロス"
+   ],
+   "note": "血は水よりも濃し 望田潤の競馬blog（データでは見えない血統のクセ。記事を広く辿る, ユーザー指定 2026-10-01）"
+  }
+ ],
+ "videos": [
+  {
+   "query": "https://www.youtube.com/channel/UCy-lzeGfBo0R6EjhK1AkcLg/videos",
+   "title_keywords": [],
+   "note": "亀谷敬正の競馬血統辞典（公式チャンネル）"
+  },
+  {
+   "query": "亀谷敬正 血統",
+   "title_keywords": []
+  },
+  {
+   "query": "亀谷敬正 血統ビーム 種牡馬",
+   "title_keywords": []
+  },
+  {
+   "query": "亀谷敬正 重賞 血統 予想",
+   "title_keywords": []
+  },
+  {
+   "query": "亀谷敬正 血統辞典",
+   "title_keywords": []
+  },
+  {
+   "query": "望田潤 血統",
+   "title_keywords": []
+  },
+  {
+   "query": "坂上明大 血統",
+   "title_keywords": []
+  },
+  {
+   "query": "水上学 血統",
+   "title_keywords": []
+  }
+ ],
+ "_meta_videos": "videos: YouTube検索語（ytsearch）またはチャンネル/再生リストURL。tools/fetch_videos.py が字幕→無ければ whisper で書き起こし"
+}

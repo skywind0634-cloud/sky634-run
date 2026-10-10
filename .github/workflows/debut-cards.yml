@@ -1,0 +1,32 @@
+name: debut-cards
+# 新馬戦の出馬表カード（オッズ付き）を JRA 公式から作り、debut-cards ブランチに保存（手動）
+on:
+  workflow_dispatch:
+    inputs:
+      date: {description: "開催日 YYYY-MM-DD", required: true}
+permissions:
+  contents: write
+concurrency:
+  group: debut-cards
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install -r requirements.txt
+      - run: python tools/debut_cards.py ${{ inputs.date }}
+      - name: save
+        run: |
+          git config user.name "keiba-bot"
+          git config user.email "keiba-bot@users.noreply.github.com"
+          cp -r cards_debut /tmp/cards_debut
+          if git fetch -q origin debut-cards; then git checkout -q -f -B debut-cards origin/debut-cards
+          else git checkout -q --orphan debut-cards; git rm -rq --cached . >/dev/null 2>&1 || true; fi
+          rm -rf cards_debut && cp -r /tmp/cards_debut cards_debut
+          git add cards_debut
+          git commit -qm "debut cards ${{ inputs.date }} $(date -u +%FT%H%M)" || exit 0
+          git push -q origin HEAD:debut-cards
