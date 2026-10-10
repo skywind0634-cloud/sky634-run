@@ -1,0 +1,41 @@
+name: fetch-sealed
+# URL のページを取得し、渡された公開鍵で暗号化して sealed ブランチに保存（中身は公開しない。手動）
+on:
+  workflow_dispatch:
+    inputs:
+      tag: {description: "保存名", required: true}
+      urls: {description: "URL（スペース区切り）", required: true}
+      pubkey: {description: "暗号化用の公開鍵（PEM を base64）", required: true}
+permissions:
+  contents: write
+concurrency:
+  group: fetch-sealed
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: fetch and seal
+        run: |
+          mkdir -p /tmp/p; i=0
+          for u in ${{ inputs.urls }}; do
+            i=$((i+1)); curl -sL -A 'Mozilla/5.0' --max-time 60 "$u" -o "/tmp/p/$(printf %02d $i).html"; echo "$u" >> /tmp/p/urls.txt; sleep 2
+          done
+          tar czf /tmp/p.tgz -C /tmp p
+          echo "${{ inputs.pubkey }}" | base64 -d > /tmp/pub.pem
+          openssl rand -out /tmp/k.bin 32
+          openssl enc -aes-256-cbc -pbkdf2 -salt -in /tmp/p.tgz -out /tmp/data.enc -pass file:/tmp/k.bin
+          openssl pkeyutl -encrypt -pubin -inkey /tmp/pub.pem -pkeyopt rsa_padding_mode:oaep -in /tmp/k.bin -out /tmp/key.enc
+          rm -f /tmp/k.bin /tmp/p.tgz; rm -rf /tmp/p
+      - name: save
+        run: |
+          git config user.name "keiba-bot"
+          git config user.email "keiba-bot@users.noreply.github.com"
+          if git fetch -q origin sealed; then git checkout -q -f -B sealed origin/sealed
+          else git checkout -q --orphan sealed; git rm -rq --cached . >/dev/null 2>&1 || true; fi
+          mkdir -p sealed/${{ inputs.tag }} && cp /tmp/data.enc /tmp/key.enc sealed/${{ inputs.tag }}/
+          git add sealed/${{ inputs.tag }}
+          git commit -qm "sealed ${{ inputs.tag }}" || exit 0
+          git push -q origin HEAD:sealed
