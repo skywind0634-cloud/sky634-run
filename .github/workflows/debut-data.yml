@@ -1,0 +1,56 @@
+name: debut-data
+# 新馬戦の過去成績（直近3年）を取り込み、debut-data ブランチの data/debut.db に保存。時間切れなら自分で続きを実行する。
+on:
+  workflow_dispatch:
+    inputs:
+      from: {description: "開始日 YYYY-MM-DD", default: "2023-10-01"}
+      to: {description: "終了日 YYYY-MM-DD（空なら今日）", default: ""}
+      budget_min: {description: "1回で取り込みに使う分数", default: "320"}
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: debut-data
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install -r requirements.txt
+      - name: restore
+        run: |
+          git fetch origin debut-data || true
+          git show origin/debut-data:data/debut.db > data/debut.db 2>/dev/null || rm -f data/debut.db
+      - name: import
+        id: im
+        continue-on-error: true
+        run: |
+          TO="${{ inputs.to }}"; [ -z "$TO" ] && TO=$(date -u +%F)
+          python tools/debut_import.py "${{ inputs.from }}" "$TO" "${{ inputs.budget_min }}"
+      - name: save
+        run: |
+          git config user.name "keiba-bot"
+          git config user.email "keiba-bot@users.noreply.github.com"
+          [ -f data/debut.db ] || exit 0
+          cp data/debut.db /tmp/debut.db
+          ok=0
+          for i in 1 2 3 4 5; do
+            if git fetch -q origin debut-data; then git checkout -q -f -B debut-data origin/debut-data
+            else git checkout -q --orphan debut-data; git rm -rq --cached . >/dev/null 2>&1 || true; fi
+            mkdir -p data && cp /tmp/debut.db data/debut.db
+            git add -f data/debut.db
+            git commit -qm "debut data $(date -u +%FT%H%M)" || { ok=1; break; }
+            git push -q origin HEAD:debut-data && ok=1 && break
+            sleep $((i*7))
+          done
+          [ "$ok" = 1 ] || { echo "::error::push failed"; exit 1; }
+      - name: continue
+        if: ${{ steps.im.outputs.pending == 'true' && steps.im.outputs.imported != '0' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run debut-data.yml --ref main -f from="${{ inputs.from }}" -f to="${{ inputs.to }}" -f budget_min="${{ inputs.budget_min }}"
