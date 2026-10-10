@@ -24,6 +24,9 @@ on:
       budget_min:
         description: "1回の実行で取り込みに使う分数"
         default: "300"
+      extend:
+        description: "backfill 完了後に最古の月まで自動で続けるか（true/false）"
+        default: "true"
 
 permissions:
   contents: write
@@ -105,7 +108,7 @@ jobs:
 
       - name: extend to all available years
         # 直近分が完了したら、JRAで遡れる最古の月まで自動で取り込みを続ける
-        if: ${{ inputs.mode == 'backfill' && steps.bf.outputs.pending == 'false' && inputs.from != 'all' }}
+        if: ${{ inputs.mode == 'backfill' && steps.bf.outputs.pending == 'false' && inputs.from != 'all' && inputs.extend != 'false' }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
