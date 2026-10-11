@@ -94,7 +94,8 @@ def race_digest(evals: list[HorseEval]) -> dict:
         fam = next((e for e in h.evidence if e.startswith("牝系: ") and "で走る" in e), None)
         if fam and h.number not in seen:
             out["牝系"].append((h, _short(fam, 160)))
-        if (h.pop_rank or 99) <= 6 and h.cond_score <= -0.3:
+        # 4〜6番人気は検証で3着内率が同じ人気の他の馬と変わらない（tools/strategy_danger_partners.py）ので1〜3番人気だけ
+        if (h.pop_rank or 99) <= 3 and h.cond_score <= -0.3:
             out["危険"].append((h, _short(_pick(h, "来ない条件"), 160)))
     return out
 
@@ -238,7 +239,7 @@ def text(card: dict, evals: list[HorseEval], title: str) -> str:
     else:
         L.append("本線: なし（妙味馬の条件に届く馬がいない）")
     labels = {"★": "★ 血統の穴", "専門家": "専門家の見解に該当", "検証済み": "検証済みの傾向（3期間で回収率100%超）に該当", "走る条件": "人気帯の中で走る条件が重なる（検証: 7〜9番人気の満点は単勝101%/172%。10番人気以下は複勝60〜70%台で単独では買わない。ヒモ候補）",
-              "妙味条件": "回収率の高い条件に該当", "牝系": "牝系がこの条件で走る", "危険": "危険な人気馬"}
+              "妙味条件": "回収率の高い条件に該当", "牝系": "牝系がこの条件で走る", "危険": "危険な人気馬（1〜3番人気。検証では3着内率45%前後で同じ人気の他の馬51%より低く、単勝回収66〜75%。消しではなく、軸にしない・頭で買わない）"}
     for k, lab in labels.items():
         if not d[k]:
             continue
