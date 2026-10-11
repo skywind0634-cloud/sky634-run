@@ -1,0 +1,52 @@
+name: ped5-full
+# 5代血統表（祖先62頭）を馬ごとに取得し、ped-data ブランチの data/ped5_full.json に保存（tools/ped5_full.py）。
+# 時間切れなら自分で続きを実行する。取得済みはスキップ。
+on:
+  workflow_dispatch:
+    inputs:
+      budget_min: {description: "1回で取得に使う分数", default: "320"}
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: ped5-full
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install -r requirements.txt
+      - name: restore
+        run: |
+          git fetch origin ped-data || true
+          git show origin/ped-data:data/ped5_full.json > data/ped5_full.json 2>/dev/null || rm -f data/ped5_full.json
+      - name: fetch
+        id: im
+        continue-on-error: true
+        run: python tools/ped5_full.py "${{ inputs.budget_min }}"
+      - name: save
+        run: |
+          git config user.name "keiba-bot"
+          git config user.email "keiba-bot@users.noreply.github.com"
+          [ -f data/ped5_full.json ] || exit 0
+          cp data/ped5_full.json /tmp/p.json
+          ok=0
+          for i in 1 2 3 4 5; do
+            if git fetch -q origin ped-data; then git checkout -q -f -B ped-data origin/ped-data
+            else git checkout -q --orphan ped-data; git rm -rq --cached . >/dev/null 2>&1 || true; fi
+            mkdir -p data && cp /tmp/p.json data/ped5_full.json
+            git add -f data/ped5_full.json
+            git commit -qm "ped5 full $(date -u +%FT%H%M)" || { ok=1; break; }
+            git push -q origin HEAD:ped-data && ok=1 && break
+            sleep $((i*7))
+          done
+          [ "$ok" = 1 ] || { echo "::error::push failed"; exit 1; }
+      - name: continue
+        if: ${{ steps.im.outputs.pending == 'true' && steps.im.outputs.imported != '0' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run ped5-full.yml --ref main -f budget_min="${{ inputs.budget_min }}"
