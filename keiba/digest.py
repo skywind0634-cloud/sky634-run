@@ -202,6 +202,31 @@ def chokketsu_horses(card: dict, evals: list[HorseEval], min_pop: int = 7) -> li
     return out
 
 
+def stage_blood_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int, str]]:
+    """開催の進み具合（開幕週〜4週目以降）× 血統で、2021-23年と2024-26年の両方で人気以上/以下だった組（data/knowledge/meet_stage_blood.json,
+    tools/meet_stage_blood.py）. 単独の回収率は100%前後なので材料扱い."""
+    import json
+    from .config import KNOWLEDGE_DIR
+    from .knowledge import country_type
+    from .trend import meet_stage
+    try:
+        kb = json.loads((KNOWLEDGE_DIR / "meet_stage_blood.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return []
+    stg = meet_stage(card.get("race_id"))
+    ent = kb.get(f"{card.get('course')}{card.get('surface')}|{stg}") or []
+    if not ent:
+        return []
+    out = []
+    for h in evals:
+        vals = {"父系統": h.sire_line, "父タイプ": country_type(h.sire_line), "母父タイプ": country_type(h.damsire_line)}
+        why = [f"{e['kind']}={e['value']} {'○' if e['ae'][0] >= 1 else '▼'}（A/E {e['ae'][0]:.2f}/{e['ae'][1]:.2f}・複勝回収{e['fuku'][0]}/{e['fuku'][1]}%）"
+               for e in ent if vals.get(e["kind"]) and vals[e["kind"]] == e["value"]]
+        if why:
+            out.append((h.number, f"{stg}: " + "、".join(why)))
+    return out
+
+
 def close_losers(card: dict) -> list[tuple[int, str]]:
     """前走 4着以下で勝ち馬から0.6秒差以内、今回が同じ芝ダ・同距離で同クラスかクラス落ちの馬."""
     out = []
@@ -251,6 +276,13 @@ def text(card: dict, evals: list[HorseEval], title: str) -> str:
         L.append("- 直結コース（3着内率で選び2024年以降も確認。7番人気以下の3着内率が約1.5倍。ヒモ候補）:")
         nm = {h.number: h for h in evals}
         for num, txt in ckh:
+            h = nm.get(num)
+            L.append(f"  - {horse_line(h) if h else num}：{txt}")
+    sb = stage_blood_horses(card, evals)
+    if sb:
+        L.append("- 開催の進み具合×血統（この開催週に2021-23年・2024-26年とも人気以上○/以下▼の血統。単独の回収率は100%前後なので材料）:")
+        nm = {h.number: h for h in evals}
+        for num, txt in sorted(sb, key=lambda x: (nm[x[0]].pop_rank or 99) if x[0] in nm else 99):
             h = nm.get(num)
             L.append(f"  - {horse_line(h) if h else num}：{txt}")
     close = close_losers(card)
