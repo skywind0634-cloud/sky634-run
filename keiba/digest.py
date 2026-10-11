@@ -99,14 +99,39 @@ def race_digest(evals: list[HorseEval]) -> dict:
     return out
 
 
+SUB_COND = 0.999  # 走る条件の指標は最大1.00
+
+
 def sub_picks(evals: list[HorseEval], n: int = 2) -> list[HorseEval]:
-    """準本線: 4〜9番人気で人気帯の中で走る条件が強い（0.4以上）馬（本線以外, 危険な人気馬を除く, 人気比の高い順）.
-    検証（過去1年）: 単勝回収率 100%前後（前半100%・後半102%）。本線に足すと回収率は117%→105%前後、当たりの幅が広がる."""
+    """準本線: 7〜9番人気で人気帯の中で走る条件が満点（1.00）の馬（本線以外, 危険な人気馬を除く, 人気比の高い順）.
+    検証（過去1年・実払戻, 前半/後半）: 単勝 101%/172%・複勝 94%/123%・3着内20%（1日約4頭）。
+    旧基準（4〜9番人気・0.4以上）は単勝100%/103%・複勝85%/94%で1日22頭と多すぎたため 2026-10-11 に絞った（tools/strategy_sub_picks.py）."""
     from .betting import is_danger, value_horses
     vs = {h.number for h in value_horses(evals)[:1]}
-    c = [h for h in evals if 4 <= (h.pop_rank or 0) <= 9 and not h.pop_estimated and h.cond_score >= 0.4
+    c = [h for h in evals if 7 <= (h.pop_rank or 0) <= 9 and not h.pop_estimated and h.cond_score >= SUB_COND
          and not is_danger(h) and h.number not in vs]
     return sorted(c, key=lambda h: -(h.p_win / h.p_market if h.p_market else 0))[:n]
+
+
+def strict_axis(evals: list[HorseEval]) -> list[HorseEval]:
+    """妙味条件（厳格: 2024年までの2期間で単勝回収率120%以上が続いた条件）に該当する4番人気以下の馬."""
+    return [h for h in evals if h.value_segments and (h.pop_rank or 0) >= 4 and not h.pop_estimated]
+
+
+def strict_package(evals: list[HorseEval]) -> list[tuple[str, tuple]]:
+    """妙味条件(厳格)の馬を軸に: 単勝 ＋ ワイド（1〜5番人気へ）＋ 馬連（1〜3番人気へ）＋ 3連複（軸−1〜2番人気−モデル上位5頭）.
+    検証（過去1年・実払戻, docs/analysis/strategy.md）: 1レース約19点、回収率 前半146%・後半140%、的中率26%、的中時の払戻中央値6,580円."""
+    fav = {h.pop_rank: h.number for h in evals if h.pop_rank and not h.pop_estimated}
+    out = []
+    for a in strict_axis(evals):
+        out.append(("単勝", (a.number,)))
+        out += [("ワイド", tuple(sorted((a.number, fav[p])))) for p in range(1, 6) if p in fav and fav[p] != a.number]
+        out += [("馬連", tuple(sorted((a.number, fav[p])))) for p in range(1, 4) if p in fav and fav[p] != a.number]
+        # 3連複: 軸 − 1〜2番人気 − モデル上位5頭（軸以外）。前半で選び後半で確認（146%/140%, docs/analysis/strategy.md）
+        top5 = [h.number for h in sorted((h for h in evals if h.number != a.number), key=lambda h: -h.p_win)[:5]]
+        for b in [fav[p] for p in (1, 2) if p in fav and fav[p] != a.number]:
+            out += [("3連複", tuple(sorted((a.number, b, c)))) for c in top5 if c not in (a.number, b)]
+    return list(dict.fromkeys(out))
 
 
 def ticket_card(card: dict, evals: list[HorseEval]) -> list[str]:
@@ -114,6 +139,11 @@ def ticket_card(card: dict, evals: list[HorseEval]) -> list[str]:
     from .betting import value_horses, value_plan
     nm = {h.number: h.name for h in evals}
     L = []
+    sp_pkg = strict_package(evals)
+    if sp_pkg:
+        L.append("  - ◎妙味条件(厳格)の軸（検証で回収率146%/140%・的中26%・払戻中央6,580円）: "
+                 + "、".join(f"{h.number} {h.name}（{h.pop_rank}人気）" for h in strict_axis(evals)) + " → "
+                 + " / ".join(f"{k} {'-'.join(map(str, t))}" for k, t in sp_pkg))
     vp = value_plan(evals, len(card.get("entries") or evals))
     if vp:
         L.append("  - 本線（資金の中心）: " + " / ".join(
@@ -121,7 +151,7 @@ def ticket_card(card: dict, evals: list[HorseEval]) -> list[str]:
             for t in vp.tickets) + f"（{nm[vp.tickets[0].horses[0]]}）")
     sp = sub_picks(evals)
     if sp:
-        L.append("  - 準本線（少額・単勝）: " + "、".join(f"単勝 {h.number}（{h.name}・{h.pop_rank}人気）" for h in sp))
+        L.append("  - 準本線（7〜9番人気・走る条件が満点。検証では単勝101%/172%・複勝94%/123%、少額の単複）: " + "、".join(f"単複 {h.number}（{h.name}・{h.pop_rank}人気）" for h in sp))
     axis = [h.number for h in value_horses(evals)[:1]] or [h.number for h in sp[:1]]
     d = race_digest(evals)
     pool = []
@@ -133,6 +163,60 @@ def ticket_card(card: dict, evals: list[HorseEval]) -> list[str]:
         L.append("  - 遊び（ごく少額・検証では負け越し）: ワイド " + "、".join(f"{axis[0]}-{x}" for x in pool[:3])
                  + f"／馬連 " + "、".join(f"{axis[0]}-{x}" for x in pool[:3]))
     return (["**買い目カード**"] + L) if L else []
+
+
+GRADE_ORDER = {"1勝": 1, "2勝": 2, "3勝": 3, "OP": 4, "L": 4, "G3": 5, "G2": 6, "G1": 7}
+
+
+def chokketsu_horses(card: dict, evals: list[HorseEval], min_pop: int = 7) -> list[tuple[int, str]]:
+    """直結コースで好走歴あり／直結のコース替わり（7番人気以下）. data/knowledge/chokketsu_validated.json
+    検証（docs/analysis/chokketsu_list.md）: 3着内率で選び2024年以降も確認した組。人気薄の3着内率が約1.5倍."""
+    import json
+    from .config import KNOWLEDGE_DIR
+    try:
+        kb = json.loads((KNOWLEDGE_DIR / "chokketsu_validated.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return []
+    T = f"{card.get('course')}{card.get('surface')}{card.get('distance')}"
+    ck, cc = set(kb.get("chokketsu", {}).get(T, [])), set(kb.get("course_change", {}).get(T, []))
+    if not ck and not cc:
+        return []
+    pop = {h.number: h.pop_rank for h in evals}
+    out = []
+    for e in card.get("entries") or []:
+        if (pop.get(e.get("number")) or 0) < min_pop:
+            continue
+        why = []
+        rec = e.get("recent") or []
+        for r in rec:
+            k = f"{r.get('course')}{r.get('surface')}{r.get('distance')}"
+            good = (r.get("finish") or 99) <= 3 or (r.get("behind") is not None and r["behind"] <= 0.3)
+            if k in ck and good:
+                why.append(f"直結コース{k}で好走（{r.get('date')} {r.get('race_name') or ''} {r.get('finish')}着）")
+                break
+        if rec and f"{rec[0].get('course')}{rec[0].get('surface')}{rec[0].get('distance')}" in cc:
+            why.append(f"直結のコース替わり（前走{rec[0].get('course')}{rec[0].get('surface')}{rec[0].get('distance')}→今回{T}）")
+        if why:
+            out.append((e.get("number"), "、".join(why)))
+    return out
+
+
+def close_losers(card: dict) -> list[tuple[int, str]]:
+    """前走 4着以下で勝ち馬から0.6秒差以内、今回が同じ芝ダ・同距離で同クラスかクラス落ちの馬."""
+    out = []
+    g_now = GRADE_ORDER.get(card.get("grade") or "", 0)
+    for e in card.get("entries") or []:
+        rec = (e.get("recent") or [None])[0]
+        if not rec or not rec.get("finish") or rec["finish"] < 4 or rec.get("behind") is None:
+            continue
+        if rec["behind"] > 0.6 or rec.get("surface") != card.get("surface") or rec.get("distance") != card.get("distance"):
+            continue
+        g_prev = GRADE_ORDER.get(rec.get("grade") or "", 0)
+        if g_prev and g_now and g_now > g_prev:
+            continue
+        drop = "クラス落ち" if g_prev and g_now and g_now < g_prev else "同クラス"
+        out.append((e.get("number"), f"前走 {rec.get('date')} {rec.get('course')}{rec.get('race_name') or ''} {rec['finish']}着・{rec['behind']:.1f}秒差（{drop}）"))
+    return out
 
 
 def text(card: dict, evals: list[HorseEval], title: str) -> str:
@@ -153,7 +237,7 @@ def text(card: dict, evals: list[HorseEval], title: str) -> str:
             L += [f"  - {r}" for r in reasons(h)]
     else:
         L.append("本線: なし（妙味馬の条件に届く馬がいない）")
-    labels = {"★": "★ 血統の穴", "専門家": "専門家の見解に該当", "検証済み": "検証済みの傾向（3期間で回収率100%超）に該当", "走る条件": "人気帯の中で走る条件が重なる",
+    labels = {"★": "★ 血統の穴", "専門家": "専門家の見解に該当", "検証済み": "検証済みの傾向（3期間で回収率100%超）に該当", "走る条件": "人気帯の中で走る条件が重なる（検証: 7〜9番人気の満点は単勝101%/172%。10番人気以下は複勝60〜70%台で単独では買わない。ヒモ候補）",
               "妙味条件": "回収率の高い条件に該当", "牝系": "牝系がこの条件で走る", "危険": "危険な人気馬"}
     for k, lab in labels.items():
         if not d[k]:
@@ -161,6 +245,20 @@ def text(card: dict, evals: list[HorseEval], title: str) -> str:
         L.append(f"- {lab}:")
         for h, why in d[k]:
             L.append(f"  - {horse_line(h)}{'：' + why if why else ''}")
+    ckh = chokketsu_horses(card, evals)
+    if ckh:
+        L.append("- 直結コース（3着内率で選び2024年以降も確認。7番人気以下の3着内率が約1.5倍。ヒモ候補）:")
+        nm = {h.number: h for h in evals}
+        for num, txt in ckh:
+            h = nm.get(num)
+            L.append(f"  - {horse_line(h) if h else num}：{txt}")
+    close = close_losers(card)
+    if close:
+        L.append("- 前走が勝ち馬から0.6秒差以内の4着以下（今回 同じ芝ダ・同距離で同クラスかクラス落ち。検証: 3着内率25%・クラス落ちは37%と高いが人気に織り込み済みで単独の回収率は70%台。材料として）:")
+        nm = {h.number: h for h in evals}
+        for num, txt in close:
+            h = nm.get(num)
+            L.append(f"  - {horse_line(h) if h else num}：{txt}")
     if d["型の見解"]:
         L.append("- 系統の型（日本型/米国型など）の一般的な見解に該当: "
                  + "、".join(f"{h.number}{h.name}" for h, _ in d["型の見解"]))
