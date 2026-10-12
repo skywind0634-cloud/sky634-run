@@ -341,6 +341,11 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
                 mine[(who, bm[v][0])] = 1; mine[(who, bm[v][1])] = 1
         why = [f"{r['who']}{r['line']}×{r['value']} {'○' if min(r['ae']) >= 1.1 else '▼'}（A/E {'/'.join(f'{x:.2f}' for x in r['ae'])}）"
                for r in kb.get("rows", []) if (r["who"], r["line"]) in mine and (r["cond"], r["value"]) in cs]
+        # サンデー系3タイプ（p56, tools/sunday_tpd.py）: Dサンデーはダートで人気ほど来ない（0.92/0.87/0.89）、Tサンデーは芝2200m以上で人気以上（1.05/1.05/1.04）
+        if su == "ダ" and h.sire_line in ("ゴールドアリュール系", "ネオユニヴァース系"):
+            why.append("Dサンデー×ダート ▼（A/E 0.92/0.87/0.89・人気になりすぎ）")
+        if su == "芝" and d >= 2200 and h.sire_line in ("ディープインパクト系", "ハーツクライ系", "ステイゴールド系", "スペシャルウィーク系"):
+            why.append("Tサンデー×芝2200m以上 ○（A/E 1.05/1.05/1.04, 差は小さい）")
         if why:
             out.append((h.number, "、".join(why)))
     return out
