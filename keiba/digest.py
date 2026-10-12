@@ -410,6 +410,19 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
             why.append("ダート休み明け×父ルーラーシップ ▼（A/E 0.90/0.79/0.65）")
         if su == "ダ" and h.sire == "ドゥラメンテ" and str(e.get("sex") or "").startswith("牝"):
             why.append("ダート×父ドゥラメンテ×牝馬 ▼（A/E 0.87/0.82/0.87）")
+        # 第4章 ロベルト系（tools/book_ch4_roberto.py）
+        rob = ("スクリーンヒーロー系", "シンボリクリスエス系", "ブライアンズタイム系", "クリスエス系", "グラスワンダー系")
+        is_op = card.get("grade") in ("OP", "L", "G3", "G2", "G1")
+        if is_op and (h.pop_rank or 0) >= 6 and su == "ダ" and h.sire_line in rob:
+            why.append("ダートOP以上×父ロベルト系×6番人気以下 ◎（A/E 1.36/1.52/1.26。本の『大一番で一発』のとおり）")
+        if is_op and (h.pop_rank or 0) >= 6 and su == "芝" and h.damsire_line in rob:
+            why.append("芝OP以上×母父ロベルト系×6番人気以下 ○（A/E 1.09/1.43/1.08）")
+        if su == "芝" and not going.startswith("良") and h.sire == "エピファネイア":
+            why.append("芝の道悪×父エピファネイア ▽（A/E 0.76/0.93/0.73。本の『タフな馬場向き』と逆）")
+        if su == "芝" and not going.startswith("良") and h.sire_line in rob and h.sire != "エピファネイア":
+            why.append("芝の道悪×父ロベルト系 ▽（A/E 0.88/0.88/0.95）")
+        if su == "芝" and h.sire == "スクリーンヒーロー" and card.get("grade") in ("1勝", "2勝"):
+            why.append("1-2勝クラスの芝×父スクリーンヒーロー ◎（A/E 1.13/1.19/1.19）")
         if su == "芝" and h.damsire == "ロージズインメイ":
             why.append("芝×母父ロージズインメイ ◎（A/E 1.12/1.12/1.26、芝1600-1800は1.44/1.19/1.35・複勝回収140/83/127%）")
         if su == "芝" and d <= 1400 and h.damsire == "タイキシャトル":
