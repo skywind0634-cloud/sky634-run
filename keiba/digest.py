@@ -400,6 +400,8 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
                 why.append("芝OP以上×父ロードカナロア ○（A/E 1.10/1.14/1.22）")
             if prv and prv.get("distance") and d <= prv["distance"] - 200:
                 why.append("芝の距離短縮×父ロードカナロア ○（A/E 1.12/1.11/1.27・複勝回収90/74/101%）")
+        if su == "芝" and d <= 1400 and h.sire == "ルーラーシップ" and (h.pop_rank or 0) >= 4:
+            why.append("芝1400以下×父ルーラーシップ×4番人気以下 ◎（A/E 1.37/1.25/1.15。本の『芝1400以下の人気馬は信用できない』の裏返しで人気薄が走る）")
         if su == "芝" and h.sire == "リオンディーズ" and prv and prv.get("distance") and d >= prv["distance"] + 200:
             why.append("芝の距離延長×父リオンディーズ ▼（A/E 0.66/0.81/0.81）")
         if su == "ダ" and h.sire == "ラブリーデイ":
