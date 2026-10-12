@@ -147,7 +147,7 @@ def ticket_card(card: dict, evals: list[HorseEval]) -> list[str]:
                  + " / ".join(f"{k} {'-'.join(map(str, t))}" for k, t in sp_pkg))
     vp = value_plan(evals, len(card.get("entries") or evals))
     if vp:
-        L.append("  - 本線（資金の中心）: " + " / ".join(
+        L.append("  - 本線（◎の次・少なめ）: " + " / ".join(
             f"{t.kind} {'-'.join(map(str, t.horses))}" + (f"（想定{t.est_pay:,.0f}円）" if t.kind == "馬連" else "")
             for t in vp.tickets) + f"（{nm[vp.tickets[0].horses[0]]}）")
     sp = sub_picks(evals)
@@ -296,3 +296,16 @@ def text(card: dict, evals: list[HorseEval], title: str) -> str:
         L.append("- 系統の型（日本型/米国型など）の一般的な見解に該当: "
                  + "、".join(f"{h.number}{h.name}" for h, _ in d["型の見解"]))
     return "\n".join(L)
+
+
+GUIDE = """## 買い方の早見表（過去1年の実払戻で検証した結果。上から優先）
+| 項目 | 買う？ | 買い方 | 検証の回収率（前半/後半） |
+|---|---|---|---|
+| ◎妙味条件(厳格)の軸 | **買う（中心）** | 穴の軸から人気馬へ流す: 軸の単勝＋ワイド（軸→1〜5番人気）＋馬連（軸→1〜3番人気）＋3連複（軸−1・2番人気−モデル上位5頭）。買い目カードの点をそのまま | 146% / 140% |
+| 本線 | 買う（少なめ） | 本線馬の単勝・複勝＋本線馬から馬連（買い目カードの点） | 114% / 120% |
+| 準本線 | 少額 | 単勝・複勝だけ | 単勝101%/172%・複勝94%/123% |
+| 遊び | 買わない | （負け越し） | 60〜80%台 |
+| ★血統の穴・走る条件・回収率の高い条件・牝系・直結コース・前走0.6秒差・開催×血統・専門家・系統の型 | 買わない | 見るだけ（どれも単独では負け越し。◎や本線に重なっていれば、その馬はすでに買い目に入っている） | 56〜91% |
+| 危険な人気馬 | — | 消しではない。軸・1着付けにしない | — |
+"""
+

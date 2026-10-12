@@ -227,6 +227,8 @@ def cmd_digest(a):
     import keiba.model as M
     M.PARAMS.update(load_params())
     day = dt.date.fromisoformat(a.date) if a.date else today_jst()
+    if not a.race:
+        print(digest.GUIDE)
     for c in sorted(pipeline.load_cards(day), key=lambda c: (c.get("course", ""), c.get("race_no", 0))):
         if not c.get("entries") or not is_target_race(c.get("race_no"), c.get("grade"), c.get("surface"), c.get("name")):
             continue
