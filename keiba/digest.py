@@ -361,6 +361,17 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
             why.append(f"ダ→芝×父{stt} ▼（A/E {'0.73/0.85/0.75' if stt == '日本型' else '0.77/0.60/0.82'}。欧州型は0.87/1.03/1.04）")
         if prv and prv.get("surface") == "ダ" and su == "ダ" and prv.get("distance") and d <= prv["distance"] - 200 and stt == "米国型" and (h.number or 0) >= 10:
             why.append("ダート距離短縮×父米国型×2桁馬番 ○（A/E 1.11/1.11/1.02・複勝回収93/97/88%）")
+        # 本 p98-105 の検証（tools/book_ch3d.py）
+        if su == "芝" and d >= 2000 and e.get("age") == 3 and str(card.get("date", ""))[5:7] <= "06" and h.sire_line == "ディープインパクト系":
+            why.append("3歳前半×父ディープ系×芝2000m以上 ◎（A/E 1.20/1.13/1.16）")
+        if su == "ダ" and e.get("age") == 3 and str(card.get("date", ""))[5:7] <= "06" and stt == "日本型":
+            why.append("ダート3歳前半×父日本型 ▽（A/E 0.87/0.88/0.93）")
+        try:
+            gap = (_dt.date.fromisoformat(card["date"]) - _dt.date.fromisoformat(prv["date"])).days if prv else 0
+        except (KeyError, TypeError, ValueError):
+            gap = 0
+        if su == "ダ" and gap >= 63 and stt == "日本型":
+            why.append("ダート休み明け（中9週以上）×父日本型 ▽（A/E 0.93/0.90/0.95）")
         if su == "芝" and d >= 2500 and country_type(h.damsire_line) == "欧州型":
             why.append("芝2500m以上×母父欧州型 ○（A/E 1.10/1.02/1.08）")
         if su == "芝" and co in ("札幌", "函館") and h.sire_line in ("ステイゴールド系", "ハーツクライ系", "マンハッタンカフェ系"):
