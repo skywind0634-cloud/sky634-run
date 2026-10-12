@@ -288,6 +288,64 @@ def elim_reason(e: dict) -> str | None:
     return None
 
 
+def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int, str]]:
+    """亀谷『血統の教科書』の切り口（小系統・大系統 × レース条件①〜⑫）で3期間とも人気以上○/以下▼だった組に該当する馬
+    （data/knowledge/book_conditions.json, tools/book_conditions.py）."""
+    import datetime as _dt
+    import json
+    from .config import KNOWLEDGE_DIR
+    try:
+        kb = json.loads((KNOWLEDGE_DIR / "book_conditions.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return []
+    bm = kb.get("book_map", {}); su = card.get("surface"); co = card.get("course"); d = card.get("distance") or 1600
+    if su == "芝":
+        bd = "芝〜1400" if d <= 1400 else "芝1600-1800" if d <= 1800 else "芝2000-2400" if d <= 2400 else "芝2500〜"
+    else:
+        bd = "ダ〜1400" if d <= 1400 else "ダ1600-1900" if d <= 1900 else "ダ2000〜"
+    going = card.get("going") or "良"
+    base = {("①芝ダ", su), ("②③コース", f"{co}{su}"), ("④距離", bd),
+            ("⑤直線", f"{su}・直線{'長' if co in kb.get('long_straight', []) else '短'}"),
+            ("⑥坂", f"{su}・{'坂' if co in kb.get('slope', []) else '平坦'}"), ("馬場", f"{su}・{'良' if going.startswith('良') else '道悪'}")}
+    wcs = [e.get("weight") for e in card.get("entries") or [] if e.get("weight")]
+    if wcs and max(wcs) - min(wcs) >= 4:
+        base.add(("⑪ハンデ", f"{su}・斤量差4kg以上"))
+    ent = {e.get("number"): e for e in card.get("entries") or []}
+    out = []
+    for h in evals:
+        e = ent.get(h.number, {})
+        cs = set(base)
+        rec = e.get("recent") or []
+        if rec:
+            p = rec[0]
+            dd = d - (p.get("distance") or d)
+            if abs(dd) >= 200:
+                cs.add(("⑦距離変更", f"{su}・{'延長' if dd > 0 else '短縮'}"))
+            if p.get("surface") and p["surface"] != su:
+                cs.add(("⑧芝ダ替わり", f"{p['surface']}→{su}"))
+            try:
+                days = (_dt.date.fromisoformat(card["date"]) - _dt.date.fromisoformat(p["date"])).days
+                if days >= 70:
+                    cs.add(("⑩間隔", f"{su}・休み明け(10週+)"))
+                elif len(rec) >= 2 and (_dt.date.fromisoformat(p["date"]) - _dt.date.fromisoformat(rec[1]["date"])).days >= 70:
+                    cs.add(("⑩間隔", f"{su}・叩き2戦目"))
+            except (KeyError, TypeError, ValueError):
+                pass
+        if e.get("age"):
+            cs.add(("⑨年齢", f"{su}・{e['age']}歳" if e["age"] <= 5 else f"{su}・6歳以上"))
+        if e.get("sex"):
+            cs.add(("⑫性別", f"{su}・{'牝' if str(e['sex']).startswith('牝') else '牡セ'}"))
+        mine = {}
+        for who, v in (("父", h.sire_line), ("母父", h.damsire_line)):
+            if v in bm:
+                mine[(who, bm[v][0])] = 1; mine[(who, bm[v][1])] = 1
+        why = [f"{r['who']}{r['line']}×{r['value']} {'○' if min(r['ae']) >= 1.1 else '▼'}（A/E {'/'.join(f'{x:.2f}' for x in r['ae'])}）"
+               for r in kb.get("rows", []) if (r["who"], r["line"]) in mine and (r["cond"], r["value"]) in cs]
+        if why:
+            out.append((h.number, "、".join(why)))
+    return out
+
+
 def close_losers(card: dict) -> list[tuple[int, str]]:
     """前走 4着以下で勝ち馬から0.6秒差以内、今回が同じ芝ダ・同距離で同クラスかクラス落ちの馬."""
     out = []
@@ -353,6 +411,13 @@ def text(card: dict, evals: list[HorseEval], title: str) -> str:
         L.append("- 展開×血統（この展開で3期間とも人気以上○/以下▼の系統・種牡馬。単独の回収率は100%前後なので材料）:")
         nm = {h.number: h for h in evals}
         for num, txt in pb:
+            h = nm.get(num)
+            L.append(f"  - {horse_line(h) if h else num}：{txt}")
+    bk = book_condition_horses(card, evals)
+    if bk:
+        L.append("- 系統×レース条件（亀谷『血統の教科書』の切り口。3期間とも人気以上○/以下▼。▼は消しの材料、○は単独の回収率100%前後なので材料）:")
+        nm = {h.number: h for h in evals}
+        for num, txt in sorted(bk, key=lambda x: (nm[x[0]].pop_rank or 99) if x[0] in nm else 99):
             h = nm.get(num)
             L.append(f"  - {horse_line(h) if h else num}：{txt}")
     el = [(e.get("number"), elim_reason(e)) for e in card.get("entries") or []]
