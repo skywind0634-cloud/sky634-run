@@ -229,6 +229,65 @@ def stage_blood_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int, st
     return out
 
 
+def front_count(card: dict) -> int | None:
+    """前走で前15%の位置にいた馬の数（出馬表の近走の通過順から）. 7割以上の馬で分からなければ None."""
+    n = known = 0
+    ents = card.get("entries") or []
+    for e in ents:
+        rec = (e.get("recent") or [None])[0]
+        try:
+            pos = int(str(rec.get("passing")).split("-")[0]) / max(rec.get("n_runners") or 16, 1)
+        except (AttributeError, ValueError, TypeError):
+            continue
+        known += 1
+        n += pos <= 0.15
+    return n if ents and known >= 0.7 * len(ents) else None
+
+
+def pace_blood_horses(card: dict, evals: list[HorseEval]) -> tuple[str | None, list[tuple[int, str]]]:
+    """予想展開（前に行く馬の数）× 系統・種牡馬・国別タイプで、2021-23/2024/2025-26の3期間とも人気以上/以下だった組
+    （data/knowledge/line_pace.json, tools/line_pace.py, tools/blood_lap.py）. 単独の回収率は100%前後なので材料."""
+    import json
+    from .config import KNOWLEDGE_DIR
+    nf = front_count(card)
+    if nf is None:
+        return None, []
+    fc = "前少(0-1頭)" if nf <= 1 else "前多(4頭+)" if nf >= 4 else "普通(2-3頭)"
+    label = f"前走で前にいた馬{nf}頭 → {'スロー・瞬発寄り' if nf <= 1 else '消耗戦になりやすい（消耗71%）' if nf >= 4 else '平均的'}"
+    try:
+        kb = json.loads((KNOWLEDGE_DIR / "line_pace.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        kb = []
+    su = card.get("surface"); d = card.get("distance") or 1600
+    bd = "短" if d <= 1400 else "マ" if d <= 1800 else "中長"
+    slope = "坂" if card.get("course") in ("中山", "阪神", "中京", "東京") else "平坦"
+    out = []
+    for h in evals:
+        vals = {"父系統": h.sire_line, "種牡馬": h.sire, "母父系統": h.damsire_line}
+        why = []
+        for e in kb:
+            who, name, *cond = e["key"]
+            if vals.get(who) == name and cond[0] == su and cond[-1] == fc and cond[1:-1] in ([], [bd], [slope]):
+                why.append(f"{who}={name}（{' / '.join(cond)}）{'○' if e['ae'][0] >= 1 else '▼'} A/E {'/'.join(f'{x:.2f}' for x in e['ae'])}")
+        if why:
+            out.append((h.number, "、".join(why)))
+    return label, out
+
+
+def elim_reason(e: dict) -> str | None:
+    """来ない馬（5年・3期間とも3着内5%前後, tools/elim_rules.py）."""
+    r = [x for x in (e.get("recent") or [])[:3] if x.get("behind") is not None]
+    if len(r) < 2:
+        return None
+    mb = min(x["behind"] for x in r)
+    diffs = " / ".join(f"{x['behind']:+.1f}秒" for x in r)
+    if mb >= 1.5:
+        return f"近{len(r)}走すべて1.5秒以上負け（{diffs}）"
+    if (e.get("age") or 0) >= 7 and mb >= 1.0:
+        return f"7歳以上で近{len(r)}走すべて1.0秒以上負け（{diffs}）"
+    return None
+
+
 def close_losers(card: dict) -> list[tuple[int, str]]:
     """前走 4着以下で勝ち馬から0.6秒差以内、今回が同じ芝ダ・同距離で同クラスかクラス落ちの馬."""
     out = []
@@ -287,6 +346,21 @@ def text(card: dict, evals: list[HorseEval], title: str) -> str:
         for num, txt in sorted(sb, key=lambda x: (nm[x[0]].pop_rank or 99) if x[0] in nm else 99):
             h = nm.get(num)
             L.append(f"  - {horse_line(h) if h else num}：{txt}")
+    pl, pb = pace_blood_horses(card, evals)
+    if pl:
+        L.append(f"- 展開予想: {pl}")
+    if pb:
+        L.append("- 展開×血統（この展開で3期間とも人気以上○/以下▼の系統・種牡馬。単独の回収率は100%前後なので材料）:")
+        nm = {h.number: h for h in evals}
+        for num, txt in pb:
+            h = nm.get(num)
+            L.append(f"  - {horse_line(h) if h else num}：{txt}")
+    el = [(e.get("number"), elim_reason(e)) for e in card.get("entries") or []]
+    el = [(n, w) for n, w in el if w]
+    if el:
+        nm = {h.number: h for h in evals}
+        L.append("- 消し（3着内率5%前後。推奨からは外してある）: " + "、".join(
+            f"{n}{nm[n].name if n in nm else ''}（{nm[n].pop_rank if n in nm else '?'}人気）{w}" for n, w in el))
     close = close_losers(card)
     if close:
         L.append("- 前走が勝ち馬から0.6秒差以内の4着以下（今回 同じ芝ダ・同距離で同クラスかクラス落ち。検証: 3着内率25%・クラス落ちは37%と高いが人気に織り込み済みで単独の回収率は70%台。材料として）:")
