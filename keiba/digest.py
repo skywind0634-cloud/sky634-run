@@ -346,6 +346,34 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
     return out
 
 
+def mainstream_gap(card: dict, evals: list[HorseEval]) -> tuple[str | None, list[HorseEval]]:
+    """主流／反主流のずれ（亀谷『血統の教科書』, tools/mainstream_gap.py）.
+    芝の道悪で1〜3番人気がすべて日本型のとき、父が欧州型・米国型の4〜9番人気は3着内A/E 1.14/1.12/1.18・複勝回収102/97/99%（2021-23/2024/2025-26）。
+    返り値: (馬場の主流度の説明, 狙いの馬)."""
+    from .knowledge import country_type
+    if card.get("surface") != "芝":
+        return None, []
+    co, d, going = card.get("course"), card.get("distance") or 0, card.get("going") or "良"
+    good = going.startswith("良")
+    if co in ("東京", "中山", "京都", "阪神") and d in (1600, 2000, 2400) and good:
+        lab = "主流馬場（中央4場の芝1600/2000/2400・良）: 日本型（サンデー系など）が強い舞台"
+    elif not good:
+        lab = f"反主流馬場（道悪: {going}）: 欧州型・米国型が浮上しやすい"
+    elif co in ("札幌", "函館"):
+        lab = "反主流寄り（洋芝）"
+    elif co in ("福島", "小倉") or d <= 1200:
+        lab = "反主流寄り（小回り平坦・芝1200以下）"
+    else:
+        lab = "準主流（良・非根幹距離など）"
+    top = [h for h in evals if h.pop_rank and h.pop_rank <= 3 and not h.pop_estimated]
+    if len(top) < 3 or good:
+        return lab, []
+    if all(country_type(h.sire_line) == "日本型" for h in top):
+        picks = [h for h in evals if 4 <= (h.pop_rank or 0) <= 9 and country_type(h.sire_line) in ("欧州型", "米国型") and not h.out_of_form]
+        return lab + " → 1〜3番人気がすべて日本型（主流）＝ずれのあるレース", picks
+    return lab, []
+
+
 def close_losers(card: dict) -> list[tuple[int, str]]:
     """前走 4着以下で勝ち馬から0.6秒差以内、今回が同じ芝ダ・同距離で同クラスかクラス落ちの馬."""
     out = []
@@ -404,6 +432,12 @@ def text(card: dict, evals: list[HorseEval], title: str) -> str:
         for num, txt in sorted(sb, key=lambda x: (nm[x[0]].pop_rank or 99) if x[0] in nm else 99):
             h = nm.get(num)
             L.append(f"  - {horse_line(h) if h else num}：{txt}")
+    mg_lab, mg = mainstream_gap(card, evals)
+    if mg_lab:
+        L.append(f"- 馬場の主流度: {mg_lab}")
+    if mg:
+        L.append("- ★主流／反主流のずれ（芝の道悪で人気上位が日本型ばかり。反主流血統の4〜9番人気は検証で3着内A/E 1.14/1.12/1.18・複勝回収102/97/99%）: "
+                 + "、".join(f"{h.number}{h.name}（{h.pop_rank}人気・父{h.sire}）" for h in mg))
     pl, pb = pace_blood_horses(card, evals)
     if pl:
         L.append(f"- 展開予想: {pl}")
