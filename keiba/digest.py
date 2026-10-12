@@ -410,6 +410,12 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
             why.append("ダート休み明け×父ルーラーシップ ▼（A/E 0.90/0.79/0.65）")
         if su == "ダ" and h.sire == "ドゥラメンテ" and str(e.get("sex") or "").startswith("牝"):
             why.append("ダート×父ドゥラメンテ×牝馬 ▼（A/E 0.87/0.82/0.87）")
+        if su == "芝" and h.damsire == "ロージズインメイ":
+            why.append("芝×母父ロージズインメイ ◎（A/E 1.12/1.12/1.26、芝1600-1800は1.44/1.19/1.35・複勝回収140/83/127%）")
+        if su == "芝" and d <= 1400 and h.damsire == "タイキシャトル":
+            why.append("芝1400以下×母父タイキシャトル ×（A/E 0.85/0.87/0.70）")
+        if su == "ダ" and d <= 1400 and h.sire == "ロージズインメイ":
+            why.append("ダ1400以下×父ロージズインメイ ×（A/E 0.84/0.56/0.74）")
         if su == "ダ" and h.sire in ("エンパイアメーカー", "バトルプラン", "アメリカンファラオ", "パイオニアオブザナイル"):
             why.append("ダート×父エンパイアメーカー系 ○（A/E 1桁馬番1.05/1.25/1.22、5番人気以内1.13/1.07/1.13。本の『人気薄・外枠』は確認できず）")
         if su == "芝" and h.sire_line == "ファピアノ系" and co not in ("京都", "新潟", "札幌", "函館", "小倉", "福島"):
