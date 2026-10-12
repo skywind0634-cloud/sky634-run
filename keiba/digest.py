@@ -410,6 +410,10 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
             why.append("ダート休み明け×父ルーラーシップ ▼（A/E 0.90/0.79/0.65）")
         if su == "ダ" and h.sire == "ドゥラメンテ" and str(e.get("sex") or "").startswith("牝"):
             why.append("ダート×父ドゥラメンテ×牝馬 ▼（A/E 0.87/0.82/0.87）")
+        if su == "ダ" and h.sire in ("エンパイアメーカー", "バトルプラン", "アメリカンファラオ", "パイオニアオブザナイル"):
+            why.append("ダート×父エンパイアメーカー系 ○（A/E 1桁馬番1.05/1.25/1.22、5番人気以内1.13/1.07/1.13。本の『人気薄・外枠』は確認できず）")
+        if su == "芝" and h.sire_line == "ファピアノ系" and co not in ("京都", "新潟", "札幌", "函館", "小倉", "福島"):
+            why.append("芝×父ファピアノ系 ▽（A/E 良0.66/0.89/0.90）")
         if su == "芝" and co in ("京都", "新潟", "札幌", "函館", "小倉", "福島") and h.sire_line in ("フォーティナイナー系", "ファピアノ系"):
             why.append(f"平坦な芝×父{h.sire_line} ▼（A/E フォーティナイナー系0.82〜0.90・ファピアノ系0.59〜0.90）")
         # 第4章 ボールドルーラー系（tools/book_ch4_boldruler.py）
