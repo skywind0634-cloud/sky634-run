@@ -410,6 +410,13 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
             why.append("ダート休み明け×父ルーラーシップ ▼（A/E 0.90/0.79/0.65）")
         if su == "ダ" and h.sire == "ドゥラメンテ" and str(e.get("sex") or "").startswith("牝"):
             why.append("ダート×父ドゥラメンテ×牝馬 ▼（A/E 0.87/0.82/0.87）")
+        # 第4章 サンデー系（tools/book_ch4_sunday.py）
+        if su == "芝" and h.sire_line == "ディープインパクト系" and h.damsire_line in ("デインヒル系", "ウォーフロント系", "グリーンデザート系", "ダンチヒ系"):
+            why.append("芝×父ディープ系×母父ダンチヒ系 ○（A/E 1.17/1.10/1.10。本のニックスどおり）")
+        if su == "芝" and h.sire_line == "ディープインパクト系" and h.damsire_line in ("キングカメハメハ系", "キングマンボ系", "マキャヴェリアン系"):
+            why.append("芝×父ディープ系×母父欧州型ミスプロ系 ○（A/E 1.13/1.11/1.08。本のニックスどおり）")
+        if su == "芝" and h.sire_line == "ステイゴールド系" and any(x.sire_line == "ディープインパクト系" and (x.pop_rank or 99) <= 3 for x in evals):
+            why.append("芝×父ステイゴールド系（1-3番人気にディープ系あり）: ディープ系の人気馬が崩れたレースでは A/E 1.23/1.23/1.20。人気のディープ系を疑うときの相手")
         # 第4章 ロベルト系（tools/book_ch4_roberto.py）
         rob = ("スクリーンヒーロー系", "シンボリクリスエス系", "ブライアンズタイム系", "クリスエス系", "グラスワンダー系")
         is_op = card.get("grade") in ("OP", "L", "G3", "G2", "G1")
