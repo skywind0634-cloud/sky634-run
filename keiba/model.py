@@ -83,6 +83,7 @@ class HorseEval:
     pop_rank: int | None = None
     pop_estimated: bool = False   # 前売り前でモデルの評価順を人気の代わりにしている
     blood_upside: float = 0.0    # 血統要素だけの合計（大穴★の選定用）
+    out_of_form: str | None = None  # 直近2〜3走すべて1.5秒以上負け（推奨から外す, tools/big_loss_filter.py）
 
 
 OPPOSITE_BAND = {"sprint": {"long": -0.5, "middle": -0.2}, "mile": {"long": -0.3},
@@ -108,6 +109,17 @@ def race_demand(card: dict) -> dict:
 def _apt_str(apt: dict, demand: dict) -> str:
     keys = sorted(demand, key=lambda a: -abs(demand[a]))[:4]
     return " / ".join(f"{AXIS_JA[a]}{apt[a]:+.1f}" for a in keys)
+
+
+BIG_LOSS = 1.5  # 秒。直近2〜3走すべてこれ以上負けた馬は3着内6.5%・複勝回収58%・単勝回収52%（2021〜2026, tools/big_loss_filter.py）
+
+
+def out_of_form(history: list[dict]) -> str | None:
+    """直近3走（着差の分かるもの2走以上）がすべて BIG_LOSS 秒以上の負けなら、その着差の文字列を返す."""
+    r = [h for h in history[:3] if h.get("behind") is not None]
+    if len(r) >= 2 and min(h["behind"] for h in r) >= BIG_LOSS:
+        return " / ".join(f"{h['behind']:+.1f}秒" for h in r)
+    return None
 
 
 def form_score(history: list[dict], card: dict) -> tuple[float, str | None]:
@@ -194,6 +206,7 @@ def evaluate_race(card: dict, st: Stats | None = None, conn=None, params: dict |
     for e, ped, sire, dam, damsire, sl, dsl, hist, prof, fx in prepared:
         prepared_ctx[e.get("number")] = (e, sire, sl, damsire, dsl, hist, fx)
         he = HorseEval(e.get("number"), e["name"], sire, damsire, sl, dsl, e.get("jockey"), e.get("odds"))
+        he.out_of_form = out_of_form(hist)
         comp, ev = {}, []
 
         # A. 血統事前適性

@@ -48,7 +48,7 @@ LONGSHOT_MIN_POP = 8
 def longshot_picks(evals: list[HorseEval], max_n: int = 3) -> list[HorseEval]:
     """★ 血統の穴（複数可）: 8番人気以下で血統要素の合計が最大の馬と、それに近い馬（0.3以上かつ最大の6割以上）.
     検証（2024 / 2025〜）: 最大の馬は3着内率 8.5% / 9.5%、この基準の馬全体で 8.1% / 8.9%（人気薄全体 7.2% / 7.4%）."""
-    ls = sorted((h for h in evals if (h.pop_rank or 0) >= LONGSHOT_MIN_POP and h.blood_upside > 0),
+    ls = sorted((h for h in evals if (h.pop_rank or 0) >= LONGSHOT_MIN_POP and h.blood_upside > 0 and not h.out_of_form),
                 key=lambda h: -h.blood_upside)
     if not ls:
         return []
@@ -153,7 +153,7 @@ def is_danger(h: HorseEval) -> bool:
 def value_horses(evals: list[HorseEval]) -> list[HorseEval]:
     """妙味馬: 4〜9番人気・予測勝率が市場の1.3倍以上・人気帯の中で走る条件がプラス（予測/市場の高い順）."""
     c = [h for h in evals if h.p_market and not h.pop_estimated and VALUE_POP[0] <= (h.pop_rank or 0) <= VALUE_POP[1]
-         and h.p_win / h.p_market >= VALUE_RATIO and h.cond_score > 0 and not is_danger(h)]
+         and h.p_win / h.p_market >= VALUE_RATIO and h.cond_score > 0 and not is_danger(h) and not h.out_of_form]
     return sorted(c, key=lambda h: -h.p_win / h.p_market)
 
 

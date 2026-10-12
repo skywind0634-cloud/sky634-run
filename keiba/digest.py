@@ -87,6 +87,11 @@ def race_digest(evals: list[HorseEval]) -> dict:
         ang = [e.replace("検証済みの傾向: ", "") for e in h.evidence if e.startswith("検証済みの傾向")]
         if ang:
             out["検証済み"].append((h, " / ".join(ang)))
+        # 4〜6番人気は検証で3着内率が同じ人気の他の馬と変わらない（tools/strategy_danger_partners.py）ので1〜3番人気だけ
+        if (h.pop_rank or 99) <= 3 and h.cond_score <= -0.3:
+            out["危険"].append((h, _short(_pick(h, "来ない条件"), 160)))
+        if h.out_of_form:
+            continue  # 直近2〜3走すべて1.5秒以上負けの馬は注目馬に出さない
         if h.number not in seen and h.cond_score >= 0.4 and (h.pop_rank or 99) >= 4:
             out["走る条件"].append((h, _short(_pick(h, "走る条件"), 160)))
         if h.number not in seen and (h.value_segments or (h.value_edge or 0) > 0.15):
@@ -94,9 +99,6 @@ def race_digest(evals: list[HorseEval]) -> dict:
         fam = next((e for e in h.evidence if e.startswith("牝系: ") and "で走る" in e), None)
         if fam and h.number not in seen:
             out["牝系"].append((h, _short(fam, 160)))
-        # 4〜6番人気は検証で3着内率が同じ人気の他の馬と変わらない（tools/strategy_danger_partners.py）ので1〜3番人気だけ
-        if (h.pop_rank or 99) <= 3 and h.cond_score <= -0.3:
-            out["危険"].append((h, _short(_pick(h, "来ない条件"), 160)))
     return out
 
 
@@ -110,13 +112,13 @@ def sub_picks(evals: list[HorseEval], n: int = 2) -> list[HorseEval]:
     from .betting import is_danger, value_horses
     vs = {h.number for h in value_horses(evals)[:1]}
     c = [h for h in evals if 7 <= (h.pop_rank or 0) <= 9 and not h.pop_estimated and h.cond_score >= SUB_COND
-         and not is_danger(h) and h.number not in vs]
+         and not is_danger(h) and h.number not in vs and not h.out_of_form]
     return sorted(c, key=lambda h: -(h.p_win / h.p_market if h.p_market else 0))[:n]
 
 
 def strict_axis(evals: list[HorseEval]) -> list[HorseEval]:
     """妙味条件（厳格: 2024年までの2期間で単勝回収率120%以上が続いた条件）に該当する4番人気以下の馬."""
-    return [h for h in evals if h.value_segments and (h.pop_rank or 0) >= 4 and not h.pop_estimated]
+    return [h for h in evals if h.value_segments and (h.pop_rank or 0) >= 4 and not h.pop_estimated and not h.out_of_form]
 
 
 def strict_package(evals: list[HorseEval]) -> list[tuple[str, tuple]]:
