@@ -288,6 +288,22 @@ def elim_reason(e: dict) -> str | None:
     return None
 
 
+def PED5_FLAGS() -> dict:
+    """5代血統表からの祖先フラグ（data/knowledge/ped5_flags.json, tools/ped5_flags.py）."""
+    global _PED5
+    try:
+        return _PED5
+    except NameError:
+        pass
+    import json
+    from .config import KNOWLEDGE_DIR
+    try:
+        _PED5 = json.loads((KNOWLEDGE_DIR / "ped5_flags.json").read_text(encoding="utf-8"))["flags"]
+    except (OSError, ValueError, KeyError):
+        _PED5 = {}
+    return _PED5
+
+
 SS_LINES_ALL = {"ディープインパクト系", "ハーツクライ系", "ステイゴールド系", "フジキセキ系", "ゴールドアリュール系", "ネオユニヴァース系", "アグネスタキオン系",
                 "ダイワメジャー系", "ブラックタイド系", "マンハッタンカフェ系", "スペシャルウィーク系", "サンデーサイレンス系"}
 
@@ -372,6 +388,12 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
             gap = 0
         if su == "ダ" and e.get("age") == 3 and str(e.get("sex") or "").startswith("牝") and h.sire_line in ("デインヒル系", "ウォーフロント系", "グリーンデザート系", "ダンチヒ系"):
             why.append("ダート3歳×父ダンチヒ系×牝馬 ×（A/E 0.87/0.87/0.80）")
+        # 第4章 ナスルーラ系（tools/book_ch4_nasrullah.py）
+        pf = set(PED5_FLAGS().get(e.get("horse_id") or "", [])) | ({"サクラバクシンオー"} if "サクラバクシンオー" in (e.get("pedigree") or {}).values() else set())
+        if su == "芝" and d <= 1200 and not going.startswith("良") and "サクラバクシンオー" in pf:
+            why.append("芝1200以下の道悪×5代にサクラバクシンオー ○（A/E 1.21/1.07/1.11）")
+        if su == "芝" and not going.startswith("良") and h.sire_line == "プリンスリーギフト系":
+            why.append("芝の道悪×父プリンスリーギフト系 ○（A/E 1.07/1.05/1.16。良は0.84〜1.02）")
         # OP以上（OP・L・重賞）で強まる傾向（tools/open_class_check.py）
         if card.get("grade") in ("OP", "L", "G3", "G2", "G1"):
             if prv and prv.get("distance") and d <= prv["distance"] - 200 and stt == "米国型":
