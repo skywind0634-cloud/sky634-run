@@ -342,6 +342,13 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
         why = [f"{r['who']}{r['line']}×{r['value']} {'○' if min(r['ae']) >= 1.1 else '▼'}（A/E {'/'.join(f'{x:.2f}' for x in r['ae'])}）"
                for r in kb.get("rows", []) if (r["who"], r["line"]) in mine and (r["cond"], r["value"]) in cs]
         # サンデー系3タイプ（p56, tools/sunday_tpd.py）: Dサンデーはダートで人気ほど来ない（0.92/0.87/0.89）、Tサンデーは芝2200m以上で人気以上（1.05/1.05/1.04）
+        # 本 p63-80 の検証（tools/book_ch3.py）
+        if su == "ダ" and rec and all(x.get("surface") == "芝" for x in rec if x.get("surface")):
+            why.append("初ダート（前走まで芝のみ）▼（A/E 父・母父のタイプを問わず0.59〜0.89・複勝回収37〜62%）")
+        if su == "芝" and co in ("札幌", "函館") and h.sire_line in ("ステイゴールド系", "ハーツクライ系", "マンハッタンカフェ系"):
+            why.append("洋芝×父ステゴ/ハーツ/マンカフェ系 ○（A/E 1.07/1.15/1.13・複勝回収97/91/90%）")
+        if su == "ダ" and (e.get("age") or 0) >= 5 and h.sire_line in ("スクリーンヒーロー系", "シンボリクリスエス系", "ブライアンズタイム系", "クリスエス系", "グラスワンダー系"):
+            why.append("父ロベルト系×ダート5歳以上 ▽（A/E 0.91/0.89/0.85）")
         if su == "ダ" and h.sire_line in ("ゴールドアリュール系", "ネオユニヴァース系"):
             why.append("Dサンデー×ダート ▼（A/E 0.92/0.87/0.89・人気になりすぎ）")
         if su == "芝" and d >= 2200 and h.sire_line in ("ディープインパクト系", "ハーツクライ系", "ステイゴールド系", "スペシャルウィーク系"):
