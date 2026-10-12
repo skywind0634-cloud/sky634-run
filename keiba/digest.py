@@ -370,6 +370,8 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
             gap = (_dt.date.fromisoformat(card["date"]) - _dt.date.fromisoformat(prv["date"])).days if prv else 0
         except (KeyError, TypeError, ValueError):
             gap = 0
+        if su == "ダ" and e.get("age") == 3 and str(e.get("sex") or "").startswith("牝") and h.sire_line in ("デインヒル系", "ウォーフロント系", "グリーンデザート系", "ダンチヒ系"):
+            why.append("ダート3歳×父ダンチヒ系×牝馬 ×（A/E 0.87/0.87/0.80）")
         if su == "ダ" and gap >= 63 and stt == "日本型":
             why.append("ダート休み明け（中9週以上）×父日本型 ▽（A/E 0.93/0.90/0.95）")
         if su == "芝" and d >= 2500 and country_type(h.damsire_line) == "欧州型":
