@@ -379,6 +379,41 @@ def mainstream_gap(card: dict, evals: list[HorseEval]) -> tuple[str | None, list
     return lab, []
 
 
+def sire_recent_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int, str]]:
+    """最新の種牡馬傾向（2024年・2025-26年の両方で人気以上○/以下▼, data/knowledge/sire_profiles_modern.json, tools/sire_profiles_modern.py）と、
+    産駒実績からの実際のタイプ（本の分類が古い・系統名と働きがずれる種牡馬の補正）."""
+    import json
+    from .config import KNOWLEDGE_DIR
+    try:
+        kb = json.loads((KNOWLEDGE_DIR / "sire_profiles_modern.json").read_text(encoding="utf-8"))["sires"]
+    except (OSError, ValueError, KeyError):
+        return []
+    su = card.get("surface"); co = card.get("course"); d = card.get("distance") or 1600
+    going = card.get("going") or "良"
+    bd = (("芝〜1400" if d <= 1400 else "芝1600-1800" if d <= 1800 else "芝2000〜") if su == "芝" else ("ダ〜1400" if d <= 1400 else "ダ1600〜"))
+    base = {su, bd, f"{su}・{'良' if going.startswith('良') else '道悪'}", f"{su}・{'坂' if co in ('中山', '阪神', '中京', '東京') else '平坦'}",
+            f"{su}・直線{'長' if co in ('東京', '新潟', '阪神', '京都', '中京') else '短'}"}
+    ent = {e.get("number"): e for e in card.get("entries") or []}
+    out = []
+    for h in evals:
+        p = kb.get(h.sire or "")
+        if not p:
+            continue
+        e = ent.get(h.number, {})
+        cs = set(base)
+        if e.get("age"):
+            cs.add(f"{su}・{'2-3歳' if e['age'] <= 3 else '4歳以上'}")
+        rec = (e.get("recent") or [None])[0]
+        if rec and rec.get("distance") and abs(d - rec["distance"]) >= 200:
+            cs.add(f"{su}・{'延長' if d > rec['distance'] else '短縮'}")
+        why = [f"{'○' if r['ae'][0] >= 1 else '▼'}{r['cond']}（{r['ae'][0]:.2f}/{r['ae'][1]:.2f}）" for r in p.get("recent", []) if r["cond"] in cs]
+        typ = p.get("work_type") or ""
+        tag = f"{h.sire}: 実績タイプ {typ}" + (f"・{p['tpd']}" if p.get("tpd") else "") + f"・芝の平均勝ち距離{p.get('avg_win_turf') or '-'}m"
+        if why:
+            out.append((h.number, tag + " / 最新の傾向 " + "、".join(why)))
+    return out
+
+
 def close_losers(card: dict) -> list[tuple[int, str]]:
     """前走 4着以下で勝ち馬から0.6秒差以内、今回が同じ芝ダ・同距離で同クラスかクラス落ちの馬."""
     out = []
@@ -457,6 +492,13 @@ def text(card: dict, evals: list[HorseEval], title: str) -> str:
         L.append("- 系統×レース条件（亀谷『血統の教科書』の切り口。3期間とも人気以上○/以下▼。▼は消しの材料、○は単独の回収率100%前後なので材料）:")
         nm = {h.number: h for h in evals}
         for num, txt in sorted(bk, key=lambda x: (nm[x[0]].pop_rank or 99) if x[0] in nm else 99):
+            h = nm.get(num)
+            L.append(f"  - {horse_line(h) if h else num}：{txt}")
+    sr = sire_recent_horses(card, evals)
+    if sr:
+        L.append("- 最新の種牡馬傾向（2024年・2025-26年とも人気以上○/以下▼。本に無い新しい種牡馬も産駒実績から分類）:")
+        nm = {h.number: h for h in evals}
+        for num, txt in sorted(sr, key=lambda x: (nm[x[0]].pop_rank or 99) if x[0] in nm else 99):
             h = nm.get(num)
             L.append(f"  - {horse_line(h) if h else num}：{txt}")
     el = [(e.get("number"), elim_reason(e)) for e in card.get("entries") or []]
