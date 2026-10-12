@@ -417,6 +417,15 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
             why.append("芝×父ディープ系×母父欧州型ミスプロ系 ○（A/E 1.13/1.11/1.08。本のニックスどおり）")
         if su == "芝" and h.sire_line == "ステイゴールド系" and any(x.sire_line == "ディープインパクト系" and (x.pop_rank or 99) <= 3 for x in evals):
             why.append("芝×父ステイゴールド系（1-3番人気にディープ系あり）: ディープ系の人気馬が崩れたレースでは A/E 1.23/1.23/1.20。人気のディープ系を疑うときの相手")
+        # 第4章 サンデー系その他（tools/book_ch4_sunday2.py）
+        if su == "芝" and not going.startswith("良") and h.sire == "ダイワメジャー":
+            why.append("芝の道悪×父ダイワメジャー ◎（A/E 1.14/1.43/1.44。本の『タフな馬場で有利』のとおり）")
+        if su == "ダ" and h.sire_line == "ゴールドアリュール系" and "クラス" in (card.get("name") or "") and card.get("grade") not in ("OP", "L", "G3", "G2", "G1"):
+            why.append("ダート平場×父ゴールドアリュール系 ×（A/E 0.86/0.89/0.89。本の『平場より特別戦』のとおり）")
+        if su == "ダ" and h.sire_line == "ゴールドアリュール系" and (co, d) in (("東京", 1600), ("京都", 1400), ("中山", 1200)):
+            why.append("東京ダ1600・京都ダ1400・中山ダ1200×父ゴールドアリュール系 ×（A/E 0.82/0.56/0.69。本の得意コースは人気先行）")
+        if su == "芝" and h.sire_line == "ハーツクライ系" and h.pop_rank == 1:
+            why.append("芝×父ハーツクライ系×1番人気 ▽（A/E 0.95/0.95/0.93）")
         # 第4章 ロベルト系（tools/book_ch4_roberto.py）
         rob = ("スクリーンヒーロー系", "シンボリクリスエス系", "ブライアンズタイム系", "クリスエス系", "グラスワンダー系")
         is_op = card.get("grade") in ("OP", "L", "G3", "G2", "G1")
