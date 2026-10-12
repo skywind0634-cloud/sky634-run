@@ -294,6 +294,7 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
     import datetime as _dt
     import json
     from .config import KNOWLEDGE_DIR
+    from .knowledge import country_type
     try:
         kb = json.loads((KNOWLEDGE_DIR / "book_conditions.json").read_text(encoding="utf-8"))
     except (OSError, ValueError):
@@ -345,6 +346,10 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
         # 本 p63-80 の検証（tools/book_ch3.py）
         if su == "ダ" and rec and all(x.get("surface") == "芝" for x in rec if x.get("surface")):
             why.append("初ダート（前走まで芝のみ）▼（A/E 父・母父のタイプを問わず0.59〜0.89・複勝回収37〜62%）")
+        elif su == "ダ" and any(x.get("surface") == "芝" for x in rec[:3]):
+            why.append("ダートで近3走に芝出走あり ▽（A/E 良0.92/0.96/0.91・重不良0.90/0.92/0.91。本の『ダート道悪は芝血統』は確認できず）")
+        if su == "芝" and d >= 2500 and country_type(h.damsire_line) == "欧州型":
+            why.append("芝2500m以上×母父欧州型 ○（A/E 1.10/1.02/1.08）")
         if su == "芝" and co in ("札幌", "函館") and h.sire_line in ("ステイゴールド系", "ハーツクライ系", "マンハッタンカフェ系"):
             why.append("洋芝×父ステゴ/ハーツ/マンカフェ系 ○（A/E 1.07/1.15/1.13・複勝回収97/91/90%）")
         if su == "ダ" and (e.get("age") or 0) >= 5 and h.sire_line in ("スクリーンヒーロー系", "シンボリクリスエス系", "ブライアンズタイム系", "クリスエス系", "グラスワンダー系"):
