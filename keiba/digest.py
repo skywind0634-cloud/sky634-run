@@ -372,6 +372,14 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
             gap = 0
         if su == "ダ" and e.get("age") == 3 and str(e.get("sex") or "").startswith("牝") and h.sire_line in ("デインヒル系", "ウォーフロント系", "グリーンデザート系", "ダンチヒ系"):
             why.append("ダート3歳×父ダンチヒ系×牝馬 ×（A/E 0.87/0.87/0.80）")
+        # OP以上（OP・L・重賞）で強まる傾向（tools/open_class_check.py）
+        if card.get("grade") in ("OP", "L", "G3", "G2", "G1"):
+            if prv and prv.get("distance") and d <= prv["distance"] - 200 and stt == "米国型":
+                why.append("OP以上×距離短縮×父米国型 ○（ダA/E 1.09/1.20/1.25・複勝回収93/97/89%、芝1.06/1.11/1.10）")
+            if prv and prv.get("surface") == "芝" and su == "ダ":
+                why.append("OP以上×芝→ダ ×（A/E 0.58/0.57/0.87・複勝回収27〜53%）")
+            if su == "ダ" and stt == "日本型" and co not in ("東京", "中京"):
+                why.append("OP以上×父日本型×ダート直線短 ▽（A/E 0.86/0.91/0.87）")
         if su == "ダ" and gap >= 63 and stt == "日本型":
             why.append("ダート休み明け（中9週以上）×父日本型 ▽（A/E 0.93/0.90/0.95）")
         if su == "芝" and d >= 2500 and country_type(h.damsire_line) == "欧州型":
