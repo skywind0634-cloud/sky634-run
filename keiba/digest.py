@@ -288,6 +288,10 @@ def elim_reason(e: dict) -> str | None:
     return None
 
 
+SS_LINES_ALL = {"ディープインパクト系", "ハーツクライ系", "ステイゴールド系", "フジキセキ系", "ゴールドアリュール系", "ネオユニヴァース系", "アグネスタキオン系",
+                "ダイワメジャー系", "ブラックタイド系", "マンハッタンカフェ系", "スペシャルウィーク系", "サンデーサイレンス系"}
+
+
 def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int, str]]:
     """亀谷『血統の教科書』の切り口（小系統・大系統 × レース条件①〜⑫）で3期間とも人気以上○/以下▼だった組に該当する馬
     （data/knowledge/book_conditions.json, tools/book_conditions.py）."""
@@ -348,6 +352,15 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
             why.append("初ダート（前走まで芝のみ）▼（A/E 父・母父のタイプを問わず0.59〜0.89・複勝回収37〜62%）")
         elif su == "ダ" and any(x.get("surface") == "芝" for x in rec[:3]):
             why.append("ダートで近3走に芝出走あり ▽（A/E 良0.92/0.96/0.91・重不良0.90/0.92/0.91。本の『ダート道悪は芝血統』は確認できず）")
+        # 本 p91-97 の検証（tools/book_ch3c.py）
+        prv = rec[0] if rec else None
+        stt = country_type(h.sire_line)
+        if prv and prv.get("surface") == "芝" and su == "ダ" and stt == "米国型" and h.damsire_line in SS_LINES_ALL:
+            why.append("芝→ダ×父米国型×母父サンデー系 ▼（A/E 0.80/0.77/0.74）")
+        if prv and prv.get("surface") == "ダ" and su == "芝" and stt in ("日本型", "米国型"):
+            why.append(f"ダ→芝×父{stt} ▼（A/E {'0.73/0.85/0.75' if stt == '日本型' else '0.77/0.60/0.82'}。欧州型は0.87/1.03/1.04）")
+        if prv and prv.get("surface") == "ダ" and su == "ダ" and prv.get("distance") and d <= prv["distance"] - 200 and stt == "米国型" and (h.number or 0) >= 10:
+            why.append("ダート距離短縮×父米国型×2桁馬番 ○（A/E 1.11/1.11/1.02・複勝回収93/97/88%）")
         if su == "芝" and d >= 2500 and country_type(h.damsire_line) == "欧州型":
             why.append("芝2500m以上×母父欧州型 ○（A/E 1.10/1.02/1.08）")
         if su == "芝" and co in ("札幌", "函館") and h.sire_line in ("ステイゴールド系", "ハーツクライ系", "マンハッタンカフェ系"):
