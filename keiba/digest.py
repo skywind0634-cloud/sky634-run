@@ -394,6 +394,22 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
             why.append("芝1200以下の道悪×5代にサクラバクシンオー ○（A/E 1.21/1.07/1.11）")
         if su == "芝" and not going.startswith("良") and h.sire_line == "プリンスリーギフト系":
             why.append("芝の道悪×父プリンスリーギフト系 ○（A/E 1.07/1.05/1.16。良は0.84〜1.02）")
+        # 第4章 ミスタープロスペクター系（tools/book_ch4_mrp.py）
+        if su == "芝" and h.sire == "ロードカナロア":
+            if card.get("grade") in ("OP", "L", "G3", "G2", "G1"):
+                why.append("芝OP以上×父ロードカナロア ○（A/E 1.10/1.14/1.22）")
+            if prv and prv.get("distance") and d <= prv["distance"] - 200:
+                why.append("芝の距離短縮×父ロードカナロア ○（A/E 1.12/1.11/1.27・複勝回収90/74/101%）")
+        if su == "芝" and h.sire == "リオンディーズ" and prv and prv.get("distance") and d >= prv["distance"] + 200:
+            why.append("芝の距離延長×父リオンディーズ ▼（A/E 0.66/0.81/0.81）")
+        if su == "ダ" and h.sire == "ラブリーデイ":
+            why.append("ダート×父ラブリーデイ ▼（A/E 0.84/0.70/0.74）")
+        if su == "ダ" and h.sire == "ルーラーシップ" and gap >= 63:
+            why.append("ダート休み明け×父ルーラーシップ ▼（A/E 0.90/0.79/0.65）")
+        if su == "ダ" and h.sire == "ドゥラメンテ" and str(e.get("sex") or "").startswith("牝"):
+            why.append("ダート×父ドゥラメンテ×牝馬 ▼（A/E 0.87/0.82/0.87）")
+        if su == "芝" and co in ("京都", "新潟", "札幌", "函館", "小倉", "福島") and h.sire_line in ("フォーティナイナー系", "ファピアノ系"):
+            why.append(f"平坦な芝×父{h.sire_line} ▼（A/E フォーティナイナー系0.82〜0.90・ファピアノ系0.59〜0.90）")
         # 第4章 ボールドルーラー系（tools/book_ch4_boldruler.py）
         if su == "ダ" and h.sire == "シニスターミニスター":
             why.append("ダート×父シニスターミニスター ○（A/E 1.11/1.15/1.06、6番人気以下は◎1.12/1.20/1.24・複勝回収76/76/119%）")
