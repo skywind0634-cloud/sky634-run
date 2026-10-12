@@ -394,6 +394,11 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
             why.append("芝1200以下の道悪×5代にサクラバクシンオー ○（A/E 1.21/1.07/1.11）")
         if su == "芝" and not going.startswith("良") and h.sire_line == "プリンスリーギフト系":
             why.append("芝の道悪×父プリンスリーギフト系 ○（A/E 1.07/1.05/1.16。良は0.84〜1.02）")
+        # 第4章 ボールドルーラー系（tools/book_ch4_boldruler.py）
+        if su == "ダ" and h.sire == "シニスターミニスター":
+            why.append("ダート×父シニスターミニスター ○（A/E 1.11/1.15/1.06、6番人気以下は◎1.12/1.20/1.24・複勝回収76/76/119%）")
+        elif su == "ダ" and h.sire_line == "エーピーインディ系":
+            why.append("ダート×父エーピーインディ系 ○（A/E 1.07/1.11/1.06、直線の短いダートは1.08/1.12/1.08。父サンデー系は0.92〜0.99）")
         # OP以上（OP・L・重賞）で強まる傾向（tools/open_class_check.py）
         if card.get("grade") in ("OP", "L", "G3", "G2", "G1"):
             if prv and prv.get("distance") and d <= prv["distance"] - 200 and stt == "米国型":
