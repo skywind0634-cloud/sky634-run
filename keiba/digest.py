@@ -472,6 +472,15 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
             why.append("ダート×父シニスターミニスター ○（A/E 1.11/1.15/1.06、6番人気以下は◎1.12/1.20/1.24・複勝回収76/76/119%）")
         elif su == "ダ" and h.sire_line == "エーピーインディ系":
             why.append("ダート×父エーピーインディ系 ○（A/E 1.07/1.11/1.06、直線の短いダートは1.08/1.12/1.08。父サンデー系は0.92〜0.99）")
+        # 双馬『1頭の種牡馬のクセ』（tools/souma_ch0.py）
+        if su == "ダ" and "タイキシャトル" in pf | ({"タイキシャトル"} if "タイキシャトル" in (h.sire, h.damsire) else set()):
+            g = e.get("gate") or 0
+            if 1 <= g <= 3:
+                why.append("ダート内枠（1-3枠）×タイキシャトルの血 ×（A/E 0.84/0.53/0.77。双馬『砂をかぶるのが苦手』のとおり）")
+            elif g >= 4:
+                why.append("ダート中外枠（4-8枠）×タイキシャトルの血 ○（A/E 中枠1.18/1.25/1.16・外枠1.18/1.36/0.98）")
+        if su == "芝" and "タイキシャトル" in pf | ({"タイキシャトル"} if "タイキシャトル" in (h.sire, h.damsire) else set()) and prv and prv.get("distance") and d >= prv["distance"] + 200:
+            why.append("芝の距離延長×タイキシャトルの血 ▽（A/E 0.68/0.91/0.94。双馬『延長が苦手』のとおり）")
         if su == "芝" and co == "新潟" and d == 1000 and "インリアリティ" in pf:
             why.append("新潟芝1000（直線）×5代にインリアリティ ○（2021-26: 単勝回収111%・なしは53%、3着内A/E 2024-26年 1.04/1.05/1.53。亀谷説。件数少なめ）")
         # OP以上（OP・L・重賞）で強まる傾向（tools/open_class_check.py）
