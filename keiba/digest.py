@@ -340,6 +340,11 @@ def souma_good(x: dict) -> bool | None:
     return None if r is None else r <= 3
 
 
+# 双馬『延長が得意な種牡馬』リスト（p51）
+SOUMA_EXT_SIRES = {"アイルハヴアナザー", "ウォーエンブレム", "エンパイアメーカー", "オレハマッテルゼ", "キャプテンスティーヴ", "キンシャサノキセキ", "ゴールドシップ",
+                   "コンデュイット", "スズカマンボ", "チーフベアハート", "チチカステナンゴ", "ディープスカイ", "デュランダル", "ドリームジャーニー", "ネオユニヴァース",
+                   "ノヴェリスト", "ハーツクライ", "ハービンジャー", "フォーティナイナーズサン", "ホワイトマズル", "マリエンバード", "メイショウサムソン", "ヨハネスブルグ", "ワークフォース"}
+
 TURF_START_DIRT = {("東京", 1600), ("中山", 1200), ("福島", 1150), ("新潟", 1200), ("京都", 1400), ("阪神", 1400), ("阪神", 2000), ("中京", 1400)}
 
 
@@ -569,6 +574,25 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
                     cnt[rr][0] += 1; cnt[rr][1] += bool(souma_good(same[i]))
             sk = cnt["短縮"][0] and cnt["短縮"][1] * 3 >= cnt["短縮"][0]
             ek = cnt["延長"][0] and cnt["延長"][1] * 3 >= cnt["延長"][0]
+            # 双馬 p52-64「異質な馬」（tools/souma_ch1b.py）: 血統の向きと逆のローテで好走歴
+            g_s, g_e = cnt["短縮"][1] > 0, cnt["延長"][1] > 0
+            ext_b = stt == "欧州型" or h.sire in SOUMA_EXT_SIRES
+            if stt == "米国型" and g_e and r1 == "同距離" and (pr_ >= 7 or (su == "ダ" and pr_ <= 3)):
+                why.append(f"父米国型なのに延長で好走歴→今回同距離 {'◎' if pr_ >= 7 else '○'}（双馬『異質な馬は能力が高い』, A/E "
+                           + ("7番人気以下 ダ1.22/1.36/1.11・芝1.62/1.20/1.69）" if pr_ >= 7 else "ダ1-3番人気 1.13/1.09/1.09）"))
+            if su == "ダ" and stt == "米国型" and g_s and not g_e and r1 == "延長" and pr_ >= 7:
+                why.append("ダ・父米国型で短縮でだけ好走歴→今回延長×7番人気以下 ◎（A/E 1.12/1.89/1.63。本の『短縮向き』と逆）")
+            if ext_b and g_s and r1 == "短縮" and pr_ >= 7:
+                why.append("ダ・延長向き血統なのに短縮で好走歴→今回短縮×7番人気以下 ○（A/E 1.15/1.06/1.88）" if su == "ダ"
+                           else "芝・延長向き血統（父欧州型/双馬リスト）なのに短縮で好走歴→今回短縮×7番人気以下 ×（A/E 0.67/0.58/0.76。本の『異質な馬を狙え』と逆）")
+            if su == "芝" and ext_b and g_e and not g_s and r1 == "短縮" and pr_ >= 7:
+                why.append("芝・延長向き血統で延長でだけ好走歴→今回短縮×7番人気以下 ×（A/E 0.78/0.89/0.82）")
+            if su == "芝" and ext_b and g_e and not g_s and r1 == "同距離" and 4 <= pr_ <= 6:
+                why.append("芝・延長向き血統で延長でだけ好走歴→今回同距離×4-6番人気 ×（A/E 0.88/0.84/0.87）")
+            if su == "ダ" and r1 == "同距離" and pr_ >= 7 and (e.get("age") == 2 or (e.get("age") == 3 and str(card.get("date", ""))[5:7] <= "06")):
+                why.append("2-3歳（3歳は6月まで）のダ・同距離×7番人気以下 ◎（A/E 1.34/1.37/1.22・複勝回収135/113/132%）")
+            if su == "ダ" and r1 == "延長" and not going.startswith("良"):
+                why.append("ダートの道悪×延長 ▽（A/E 0.94/0.82/0.90）")
             if pr_ >= 7:
                 if su == "芝" and sk and ek and r1 == "同距離":
                     why.append("芝・短縮でも延長でも双馬の好走あり→今回同距離×7番人気以下 ◎（A/E 1.21/1.25/1.59）")
