@@ -404,8 +404,8 @@ def souma_good(x: dict) -> bool | None:
     return None if r is None else r <= 3
 
 
-def fast_turf_day(card: dict) -> bool | None:
-    """当日（先のレース）・前日の同場の芝の勝ちタイムがコース平均より平均0.5秒以上速いか（DB に結果がある場合だけ, tools/souma_ch2a.py）."""
+def turf_day_dev(card: dict) -> float | None:
+    """当日（先のレース）・前日の同場の芝の勝ちタイムとコース平均との差の平均（-は速い, DB に結果がある場合だけ, tools/souma_ch2a.py）."""
     import datetime as _dt
     import sqlite3
     from .config import DB_PATH
@@ -424,7 +424,13 @@ def fast_turf_day(card: dict) -> bool | None:
                     devs.append(t - m)
     except (KeyError, TypeError, ValueError, sqlite3.Error):
         return None
-    return sum(devs) / len(devs) <= -0.5 if len(devs) >= 2 else None
+    return sum(devs) / len(devs) if len(devs) >= 2 else None
+
+
+def fast_turf_day(card: dict) -> bool | None:
+    """芝の高速日（当日・前日の同場の勝ちタイムが平均0.5秒以上速い）."""
+    v = turf_day_dev(card)
+    return None if v is None else v <= -0.5
 
 
 # 双馬『延長が得意な種牡馬』リスト（p51）
@@ -480,6 +486,13 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
         base.add(("⑪ハンデ", f"{su}・斤量差4kg以上"))
     ent = {e.get("number"): e for e in card.get("entries") or []}
     nfront = front_count(card)
+    tdev = turf_day_dev(card) if su == "芝" else None
+    _rs = []
+    for _e in card.get("entries") or []:
+        _p = (_e.get("recent") or [None])[0]
+        if _p and _p.get("surface") == su and _p.get("distance"):
+            _rs.append(d >= _p["distance"] + 200)
+    ext_share = sum(_rs) / len(_rs) if _rs else 0
     out = []
     for h in evals:
         e = ent.get(h.number, {})
@@ -703,6 +716,25 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
                 why.append("芝×父ディープ系後継×母父欧州型×4歳牝 ○（A/E 1.10/1.30/1.08）")
             elif ag >= 5 and not male:
                 why.append("芝×父ディープ系後継×母父欧州型×5歳以上牝 ▽（A/E 0.94/0.71/0.92。双馬『牝は劣化しにくい』と逆）")
+        # 双馬 第2章 ハーツクライ・ステイゴールド（tools/souma_ch2b.py, 後継種牡馬でも検証）
+        pv_ = rec[0] if rec else None
+        r1_ = None
+        if pv_ and pv_.get("surface") == su and pv_.get("distance"):
+            r1_ = "短縮" if d <= pv_["distance"] - 200 else "延長" if d >= pv_["distance"] + 200 else "同距離"
+        if su == "芝" and h.sire == "ハーツクライ" and r1_ == "同距離":
+            why.append("芝の同距離×父ハーツクライ ▽（A/E 0.89/0.92/0.91）")
+        if su == "ダ" and h.sire_line == "ハーツクライ系" and h.sire not in ("ハーツクライ", "ジャスタウェイ") and r1_ == "短縮":
+            why.append("ダートの距離短縮×父ハーツ系後継 ○（A/E 1.22/1.09/1.82。双馬『ハーツは短縮苦手』と逆）")
+        if su == "芝" and h.sire_line == "ハーツクライ系" and h.sire != "ハーツクライ" and r1_ == "延長" and ext_share >= 0.5:
+            why.append(f"芝の延長×父ハーツ系後継×出走馬の{ext_share:.0%}が延長 ×（A/E 0.85/0.82/0.62。双馬『他馬が初めての延長なら有利』と逆）")
+        if su == "芝" and h.sire_line == "ステイゴールド系":
+            if tdev is not None and tdev >= 0.5:
+                why.append(f"芝の時計がかかる日（当日・前日の同場 +{tdev:.1f}秒）×父ステゴ系 ○（A/E 1.14/1.09/1.10。双馬『タフな馬場』のとおり。道悪かどうかでは差なし）")
+            if co in ("中山", "福島", "小倉", "函館", "札幌"):
+                if 4 <= (h.pop_rank or 0) <= 6:
+                    why.append("小回り芝（中山・ローカル）×父ステゴ系×4-6番人気 ◎（A/E 1.25/1.29/1.20。双馬『小回り適性』のとおり）")
+                elif (h.pop_rank or 0) >= 7 and h.sire == "ゴールドシップ":
+                    why.append("小回り芝×父ゴールドシップ×7番人気以下 ▽（A/E 0.90/0.73/0.77）")
         # ペースが緩む瞬発力勝負（スロー予想＝前走で前にいた馬0-1頭）で走るか（tools/pace_adj_check.py, 上がりの速さはペース補正して確認）
         if su == "芝" and 1600 <= d <= 1800 and h.sire_line == "ディープインパクト系" and nfront is not None:
             if nfront <= 1:
