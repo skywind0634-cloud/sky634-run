@@ -1204,9 +1204,48 @@ def close_losers(card: dict) -> list[tuple[int, str]]:
     return out
 
 
+def flag_scores(card: dict, evals: list[HorseEval]) -> dict:
+    """馬番 → フラグ点（○◎の数 − ×▽▼の数。book_condition_horses・pace_l3_horses・course_check_horses。tools/flag_backtest.py）."""
+    import re
+    txt = {}
+    for f in (book_condition_horses, pace_l3_horses, course_check_horses):
+        try:
+            for num, t in f(card, evals):
+                txt[num] = txt.get(num, "") + " " + t
+        except Exception:  # noqa: BLE001 — 1つの材料の失敗で予想を止めない
+            pass
+    return {h.number: len(re.findall(r"[◎○]（", txt.get(h.number, ""))) - len(re.findall(r"[×▽▼]（", txt.get(h.number, ""))) for h in evals}
+
+
+def flag_picks(card: dict, evals: list[HorseEval]) -> list[str]:
+    """フラグ点の買い目（tools/flag_strategy.py, 2021-23/2024/2025-26 の3期間とも回収率100%超の組。フラグ選定期間内の確認なので今後の週で検証）."""
+    sc = flag_scores(card, evals)
+    pop = {h.number: h.pop_rank for h in evals if h.pop_rank}
+    nm = {h.number: h.name for h in evals}
+    out = []
+    one = [n for n, p in pop.items() if p == 1]
+    if one and sc.get(one[0], 0) <= -2:
+        cand = sorted([n for n, p in pop.items() if 2 <= p <= 6 and sc.get(n, 0) >= 1], key=lambda n: (-sc[n], pop[n]))
+        if cand and sc[cand[0]] >= 2:
+            ax = cand[0]
+            wide = [n for n in cand[1:5]]
+            out.append(f"**★フラグ点: 1番人気{one[0]}{nm[one[0]]}が点{sc[one[0]]:+d}（危険）** → "
+                       f"単勝 {'・'.join(f'{n}{nm[n]}' for n in cand if sc[n] >= 2)}（2-6番人気で+2以上。検証 単勝115/113/140%・複勝94/100/104%）"
+                       + (f"、ワイド {ax}-{'・'.join(map(str, wide))}（検証 ワイド133/137/195%・的中率17〜23%）" if wide else ""))
+    for n, p in sorted(pop.items(), key=lambda x: x[1]):
+        if 4 <= p <= 6 and sc.get(n, 0) >= 3:
+            out.append(f"**★フラグ点: {n}{nm[n]}（{p}番人気・点{sc[n]:+d}）** → 単勝・複勝（4-6番人気で+3以上。検証 単勝103/115/103%・複勝101/104/99%・3着内率約38%）")
+    return out
+
+
 def text(card: dict, evals: list[HorseEval], title: str) -> str:
     d = race_digest(evals)
     L = [f"### {title}"]
+    L += flag_picks(card, evals)
+    sc_ = flag_scores(card, evals)
+    if any(sc_.values()):
+        L.append("フラグ点（○−×）: " + "、".join(f"{h.number}{h.name}({h.pop_rank}人気){sc_[h.number]:+d}"
+                                              for h in sorted(evals, key=lambda h: h.pop_rank or 99) if sc_.get(h.number)))
     L += ticket_card(card, evals)
     if d["本線"]:
         from .betting import value_plan
