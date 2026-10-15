@@ -1016,6 +1016,66 @@ def sire_recent_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int, st
     return out
 
 
+def course_check_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int, str]]:
+    """data/knowledge/course_sire_flags.json（tools/course_sire_check.py）の3期間一貫した組に当てはまる馬."""
+    import json
+    from .config import KNOWLEDGE_DIR
+    from .knowledge import country_type
+    try:
+        kb = json.loads((KNOWLEDGE_DIR / "course_sire_flags.json").read_text(encoding="utf-8"))["specs"]
+    except (OSError, ValueError, KeyError):
+        return []
+    co, su, d = card.get("course"), card.get("surface"), card.get("distance")
+    specs = [(sp, v) for sp, v in kb.items() if sp.split("|")[0] == co and sp.split("|")[1] == su
+             and (not sp.split("|")[2] or str(d) in sp.split("|")[2].split(","))]
+    if not specs:
+        return []
+    m = int(str(card.get("date") or "2026-01-01")[5:7])
+    season = "1-2月" if m <= 2 else "3-6月" if m <= 6 else "7-8月" if m <= 8 else "9-12月"
+    dv = turf_day_dev(card, su)
+    ds_ = None if dv is None else "高速日" if dv <= -0.5 else "時計がかかる日" if dv >= 0.5 else "平均的な日"
+    ent = {e.get("number"): e for e in card.get("entries") or []}
+    out = []
+    for h in evals:
+        e = ent.get(h.number, {})
+        pb = "1-3番人気" if (h.pop_rank or 99) <= 3 else "4番人気以下"
+        g = e.get("gate") or 0
+        gb = "1-3枠" if g <= 3 else "4-6枠" if g <= 6 else "7-8枠"
+        age = e.get("age") or 9
+        sex = "牝" if str(e.get("sex") or "").startswith("牝") else "牡セ"
+        fl = PED5_FLAGS().get(e.get("horse_id") or "", [])
+        st = country_type(h.sire_line) if h.sire_line else None
+        keys = set()
+        if h.sire:
+            keys |= {("①父×人気", h.sire, pb), ("①父", h.sire, "全体"), ("②父×性別", h.sire, sex),
+                     ("③父×年齢", h.sire, "2-3歳" if age <= 3 else "4歳" if age == 4 else "5歳以上")}
+        if h.damsire:
+            keys.add(("④母父", h.damsire, "全体"))
+        keys |= {("⑤5代の祖先", f, "全体") for f in fl}
+        if st:
+            keys.add(("⑥時期×父の国別タイプ", f"{season}・父{st}", "全体"))
+        if "サドラーズウェルズ/ミルリーフ" in fl:
+            keys.add(("⑥時期×5代にサドラーズ/ミルリーフ", season, "全体"))
+        rec = (e.get("recent") or [None])[0]
+        try:
+            pz = int(str(rec.get("passing")).split("-")[0]) / max(rec.get("n_runners") or 16, 1)
+            keys.add(("⑦前走の位置取り×枠", f"{'前15%' if pz <= 0.15 else '後方40%' if pz > 0.6 else '中団'}・{gb}", "全体"))
+        except (AttributeError, ValueError, TypeError):
+            pass
+        if ds_ and g:
+            keys.add(("⑧当日の時計×枠", f"{ds_}・{gb}", "全体"))
+        why = []
+        for sp, v in specs:
+            where = f"{co}{su}{sp.split('|')[2] or '全体'}"
+            for r in v["rows"]:
+                if tuple(r["k"]) in keys:
+                    k = r["k"]
+                    why.append(f"{where}・{k[0][1:]}={k[1]}{'' if k[2] == '全体' else '×' + k[2]} {r['mark']}（A/E {'/'.join(f'{x:.2f}' for x in r['ae'])}）")
+        if why:
+            out.append((h.number, "、".join(why)))
+    return out
+
+
 def course_blood_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int, str]]:
     """コース別・コース×展開別の血統傾向（2021-23と2024-26の両方で人気以上○/以下▼・大きな件数のものだけ, data/knowledge/course_blood.json,
     tools/course_blood.py）. 2021-24年で選んだものが2025-26年も同じ向きだったのは65%（上積み+4.5%）なので材料扱い."""
@@ -1214,6 +1274,13 @@ def text(card: dict, evals: list[HorseEval], title: str) -> str:
         L.append("- 種牡馬のクセ（父・母父×ローテ・枠・間隔・馬場・前走など。2021-23/2024/2025-26の3期間とも人気以上○/以下▼）:")
         nm = {h.number: h for h in evals}
         for num, txt in sorted(sq, key=lambda x: (nm[x[0]].pop_rank or 99) if x[0] in nm else 99):
+            h = nm.get(num)
+            L.append(f"  - {horse_line(h) if h else num}：{txt}")
+    cc = course_check_horses(card, evals)
+    if cc:
+        L.append("- コース別の種牡馬・血統・枠（コース別種牡馬本の主張を検証し、3期間とも一貫した組。tools/course_sire_check.py）:")
+        nm = {h.number: h for h in evals}
+        for num, txt in sorted(cc, key=lambda x: (nm[x[0]].pop_rank or 99) if x[0] in nm else 99):
             h = nm.get(num)
             L.append(f"  - {horse_line(h) if h else num}：{txt}")
     cb = course_blood_horses(card, evals)
