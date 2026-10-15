@@ -415,6 +415,7 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
     if wcs and max(wcs) - min(wcs) >= 4:
         base.add(("⑪ハンデ", f"{su}・斤量差4kg以上"))
     ent = {e.get("number"): e for e in card.get("entries") or []}
+    nfront = front_count(card)
     out = []
     for h in evals:
         e = ent.get(h.number, {})
@@ -638,6 +639,12 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
                 why.append("芝×父ディープ系後継×母父欧州型×4歳牝 ○（A/E 1.10/1.30/1.08）")
             elif ag >= 5 and not male:
                 why.append("芝×父ディープ系後継×母父欧州型×5歳以上牝 ▽（A/E 0.94/0.71/0.92。双馬『牝は劣化しにくい』と逆）")
+        # ペースが緩む瞬発力勝負（スロー予想＝前走で前にいた馬0-1頭）で走るか（tools/pace_adj_check.py, 上がりの速さはペース補正して確認）
+        if su == "芝" and 1600 <= d <= 1800 and h.sire_line == "ディープインパクト系" and nfront is not None:
+            if nfront <= 1:
+                why.append(f"芝1600-1800×父ディープ系×スロー予想（前に行く馬{nfront}頭）○（A/E 後継1.13/1.10/1.06・ディープ本人1.05/1.25/1.69。双馬『ペースが緩む瞬発力勝負』のとおり）")
+            elif nfront >= 4:
+                why.append(f"芝1600-1800×父ディープ系×消耗戦予想（前に行く馬{nfront}頭）×（A/E 後継0.72/0.65/0.84）")
         if su == "芝" and h.sire == "ディープインパクト" and male and (e.get("age") or 0) >= 4 and dct == "米国型":
             bw = e.get("body_weight") or (rec[0].get("body_weight") if rec else None)
             if bw and bw < 500:
