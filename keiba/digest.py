@@ -316,6 +316,30 @@ def ten3f_gap(card: dict, prev: dict | None) -> float | None:
     return mean - row[0] if row and row[0] else None
 
 
+def l3_rank(prev: dict | None) -> int | None:
+    """近走1走の上がり3Fのレース内順位（DB にそのレースがある場合だけ, tools/souma_ability.py）."""
+    import sqlite3
+    from .config import DB_PATH
+    if not prev or not prev.get("race_id") or not prev.get("number"):
+        return None
+    try:
+        with sqlite3.connect(DB_PATH) as c:
+            rs = c.execute("select number,last3f from results where race_id=? and last3f is not null", (str(prev["race_id"]),)).fetchall()
+    except sqlite3.Error:
+        return None
+    mine = [l for n, l in rs if n == prev["number"]]
+    return 1 + sorted(l for _, l in rs).index(mine[0]) if mine else None
+
+
+def souma_good(x: dict) -> bool | None:
+    """双馬の好走＝人気より上の着順で5着以内かつ上がり3位以内（上がり順位が分からなければ None）."""
+    fin, pop = x.get("finish") or 99, x.get("popularity") or 0
+    if not (fin <= 5 and fin < pop):
+        return False
+    r = l3_rank(x)
+    return None if r is None else r <= 3
+
+
 TURF_START_DIRT = {("東京", 1600), ("中山", 1200), ("福島", 1150), ("新潟", 1200), ("京都", 1400), ("阪神", 1400), ("阪神", 2000), ("中京", 1400)}
 
 
@@ -522,6 +546,40 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
                 why.append("芝・前走短縮で4-5着→今回同距離/延長×7番人気以下 ◎（A/E 1.10〜1.72）")
             if su == "芝" and r0 == "短縮" and f0 >= 6 and r1 == "延長" and pr_ >= 7:
                 why.append("芝・前走短縮で凡走→今回延長×7番人気以下 ×（A/E 0.88/0.57/0.85。短縮でも走れず今回は苦しい延長）")
+        # 双馬 第1章 p43-51 苦手ローテでの善戦・好走の定義（tools/souma_ability.py）
+        if len(same) >= 2 and same[0] is rec[0]:
+            pr_ = h.pop_rank or 0
+            f0, p0 = same[0].get("finish") or 99, same[0].get("popularity") or 0
+            beat = f0 <= 5 and f0 < p0
+            l3r = l3_rank(same[0])
+            if r0 == "同距離" and r1 == "同距離" and beat and pr_ >= 7 and not (4 <= f0 <= 5):
+                why.append(f"前走同距離で人気より上の{f0}着→今回同距離×7番人気以下 ◎（A/E ダ1.18/1.37/1.26・芝1.13/1.45/1.27。前走の好走が人気に反映されていない）")
+            if r0 == "同距離" and r1 == "同距離" and beat and pr_ and pr_ <= 3 and l3r is not None:
+                if su == "ダ" and l3r >= 4:
+                    why.append("ダ・前走同距離で人気より上の5着以内（上がり4位以下）→同距離×1-3番人気 ▽（A/E 0.89/0.91/0.91。前に行った恵まれの好走は人気になりすぎ）")
+                if su == "芝" and l3r <= 3:
+                    why.append("芝・前走同距離で双馬の好走→同距離×1-3番人気 ▽（A/E 0.95/0.88/0.88）")
+            if su == "ダ" and r0 == "短縮" and r1 == "延長" and pr_ >= 7 and not beat and l3r is not None and l3r >= 4:
+                why.append("ダ・前走短縮で凡走（上がり4位以下）→今回延長×7番人気以下 ×（A/E 0.84/0.54/0.86）")
+            # その馬の短縮型・延長型（過去の短縮/延長で双馬の好走が3回に1回以上）
+            cnt = {"短縮": [0, 0], "延長": [0, 0]}
+            for i in range(len(same) - 1):
+                rr = _rot(same[i]["distance"], same[i + 1]["distance"])
+                if rr in cnt:
+                    cnt[rr][0] += 1; cnt[rr][1] += bool(souma_good(same[i]))
+            sk = cnt["短縮"][0] and cnt["短縮"][1] * 3 >= cnt["短縮"][0]
+            ek = cnt["延長"][0] and cnt["延長"][1] * 3 >= cnt["延長"][0]
+            if pr_ >= 7:
+                if su == "芝" and sk and ek and r1 == "同距離":
+                    why.append("芝・短縮でも延長でも双馬の好走あり→今回同距離×7番人気以下 ◎（A/E 1.21/1.25/1.59）")
+                elif su == "芝" and sk and r1 == "延長":
+                    why.append("芝・短縮型（短縮で好走）→今回延長×7番人気以下 ◎（A/E 1.15/1.14/1.14。本は短縮を狙えとするが、実際は能力の裏付けとして効く）")
+                elif su == "芝" and ek and r1 == "短縮":
+                    why.append("芝・延長型（延長で好走）→今回短縮×7番人気以下 ○（A/E 1.08/1.22/1.23）")
+                elif su == "ダ" and sk and r1 == "同距離":
+                    why.append("ダ・短縮型（短縮で好走）→今回同距離×7番人気以下 ◎（A/E 1.22/1.14/1.18）")
+        if su == "ダ" and prv and prv.get("surface") == "ダ" and prv.get("distance") and d <= prv["distance"] - 200 and "Affirmed" in pf:
+            why.append("ダートの距離短縮×5代にAffirmed ○（A/E 1.41/1.08/1.28。双馬は延長得意とするが短縮で走る）")
         # 双馬 第1章 p36-42 テン3Fの前走比・芝スタートの例外（tools/souma_ten3f.py）
         tg = ten3f_gap(card, prv)
         if tg is not None:
