@@ -735,6 +735,33 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
                     why.append("小回り芝（中山・ローカル）×父ステゴ系×4-6番人気 ◎（A/E 1.25/1.29/1.20。双馬『小回り適性』のとおり）")
                 elif (h.pop_rank or 0) >= 7 and h.sire == "ゴールドシップ":
                     why.append("小回り芝×父ゴールドシップ×7番人気以下 ▽（A/E 0.90/0.73/0.77）")
+        # 内回り/外回り（tools/layout_check.py, レース結果の表記で判定。出馬表に無ければ距離から一意に決まる場合だけ）
+        if su == "芝" and co in ("京都", "阪神", "中山", "新潟"):
+            from . import knowledge as _K
+            lay = card.get("layout") or (None if (co, d) in (("京都", 1400), ("京都", 1600), ("新潟", 2000))
+                                         else _K._LAYOUT.get((co, "芝"), {}).get(d))
+            try:
+                ppos = int(str(rec[0].get("passing")).split("-")[0]) / max(rec[0].get("n_runners") or 16, 1) if rec else None
+            except (ValueError, TypeError):
+                ppos = None
+            pr2 = h.pop_rank or 0
+            if co == "京都" and lay == "外":
+                if h.sire_line == "ディープインパクト系":
+                    why.append("京都芝外回り×父ディープ系 ○（A/E 1.20/1.15/1.09。内回りは1.09/0.87/0.94で差がない）")
+                elif stt == "日本型":
+                    why.append("京都芝外回り×父日本型 ○（A/E 1.13/1.09/1.06。欧州型は0.92/0.97/0.98）")
+            if co == "阪神" and lay == "外":
+                if pr2 and pr2 <= 3 and ppos is not None and 0.15 < ppos <= 0.6:
+                    why.append("阪神芝外回り×前走中団×1-3番人気 ◎（A/E 1.15/1.16/1.14）")
+                if h.sire_line == "キングカメハメハ系":
+                    why.append("阪神芝外回り×父キンカメ系 ○（A/E 1.11/1.54/1.05）")
+            if co == "中山" and lay == "内" and ppos is not None:
+                if 4 <= pr2 <= 6 and 0.15 < ppos <= 0.6:
+                    why.append("中山芝内回り×前走中団×4-6番人気 ◎（A/E 1.23/1.42/1.13）")
+                if pr2 >= 7 and ppos > 0.6:
+                    why.append("中山芝内回り×前走後方×7番人気以下 ▽（A/E 0.81/0.92/0.63。直線が短く届かない）")
+            if co == "中山" and lay == "外" and h.sire_line == "シンボリクリスエス系":
+                why.append("中山芝外回り×父シンボリクリスエス系 ×（A/E 0.74/0.84/0.77）")
         # 双馬 第2章 ダイワメジャー・ルーラーシップ・ロードカナロア（tools/souma_ch2c.py）
         prr = h.pop_rank or 0
         if su == "芝" and h.sire == "ダイワメジャー":
