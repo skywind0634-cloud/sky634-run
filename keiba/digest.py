@@ -735,6 +735,32 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
                     why.append("小回り芝（中山・ローカル）×父ステゴ系×4-6番人気 ◎（A/E 1.25/1.29/1.20。双馬『小回り適性』のとおり）")
                 elif (h.pop_rank or 0) >= 7 and h.sire == "ゴールドシップ":
                     why.append("小回り芝×父ゴールドシップ×7番人気以下 ▽（A/E 0.90/0.73/0.77）")
+        # 双馬 第2章 ダイワメジャー・ルーラーシップ・ロードカナロア（tools/souma_ch2c.py）
+        prr = h.pop_rank or 0
+        if su == "芝" and h.sire == "ダイワメジャー":
+            if r1_ == "延長" and prr >= 7:
+                why.append("芝の延長×父ダイワメジャー×7番人気以下 ×（A/E 0.54/0.51/0.69。双馬『延長が苦手』のとおり。短縮が得意は確認できず）")
+            try:
+                if pv_ and pv_.get("surface") == "芝" and int(str(pv_.get("passing")).split("-")[0]) / max(pv_.get("n_runners") or 16, 1) > 0.6:
+                    why.append("芝×父ダイワメジャー×前走後方 ▽（A/E 0.87/0.94/0.90。先行して持続力を活かせないと割引）")
+            except (ValueError, TypeError):
+                pass
+        if su == "芝" and h.sire == "ルーラーシップ":
+            if r1_ == "延長" and prr >= 7:
+                why.append("芝の延長×父ルーラーシップ×7番人気以下 ○（A/E 1.07/1.05/1.10）")
+            if r1_ == "短縮" and pv_ and d == pv_["distance"] - 200:
+                why.append("芝の200m短縮×父ルーラーシップ ○（A/E 1.17/1.36/1.08。少しの短縮なら走る）")
+        if h.sire == "ロードカナロア":
+            if su == "ダ" and r1_ in ("同距離", "短縮") and prr >= 7:
+                why.append(f"ダートの{r1_}×父ロードカナロア×7番人気以下 ◎（A/E {'1.40/1.17/1.23' if r1_ == '同距離' else '1.42/1.52/1.32'}）")
+            if su == "芝" and r1_ == "短縮":
+                sm = [x for x in rec if x.get("surface") == "芝" and x.get("distance")]
+                if any(sm[i]["distance"] <= sm[i + 1]["distance"] - 200 for i in range(len(sm) - 1)):
+                    why.append("芝の2回目以降の短縮×父ロードカナロア ◎（A/E 1.11/1.25/1.13。双馬『初めての短縮は苦手・経験すると対応』。初めては1.11/0.87/1.51で不安定）")
+                if h.damsire_line in SS_LINES_ALL:
+                    why.append("芝の短縮×父ロードカナロア×母父サンデー系 ◎（A/E 1.17/1.17/1.50）")
+            if su == "芝" and r1_ == "延長" and prr >= 7:
+                why.append("芝の延長×父ロードカナロア×7番人気以下 ▽（A/E 0.94/0.61/0.81）")
         # ペースが緩む瞬発力勝負（スロー予想＝前走で前にいた馬0-1頭）で走るか（tools/pace_adj_check.py, 上がりの速さはペース補正して確認）
         if su == "芝" and 1600 <= d <= 1800 and h.sire_line == "ディープインパクト系" and nfront is not None:
             if nfront <= 1:
