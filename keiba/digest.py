@@ -474,6 +474,25 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
             why.append("ダート×父シニスターミニスター ○（A/E 1.11/1.15/1.06、6番人気以下は◎1.12/1.20/1.24・複勝回収76/76/119%）")
         elif su == "ダ" and h.sire_line == "エーピーインディ系":
             why.append("ダート×父エーピーインディ系 ○（A/E 1.07/1.11/1.06、直線の短いダートは1.08/1.12/1.08。父サンデー系は0.92〜0.99）")
+        # 双馬 第1章「前走より楽なら好走」の検証（tools/souma_rotation.py）: 前走・今回の2走のローテ並び×前走着順×人気
+        same = [x for x in rec if x.get("surface") == su and x.get("distance")]
+        if len(same) >= 2 and same[0] is rec[0]:
+            def _rot(a, b):
+                dd = a - b
+                return "短縮" if dd <= -200 else "延長" if dd >= 200 else "同距離"
+            r1, r0 = _rot(d, same[0]["distance"]), _rot(same[0]["distance"], same[1]["distance"])
+            f0 = same[0].get("finish") or 99
+            pr_ = h.pop_rank or 0
+            if su == "ダ" and r0 == "延長" and f0 >= 6 and r1 == "短縮":
+                why.append("前走ダ延長で凡走→今回短縮 ○（双馬『延長で凡走→楽になって巻き返す』, A/E 全体1.02/1.16/1.17・7番人気以下1.12/1.31/1.31）")
+            if r0 == "同距離" and 4 <= f0 <= 5 and pr_ >= 7 and (su == "ダ" and r1 == "同距離" or su == "芝" and r1 == "延長"):
+                why.append(f"前走同距離で4-5着→今回{r1}×7番人気以下 ◎（A/E {'1.16/1.40/1.29' if su == 'ダ' else '1.41/1.32/1.25'}。惜敗の人気薄）")
+            if su == "芝" and r0 == "同距離" and 4 <= f0 <= 5 and r1 == "短縮" and 4 <= pr_ <= 6:
+                why.append("芝・前走同距離で4-5着→今回短縮×4-6番人気 ◎（A/E 1.11/1.23/1.24）")
+            if su == "芝" and r0 == "短縮" and 4 <= f0 <= 5 and r1 in ("同距離", "延長") and pr_ >= 7:
+                why.append("芝・前走短縮で4-5着→今回同距離/延長×7番人気以下 ◎（A/E 1.10〜1.72）")
+            if su == "芝" and r0 == "短縮" and f0 >= 6 and r1 == "延長" and pr_ >= 7:
+                why.append("芝・前走短縮で凡走→今回延長×7番人気以下 ×（A/E 0.88/0.57/0.85。短縮でも走れず今回は苦しい延長）")
         # 双馬『1頭の種牡馬のクセ』（tools/souma_ch0.py）
         if su == "ダ" and "タイキシャトル" in pf | ({"タイキシャトル"} if "タイキシャトル" in (h.sire, h.damsire) else set()):
             g = e.get("gate") or 0
