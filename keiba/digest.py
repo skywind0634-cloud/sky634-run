@@ -404,22 +404,22 @@ def souma_good(x: dict) -> bool | None:
     return None if r is None else r <= 3
 
 
-def turf_day_dev(card: dict) -> float | None:
-    """当日（先のレース）・前日の同場の芝の勝ちタイムとコース平均との差の平均（-は速い, DB に結果がある場合だけ, tools/souma_ch2a.py）."""
+def turf_day_dev(card: dict, surface: str = "芝") -> float | None:
+    """当日（先のレース）・前日の同場の勝ちタイムとコース平均との差の平均（-は速い, DB に結果がある場合だけ, tools/souma_ch2a.py）. surface でダートも可."""
     import datetime as _dt
     import sqlite3
     from .config import DB_PATH
     try:
         d0 = card["date"]; d1 = (_dt.date.fromisoformat(d0) - _dt.timedelta(days=1)).isoformat()
         with sqlite3.connect(DB_PATH) as c:
-            rs = c.execute("select ra.race_id,ra.date,ra.distance,r.time_sec from races ra join results r using(race_id) where ra.course=? and ra.surface='芝' "
+            rs = c.execute("select ra.race_id,ra.date,ra.distance,r.time_sec from races ra join results r using(race_id) where ra.course=? and ra.surface=? "
                            "and r.finish=1 and r.time_sec is not null and (ra.date=? and ra.race_no<? or ra.date=?)",
-                           (card.get("course"), d0, card.get("race_no") or 99, d1)).fetchall()
+                           (card.get("course"), surface, d0, card.get("race_no") or 99, d1)).fetchall()
             devs = []
             for rid, dte, dist, t in rs:
-                m = c.execute("select avg(t) from (select r.time_sec t from races ra join results r using(race_id) where ra.course=? and ra.surface='芝' "
+                m = c.execute("select avg(t) from (select r.time_sec t from races ra join results r using(race_id) where ra.course=? and ra.surface=? "
                               "and ra.distance=? and r.finish=1 and r.time_sec is not null and ra.date<? order by ra.date desc limit 200)",
-                              (card.get("course"), dist, dte)).fetchone()[0]
+                              (card.get("course"), surface, dist, dte)).fetchone()[0]
                 if m:
                     devs.append(t - m)
     except (KeyError, TypeError, ValueError, sqlite3.Error):
@@ -432,6 +432,11 @@ def fast_turf_day(card: dict) -> bool | None:
     v = turf_day_dev(card)
     return None if v is None else v <= -0.5
 
+
+# 双馬 p138-141 高速血統（母父の系統）と、ダートで前が止まらない馬場に強い父系（tools/speed_blood.py）
+SPEED_DAM_LINES = {"ボールドルーラー系", "エーピーインディ系", "デピュティミニスター系", "ストームキャット系", "ヘネシー系", "ミスタープロスペクター系",
+                   "フォーティナイナー系", "ファピアノ系", "ゴーンウエスト系", "シーキングザゴールド系", "スマートストライク系", "キングマンボ系", "キングカメハメハ系"}
+DIRT_FRONT_LINES = {"エーピーインディ系", "ボールドルーラー系", "ヘネシー系", "ストームキャット系", "ファピアノ系", "キングカメハメハ系", "ゴーンウエスト系"}
 
 # 双馬『延長が得意な種牡馬』リスト（p51）
 SOUMA_EXT_SIRES = {"アイルハヴアナザー", "ウォーエンブレム", "エンパイアメーカー", "オレハマッテルゼ", "キャプテンスティーヴ", "キンシャサノキセキ", "ゴールドシップ",
@@ -486,7 +491,7 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
         base.add(("⑪ハンデ", f"{su}・斤量差4kg以上"))
     ent = {e.get("number"): e for e in card.get("entries") or []}
     nfront = front_count(card)
-    tdev = turf_day_dev(card) if su == "芝" else None
+    tdev = turf_day_dev(card, su) if su in ("芝", "ダ") else None
     _rs = []
     for _e in card.get("entries") or []:
         _p = (_e.get("recent") or [None])[0]
@@ -799,6 +804,21 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
                 why.append("ダ・前走同距離で4-5着→今回同距離×父ヘニーヒューズ ×（A/E 0.88/0.85/0.60）")
         if su == "芝" and h.sire == "ジャスタウェイ" and r1_ == "同距離" and (h.pop_rank or 0) >= 7:
             why.append("芝の同距離×父ジャスタウェイ×7番人気以下 ◎（A/E 1.43/1.18/1.55）")
+        # 双馬 p138-141 高速血統（tools/speed_blood.py）。当日・前日の同場の勝ちタイムで馬場の速さを判定
+        fast_dam = (h.damsire_line in SPEED_DAM_LINES and h.damsire not in ("キングズベスト", "ワークフォース", "ルーラーシップ")) or "インリアリティ" in pf
+        prs = h.pop_rank or 0
+        if su == "芝" and tdev is not None:
+            if tdev <= -0.5 and fast_dam and prs and prs <= 3:
+                why.append(f"芝の高速日（{tdev:+.1f}秒）×母系に高速血統×1-3番人気 ▽（A/E 0.93/0.94/0.94。高速血統の人気馬は人気になりすぎ）")
+            if tdev <= -0.5 and fast_dam and h.sire_line in SS_LINES_ALL and 4 <= prs <= 6:
+                why.append(f"芝の高速日（{tdev:+.1f}秒）×父サンデー系×母系に高速血統×4-6番人気 ○（A/E 1.09/1.24/1.08。双馬『高速対応は牝系で決まる』のとおり）")
+            if tdev >= 0.5 and not fast_dam and prs >= 7:
+                why.append(f"芝の時計がかかる日（+{tdev:.1f}秒）×母系に高速血統なし×7番人気以下 ◎（A/E 1.15/1.10/1.16）")
+        if su == "ダ" and h.sire_line in DIRT_FRONT_LINES and prs >= 7:
+            if not going.startswith("良") and not going.startswith("稍"):
+                why.append("ダートの重・不良×父が米国の先行型×7番人気以下 ○（A/E 1.07/1.49/1.05。双馬『前が止まらない馬場』のとおり）")
+            elif tdev is not None and tdev >= 0.5:
+                why.append(f"ダートの時計がかかる日（+{tdev:.1f}秒）×父が米国の先行型×7番人気以下 ○（A/E 1.08/1.32/1.09）")
         # 双馬 第2章 ダイワメジャー・ルーラーシップ・ロードカナロア（tools/souma_ch2c.py）
         prr = h.pop_rank or 0
         if su == "芝" and h.sire == "ダイワメジャー":
