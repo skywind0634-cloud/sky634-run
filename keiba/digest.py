@@ -783,6 +783,22 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
             why.append("ダートの同距離×母父サウスヴィグラス ○（A/E 1.07/1.16/1.08）")
         if su == "芝" and h.damsire == "ネオユニヴァース" and fast_turf_day(card):
             why.append("芝の高速日×母父ネオユニヴァース ×（A/E 0.86/0.65/0.74。双馬『高速決着に対応できない』のとおり）")
+        # 双馬 第2章 p118-127 ブラックタイド（後継キタサンブラック）・ヘニーヒューズ・ジャスタウェイ（tools/sire_rotation_check.py → docs/analysis/souma_ch2f.md）
+        if h.sire == "キタサンブラック" and r1_:
+            if su == "芝" and r1_ == "延長":
+                why.append("芝の延長×父キタサンブラック ○（A/E 1.12/1.10/1.10。父ブラックタイドの『短縮向き』と逆）")
+            if su == "芝" and r1_ == "短縮" and (e.get("age") or 0) >= 4:
+                why.append("芝の短縮×父キタサンブラック×4歳以上 ◎（A/E 1.43/1.32/1.13）")
+            if su == "ダ" and r1_ == "同距離" and (e.get("age") or 0) >= 4:
+                why.append("ダートの同距離×父キタサンブラック×4歳以上 ○（A/E 1.12/1.07/1.16）")
+        if su == "ダ" and h.sire == "ヘニーヒューズ" and r1_:
+            if r1_ == "短縮" and (e.get("age") or 0) >= 4:
+                why.append("ダートの短縮×父ヘニーヒューズ×4歳以上 ○（A/E 1.15/1.17/1.07。双馬『短縮ならいつでも狙える』のとおり）")
+            sm = [x for x in rec if x.get("surface") == "ダ" and x.get("distance")]
+            if r1_ == "同距離" and len(sm) >= 2 and abs(sm[0]["distance"] - sm[1]["distance"]) < 200 and 4 <= (sm[0].get("finish") or 0) <= 5:
+                why.append("ダ・前走同距離で4-5着→今回同距離×父ヘニーヒューズ ×（A/E 0.88/0.85/0.60）")
+        if su == "芝" and h.sire == "ジャスタウェイ" and r1_ == "同距離" and (h.pop_rank or 0) >= 7:
+            why.append("芝の同距離×父ジャスタウェイ×7番人気以下 ◎（A/E 1.43/1.18/1.55）")
         # 双馬 第2章 ダイワメジャー・ルーラーシップ・ロードカナロア（tools/souma_ch2c.py）
         prr = h.pop_rank or 0
         if su == "芝" and h.sire == "ダイワメジャー":
