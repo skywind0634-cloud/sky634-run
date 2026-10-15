@@ -340,6 +340,29 @@ def souma_good(x: dict) -> bool | None:
     return None if r is None else r <= 3
 
 
+def fast_turf_day(card: dict) -> bool | None:
+    """当日（先のレース）・前日の同場の芝の勝ちタイムがコース平均より平均0.5秒以上速いか（DB に結果がある場合だけ, tools/souma_ch2a.py）."""
+    import datetime as _dt
+    import sqlite3
+    from .config import DB_PATH
+    try:
+        d0 = card["date"]; d1 = (_dt.date.fromisoformat(d0) - _dt.timedelta(days=1)).isoformat()
+        with sqlite3.connect(DB_PATH) as c:
+            rs = c.execute("select ra.race_id,ra.date,ra.distance,r.time_sec from races ra join results r using(race_id) where ra.course=? and ra.surface='芝' "
+                           "and r.finish=1 and r.time_sec is not null and (ra.date=? and ra.race_no<? or ra.date=?)",
+                           (card.get("course"), d0, card.get("race_no") or 99, d1)).fetchall()
+            devs = []
+            for rid, dte, dist, t in rs:
+                m = c.execute("select avg(t) from (select r.time_sec t from races ra join results r using(race_id) where ra.course=? and ra.surface='芝' "
+                              "and ra.distance=? and r.finish=1 and r.time_sec is not null and ra.date<? order by ra.date desc limit 200)",
+                              (card.get("course"), dist, dte)).fetchone()[0]
+                if m:
+                    devs.append(t - m)
+    except (KeyError, TypeError, ValueError, sqlite3.Error):
+        return None
+    return sum(devs) / len(devs) <= -0.5 if len(devs) >= 2 else None
+
+
 # 双馬『延長が得意な種牡馬』リスト（p51）
 SOUMA_EXT_SIRES = {"アイルハヴアナザー", "ウォーエンブレム", "エンパイアメーカー", "オレハマッテルゼ", "キャプテンスティーヴ", "キンシャサノキセキ", "ゴールドシップ",
                    "コンデュイット", "スズカマンボ", "チーフベアハート", "チチカステナンゴ", "ディープスカイ", "デュランダル", "ドリームジャーニー", "ネオユニヴァース",
@@ -604,6 +627,26 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
                     why.append("ダ・短縮型（短縮で好走）→今回同距離×7番人気以下 ◎（A/E 1.22/1.14/1.18）")
         if su == "ダ" and prv and prv.get("surface") == "ダ" and prv.get("distance") and d <= prv["distance"] - 200 and "Affirmed" in pf:
             why.append("ダートの距離短縮×5代にAffirmed ○（A/E 1.41/1.08/1.28。双馬は延長得意とするが短縮で走る）")
+        # 双馬 第2章 ディープインパクト・キングカメハメハ（tools/souma_ch2a.py, 後継種牡馬でも検証）
+        dct = country_type(h.damsire_line) if h.damsire_line else None
+        male = not str(e.get("sex") or "").startswith("牝")
+        if su == "芝" and h.sire_line == "ディープインパクト系" and h.sire != "ディープインパクト" and dct == "欧州型":
+            ag = e.get("age") or 0
+            if ag <= 3 and male:
+                why.append("芝×父ディープ系後継×母父欧州型×2-3歳牡 ○（A/E 1.07/1.16/1.08。双馬『母父欧州型は完成が遅い』と逆）")
+            elif ag == 4 and not male:
+                why.append("芝×父ディープ系後継×母父欧州型×4歳牝 ○（A/E 1.10/1.30/1.08）")
+            elif ag >= 5 and not male:
+                why.append("芝×父ディープ系後継×母父欧州型×5歳以上牝 ▽（A/E 0.94/0.71/0.92。双馬『牝は劣化しにくい』と逆）")
+        if su == "芝" and h.sire == "ディープインパクト" and male and (e.get("age") or 0) >= 4 and dct == "米国型":
+            bw = e.get("body_weight") or (rec[0].get("body_weight") if rec else None)
+            if bw and bw < 500:
+                why.append("芝×父ディープ×牡4歳以上×母父米国型×500kg未満 ○（A/E 1.07/1.39/1.42。双馬『母父米国型の牡は古馬で劣化』は500kg未満では当たらない）")
+        if su == "芝" and h.sire_line == "キングカメハメハ系" and h.sire != "キングカメハメハ" and dct == "米国型":
+            if co == "東京":
+                why.append("東京芝×父キンカメ系後継×母父米国型 ○（A/E 1.11/1.07/1.17）")
+            if fast_turf_day(card):
+                why.append("芝の高速日（当日・前日の同場が速い）×父キンカメ系後継×母父米国型 ×（A/E 0.74/0.89/0.80。双馬『キンカメは高速馬場向き』は母父米国型では逆）")
         # 双馬 第1章 p36-42 テン3Fの前走比・芝スタートの例外（tools/souma_ten3f.py）
         tg = ten3f_gap(card, prv)
         if tg is not None:
