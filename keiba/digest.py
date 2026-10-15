@@ -13,6 +13,8 @@ from __future__ import annotations
 
 import re
 
+from collections import defaultdict
+
 from .betting import longshot_picks
 from .model import BLOOD_COMPS, HorseEval
 
@@ -481,6 +483,22 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
                 why.append("ダート中外枠（4-8枠）×タイキシャトルの血 ○（A/E 中枠1.18/1.25/1.16・外枠1.18/1.36/0.98）")
         if su == "芝" and "タイキシャトル" in pf | ({"タイキシャトル"} if "タイキシャトル" in (h.sire, h.damsire) else set()) and prv and prv.get("distance") and d >= prv["distance"] + 200:
             why.append("芝の距離延長×タイキシャトルの血 ▽（A/E 0.68/0.91/0.94。双馬『延長が苦手』のとおり）")
+        if prv and prv.get("surface") == "ダ" and su == "芝" and (h.sire_line in ("デインヒル系", "プリンスリーギフト系") or h.damsire_line in ("デインヒル系", "プリンスリーギフト系")
+                or h.damsire in ("アンバーシャダイ", "タイキシャトル", "タマモクロス", "ダンシングブレーヴ", "カーリアン", "Caerleon")
+                or pf & {"カロ系"}):
+            why.append("ダ→芝×双馬『芝替わり得意』の血 ×（A/E 0.74/0.69/0.79。得意とされる血統でも芝替わりは割引）")
+        if prv and prv.get("surface") == "芝" and su == "ダ" and h.sire_line in ("フォーティナイナー系",):
+            why.append("芝→ダ×父フォーティナイナー系 ×（A/E 0.37/0.32/0.73。双馬『ダート替わり得意』と逆）")
+        if prv and prv.get("distance") and prv.get("surface") == su:
+            ddd = d - prv["distance"]
+            if su == "ダ" and ddd >= 200 and h.sire == "パイロ":
+                why.append("ダートの距離延長×父パイロ ◎（A/E 1.14/1.87/1.30。双馬『短縮得意』と逆）")
+            if su == "ダ" and ddd <= -200 and h.sire == "ジャスタウェイ":
+                why.append("ダートの距離短縮×父ジャスタウェイ ◎（A/E 1.22/1.19/1.87）")
+            if su == "芝" and ddd <= -200 and h.sire == "ハーツクライ":
+                why.append("芝の距離短縮×父ハーツクライ ○（A/E 1.04/1.08/1.31。双馬『短縮苦手』と逆）")
+            if su == "芝" and ddd >= 200 and "Chief's Crown" in pf:
+                why.append("芝の距離延長×5代にChief's Crown ○（A/E 1.23/1.07/1.22）")
         if su == "芝" and co == "新潟" and d == 1000 and "インリアリティ" in pf:
             why.append("新潟芝1000（直線）×5代にインリアリティ ○（2021-26: 単勝回収111%・なしは53%、3着内A/E 2024-26年 1.04/1.05/1.53。亀谷説。件数少なめ）")
         # OP以上（OP・L・重賞）で強まる傾向（tools/open_class_check.py）
@@ -604,6 +622,85 @@ def course_blood_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int, s
     return out
 
 
+def horse_conditions(card: dict, e: dict) -> list[str]:
+    """tools/sire_quirks.py の conditions と同じ区分で、レース前に分かるこの馬の条件を返す（出馬表の近走から）."""
+    import datetime as _dt
+    su = card.get("surface"); co = card.get("course"); d = card.get("distance") or 1600
+    GRL = {"1勝": 1, "2勝": 2, "3勝": 3, "OP": 4, "L": 4, "G3": 5, "G2": 6, "G1": 7}
+    c = [su]
+    g = e.get("gate")
+    if g:
+        c.append(f"{su}・{'内枠1-3' if g <= 3 else '外枠6-8' if g >= 6 else '中枠4-5'}")
+    c.append(f"{su}・{'良' if (card.get('going') or '良').startswith('良') else '道悪'}")
+    c.append(f"{su}・{'坂' if co in ('中山', '阪神', '中京', '東京') else '平坦'}")
+    c.append(f"{su}・直線{'長' if co in ('東京', '新潟', '阪神', '京都', '中京') else '短'}")
+    n = len(card.get("entries") or [])
+    c.append(f"{su}・{'〜12頭' if n <= 12 else '13-15頭' if n <= 15 else '16頭〜'}")
+    a = e.get("age")
+    if a:
+        c.append(f"{su}・{'2-3歳' if a <= 3 else '4歳' if a == 4 else '5歳以上'}")
+    c.append(f"{su}・{'牝' if str(e.get('sex') or '').startswith('牝') else '牡セ'}")
+    try:
+        m = int(str(card.get("date"))[5:7])
+        c.append(f"{su}・{'春' if 3 <= m <= 5 else '夏' if 6 <= m <= 8 else '秋' if 9 <= m <= 11 else '冬'}")
+    except ValueError:
+        pass
+    prev = (e.get("recent") or [None])[0]
+    if prev:
+        if prev.get("surface") and prev["surface"] != su:
+            c.append(f"{prev['surface']}→{su}")
+        elif prev.get("distance"):
+            dd = d - prev["distance"]
+            c.append(f"{su}・{'延長' if dd >= 200 else '短縮' if dd <= -200 else '同距離'}")
+        try:
+            days = (_dt.date.fromisoformat(card["date"]) - _dt.date.fromisoformat(prev["date"])).days
+            c.append(f"{su}・{'中2週以内' if days <= 21 else '中3-8週' if days <= 63 else '9週以上'}")
+        except (KeyError, TypeError, ValueError):
+            pass
+        if e.get("weight") and prev.get("weight_carried"):
+            w = e["weight"] - prev["weight_carried"]
+            if w >= 1:
+                c.append(f"{su}・斤量増")
+            elif w <= -1:
+                c.append(f"{su}・斤量減")
+        f = prev.get("finish")
+        if f:
+            c.append(f"{su}・前走{'1-3着' if f <= 3 else '4-9着' if f <= 9 else '10着以下'}")
+        b = prev.get("behind")
+        if b is not None and f and f > 1:
+            c.append(f"{su}・前走{'0.5秒内' if b <= 0.5 else '0.5-1.5秒' if b < 1.5 else '1.5秒以上'}負け")
+        g0, g1 = GRL.get(prev.get("grade") or "", 4), GRL.get(card.get("grade") or "", 4)
+        c.append(f"{su}・{'昇級' if g1 > g0 else '降級' if g1 < g0 else '同級'}")
+    return c
+
+
+def sire_quirk_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int, str]]:
+    """種牡馬（父・母父）×条件のクセ（網羅スキャン, data/knowledge/sire_quirks.json, tools/sire_quirks.py）.
+    2021-24年で選んだものが2025-26年も同じ向きだったのは65%・上積み+4.6%なので材料."""
+    import json
+    from .config import KNOWLEDGE_DIR
+    try:
+        kb = json.loads((KNOWLEDGE_DIR / "sire_quirks.json").read_text(encoding="utf-8"))["rows"]
+    except (OSError, ValueError, KeyError):
+        return []
+    idx = defaultdict(list)
+    for r in kb:
+        idx[(r["who"], r["name"])].append(r)
+    ent = {e.get("number"): e for e in card.get("entries") or []}
+    out = []
+    for h in evals:
+        e = ent.get(h.number, {})
+        cs = set(horse_conditions(card, e))
+        why = []
+        for who, nm in (("父", h.sire), ("母父", h.damsire)):
+            for r in idx.get((who, nm), []):
+                if r["cond"] in cs:
+                    why.append(f"{who}{nm}×{r['cond']} {r['mark']}（A/E {'/'.join(f'{v:.2f}' for v in r['ae'])}）")
+        if why:
+            out.append((h.number, "、".join(why)))
+    return out
+
+
 def close_losers(card: dict) -> list[tuple[int, str]]:
     """前走 4着以下で勝ち馬から0.6秒差以内、今回が同じ芝ダ・同距離で同クラスかクラス落ちの馬."""
     out = []
@@ -682,6 +779,13 @@ def text(card: dict, evals: list[HorseEval], title: str) -> str:
         L.append("- 系統×レース条件（亀谷『血統の教科書』の切り口。3期間とも人気以上○/以下▼。▼は消しの材料、○は単独の回収率100%前後なので材料）:")
         nm = {h.number: h for h in evals}
         for num, txt in sorted(bk, key=lambda x: (nm[x[0]].pop_rank or 99) if x[0] in nm else 99):
+            h = nm.get(num)
+            L.append(f"  - {horse_line(h) if h else num}：{txt}")
+    sq = sire_quirk_horses(card, evals)
+    if sq:
+        L.append("- 種牡馬のクセ（父・母父×ローテ・枠・間隔・馬場・前走など。2021-23/2024/2025-26の3期間とも人気以上○/以下▼）:")
+        nm = {h.number: h for h in evals}
+        for num, txt in sorted(sq, key=lambda x: (nm[x[0]].pop_rank or 99) if x[0] in nm else 99):
             h = nm.get(num)
             L.append(f"  - {horse_line(h) if h else num}：{txt}")
     cb = course_blood_horses(card, evals)
