@@ -431,6 +431,11 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
             why.append("ダートの良×父ヴァイスリージェント系 ×（A/E 0.84/0.76/0.89。本の『軽い馬場向き』どおり良のダートは割引）")
         if su == "ダ" and str(e.get("sex") or "").startswith("セ") and h.damsire_line == "デピュティミニスター系":
             why.append("ダート×母父ヴァイスリージェント系×セン馬 ○（A/E 1.09/1.33/1.09）")
+        # 第4章 ストームバード系・サドラーズウェルズ系（tools/book_ch4_storm.py）
+        if h.sire == "ディスクリートキャット" and (e.get("age") or 0) >= 4:
+            why.append(f"{su}×父ディスクリートキャット×4歳以上 ○（A/E ダ1.11/1.33/1.14・芝1.19/1.08/1.33）")
+        if su == "ダ" and not going.startswith("良") and h.sire_line in ("サドラーズウェルズ系", "ガリレオ系"):
+            why.append("ダートの道悪×父サドラーズウェルズ系 ×（A/E 0.72/0.71/0.90）")
         # 第4章 ダンチヒ系（tools/book_ch4_danzig.py）
         if su == "ダ" and co in ("東京", "中京") and h.sire_line in ("デインヒル系", "ウォーフロント系", "グリーンデザート系", "ダンチヒ系") and h.sire != "ハービンジャー":
             why.append("直線の長いダート×父ダンチヒ系 ▽（A/E 0.92/0.74/0.91）")
