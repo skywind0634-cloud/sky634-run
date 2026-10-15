@@ -562,6 +562,33 @@ def sire_recent_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int, st
     return out
 
 
+def course_blood_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int, str]]:
+    """コース別・コース×展開別の血統傾向（2021-23と2024-26の両方で人気以上○/以下▼・大きな件数のものだけ, data/knowledge/course_blood.json,
+    tools/course_blood.py）. 2021-24年で選んだものが2025-26年も同じ向きだったのは65%（上積み+4.5%）なので材料扱い."""
+    import json
+    from .config import KNOWLEDGE_DIR
+    try:
+        kb = json.loads((KNOWLEDGE_DIR / "course_blood.json").read_text(encoding="utf-8"))["rows"]
+    except (OSError, ValueError, KeyError):
+        return []
+    course = f"{card.get('course')}{card.get('surface')}{card.get('distance')}"
+    nf = front_count(card)
+    keys = {course} | ({f"{course}|{'前少' if nf <= 1 else '前多' if nf >= 4 else '普通'}"} if nf is not None else set())
+    rows = [r for r in kb if r["key"] in keys]
+    if not rows:
+        return []
+    ent = {e.get("number"): e for e in card.get("entries") or []}
+    out = []
+    for h in evals:
+        flags = set(PED5_FLAGS().get(ent.get(h.number, {}).get("horse_id") or "", []))
+        mine = {("父", h.sire), ("父系統", h.sire_line), ("母父", h.damsire), ("母父系統", h.damsire_line)} | {("5代", f) for f in flags}
+        why = [f"{r['unit']}{'=' if r['unit'] != '5代' else 'に'}{r['name']}（{r['key'].replace('|', '・展開')}）{'○' if r['ae'][0] >= 1 else '▼'} A/E {r['ae'][0]:.2f}/{r['ae'][1]:.2f}"
+               for r in rows if (r["unit"], r["name"]) in mine]
+        if why:
+            out.append((h.number, "、".join(why)))
+    return out
+
+
 def close_losers(card: dict) -> list[tuple[int, str]]:
     """前走 4着以下で勝ち馬から0.6秒差以内、今回が同じ芝ダ・同距離で同クラスかクラス落ちの馬."""
     out = []
@@ -640,6 +667,13 @@ def text(card: dict, evals: list[HorseEval], title: str) -> str:
         L.append("- 系統×レース条件（亀谷『血統の教科書』の切り口。3期間とも人気以上○/以下▼。▼は消しの材料、○は単独の回収率100%前後なので材料）:")
         nm = {h.number: h for h in evals}
         for num, txt in sorted(bk, key=lambda x: (nm[x[0]].pop_rank or 99) if x[0] in nm else 99):
+            h = nm.get(num)
+            L.append(f"  - {horse_line(h) if h else num}：{txt}")
+    cb = course_blood_horses(card, evals)
+    if cb:
+        L.append("- コース別の血統傾向（このコースで2021-23年・2024-26年とも人気以上○/以下▼。2025-26年の再現率65%なので材料）:")
+        nm = {h.number: h for h in evals}
+        for num, txt in sorted(cb, key=lambda x: (nm[x[0]].pop_rank or 99) if x[0] in nm else 99):
             h = nm.get(num)
             L.append(f"  - {horse_line(h) if h else num}：{txt}")
     sr = sire_recent_horses(card, evals)
