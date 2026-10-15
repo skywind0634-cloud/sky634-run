@@ -246,6 +246,70 @@ def front_count(card: dict) -> int | None:
     return n if ents and known >= 0.7 * len(ents) else None
 
 
+def pace_l3_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int, str]]:
+    """展開予想（前走で前にいた馬の数）× 馬の上がり能力・位置取り（近3走, 同じ芝ダ）で3期間一貫した組（tools/pace_l3_predict.py）.
+    スローなら残り600mからのよーいドン、ハイなら差し・上がりの脚がある馬。"""
+    nf = front_count(card)
+    if nf is None:
+        return []
+    su = card.get("surface"); pace = "スロー" if nf <= 1 else "ハイ" if nf >= 4 else "平均"
+    tag = f"{pace}予想（前に行く馬{nf}頭）"
+    ent = {e.get("number"): e for e in card.get("entries") or []}
+    out = []
+    for h in evals:
+        e = ent.get(h.number, {}); pr = h.pop_rank or 0
+        same = [x for x in (e.get("recent") or []) if x.get("surface") == su][:3]
+        if not same:
+            continue
+        ranks = [r for r in (l3_rank(x) for x in same) if r is not None]
+        r1 = l3_rank(same[0])
+        n3 = sum(r <= 3 for r in ranks) if len(ranks) >= 2 else None
+        try:
+            pos = int(str(same[0].get("passing")).split("-")[0]) / max(same[0].get("n_runners") or 16, 1)
+        except (ValueError, TypeError):
+            pos = None
+        fast = any((x.get("last3f") or 99) <= 33.5 for x in e.get("recent") or [] if x.get("surface") == "芝")
+        why = []
+        if su == "芝" and pace == "ハイ":
+            if pr and pr <= 3 and n3 is not None and n3 <= 1:
+                why.append(f"人気馬で近3走の上がり3位以内{n3}回 ×（A/E 0回0.77/0.79/0.85・1回0.87/0.67/0.85。速い流れを差せない）")
+            elif pr and pr <= 3 and not fast:
+                why.append("人気馬で芝の上がり33.5秒以下の経験なし ×（A/E 0.84/0.75/0.80）")
+            if pr >= 7 and pos is not None and pos > 0.6:
+                why.append("人気薄で前走後方 ◎（差し届く, A/E 1.48/1.24/1.18）")
+            if pr >= 7 and r1 is not None and 2 <= r1 <= 3:
+                why.append("人気薄で前走上がり2-3位 ◎（A/E 1.17/1.30/1.95）")
+        if su == "芝" and pace == "スロー":
+            if pr >= 7 and n3 is not None and n3 >= 2:
+                why.append("人気薄で近3走の上がり3位以内2回以上 ○（よーいドン向き, A/E 1.10/1.07/1.13）")
+            if pr >= 7 and pos is not None and pos > 0.6:
+                why.append("人気薄で前走後方 ×（スローで届かない, A/E 0.87/0.89/0.88）")
+            if pr and pr <= 3 and pos is not None and 0.15 < pos <= 0.6:
+                why.append("人気馬で前走中団 ○（A/E 1.06/1.09/1.06）")
+        if su == "芝" and pace == "平均":
+            if pr >= 7 and r1 is not None and 2 <= r1 <= 3:
+                why.append("人気薄で前走上がり2-3位 ○（A/E 1.08/1.12/1.35）")
+            if pr and pr <= 3 and r1 is not None and r1 >= 4:
+                why.append("人気馬で前走上がり4位以下 ▽（A/E 0.93/0.92/0.94）")
+            if 4 <= pr <= 6 and pos is not None and 0.15 < pos <= 0.6:
+                why.append("4-6番人気で前走中団 ○（A/E 1.12/1.07/1.07）")
+        if su == "ダ" and pace == "ハイ":
+            if pr and pr <= 3 and r1 is not None and r1 >= 4:
+                why.append("人気馬で前走上がり4位以下 ▽（A/E 0.88/0.89/0.95）")
+            if pr >= 7 and pos is not None and 0.15 < pos <= 0.6:
+                why.append("人気薄で前走中団 ◎（A/E 1.20/1.14/1.20）")
+        if su == "ダ" and pace == "平均" and pr >= 7 and pos is not None and 0.15 < pos <= 0.6:
+            why.append("人気薄で前走中団 ◎（A/E 1.11/1.10/1.10）")
+        if su == "ダ" and pace == "スロー":
+            if 4 <= pr <= 6 and r1 is not None and 2 <= r1 <= 3:
+                why.append("4-6番人気で前走上がり2-3位 ○（A/E 1.07/1.08/1.09）")
+            if pr >= 7 and pos is not None and pos > 0.6:
+                why.append("人気薄で前走後方 ▽（A/E 0.95/0.87/0.88）")
+        if why:
+            out.append((h.number, f"{tag}: " + "、".join(why)))
+    return out
+
+
 def pace_blood_horses(card: dict, evals: list[HorseEval]) -> tuple[str | None, list[tuple[int, str]]]:
     """予想展開（前に行く馬の数）× 系統・種牡馬・国別タイプで、2021-23/2024/2025-26の3期間とも人気以上/以下だった組
     （data/knowledge/line_pace.json, tools/line_pace.py, tools/blood_lap.py）. 単独の回収率は100%前後なので材料."""
@@ -965,6 +1029,13 @@ def text(card: dict, evals: list[HorseEval], title: str) -> str:
         L.append("- 展開×血統（この展開で3期間とも人気以上○/以下▼の系統・種牡馬。単独の回収率は100%前後なので材料）:")
         nm = {h.number: h for h in evals}
         for num, txt in pb:
+            h = nm.get(num)
+            L.append(f"  - {horse_line(h) if h else num}：{txt}")
+    pl3 = pace_l3_horses(card, evals)
+    if pl3:
+        L.append("- 展開×上がり能力（展開予想と近3走の上がり順位・位置取り。3期間とも人気以上○/以下×）:")
+        nm = {h.number: h for h in evals}
+        for num, txt in sorted(pl3, key=lambda x: (nm[x[0]].pop_rank or 99) if x[0] in nm else 99):
             h = nm.get(num)
             L.append(f"  - {horse_line(h) if h else num}：{txt}")
     bk = book_condition_horses(card, evals)
