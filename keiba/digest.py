@@ -776,6 +776,13 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
                 why.append("芝×父マンハッタンカフェ系×500kg未満 ○（A/E 1.31/1.07/1.53。双馬『コンパクトな馬は良い馬』のとおり）")
             if bw_ and su == "ダ" and bw_ >= 500:
                 why.append("ダート×父マンハッタンカフェ系×500kg以上 ○（A/E 1.08/1.41/1.10。大型はダートでパワーを活かす）")
+        # 双馬 第2章 キンシャサノキセキ・サウスヴィグラス・ネオユニヴァース（tools/souma_ch2e.py）
+        if su == "芝" and h.sire == "キンシャサノキセキ" and r1_ == "同距離" and (h.pop_rank or 0) >= 7:
+            why.append("芝の同距離×父キンシャサノキセキ×7番人気以下 ◎（A/E 1.11/1.27/1.18）")
+        if su == "ダ" and h.damsire == "サウスヴィグラス" and r1_ == "同距離":
+            why.append("ダートの同距離×母父サウスヴィグラス ○（A/E 1.07/1.16/1.08）")
+        if su == "芝" and h.damsire == "ネオユニヴァース" and fast_turf_day(card):
+            why.append("芝の高速日×母父ネオユニヴァース ×（A/E 0.86/0.65/0.74。双馬『高速決着に対応できない』のとおり）")
         # 双馬 第2章 ダイワメジャー・ルーラーシップ・ロードカナロア（tools/souma_ch2c.py）
         prr = h.pop_rank or 0
         if su == "芝" and h.sire == "ダイワメジャー":
