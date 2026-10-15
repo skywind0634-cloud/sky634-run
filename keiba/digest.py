@@ -1051,6 +1051,10 @@ def course_check_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int, s
                      ("③父×年齢", h.sire, "2-3歳" if age <= 3 else "4歳" if age == 4 else "5歳以上")}
         if h.damsire:
             keys.add(("④母父", h.damsire, "全体"))
+        if h.damsire_line:
+            keys.add(("④母父系統", h.damsire_line, "全体"))
+        if h.sire:
+            keys.add(("⑨クラス×父", h.sire, "OP以上" if card.get("grade") in ("OP", "L", "G3", "G2", "G1") else "条件戦"))
         keys |= {("⑤5代の祖先", f, "全体") for f in fl}
         if st:
             keys.add(("⑥時期×父の国別タイプ", f"{season}・父{st}", "全体"))
