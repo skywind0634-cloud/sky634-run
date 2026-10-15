@@ -762,6 +762,20 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
                     why.append("中山芝内回り×前走後方×7番人気以下 ▽（A/E 0.81/0.92/0.63。直線が短く届かない）")
             if co == "中山" and lay == "外" and h.sire_line == "シンボリクリスエス系":
                 why.append("中山芝外回り×父シンボリクリスエス系 ×（A/E 0.74/0.84/0.77）")
+        # 双馬 第2章 ハービンジャー・ゴールドアリュール・マンハッタンカフェ（tools/souma_ch2d.py, 後継含む）
+        if su == "ダ" and h.sire_line == "ゴールドアリュール系" and h.sire != "ゴールドアリュール" and (h.pop_rank or 0) >= 7:
+            if r1_ == "延長":
+                why.append("ダートの延長×父ゴールドアリュール系後継×7番人気以下 ×（A/E 0.36/0.00/0.31。双馬『延長で嫌う』のとおり）")
+            if co in ("東京", "京都"):
+                why.append("東京・京都ダート×父ゴールドアリュール系後継×7番人気以下 ×（A/E 0.85/0.60/0.60。双馬『軽いダートが得意』と逆）")
+        if su == "芝" and h.sire == "ハービンジャー" and r1_ == "同距離" and 4 <= (h.pop_rank or 0) <= 6:
+            why.append("芝の同距離×父ハービンジャー×4-6番人気 ×（A/E 0.79/0.82/0.70）")
+        if h.sire_line == "マンハッタンカフェ系":
+            bw_ = e.get("body_weight") or (rec[0].get("body_weight") if rec else None)
+            if bw_ and su == "芝" and bw_ < 500:
+                why.append("芝×父マンハッタンカフェ系×500kg未満 ○（A/E 1.31/1.07/1.53。双馬『コンパクトな馬は良い馬』のとおり）")
+            if bw_ and su == "ダ" and bw_ >= 500:
+                why.append("ダート×父マンハッタンカフェ系×500kg以上 ○（A/E 1.08/1.41/1.10。大型はダートでパワーを活かす）")
         # 双馬 第2章 ダイワメジャー・ルーラーシップ・ロードカナロア（tools/souma_ch2c.py）
         prr = h.pop_rank or 0
         if su == "芝" and h.sire == "ダイワメジャー":
