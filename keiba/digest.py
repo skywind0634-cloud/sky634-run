@@ -1238,9 +1238,67 @@ def flag_picks(card: dict, evals: list[HorseEval]) -> list[str]:
     return out
 
 
+def g1_history_lines(card: dict, evals: list[HorseEval]) -> list[str]:
+    """G1 は必ず予想する（2026-10-15 ユーザー指示）。DB 内の同名 G1 の過去の1〜3着の傾向（前走のレース・クラス・人気帯・父系統）と、各出走馬の当てはまり（tools/g1_history.py）."""
+    import re
+    import sqlite3
+    from collections import defaultdict
+    from .config import DB_PATH
+    if card.get("grade") != "G1":
+        return []
+    nm0 = card.get("name") or ""
+    key = re.sub(r"^第\d+回|\(.*?\)|（.*?）|GI+|Ｇ.*$", "", nm0).strip()[:4]
+    if key.startswith("天皇賞"):
+        key = "天皇賞(秋)" if "秋" in nm0 or str(card.get("date", ""))[5:7] >= "09" else "天皇賞(春)"
+    if not key:
+        return []
+    try:
+        with sqlite3.connect(DB_PATH) as c:
+            base = defaultdict(lambda: [0, 0])
+            for p, f in c.execute("select popularity, finish from results where finish is not null and popularity is not null"):
+                b = base[min(p, 14)]; b[0] += 1; b[1] += f <= 3
+            exp = {p: v[1] / v[0] for p, v in base.items()}
+            agg = defaultdict(lambda: [0, 0, 0.0])
+            yrs = []
+            for rid, date in c.execute("select race_id, date from races where grade='G1' and name like ? and date < ? order by date", (f"%{key}%", card.get("date") or "9999")):
+                yrs.append(date[:4])
+                for hid, fin, pop, sl in c.execute("select r.horse_id,r.finish,r.popularity,h.sire_line from results r left join horses h using(horse_id) "
+                                                   "where r.race_id=? and r.finish is not null and r.popularity is not null", (rid,)):
+                    pv = c.execute("select ra.name, ra.grade from results x join races ra using(race_id) where x.horse_id=? and ra.date<? order by ra.date desc limit 1",
+                                   (hid, date)).fetchone()
+                    for k in (("前走", pv[0] if pv else "DBになし"), ("前走クラス", (pv[1] or "条件戦") if pv else "DBになし"),
+                              ("人気", "1-3番人気" if pop <= 3 else "4-6番人気" if pop <= 6 else "7番人気以下"), ("父系統", sl)):
+                        a = agg[k]; a[0] += 1; a[1] += fin <= 3; a[2] += exp[min(pop, 14)]
+    except sqlite3.Error:
+        return []
+    if not yrs:
+        return [f"**G1 {card.get('name')}**: DB に過去の同名G1なし（傾向は WebSearch で補う）"]
+    L = [f"**G1 {card.get('name')} 過去{len(yrs)}回（{yrs[0]}〜{yrs[-1]}）の1〜3着の傾向**（3着内/頭数・A/E。回数が少ないので参考）"]
+    top = sorted([(k, a) for k, a in agg.items() if a[1] >= 2 or (a[0] >= 10 and a[1] == 0)], key=lambda x: -x[1][1])[:10]
+    L.append("  - " + "、".join(f"{k[0]}={k[1]} {a[1]}/{a[0]}（{a[1] / a[2]:.2f}）" for k, a in top))
+    ent = {e.get("number"): e for e in card.get("entries") or []}
+    for h in sorted(evals, key=lambda h: h.pop_rank or 99):
+        e = ent.get(h.number, {}); rec = (e.get("recent") or [None])[0] or {}
+        pvn, pvg = "DBになし", "DBになし"
+        if rec.get("race_id"):
+            try:
+                with sqlite3.connect(DB_PATH) as c:
+                    row = c.execute("select name, grade from races where race_id=?", (str(rec["race_id"]),)).fetchone()
+                if row:
+                    pvn, pvg = row[0], row[1] or "条件戦"
+            except sqlite3.Error:
+                pass
+        ks = [("前走", pvn), ("前走クラス", pvg), ("人気", "1-3番人気" if (h.pop_rank or 99) <= 3 else "4-6番人気" if (h.pop_rank or 99) <= 6 else "7番人気以下"),
+              ("父系統", h.sire_line)]
+        hit = [f"{k[1]} {agg[k][1]}/{agg[k][0]}" for k in ks if k in agg and agg[k][0] >= 3]
+        L.append(f"  - {h.number}{h.name}（{h.pop_rank}人気）前走 {rec.get('race_name', '?')} {rec.get('finish', '?')}着: " + ("、".join(hit) or "過去の該当なし"))
+    return L
+
+
 def text(card: dict, evals: list[HorseEval], title: str) -> str:
     d = race_digest(evals)
     L = [f"### {title}"]
+    L += g1_history_lines(card, evals)
     L += flag_picks(card, evals)
     sc_ = flag_scores(card, evals)
     if any(sc_.values()):
