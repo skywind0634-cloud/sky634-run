@@ -1,0 +1,26 @@
+name: backfill-layout
+# 過去レースの内回り/外回り（races.layout）を埋める（京都芝1400/1600・新潟芝2000 は netkeiba のレース結果の表記から取得）
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: keiba-data
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install -r requirements.txt
+      - run: python -m keiba.cli backfill-layout
+      - name: commit
+        run: |
+          git config user.name "keiba-bot"
+          git config user.email "keiba-bot@users.noreply.github.com"
+          git add data/keiba.db
+          git diff --cached --quiet || git commit -m "data: races.layout backfill"
+          for i in 1 2 3 4; do git pull --rebase -X ours origin main && git push origin HEAD:main && break; sleep $((i*10)); done

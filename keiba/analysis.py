@@ -89,7 +89,7 @@ def build_stats(conn, before: str | None = None) -> Stats:
     st = Stats()
     rows = conn.execute("""
         SELECT r.*, ra.course, ra.surface, ra.distance, ra.going, ra.pace_type, ra.grade, ra.date,
-               ra.n_runners, ra.direction,
+               ra.n_runners, ra.direction, ra.layout,
                h.sire, h.damsire, h.dam, h.sire_line, h.damsire_line, h.family
         FROM results r
         JOIN races ra ON ra.race_id = r.race_id
@@ -214,7 +214,7 @@ def build_stats(conn, before: str | None = None) -> Stats:
             ("has_cross", s, bool(hc)) if hc is not None else (None,),
             ("popularity", r["popularity"]),
         ]
-        ca = K.course_attrs(r["course"], s, r["distance"])
+        ca = K.course_attrs(r["course"], s, r["distance"], r["layout"])
         keys += [("sire_straight", r["sire"], s, ca["straight_cat"]), ("sire_slope", r["sire"], s, ca["slope"]),
                  ("sire_turn", r["sire"], s, ca["turn"]), ("sire_field", r["sire"], F.field_size_bucket(r["n_runners"])),
                  ("line_straight", r["sire_line"], s, ca["straight_cat"]), ("line_slope", r["sire_line"], s, ca["slope"]),
@@ -237,7 +237,7 @@ def build_stats(conn, before: str | None = None) -> Stats:
 def horse_history(conn, horse_id: str, before_date: str | None = None, limit: int = 10) -> list[dict]:
     q = """
         SELECT r.*, ra.date, ra.course, ra.surface, ra.distance, ra.going, ra.grade, ra.n_runners,
-               ra.pace_type, ra.last3f AS race_last3f, ra.direction,
+               ra.pace_type, ra.last3f AS race_last3f, ra.direction, ra.layout,
                r.time_sec - (SELECT MIN(r3.time_sec) FROM results r3
                               WHERE r3.race_id = r.race_id AND r3.finish = 1) AS behind,
                CASE WHEN r.last3f IS NULL THEN NULL ELSE

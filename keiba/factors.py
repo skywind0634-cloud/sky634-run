@@ -193,7 +193,7 @@ def extract(entry: dict, hist: list[dict], card: dict, st=None) -> dict:
     fx["behind_avg"] = sum(behind) / len(behind) if behind else None
 
     # ---- コース形態適性（直線の長さ・坂・大回り/小回り）: 同じ形態のコースでの成績 vs それ以外
-    today = K.course_attrs(card.get("course"), card.get("surface"), card.get("distance"))
+    today = K.course_attrs(card.get("course"), card.get("surface"), card.get("distance"), card.get("layout"))
     fx["course_attrs"] = today
     ct = {}
     for attr in ("straight_cat", "slope", "turn"):
@@ -202,7 +202,7 @@ def extract(entry: dict, hist: list[dict], card: dict, st=None) -> dict:
             pf = _perf(h)
             if pf is None or not h.get("course"):
                 continue
-            a = K.course_attrs(h.get("course"), h.get("surface"), h.get("distance"))
+            a = K.course_attrs(h.get("course"), h.get("surface"), h.get("distance"), h.get("layout"))
             (same if a[attr] == today[attr] else other).append(pf)
         ct[attr] = (same, other)
     fx["course_type"] = ct

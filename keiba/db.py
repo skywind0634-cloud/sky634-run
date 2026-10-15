@@ -25,7 +25,8 @@ CREATE TABLE IF NOT EXISTS races (
     first3f      REAL,
     last3f       REAL,
     pace_type    TEXT,               -- 瞬発 / 持続 / 消耗 / 平均
-    payouts      TEXT                -- JSON {券種: [[組番, 払戻], ...]}
+    payouts      TEXT,               -- JSON {券種: [[組番, 払戻], ...]}
+    layout       TEXT                -- 内 / 外 / 直（内回り・外回り。京都・阪神・新潟・中山の芝。レース結果の表記）
 );
 
 CREATE TABLE IF NOT EXISTS results (
@@ -97,6 +98,8 @@ def connect(path: Path | str = DB_PATH) -> sqlite3.Connection:
     conn = sqlite3.connect(str(path))
     conn.row_factory = sqlite3.Row
     conn.executescript(SCHEMA)
+    if "layout" not in [r[1] for r in conn.execute("PRAGMA table_info(races)")]:
+        conn.execute("ALTER TABLE races ADD COLUMN layout TEXT")
     # 対象外レース（第6レース以前・未勝利戦・障害）は保持しない（過去に取り込んだ分も削除）
     cond = ("race_no < 7 OR grade = '未勝利' OR name LIKE '%未勝利%' OR surface = '障' OR name LIKE '%障害%'")
     conn.execute(f"DELETE FROM results WHERE race_id IN (SELECT race_id FROM races WHERE {cond})")

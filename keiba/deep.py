@@ -53,7 +53,7 @@ def fmt_cell(c: Cell) -> str:
 def load_rows(conn) -> list[dict]:
     rows = conn.execute("""
         SELECT r.*, ra.date, ra.course, ra.surface, ra.distance, ra.going, ra.pace_type, ra.grade,
-               ra.n_runners, ra.race_no, ra.name AS race_name,
+               ra.n_runners, ra.race_no, ra.name AS race_name, ra.layout,
                h.sire, h.damsire, h.dam, h.sire_line, h.damsire_line, h.family
         FROM results r JOIN races ra ON ra.race_id = r.race_id
         LEFT JOIN horses h ON h.horse_id = r.horse_id
@@ -372,7 +372,7 @@ def report_course_form(rows, base) -> str:
     """コース形態（直線の長さ・坂・大回り/小回り・回り）×脚質・種牡馬・頭数."""
     from . import knowledge as K
     for r in rows:
-        a = K.course_attrs(r["course"], r["surface"], r["distance"])
+        a = K.course_attrs(r["course"], r["surface"], r["distance"], r.get("layout"))
         r["straight_cat"], r["slope"], r["turn"], r["dir"] = a["straight_cat"], a["slope"], a["turn"], a["direction"]
         r["field"] = F.field_size_bucket(r["n_runners"])
     L = ["# コース形態・頭数の分析（自動生成）", "",

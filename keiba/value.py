@@ -100,7 +100,7 @@ def load(conn) -> list[dict]:
     for r in rows:   # load_rows は馬ごと・日付順
         r["prev_style"] = prev.get(r["horse_id"])
         prev[r["horse_id"]] = r["style"]
-        a = K.course_attrs(r["course"], r["surface"], r["distance"])
+        a = K.course_attrs(r["course"], r["surface"], r["distance"], r.get("layout"))
         r["straight_cat"], r["slope"] = a["straight_cat"], a["slope"]
         pr = pays.get(r["race_id"], {"win": {}, "place": {}})
         r["win_pay"] = pr["win"].get(str(r["number"]), 0)

@@ -321,11 +321,12 @@ SLOPE = {"中山": "急坂", "阪神": "急坂", "中京": "急坂", "東京": "
 
 
 @lru_cache(maxsize=None)
-def course_attrs(course: str | None, surface: str | None, distance: int | None) -> dict:
-    """競馬場×芝ダ×距離 → 回り・直線の長さ・坂・コーナー(大回り/小回り)."""
+def course_attrs(course: str | None, surface: str | None, distance: int | None, layout: str | None = None) -> dict:
+    """競馬場×芝ダ×距離 → 回り・直線の長さ・坂・コーナー(大回り/小回り).
+    layout（レース結果・出馬表の内回り/外回り表記）があればそれを使い、無ければ距離からの推定（京都芝1400/1600・新潟芝2000などは両方あるので推定は不確か）."""
     c = courses()["courses"].get(course or "", {})
     sd = c.get("turf" if surface == "芝" else "dirt", {})
-    layout = _LAYOUT.get((course, surface), {}).get(distance or 0, "")
+    layout = layout or _LAYOUT.get((course, surface), {}).get(distance or 0, "")
     straight = sd.get("straight") or 0
     if layout == "内" and course in _INNER_STRAIGHT:
         straight = _INNER_STRAIGHT[course]

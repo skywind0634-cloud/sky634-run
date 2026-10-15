@@ -116,7 +116,7 @@ def subject_match(note: dict, sire: str | None, sire_line: str | None, damsire: 
 
 
 def row_ctx(r: dict) -> dict:
-    a = K.course_attrs(r["course"], r["surface"], r["distance"])
+    a = K.course_attrs(r["course"], r["surface"], r["distance"], r.get("layout") if hasattr(r, "get") else None)
     return {"surface": r["surface"], "band": distance_band(r["distance"] or 0), "going": going_group(r["going"]),
             "course": r["course"], "straight_cat": a["straight_cat"], "slope": a["slope"], "turn": a["turn"],
             "dchg": r.get("dchg"), "pace": r.get("pace_type"), "sex": r.get("sex"), "age": r.get("age"),
@@ -236,7 +236,7 @@ def applicable(card: dict, entry: dict, sire, sire_line, damsire, damsire_line, 
     if not notes:
         return []
     checks = load_checks()
-    a = K.course_attrs(card.get("course"), card.get("surface"), card.get("distance"))
+    a = K.course_attrs(card.get("course"), card.get("surface"), card.get("distance"), card.get("layout"))
     prev_d = hist[0].get("distance") if hist else None
     dchg = ("延長" if prev_d and card.get("distance") and card["distance"] - prev_d >= 100 else
             "短縮" if prev_d and card.get("distance") and card["distance"] - prev_d <= -100 else "同" if prev_d else "初")

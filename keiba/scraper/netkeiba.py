@@ -128,6 +128,8 @@ def parse_result(html: str, race_id: str) -> tuple[dict, list[dict]]:
 
     surface = "障" if "障" in info[:3] else ("ダ" if "ダ" in info[:3] else "芝")
     direction = next((d for d in ("右", "左", "直") if d in info[:4]), None)
+    from .jra import layout_of
+    layout = layout_of(info.split("/")[0])
     distance = _num(re.search(r"(\d{3,4})m", info).group(1), int) if re.search(r"(\d{3,4})m", info) else None
     weather = (re.search(r"天候\s*:\s*(\S+)", info) or [None, None])[1]
     going = (re.search(r"(?:芝|ダート)\s*:\s*(良|稍重|重|不良)", info) or [None, None])[1]
@@ -202,6 +204,7 @@ def parse_result(html: str, race_id: str) -> tuple[dict, list[dict]]:
         "surface": surface,
         "distance": distance,
         "direction": direction,
+        "layout": layout,
         "weather": weather,
         "going": going,
         "n_runners": len(results),
@@ -246,6 +249,8 @@ def parse_shutuba(html: str, race_id: str) -> dict:
     d2 = soup.select_one(".RaceData02")
     d2t = d2.get_text(" ", strip=True) if d2 else ""
     m = re.search(r"(芝|ダ|障)\s*(\d{3,4})m", d1t)
+    from .jra import layout_of
+    layout = layout_of((re.search(r"\(([^)]*)\)", d1t) or [None, ""])[1])
     surface, distance = (m.group(1), int(m.group(2))) if m else (None, None)
     going = (re.search(r"馬場\s*:\s*(良|稍|稍重|重|不良|不)", d1t) or [None, None])[1]
     going = {"稍": "稍重", "不": "不良"}.get(going, going)
@@ -294,6 +299,7 @@ def parse_shutuba(html: str, race_id: str) -> dict:
         "grade": grade,
         "surface": surface,
         "distance": distance,
+        "layout": layout,
         "going": going,
         "entries": entries,
     }

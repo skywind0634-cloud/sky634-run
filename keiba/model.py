@@ -541,7 +541,7 @@ def _mark_value_segments(card, evals, prepared_ctx):
     if not with_odds and not any(e.get("popularity") for e, *_ in prepared_ctx.values()):
         for i, h in enumerate(sorted(evals, key=lambda h: -h.score), 1):
             est_rank[h.number] = i
-    a = K.course_attrs(card.get("course"), card.get("surface"), card.get("distance"))
+    a = K.course_attrs(card.get("course"), card.get("surface"), card.get("distance"), card.get("layout"))
     for h in evals:
         e, sire, sl, damsire, dsl, hist, fx = prepared_ctx.get(h.number, ({}, None, None, None, None, [], {}))
         pop = odds_rank.get(h.number) or e.get("popularity")   # 人気帯の指標は実際の人気（オッズ順）だけで

@@ -167,6 +167,14 @@ CLASS_MAP = {"新馬": "新馬", "未勝利": "未勝利", "1勝クラス": "1�
              "オープン": "OP", "500万円以下": "1勝", "1000万円以下": "2勝", "1600万円以下": "3勝"}
 
 
+def layout_of(text: str | None) -> str | None:
+    """コース表記（例『芝・右 外』『芝右 外1600m』『芝・直線』）→ 内 / 外 / 直（内回り・外回りの区別がないコースは None）."""
+    t = re.sub(r"\d{3,4}m.*", "", text or "")
+    if "直" in t and "右" not in t and "左" not in t:
+        return "直"
+    return "外" if "外" in t else "内" if "内" in t else None
+
+
 def _race_header(soup) -> dict:
     head = {}
     d = soup.select_one(".race_header .date_line .date") or soup.select_one(".date_line .cell.date")
@@ -197,6 +205,7 @@ def _race_header(soup) -> dict:
     is_jump = "障害" in detail or "障害" in (name or "") or "ジャンプ" in (name or "")
     head["surface"] = "障" if is_jump else ("ダ" if "ダート" in detail else ("芝" if "芝" in detail else None))
     head["direction"] = next((x for x in ("右", "左", "直") if x in detail), None)
+    head["layout"] = layout_of(detail)
     return head
 
 
@@ -275,6 +284,7 @@ def parse_result(html: str, cname: str) -> tuple[dict, list[dict]]:
         "surface": head["surface"],
         "distance": head["distance"],
         "direction": head["direction"],
+        "layout": head["layout"],
         "weather": head["weather"],
         "going": head["going"],
         "n_runners": len(results),
@@ -403,6 +413,7 @@ def parse_shutuba(html: str, cname: str) -> dict:
         "grade": head["grade"],
         "surface": head["surface"],
         "distance": head["distance"],
+        "layout": head["layout"],
         "going": head["going"],
         "entries": entries,
         "_cname": cname,

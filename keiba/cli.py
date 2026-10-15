@@ -159,6 +159,38 @@ def cmd_backfill(a):
     print(f"血統補完: {pipeline.backfill_pedigrees(conn, a.limit)} 頭")
 
 
+def cmd_backfill_layout(a):
+    """過去レースの内回り/外回り（races.layout）を埋める。両方あるコース・距離（京都芝1400/1600・新潟芝2000）は
+    netkeiba のレース結果の表記から取得し、どちらか一方しかない距離は表（knowledge._LAYOUT）で埋める."""
+    from . import knowledge as K
+    from .scraper import netkeiba as nk
+    conn = db.connect()
+    amb = {("京都", 1400), ("京都", 1600), ("新潟", 2000)}
+    rows = conn.execute("SELECT race_id, course, surface, distance FROM races WHERE layout IS NULL AND surface='芝' "
+                        "AND course IN ('京都','阪神','新潟','中山') ORDER BY date DESC").fetchall()
+    filled = fetched = 0
+    for r in rows:
+        if (r["course"], r["distance"]) in amb:
+            if a.no_fetch or (a.limit and fetched >= a.limit):
+                continue
+            try:
+                race, _ = nk.fetch_result(r["race_id"])
+            except Exception as e:  # noqa: BLE001 — 1レースの失敗で止めない
+                print(f"{r['race_id']}: {e}")
+                continue
+            fetched += 1
+            lay = race.get("layout")
+        else:
+            lay = K._LAYOUT.get((r["course"], "芝"), {}).get(r["distance"])
+        if lay:
+            conn.execute("UPDATE races SET layout=? WHERE race_id=?", (lay, r["race_id"]))
+            filled += 1
+        if filled % 50 == 0:
+            conn.commit()
+    conn.commit()
+    print(f"内回り/外回り: {filled} レースを埋めた（netkeiba から取得 {fetched}）")
+
+
 def relines(conn) -> int:
     """血統ナレッジの更新を反映して、全馬の父系・母父系統・牝系を判定し直す."""
     from . import knowledge as K
@@ -319,6 +351,7 @@ def main(argv=None):
     p.add_argument("--newest-first", action="store_true")
     p.add_argument("--source", choices=["jra", "netkeiba"], default="jra"); p.set_defaults(fn=cmd_update_results)
     p = sub.add_parser("backfill-pedigree"); p.add_argument("--limit", type=int, default=500); p.set_defaults(fn=cmd_backfill)
+    p = sub.add_parser("backfill-layout"); p.add_argument("--limit", type=int, default=0); p.add_argument("--no-fetch", action="store_true"); p.set_defaults(fn=cmd_backfill_layout)
     p = sub.add_parser("jra-earliest"); p.set_defaults(fn=cmd_jra_earliest)
     p = sub.add_parser("merge-db"); p.add_argument("sources", nargs="+"); p.set_defaults(fn=cmd_merge_db)
     p = sub.add_parser("plan-shards"); p.add_argument("--from", dest="date_from", default="3y")
