@@ -433,6 +433,11 @@ def fast_turf_day(card: dict) -> bool | None:
     return None if v is None else v <= -0.5
 
 
+# 双馬 第3章 p153 馬場替わりの注目血統（tools/surface_switch.py）
+SWITCH_DIRT_LINES = {"デピュティミニスター系", "エーピーインディ系", "ゴールドアリュール系", "フォーティナイナー系", "ストームキャット系", "ヘネシー系", "ブライアンズタイム系"}
+SWITCH_DIRT_NAMES = {"スマートファルコン", "カネヒキリ", "タートルボウル", "ワイルドラッシュ", "アジュディケーティング", "アフリート", "ディアブロ"}
+SWITCH_TURF_NAMES = {"タイキシャトル", "アンバーシャダイ", "タマモクロス", "ダンシングブレーヴ", "カーリアン", "Caerleon", "コジーン", "Cozzene", "フェアリーキング"}
+
 # 双馬 p138-141 高速血統（母父の系統）と、ダートで前が止まらない馬場に強い父系（tools/speed_blood.py）
 SPEED_DAM_LINES = {"ボールドルーラー系", "エーピーインディ系", "デピュティミニスター系", "ストームキャット系", "ヘネシー系", "ミスタープロスペクター系",
                    "フォーティナイナー系", "ファピアノ系", "ゴーンウエスト系", "シーキングザゴールド系", "スマートストライク系", "キングマンボ系", "キングカメハメハ系"}
@@ -804,6 +809,23 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
                 why.append("ダ・前走同距離で4-5着→今回同距離×父ヘニーヒューズ ×（A/E 0.88/0.85/0.60）")
         if su == "芝" and h.sire == "ジャスタウェイ" and r1_ == "同距離" and (h.pop_rank or 0) >= 7:
             why.append("芝の同距離×父ジャスタウェイ×7番人気以下 ◎（A/E 1.43/1.18/1.55）")
+        # 双馬 第3章 p152-153 馬場替わりの注目血統（tools/surface_switch.py）。前走と芝ダが替わった馬
+        if prv and prv.get("surface") in ("芝", "ダ") and prv["surface"] != su:
+            prs2 = h.pop_rank or 0
+            if su == "ダ":
+                in_list = h.sire_line in SWITCH_DIRT_LINES or h.damsire_line in SWITCH_DIRT_LINES or h.sire in SWITCH_DIRT_NAMES or h.damsire in SWITCH_DIRT_NAMES
+                bw2 = e.get("body_weight") or prv.get("body_weight")
+                if not in_list and 4 <= prs2 <= 6:
+                    why.append("芝→ダ替わり×双馬のダート替わり血統なし×4-6番人気 ×（A/E 0.79/0.67/0.82。リストの血があっても人気以上には走らない）")
+                if bw2 and bw2 >= 500 and prs2 >= 4:
+                    why.append("芝→ダ替わり×馬体重500kg以上×4番人気以下 ×（A/E 4-6番人気0.72/0.65/0.85・7番人気以下0.70/0.66/0.84。双馬『大型の芝馬がダートを使われる』の逆側も成り立たない）")
+            else:
+                in_list = h.sire_line in ("デインヒル系", "プリンスリーギフト系") or h.damsire_line in ("デインヒル系", "プリンスリーギフト系") \
+                    or h.sire in SWITCH_TURF_NAMES or h.damsire in SWITCH_TURF_NAMES or "カロ系" in pf
+                if not in_list and prs2 and prs2 <= 3:
+                    why.append("ダ→芝替わり×双馬の芝替わり血統なし×1-3番人気 ×（A/E 0.85/0.85/0.88）")
+                if prs2 >= 7 and not any(x.get("surface") == "芝" for x in rec):
+                    why.append("ダ→芝替わり×芝初出走×7番人気以下 ×（A/E 0.69/0.53/0.78）")
         # 双馬 p138-141 高速血統（tools/speed_blood.py）。当日・前日の同場の勝ちタイムで馬場の速さを判定
         fast_dam = (h.damsire_line in SPEED_DAM_LINES and h.damsire not in ("キングズベスト", "ワークフォース", "ルーラーシップ")) or "インリアリティ" in pf
         prs = h.pop_rank or 0
