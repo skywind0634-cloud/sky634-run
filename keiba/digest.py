@@ -555,6 +555,12 @@ def sire_recent_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int, st
         if rec and rec.get("distance") and abs(d - rec["distance"]) >= 200:
             cs.add(f"{su}・{'延長' if d > rec['distance'] else '短縮'}")
         why = [f"{'○' if r['ae'][0] >= 1 else '▼'}{r['cond']}（{r['ae'][0]:.2f}/{r['ae'][1]:.2f}）" for r in p.get("recent", []) if r["cond"] in cs]
+        # 世代の上昇/下降（重賞馬が出て繁殖牝馬の質が変わる等。3歳時の成績で世代を比較, tools/sire_profiles_modern.py）
+        if p.get("crop_trend") and e.get("age"):
+            crop = str(int(str(card.get("date", "2026"))[:4]) - e["age"])
+            ys = sorted(p.get("crops", {}))
+            if ys and crop >= ys[-1]:
+                why.append(f"{'○' if p['crop_trend'].startswith('上昇') else '▼'}世代が{p['crop_trend'][:2]}（3歳時A/E " + " ".join(y[2:] + "年生" + format(p['crops'][y][1], '.2f') for y in ys[-3:]) + "）")
         typ = p.get("work_type") or ""
         tag = f"{h.sire}: 実績タイプ {typ}" + (f"・{p['tpd']}" if p.get("tpd") else "") + f"・芝の平均勝ち距離{p.get('avg_win_turf') or '-'}m"
         if why:
