@@ -1,0 +1,24 @@
+name: jra-odds-probe
+# 調査用: JRA の最終オッズページの辿り方を調べ、HTML を probe ブランチに保存する
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install -r requirements.txt
+      - run: python tools/jra_odds_probe.py
+      - name: save
+        run: |
+          git config user.name "keiba-bot"
+          git config user.email "keiba-bot@users.noreply.github.com"
+          mv probe /tmp/probe
+          git checkout -q --orphan probe; git rm -rq --cached . >/dev/null 2>&1 || true
+          rm -rf probe && cp -r /tmp/probe probe && git add probe
+          git commit -qm "probe $(date -u +%FT%H%M)" && git push -q -f origin HEAD:probe
