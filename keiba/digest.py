@@ -175,17 +175,31 @@ def ticket_card(card: dict, evals: list[HorseEval]) -> list[str]:
     sp = sub_picks(evals)
     if sp:
         L.append("  - 準本線（7〜9番人気・走る条件が満点。検証では単勝101%/172%・複勝94%/123%、少額の単複）: " + "、".join(f"単複 {h.number}（{h.name}・{h.pop_rank}人気）" for h in sp))
-    axis = [h.number for h in value_horses(evals)[:1]] or [h.number for h in sp[:1]]
-    d = race_digest(evals)
-    pool = []
-    for k in ("★", "走る条件", "専門家", "検証済み", "妙味条件"):
-        for h, _ in d[k]:
-            if h.number not in axis and h.number not in pool and (h.pop_rank or 0) >= 4:
-                pool.append(h.number)
-    if axis and pool:
-        L.append("  - 遊び（ごく少額・検証では負け越し）: ワイド " + "、".join(f"{axis[0]}-{x}" for x in pool[:3])
-                 + f"／馬連 " + "、".join(f"{axis[0]}-{x}" for x in pool[:3]))
+    lw = longshot_wide(card, evals)
+    if lw:
+        L.append("  - 穴ワイド（7番人気以下で材料が重なる上位2頭→1〜4番人気。検証 回収94%/108%・的中17〜19%・払戻中央約2,000円。"
+                 "旧「遊び」は負け越しだったので置き換え）: " + " / ".join(lw))
     return (["**買い目カード**"] + L) if L else []
+
+
+def longshot_net(card: dict, evals: list[HorseEval]) -> dict:
+    """7番人気以下の馬番 → 材料の重なり（走る条件0.4以上・妙味条件・★血統穴 の数＋フラグ点）.
+    過去1年で7番人気以下の3着内率は −1以下 5.5% → +3以上 11〜14%（docs/analysis/longshot_stack.md）."""
+    sc = flag_scores(card, evals)
+    star = {h.number for h in longshot_picks(evals)}
+    return {h.number: int(h.cond_score >= 0.4) + int(bool(h.value_segments) or (h.value_edge or 0) > 0.15)
+            + int(h.number in star) + sc.get(h.number, 0)
+            for h in evals if (h.pop_rank or 0) >= 7}
+
+
+def longshot_wide(card: dict, evals: list[HorseEval], th: int = 3) -> list[str]:
+    """穴ワイド: 材料の重なり th 以上の上位2頭 × 1〜4番人気（tools/longshot_stack.py）."""
+    net = longshot_net(card, evals)
+    nm = {h.number: h for h in evals}
+    pop = {h.pop_rank: h.number for h in evals if h.pop_rank}
+    cand = sorted([n for n, v in net.items() if v >= th], key=lambda n: (-net[n], nm[n].pop_rank))[:2]
+    return [f"{n}{nm[n].name}（{nm[n].pop_rank}人気・重なり{net[n]:+d}）→ ワイド " + "、".join(f"{n}-{pop[p]}" for p in (1, 2, 3, 4) if p in pop)
+            for n in cand]
 
 
 GRADE_ORDER = {"1勝": 1, "2勝": 2, "3勝": 3, "OP": 4, "L": 4, "G3": 5, "G2": 6, "G1": 7}
