@@ -40,7 +40,7 @@ def main(path):
             continue
         if race is None:
             continue
-        m = re.match(r"\s*(?:\*\*)?(?:本線（単複）\s*)?(\d+)\s?(\S+?)（(\d+)人気・([\d.]+)倍", l.replace("**本線（単複） ", "  - ").replace("  - ", ""))
+        m = re.match(r"\s*(?:\*\*)?(?:本線（単勝）\s*)?(\d+)\s?(\S+?)（(\d+)人気・([\d.]+)倍", l.replace("**本線（単勝） ", "  - ").replace("  - ", ""))
         if l.startswith("  - ◎妙味条件(厳格)"):
             buys.append("◎厳格 " + l.split("）:", 1)[-1].strip()); cat = None; continue
         if l.startswith("  - 本線"):
@@ -56,7 +56,7 @@ def main(path):
         if l.startswith("- "):
             cat = next((v for k, v in SHORT if l[2:].startswith(k)), None)
             continue
-        if l.startswith("**本線（単複）"):
+        if l.startswith("**本線（単勝）"):
             mm = re.search(r"(\d+) (\S+?)（(\d+)人気・([\d.]+)倍", l)
             if mm:
                 h = horses.setdefault(int(mm.group(1)), dict(name=mm.group(2), pop=int(mm.group(3)), odds=mm.group(4), tags=[], buy=[]))

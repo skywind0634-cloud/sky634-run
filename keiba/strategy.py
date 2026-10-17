@@ -29,13 +29,17 @@ def _collect_range(args) -> list[dict]:
     _learn_before(conn, before)
     out = []
     for card, fin, pay in race_cards(conn, start, end):
-        # DB に単勝オッズがほぼ無いので、人気順の平均勝率から作った擬似オッズ（控除率20%）で市場評価を与える
+        # 全馬の確定単勝オッズがあればそれを使う（2026-10-17 に netkeiba から補完）。無いレースは人気順の平均勝率から作った擬似オッズ（控除率20%）
         if not all(e.get("popularity") for e in card["entries"]):
             continue
-        pk = [POP_WIN[min(e["popularity"], 18) - 1] for e in card["entries"]]
-        z = sum(pk)
-        for e, q in zip(card["entries"], pk):
-            e["odds"] = round(0.8 * z / q, 1)
+        if all(e.get("_odds") for e in card["entries"]):
+            for e in card["entries"]:
+                e["odds"] = e["_odds"]
+        else:
+            pk = [POP_WIN[min(e["popularity"], 18) - 1] for e in card["entries"]]
+            z = sum(pk)
+            for e, q in zip(card["entries"], pk):
+                e["odds"] = round(0.8 * z / q, 1)
         try:
             ev = evaluate_race(card, st, conn, n_sims=0)
         except Exception:   # noqa: BLE001

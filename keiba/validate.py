@@ -49,7 +49,7 @@ def race_cards(conn, start: str, end: str) -> list[tuple[dict, dict, dict]]:
         card = {**race, "entries": [{
             "horse_id": r["horse_id"], "name": r["name"] or r["horse_id"], "number": r["number"], "gate": r["gate"],
             "age": r["age"], "sex": r["sex"], "jockey": r["jockey"], "trainer": r["trainer"],
-            "weight": r["weight_carried"], "popularity": r["popularity"],
+            "weight": r["weight_carried"], "popularity": r["popularity"], "_odds": r["odds"],
             "body_weight_diff": r["body_weight_diff"]} for r in rows]}
         card.pop("pace_type", None)   # レース後に分かる情報は使わない
         fin = {r["number"]: r["finish"] for r in rows}
