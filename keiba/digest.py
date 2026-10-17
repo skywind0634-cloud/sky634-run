@@ -175,11 +175,30 @@ def ticket_card(card: dict, evals: list[HorseEval]) -> list[str]:
     sp = sub_picks(evals)
     if sp:
         L.append("  - 準本線（7〜9番人気・走る条件が満点。検証では単勝101%/172%・複勝94%/123%、少額の単複）: " + "、".join(f"単複 {h.number}（{h.name}・{h.pop_rank}人気）" for h in sp))
+    fa = flag_axis_package(card, evals)
+    if fa:
+        L.append("  - ★フラグ軸（高配当狙い。4〜9番人気でフラグ点+4以上の1頭を軸に ワイド→1〜3番人気＋3連複 軸−1〜2番人気−1〜5番人気。"
+                 "5年の実払戻で年別回収99〜144%・的中23%・万馬券年2〜4本。勝ち週は3割、最大12週連敗。フラグ選定期間内の確認）: " + fa)
     lw = longshot_wide(card, evals)
     if lw:
         L.append("  - 穴ワイド（7番人気以下で材料が重なる上位2頭→1〜4番人気。検証 回収94%/108%・的中17〜19%・払戻中央約2,000円。"
                  "旧「遊び」は負け越しだったので置き換え）: " + " / ".join(lw))
     return (["**買い目カード**"] + L) if L else []
+
+
+def flag_axis_package(card: dict, evals: list[HorseEval]) -> str | None:
+    """★フラグ軸: 4〜9番人気でフラグ点+4以上の上位1頭 → ワイド 1〜3番人気＋3連複 軸−1〜2番人気−1〜5番人気（10点, tools/longshot_grid.py）."""
+    sc = flag_scores(card, evals)
+    cand = sorted([h for h in evals if 4 <= (h.pop_rank or 0) <= 9 and sc.get(h.number, 0) >= 4],
+                  key=lambda h: (-sc[h.number], h.pop_rank))
+    if not cand:
+        return None
+    a = cand[0]
+    pop = {h.pop_rank: h.number for h in evals if h.pop_rank and h.number != a.number}
+    wide = [f"{a.number}-{pop[p]}" for p in (1, 2, 3) if p in pop]
+    trio = sorted({"-".join(map(str, sorted((a.number, pop[x], pop[y])))) for x in (1, 2) for y in range(1, 6)
+                   if x != y and x in pop and y in pop}, key=lambda t: [int(v) for v in t.split("-")])
+    return f"軸 {a.number}{a.name}（{a.pop_rank}人気・点{sc[a.number]:+d}）→ ワイド " + "、".join(wide) + " ／ 3連複 " + "、".join(trio)
 
 
 def longshot_net(card: dict, evals: list[HorseEval]) -> dict:
