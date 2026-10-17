@@ -25,7 +25,9 @@ def main(path):
         out.append("【買う】" + (" ／ ".join(buys) if buys else "なし（このレースは見送り。下は材料）"))
         for b in buys:
             kind = next((k for k in ("◎厳格", "★混戦穴", "★フラグ軸", "穴ワイド", "本線", "準本線") if b.startswith(k)), "フラグ点")
-            if kind == "穴ワイド":
+            if kind == "フラグ点":
+                ns = [int(x) for x in re.findall(r"単勝 (\d+)", b)] or [int(x) for x in re.findall(r"フラグ点: (\d+)\D", b) if "番人気" not in b.split("フラグ点: ")[1][:6]]
+            elif kind == "穴ワイド":
                 ns = [int(x) for x in re.findall(r"(?:^穴ワイド |/ )(\d+)\D", b)]
             else:
                 mm = re.search(r"厳格 (\d+) |単複 (\d+)（|フラグ点: (\d+)|軸 (\d+)", b)
