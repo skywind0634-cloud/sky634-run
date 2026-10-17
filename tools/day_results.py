@@ -16,6 +16,21 @@ conn.executescript(db.SCHEMA)
 pipeline.is_target_race = lambda race_no=None, grade=None, surface=None, name=None: surface != "障" and not (name and "障害" in name)
 pipeline.update_results_jra(conn, day, day, with_pedigree=False)
 if not conn.execute("SELECT count(*) FROM races").fetchone()[0]:
+    # 調査用: 1レースだけ解析の途中経過を出す
+    from keiba.scraper import jra
+    try:
+        ds = [d for d in jra.day_lists_in_month(day.strftime("%Y%m")) if jra.day_date_from_cname(d[1]) == day.isoformat()]
+        rc = jra.races_in_day(ds[0])
+        print("races_in_day", len(rc), rc[:2])
+        cn = rc[-1][1]
+        html = jra.post("/JRADB/accessS.html", cn, use_cache=False)
+        print("html", len(html), "table" in html, html.count("<tr"))
+        race, res = jra.parse_result(html, cn)
+        print("race", race, "results", len(res), res[:1])
+        import re as _re
+        print(_re.sub(r"\s+", " ", html[html.find("<table"):html.find("<table") + 1500]))
+    except Exception as e:  # noqa: BLE001
+        import traceback; traceback.print_exc()
     # 当日はJRAの月別一覧に載るのが遅いので netkeiba で取る
     print("JRA 0件 → netkeiba")
     pipeline.update_results(conn, day, day, with_pedigree=False)
