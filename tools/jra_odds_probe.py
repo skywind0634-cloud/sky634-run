@@ -25,7 +25,7 @@ def probe(label, day_pred, ym):
     (out / f"{label}_result.html").write_text(html, encoding="utf-8")
     ls = allinks(html)
     print(label, "result", rc[1], "paths", Counter(p for p, _ in ls), flush=True)
-    odds = [(p, c) for p, c in ls if "accessO" in p]
+    odds = [(p, c) for p, c in ls if "accessO" in p and c.startswith("pw151ou1")]
     print(label, "odds links", odds[:10], flush=True)
     for i, (p, c) in enumerate(odds[:1]):
         try:
@@ -34,11 +34,12 @@ def probe(label, day_pred, ym):
             print(label, "odds fetch failed", c, e, flush=True)
             continue
         (out / f"{label}_odds_{i}.html").write_text(h, encoding="utf-8")
-        tabs = [(pp, cc) for pp, cc in allinks(h) if "accessO" in pp]
+        rk = c[8:].split("/")[0][:24]  # 場・年・回・日・R・日付の部分
+        tabs = [(pp, cc) for pp, cc in allinks(h) if "accessO" in pp and cc[:6] == "pw15" + cc[4:6] and rk[3:20] in cc]
         print(label, "odds page tabs", tabs[:20], flush=True)
         seen = set()
         for pp, cc in tabs:
-            pre = cc[:7]
+            pre = cc[:9]
             if pre in seen:
                 continue
             seen.add(pre)
