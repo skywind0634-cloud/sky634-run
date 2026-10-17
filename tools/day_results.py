@@ -15,6 +15,10 @@ conn.row_factory = sqlite3.Row
 conn.executescript(db.SCHEMA)
 pipeline.is_target_race = lambda race_no=None, grade=None, surface=None, name=None: surface != "障" and not (name and "障害" in name)
 pipeline.update_results_jra(conn, day, day, with_pedigree=False)
+if not conn.execute("SELECT count(*) FROM races").fetchone()[0]:
+    # 当日はJRAの月別一覧に載るのが遅いので netkeiba で取る
+    print("JRA 0件 → netkeiba")
+    pipeline.update_results(conn, day, day, with_pedigree=False)
 out = []
 for ra in conn.execute("SELECT * FROM races ORDER BY course, race_no"):
     rs = conn.execute("SELECT r.*, h.name FROM results r LEFT JOIN horses h USING(horse_id) WHERE race_id=? ORDER BY finish IS NULL, finish", (ra["race_id"],)).fetchall()
