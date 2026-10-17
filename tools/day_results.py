@@ -14,27 +14,30 @@ conn = sqlite3.connect(":memory:")
 conn.row_factory = sqlite3.Row
 conn.executescript(db.SCHEMA)
 pipeline.is_target_race = lambda race_no=None, grade=None, surface=None, name=None: surface != "障" and not (name and "障害" in name)
-_orig = pipeline.jra.parse_result
-_seen = []
-
-
-def _parse(html, cname):  # 調査用: 最初の2レースの解析結果を出す
-    race, res = _orig(html, cname)
-    if len(_seen) < 2:
-        _seen.append(1)
-        import re as _re
-        print("DIAG", cname, len(html), "results", len(res), {k: race.get(k) for k in ("race_id", "race_no", "grade", "surface", "name")}, flush=True)
-        if not res:
-            i = html.find("<table")
-            print("DIAG html", _re.sub(r"\s+", " ", html[i:i + 2000] if i >= 0 else html[:2000]), flush=True)
-    return race, res
-
-
-pipeline.jra.parse_result = _parse
 pipeline.update_results_jra(conn, day, day, with_pedigree=False)
 if not conn.execute("SELECT count(*) FROM races").fetchone()[0]:
-    print("JRA 0件 → netkeiba")
-    pipeline.update_results(conn, day, day, with_pedigree=False)
+    # db.netkeiba も当日は未更新なので race.netkeiba.com の速報結果ページを読む
+    print("JRA 0件 → race.netkeiba.com", flush=True)
+    from bs4 import BeautifulSoup
+    from keiba.scraper import netkeiba as nk
+    out = []
+    for rid in nk.race_ids_for_date(day.strftime("%Y%m%d")):
+        try:
+            html = nk.fetch(f"https://race.netkeiba.com/race/result.html?race_id={rid}", use_cache=False)
+        except Exception as e:  # noqa: BLE001
+            print(rid, e, flush=True)
+            continue
+        soup = BeautifulSoup(html, "lxml")
+        title = soup.select_one(".RaceName")
+        rows = []
+        for tr in soup.select("tr.HorseList"):
+            cells = [td.get_text(" ", strip=True) for td in tr.find_all("td")]
+            rows.append(cells)
+        pays = [[c.get_text(" ", strip=True) for c in tr.find_all(["th", "td"])] for tr in soup.select(".Payout_Detail_Table tr")]
+        out.append({"race_id": rid, "name": title.get_text(strip=True) if title else None, "rows": rows, "payouts": pays})
+    Path(sys.argv[2]).write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
+    print("races(netkeiba速報)", len(out))
+    sys.exit(0)
 out = []
 for ra in conn.execute("SELECT * FROM races ORDER BY course, race_no"):
     rs = conn.execute("SELECT r.*, h.name FROM results r LEFT JOIN horses h USING(horse_id) WHERE race_id=? ORDER BY finish IS NULL, finish", (ra["race_id"],)).fetchall()
