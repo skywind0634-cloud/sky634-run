@@ -175,10 +175,14 @@ def ticket_card(card: dict, evals: list[HorseEval]) -> list[str]:
     sp = sub_picks(evals)
     if sp:
         L.append("  - 準本線（7〜9番人気・走る条件が満点。検証では単勝101%/172%・複勝94%/123%、少額の単複）: " + "、".join(f"単複 {h.number}（{h.name}・{h.pop_rank}人気）" for h in sp))
+    ch = flag_axis_package(card, evals, chaos=True)
     fa = flag_axis_package(card, evals)
-    if fa:
+    if ch:
+        L.append("  - ★混戦穴（1番人気4.1倍以上の混戦で、7〜12番人気・フラグ点+3以上の1頭を軸に ワイド→1〜3番人気＋3連複 軸−1〜2番人気−1〜5番人気。"
+                 "実オッズ5年で回収186%/120%/138%・的中12〜21%・万馬券12本。フラグ選定期間内の確認, docs/analysis/shape_flag.md）: " + ch)
+    if fa and (not ch or fa.split("（")[0] != ch.split("（")[0]):
         L.append("  - ★フラグ軸（高配当狙い。4〜9番人気でフラグ点+4以上の1頭を軸に ワイド→1〜3番人気＋3連複 軸−1〜2番人気−1〜5番人気。"
-                 "5年の実払戻で年別回収99〜144%・的中23%・万馬券年2〜4本。勝ち週は3割、最大12週連敗。フラグ選定期間内の確認）: " + fa)
+                 "実オッズ5年で回収128%/110%/114%・的中23%・万馬券16本。勝ち週は3割、最大12週連敗。フラグ選定期間内の確認）: " + fa)
     lw = longshot_wide(card, evals)
     if lw:
         L.append("  - 穴ワイド（7番人気以下で材料が重なる上位2頭→1〜4番人気。検証 回収94%/108%・的中17〜19%・払戻中央約2,000円。"
@@ -186,10 +190,41 @@ def ticket_card(card: dict, evals: list[HorseEval]) -> list[str]:
     return (["**買い目カード**"] + L) if L else []
 
 
-def flag_axis_package(card: dict, evals: list[HorseEval]) -> str | None:
-    """★フラグ軸: 4〜9番人気でフラグ点+4以上の上位1頭 → ワイド 1〜3番人気＋3連複 軸−1〜2番人気−1〜5番人気（10点, tools/longshot_grid.py）."""
+def fav_odds(evals: list[HorseEval]) -> tuple[float | None, float | None]:
+    o = {h.pop_rank: h.odds for h in evals if h.pop_rank and h.odds and not h.pop_estimated}
+    return o.get(1), o.get(2)
+
+
+# 1番人気の倍率ごとの実績（2021-26・9351レース, docs/analysis/odds_structure.md）: (3着内率, 7番人気以下が3着内に来たレースの割合, 3連複の中央払戻)
+FAV_BANDS = [(1.5, "3着内88〜91%", "約30%", "約1,500円"), (2.0, "3着内75〜78%", "約30〜45%", "1,500〜3,400円"),
+             (2.5, "3着内66〜69%", "約50%", "約5,000円"), (3.0, "3着内60〜61%", "約50%", "約5,000円"),
+             (4.0, "3着内49〜54%", "約60〜68%", "7,000〜11,000円"), (99, "3着内39〜45%", "約70〜80%", "1万〜1万9千円")]
+
+
+def race_shape(evals: list[HorseEval]) -> str | None:
+    """レースの形: 1番人気の倍率と2番人気との差から、堅さ・荒れやすさの目安（実オッズ5年）."""
+    o1, o2 = fav_odds(evals)
+    if not o1:
+        return None
+    _, top3, longs, trio = next(b for b in FAV_BANDS if o1 <= b[0])
+    rel = "" if not o2 else "・2番人気と拮抗" if o2 / o1 < 1.3 else "・抜けた1番人気" if o2 / o1 >= 2.0 else ""
+    kind = "堅い" if o1 <= 2.0 else "混戦" if o1 >= 4.1 else "やや荒れ" if o1 >= 3.1 else "標準"
+    return (f"レースの形: {kind}（1番人気{o1}倍{rel}。この倍率の1番人気は{top3}、7番人気以下が3着内に来るレース{longs}、"
+            f"3連複の中央払戻{trio}）")
+
+
+def flag_axis_package(card: dict, evals: list[HorseEval], chaos: bool = False) -> str | None:
+    """★フラグ軸: 4〜9番人気でフラグ点+4以上の上位1頭 → ワイド 1〜3番人気＋3連複 軸−1〜2番人気−1〜5番人気（10点, tools/longshot_grid.py）.
+    chaos=True は★混戦穴: 1番人気4.1倍以上のレースだけ、7〜12番人気でフラグ点+3以上（tools/shape_flag.py）."""
     sc = flag_scores(card, evals)
-    cand = sorted([h for h in evals if 4 <= (h.pop_rank or 0) <= 9 and sc.get(h.number, 0) >= 4],
+    if chaos:
+        o1, _ = fav_odds(evals)
+        if not o1 or o1 < 4.1:
+            return None
+        lo, hi, th = 7, 12, 3
+    else:
+        lo, hi, th = 4, 9, 4
+    cand = sorted([h for h in evals if lo <= (h.pop_rank or 0) <= hi and sc.get(h.number, 0) >= th],
                   key=lambda h: (-sc[h.number], h.pop_rank))
     if not cand:
         return None
@@ -1350,6 +1385,9 @@ def text(card: dict, evals: list[HorseEval], title: str) -> str:
     sc_ = flag_scores(card, evals)
     d = race_digest(evals, sc_)
     L = [f"### {title}"]
+    shp = race_shape(evals)
+    if shp:
+        L.append(shp)
     L += g1_history_lines(card, evals)
     L += flag_picks(card, evals)
     if any(sc_.values()):
