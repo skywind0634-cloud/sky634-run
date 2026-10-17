@@ -297,6 +297,60 @@ def parse_result(html: str, cname: str) -> tuple[dict, list[dict]]:
     return race, results
 
 
+ODDS_TABS = {"pw151ou": "tanpuku", "pw154ou": "umaren", "pw155ou": "wide", "pw157ou": "trio"}
+
+
+def odds_link(result_html: str) -> tuple[str, str] | None:
+    """結果ページ（pw01sde…）の『オッズ』ボタン → そのレースの単勝・複勝オッズ（最終オッズ）."""
+    ls = [(p, c) for p, c in ACTION_RE.findall(result_html) if c.startswith("pw151ou1")]
+    return ls[0] if ls else None
+
+
+def odds_tabs(odds_html: str, race_cname: str) -> dict[str, tuple[str, str]]:
+    """単勝・複勝オッズのページ → 券種タブ {kind: (path, cname)}（同じレースのものだけ）."""
+    key = race_cname[9:29]   # 場・年・回・日・R・日付
+    out = {}
+    for p, c in ACTION_RE.findall(odds_html):
+        kind = ODDS_TABS.get(c[:7])
+        if kind and key in c and kind not in out:
+            out[kind] = (p, c)
+    return out
+
+
+def parse_odds(html: str, kind: str) -> dict:
+    """最終オッズのページを解析. tanpuku → {馬番: [単勝, 複勝下限, 複勝上限]}、umaren/trio → {"a-b(-c)": オッズ}、
+    wide → {"a-b": [下限, 上限]}. 取消などオッズの無い組は入れない."""
+    soup = BeautifulSoup(html, "lxml")
+    out: dict = {}
+    if kind == "tanpuku":
+        for tr in soup.select("table.tanpuku tbody tr"):
+            num = _num(tr.select_one("td.num").get_text(strip=True) if tr.select_one("td.num") else None, int)
+            tan = _num(tr.select_one("td.odds_tan").get_text(strip=True) if tr.select_one("td.odds_tan") else None)
+            fmin, fmax = tr.select_one("td.odds_fuku .min"), tr.select_one("td.odds_fuku .max")
+            if num and tan:
+                out[num] = [tan, _num(fmin.get_text()) if fmin else None, _num(fmax.get_text()) if fmax else None]
+        return out
+    cls = {"umaren": "umaren", "wide": "wide", "trio": "fuku3"}[kind]
+    for tb in soup.select(f"table.{cls}"):
+        cap = tb.find("caption")
+        head = [x for x in re.findall(r"\d+", cap.get_text()) ] if cap else []
+        for tr in tb.select("tbody tr"):
+            th, td = tr.find("th"), tr.find("td")
+            if not th or not td:
+                continue
+            nums = sorted(int(x) for x in head + [th.get_text(strip=True)] if str(x).isdigit())
+            key = "-".join(map(str, nums))
+            if kind == "wide":
+                mn, mx = td.select_one(".min"), td.select_one(".max")
+                if mn and _num(mn.get_text()):
+                    out[key] = [_num(mn.get_text()), _num(mx.get_text()) if mx else None]
+            else:
+                v = _num(td.get_text(strip=True))
+                if v:
+                    out[key] = v
+    return out
+
+
 def parse_payouts(soup) -> dict:
     out: dict[str, list] = {}
     for li in soup.select(".refund_area li"):

@@ -1,0 +1,44 @@
+name: backfill-jra-odds
+# 過去レースの JRA 最終オッズ（単勝・複勝・馬連・ワイド・3連複）を odds ブランチの odds/<YYYYMM>.json.gz に貯める。
+# 1回5時間で区切り、残りがあれば自分で次を起動する（取得できたレースが無い回では止まる）。
+on:
+  workflow_dispatch:
+    inputs:
+      since: {description: "この月以降 (YYYY-MM)", default: "2021-01"}
+      budget: {description: "取得に使う分数", default: "320"}
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: jra-odds
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install -r requirements.txt
+      - name: restore
+        run: |
+          mkdir -p odds
+          if git fetch -q origin odds; then git --work-tree=. checkout origin/odds -- odds 2>/dev/null || true; git reset -q; fi
+          ls odds | wc -l
+      - run: python tools/backfill_jra_odds.py --since ${{ inputs.since }} --budget-min ${{ inputs.budget }} --out odds
+      - name: save
+        run: |
+          git config user.name "keiba-bot"
+          git config user.email "keiba-bot@users.noreply.github.com"
+          cp -r odds /tmp/odds
+          if git fetch -q origin odds; then git checkout -q -f -B odds origin/odds; else git checkout -q --orphan odds; git rm -rq --cached . >/dev/null 2>&1 || true; fi
+          rm -rf odds && cp -r /tmp/odds odds && git add odds
+          git commit -qm "odds $(date -u +%FT%H%M)" || true
+          git push -q origin HEAD:odds
+      - name: next
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          r=$(cat /tmp/odds_remaining || echo 0); echo "remaining $r"
+          if [ "$r" -gt 0 ]; then gh workflow run backfill-jra-odds.yml --ref main -f since=${{ inputs.since }} -f budget=${{ inputs.budget }}; fi
