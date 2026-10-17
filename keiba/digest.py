@@ -1404,7 +1404,7 @@ def text(card: dict, evals: list[HorseEval], title: str) -> str:
                 + (f"（{'・'.join(nm.get(x, '?') for x in t.horses)}・想定{t.est_pay:,.0f}円）" if t.kind == "馬連" else "")
                 for t in vp.tickets))
         for h, _ in d["本線"]:
-            L.append(f"**本線（単複） {horse_line(h)}**")
+            L.append(f"**本線（単勝） {horse_line(h)}**")
             L += [f"  - {r}" for r in reasons(h)]
     else:
         L.append("本線: なし（妙味馬の条件に届く馬がいない）")

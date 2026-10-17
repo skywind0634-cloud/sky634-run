@@ -172,12 +172,13 @@ def umaren_prob(p: dict, a, b) -> float:
 
 
 def value_plan(evals: list[HorseEval], n_runners: int | None = None) -> BetPlan | None:
-    """本線の買い目: 妙味馬の単勝・複勝（各1点）＋ 妙味馬を含む馬連（期待値の比1.2以上・想定2000円以上, 14頭以下で最大5点）."""
+    """本線の買い目: 妙味馬の単勝（1点）＋ 妙味馬を含む馬連（期待値の比1.2以上・想定2000円以上, 14頭以下で最大5点）.
+    複勝は全馬の実オッズでの再検証（2026-10-17）で回収88%/90%と負け越したので外した（単勝は139%/142%）."""
     vals = value_horses(evals)
     if not vals:
         return None
     v = vals[0]
-    tickets = [Ticket("単勝", (v.number,)), Ticket("複勝", (v.number,))]
+    tickets = [Ticket("単勝", (v.number,))]
     n = n_runners or len(evals)
     marks = {h.number: "妙" for h in vals}
     if n <= UMAREN_MAX_RUNNERS and all(h.p_market for h in evals):
@@ -210,6 +211,6 @@ def value_plan(evals: list[HorseEval], n_runners: int | None = None) -> BetPlan 
         t.p_hit = sum(_hit(t.kind, t.horses, o) for o in orders) / len(orders)
     any_hit = sum(any(_hit(t.kind, t.horses, o) for t in tickets) for o in orders) / len(orders)
     n_um = sum(t.kind == "馬連" for t in tickets)
-    strat = f"妙味馬 {v.number} の単勝・複勝" + (f"＋妙味馬を含む馬連{n_um}点" if n_um else
+    strat = f"妙味馬 {v.number} の単勝" + (f"＋妙味馬を含む馬連{n_um}点" if n_um else
                                               ("（15頭以上のため馬連なし）" if n > UMAREN_MAX_RUNNERS else "（条件を満たす馬連なし）"))
     return BetPlan(strat, tickets, any_hit, marks)
