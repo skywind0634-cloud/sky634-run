@@ -14,24 +14,25 @@ conn = sqlite3.connect(":memory:")
 conn.row_factory = sqlite3.Row
 conn.executescript(db.SCHEMA)
 pipeline.is_target_race = lambda race_no=None, grade=None, surface=None, name=None: surface != "障" and not (name and "障害" in name)
+_orig = pipeline.jra.parse_result
+_seen = []
+
+
+def _parse(html, cname):  # 調査用: 最初の2レースの解析結果を出す
+    race, res = _orig(html, cname)
+    if len(_seen) < 2:
+        _seen.append(1)
+        import re as _re
+        print("DIAG", cname, len(html), "results", len(res), {k: race.get(k) for k in ("race_id", "race_no", "grade", "surface", "name")}, flush=True)
+        if not res:
+            i = html.find("<table")
+            print("DIAG html", _re.sub(r"\s+", " ", html[i:i + 2000] if i >= 0 else html[:2000]), flush=True)
+    return race, res
+
+
+pipeline.jra.parse_result = _parse
 pipeline.update_results_jra(conn, day, day, with_pedigree=False)
 if not conn.execute("SELECT count(*) FROM races").fetchone()[0]:
-    # 調査用: 1レースだけ解析の途中経過を出す
-    from keiba.scraper import jra
-    try:
-        ds = [d for d in jra.day_lists_in_month(day.strftime("%Y%m")) if jra.day_date_from_cname(d[1]) == day.isoformat()]
-        rc = jra.races_in_day(ds[0])
-        print("races_in_day", len(rc), rc[:2])
-        cn = rc[-1][1]
-        html = jra.post("/JRADB/accessS.html", cn, use_cache=False)
-        print("html", len(html), "table" in html, html.count("<tr"))
-        race, res = jra.parse_result(html, cn)
-        print("race", race, "results", len(res), res[:1])
-        import re as _re
-        print(_re.sub(r"\s+", " ", html[html.find("<table"):html.find("<table") + 1500]))
-    except Exception as e:  # noqa: BLE001
-        import traceback; traceback.print_exc()
-    # 当日はJRAの月別一覧に載るのが遅いので netkeiba で取る
     print("JRA 0件 → netkeiba")
     pipeline.update_results(conn, day, day, with_pedigree=False)
 out = []
