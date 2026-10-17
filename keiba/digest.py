@@ -7,7 +7,7 @@
 - 走る条件: 人気帯の平均より走る条件が重なる馬（cond_score ≥ 0.4）
 - 妙味条件: 過去の複数期間で回収率100%超の条件に当てはまる馬
 - 牝系: 母・2代母の一族がこの条件で人気以上に走る（初めての条件なら特に）
-- 危険: 1〜6番人気で人気帯の平均より来ない条件が重なる馬
+- 危険（過信禁物の人気馬）: 1〜3番人気でフラグ点-2以下かつ予測勝率が市場以下、または来ない条件が重なり予測勝率が市場の0.8倍未満の馬（消しではない）
 """
 from __future__ import annotations
 
@@ -71,8 +71,24 @@ def reasons(h: HorseEval) -> list[str]:
     return out[:7]
 
 
-def race_digest(evals: list[HorseEval]) -> dict:
-    """カテゴリ → [(馬, 一言)]."""
+DANGER_TOP3 = {1: "3着内49〜56%（1番人気の平均62%）", 2: "3着内42〜43%（2番人気の平均51%）", 3: "3着内32〜37%（3番人気の平均39%）"}
+
+
+def is_overrated(h: HorseEval, flag: int | None) -> bool:
+    """過信禁物の人気馬（2026-10-17 見直し, docs/analysis/danger_recheck.md）.
+    旧基準（来ない条件 -0.3 以下だけ）は後半期に3着内率が同人気の平均と変わらなかった（A/E 0.86/0.96）。
+    フラグ点-2以下かつ予測勝率が市場以下、または来ない条件-0.3以下かつ予測勝率が市場の0.8倍未満に絞る（過去1年で A/E 0.81/0.88）。
+    それでも1番人気は半分以上3着内に来るので、消しではなく軸・1着付けにしないための印."""
+    if (h.pop_rank or 99) > 3:
+        return False
+    ratio = h.p_win / h.p_market if h.p_market else 1.0
+    if flag is not None and flag <= -2 and ratio < 1.0:   # モデルが市場より高く見ている馬（本線候補）とは矛盾させない
+        return True
+    return h.cond_score <= -0.3 and ratio < 0.8
+
+
+def race_digest(evals: list[HorseEval], flags: dict | None = None) -> dict:
+    """カテゴリ → [(馬, 一言)]. flags は flag_scores の結果（無ければ来ない条件だけで判定）."""
     vp = value_picks(evals)
     stars = longshot_picks(evals)
     seen = {h.number for h in vp}
@@ -90,8 +106,10 @@ def race_digest(evals: list[HorseEval]) -> dict:
         if ang:
             out["検証済み"].append((h, " / ".join(ang)))
         # 4〜6番人気は検証で3着内率が同じ人気の他の馬と変わらない（tools/strategy_danger_partners.py）ので1〜3番人気だけ
-        if (h.pop_rank or 99) <= 3 and h.cond_score <= -0.3:
-            out["危険"].append((h, _short(_pick(h, "来ない条件"), 160)))
+        fl = (flags or {}).get(h.number)
+        if is_overrated(h, fl):
+            why = ([f"フラグ点{fl:+d}"] if fl is not None and fl <= -2 else []) + ([f"予測/市場 {h.p_win / h.p_market:.2f}"] if h.p_market else [])
+            out["危険"].append((h, DANGER_TOP3[h.pop_rank] + "。" + "・".join(why) + "。" + _short(_pick(h, "来ない条件"), 140)))
         if h.out_of_form:
             continue  # 直近2〜3走すべて1.5秒以上負けの馬は注目馬に出さない
         if h.number not in seen and h.cond_score >= 0.4 and (h.pop_rank or 99) >= 4:
@@ -1229,7 +1247,7 @@ def flag_picks(card: dict, evals: list[HorseEval]) -> list[str]:
         if cand and sc[cand[0]] >= 2:
             ax = cand[0]
             wide = [n for n in cand[1:5]]
-            out.append(f"**★フラグ点: 1番人気{one[0]}{nm[one[0]]}が点{sc[one[0]]:+d}（危険）** → "
+            out.append(f"**★フラグ点: 1番人気{one[0]}{nm[one[0]]}が点{sc[one[0]]:+d}（過信禁物）** → "
                        f"単勝 {'・'.join(f'{n}{nm[n]}' for n in cand if sc[n] >= 2)}（2-6番人気で+2以上。検証 単勝115/113/140%・複勝94/100/104%）"
                        + (f"、ワイド {ax}-{'・'.join(map(str, wide))}（検証 ワイド133/137/195%・的中率17〜23%）" if wide else ""))
     for n, p in sorted(pop.items(), key=lambda x: x[1]):
@@ -1296,11 +1314,11 @@ def g1_history_lines(card: dict, evals: list[HorseEval]) -> list[str]:
 
 
 def text(card: dict, evals: list[HorseEval], title: str) -> str:
-    d = race_digest(evals)
+    sc_ = flag_scores(card, evals)
+    d = race_digest(evals, sc_)
     L = [f"### {title}"]
     L += g1_history_lines(card, evals)
     L += flag_picks(card, evals)
-    sc_ = flag_scores(card, evals)
     if any(sc_.values()):
         L.append("フラグ点（○−×）: " + "、".join(f"{h.number}{h.name}({h.pop_rank}人気){sc_[h.number]:+d}"
                                               for h in sorted(evals, key=lambda h: h.pop_rank or 99) if sc_.get(h.number)))
@@ -1320,7 +1338,7 @@ def text(card: dict, evals: list[HorseEval], title: str) -> str:
     else:
         L.append("本線: なし（妙味馬の条件に届く馬がいない）")
     labels = {"★": "★ 血統の穴（8番人気以下で血統要素が最上位。単独では単勝・複勝・ワイド・馬連・3連複どの買い方も回収率56〜91%で負け越し。妙味条件(厳格)と重なる馬だけ買う＝厳格軸の買い目に含まれる。それ以外は見るだけ）", "専門家": "専門家の見解に該当", "検証済み": "検証済みの傾向（3期間で回収率100%超）に該当", "走る条件": "人気帯の中で走る条件が重なる（検証: 7〜9番人気の満点は単勝101%/172%。10番人気以下は複勝60〜70%台で単独では買わない。ヒモ候補）",
-              "妙味条件": "回収率の高い条件に該当", "牝系": "牝系がこの条件で走る", "危険": "危険な人気馬（1〜3番人気。検証では3着内率45%前後で同じ人気の他の馬51%より低く、単勝回収66〜75%。消しではなく、軸にしない・頭で買わない）"}
+              "妙味条件": "回収率の高い条件に該当", "牝系": "牝系がこの条件で走る", "危険": "過信禁物の人気馬（1〜3番人気。2021-26年の検証で、どんな条件の組み合わせでも1番人気は半分以上3着内に来る＝馬券から消してはいけない。同じ人気の平均より3着内率が5〜10ポイント低いだけなので、軸・1着付けにしない。3連複・ワイドのヒモには残す）"}
     for k, lab in labels.items():
         if not d[k]:
             continue
@@ -1425,6 +1443,6 @@ GUIDE = """## 買い方の早見表（過去1年の実払戻で検証した結�
 | 準本線 | 少額 | 単勝・複勝だけ | 単勝101%/172%・複勝94%/123% |
 | 遊び | 買わない | （負け越し） | 60〜80%台 |
 | ★血統の穴・走る条件・回収率の高い条件・牝系・直結コース・前走0.6秒差・開催×血統・専門家・系統の型 | 買わない | 見るだけ（どれも単独では負け越し。◎や本線に重なっていれば、その馬はすでに買い目に入っている） | 56〜91% |
-| 危険な人気馬 | — | 消しではない。軸・1着付けにしない | — |
+| 過信禁物の人気馬 | — | 消しではない（1番人気は半分以上3着内）。軸・1着付けにしない。ヒモには残す | — |
 """
 
