@@ -24,11 +24,17 @@ def main(path):
         out.extend(info)
         out.append("【買う】" + (" ／ ".join(buys) if buys else "なし（このレースは見送り。下は材料）"))
         for b in buys:
-            kind = "◎厳格" if b.startswith("◎厳格") else "本線" if b.startswith("本線") else "準本線" if b.startswith("準本線") else "フラグ点"
-            mm = re.search(r"厳格 (\d+) |単複 (\d+)（|フラグ点: (\d+)", b)
-            n = next((int(g) for g in (mm.groups() if mm else []) if g), None)
-            if n in horses and kind not in horses[n]["buy"]:
-                horses[n]["buy"].append(kind)
+            kind = next((k for k in ("◎厳格", "★混戦穴", "★フラグ軸", "穴ワイド", "本線", "準本線") if b.startswith(k)), "フラグ点")
+            if kind == "穴ワイド":
+                ns = [int(x) for x in re.findall(r"(?:^穴ワイド |/ )(\d+)\D", b)]
+            else:
+                mm = re.search(r"厳格 (\d+) |単複 (\d+)（|フラグ点: (\d+)|軸 (\d+)", b)
+                ns = [next((int(g) for g in (mm.groups() if mm else []) if g), None)]
+            for n in ns:
+                if n not in horses:
+                    continue
+                if kind not in horses[n]["buy"]:
+                    horses[n]["buy"].append(kind)
         for num, h in sorted(horses.items(), key=lambda x: x[1]["pop"]):
             tags = "・".join(h["tags"])
             buy = " ★買う:" + "+".join(h["buy"]) if h["buy"] else ""
@@ -43,6 +49,16 @@ def main(path):
         m = re.match(r"\s*(?:\*\*)?(?:本線（単勝）\s*)?(\d+)\s?(\S+?)（(\d+)人気・([\d.]+)倍", l.replace("**本線（単勝） ", "  - ").replace("  - ", ""))
         if l.startswith("  - ◎妙味条件(厳格)"):
             buys.append("◎厳格 " + l.split("）:", 1)[-1].strip()); cat = None; continue
+        for key in ("★混戦穴", "★フラグ軸", "穴ワイド"):
+            if l.startswith("  - " + key):
+                buys.append(key + " " + l.split("）: ", 1)[-1].strip()); cat = None
+                break
+        else:
+            key = None
+        if key:
+            continue
+        if l.startswith("レースの形"):
+            info.append("  " + l); continue
         if l.startswith("  - 本線"):
             buys.append("本線 " + l.split("）:", 1)[-1].strip()); cat = None; continue
         if l.startswith("  - 準本線"):
