@@ -159,6 +159,37 @@ def cmd_backfill(a):
     print(f"血統補完: {pipeline.backfill_pedigrees(conn, a.limit)} 頭")
 
 
+def cmd_backfill_odds(a):
+    """過去レースの全馬の単勝オッズ（results.odds）を netkeiba のレース結果から埋める（2026-10-17）.
+    JRA の結果ページには勝ち馬以外のオッズが無く、バックテストの市場評価が人気順の平均から作った擬似オッズになっていたため."""
+    import time
+    from .scraper import netkeiba as nk
+    conn = db.connect()
+    rows = conn.execute("SELECT ra.race_id FROM races ra JOIN results r USING(race_id) WHERE ra.date >= ? "
+                        "GROUP BY ra.race_id HAVING sum(r.odds IS NOT NULL AND r.odds > 0) < count(*) - 1 ORDER BY ra.date DESC",
+                        (a.since,)).fetchall()
+    end = time.time() + a.time_budget_min * 60
+    done = 0
+    for (rid,) in rows:
+        if time.time() > end:
+            break
+        try:
+            _, res = nk.fetch_result(rid)
+        except Exception as e:  # noqa: BLE001 — 1レースの失敗で止めない
+            print(f"{rid}: {e}")
+            continue
+        for r in res:
+            if r.get("odds") and r.get("number"):
+                conn.execute("UPDATE results SET odds=?, popularity=coalesce(popularity, ?) WHERE race_id=? AND number=?",
+                             (r["odds"], r.get("popularity"), rid, r["number"]))
+        done += 1
+        if done % 50 == 0:
+            conn.commit()
+            print(f"{done}/{len(rows)}", flush=True)
+    conn.commit()
+    print(f"単勝オッズ: {done}/{len(rows)} レースを埋めた")
+
+
 def cmd_backfill_layout(a):
     """過去レースの内回り/外回り（races.layout）を埋める。両方あるコース・距離（京都芝1400/1600・新潟芝2000）は
     netkeiba のレース結果の表記から取得し、どちらか一方しかない距離は表（knowledge._LAYOUT）で埋める."""
@@ -352,6 +383,8 @@ def main(argv=None):
     p.add_argument("--source", choices=["jra", "netkeiba"], default="jra"); p.set_defaults(fn=cmd_update_results)
     p = sub.add_parser("backfill-pedigree"); p.add_argument("--limit", type=int, default=500); p.set_defaults(fn=cmd_backfill)
     p = sub.add_parser("backfill-layout"); p.add_argument("--limit", type=int, default=0); p.add_argument("--no-fetch", action="store_true"); p.set_defaults(fn=cmd_backfill_layout)
+    p = sub.add_parser("backfill-odds"); p.add_argument("--since", default="2021-01-01")
+    p.add_argument("--time-budget-min", type=float, default=300); p.set_defaults(fn=cmd_backfill_odds)
     p = sub.add_parser("jra-earliest"); p.set_defaults(fn=cmd_jra_earliest)
     p = sub.add_parser("merge-db"); p.add_argument("sources", nargs="+"); p.set_defaults(fn=cmd_merge_db)
     p = sub.add_parser("plan-shards"); p.add_argument("--from", dest="date_from", default="3y")
