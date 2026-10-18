@@ -175,6 +175,15 @@ def ticket_card(card: dict, evals: list[HorseEval]) -> list[str]:
     sp = sub_picks(evals)
     if sp:
         L.append("  - 準本線（7〜9番人気・走る条件が満点。検証では単勝101%/172%・複勝94%/123%、少額の単複）: " + "、".join(f"単複 {h.number}（{h.name}・{h.pop_rank}人気）" for h in sp))
+    if card.get("_odds"):
+        from .combo import picks
+        cp = picks(card["_odds"], flag_marks(card, evals))
+        if cp.get("3連複"):
+            L.append("  - ◆期待値3連複（発売中のオッズ100〜1000倍の組から、3着内確率の上乗せの積が1.7以上。2024/2025-26 で回収127%/415%・的中2〜4%）: 3連複 "
+                     + "、".join(f"{c}（{o:.0f}倍・比{r:.2f}）" for c, o, r in cp["3連複"]))
+        if cp.get("ワイド"):
+            L.append("  - ◆期待値ワイド（オッズ10〜50倍で上乗せの積1.5以上。2024/2025-26 で回収158%/201%・的中8〜12%）: ワイド "
+                     + "、".join(f"{c}（{o:.1f}倍・比{r:.2f}）" for c, o, r in cp["ワイド"]))
     ch = flag_axis_package(card, evals, chaos=True)
     fa = flag_axis_package(card, evals)
     if ch:
@@ -1300,7 +1309,21 @@ def flag_scores(card: dict, evals: list[HorseEval]) -> dict:
                 txt[num] = txt.get(num, "") + " " + t
         except Exception:  # noqa: BLE001 — 1つの材料の失敗で予想を止めない
             pass
-    return {h.number: len(re.findall(r"[◎○]（", txt.get(h.number, ""))) - len(re.findall(r"[×▽▼]（", txt.get(h.number, ""))) for h in evals}
+    return {n: pl - mi for n, (pl, mi) in flag_marks(card, evals, txt).items()}
+
+
+def flag_marks(card: dict, evals: list[HorseEval], txt: dict | None = None) -> dict:
+    """馬番 → (○◎の数, ×▽▼の数)."""
+    import re
+    if txt is None:
+        txt = {}
+        for f in (book_condition_horses, pace_l3_horses, course_check_horses):
+            try:
+                for num, t in f(card, evals):
+                    txt[num] = txt.get(num, "") + " " + t
+            except Exception:  # noqa: BLE001
+                pass
+    return {h.number: (len(re.findall(r"[◎○]（", txt.get(h.number, ""))), len(re.findall(r"[×▽▼]（", txt.get(h.number, "")))) for h in evals}
 
 
 def flag_picks(card: dict, evals: list[HorseEval]) -> list[str]:

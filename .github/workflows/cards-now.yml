@@ -38,6 +38,19 @@ jobs:
       - run: pip install -r requirements.txt
       - name: build cards (JRA)
         run: python -m keiba.cli build-cards --source jra ${{ inputs.weekend && format('--weekend {0}', inputs.weekend) || '' }}
+      - name: live odds (単複・ワイド・3連複)
+        continue-on-error: true
+        run: |
+          ds=$(python - <<'PY'
+          import datetime as dt, os
+          w = os.environ.get("WEEKEND") or ""
+          sat = dt.date.fromisoformat(w) if w else dt.date.today() + dt.timedelta(days=(5 - dt.date.today().weekday()) % 7)
+          print(sat.isoformat(), (sat + dt.timedelta(days=1)).isoformat())
+          PY
+          )
+          python tools/fetch_live_odds.py $ds
+        env:
+          WEEKEND: ${{ inputs.weekend }}
       - name: predict
         continue-on-error: true
         run: python -m keiba.cli predict ${{ inputs.weekend && format('--weekend {0}', inputs.weekend) || '' }}

@@ -317,6 +317,43 @@ def odds_tabs(odds_html: str, race_cname: str) -> dict[str, tuple[str, str]]:
     return out
 
 
+ODDS_TOP = ("/JRADB/accessO.html", "pw15oli00/6D")
+
+
+def race_id_from_odds_cname(cname: str) -> str | None:
+    """pw151ouS3 CC YYYY KK DD RR YYYYMMDD…（今週）/ pw151ou1 0 CC YYYY …（過去）→ YYYY CC KK DD RR."""
+    m = re.match(r"pw15\dou(?:S3|10)(\d{2})(\d{4})(\d{2})(\d{2})(\d{2})\d{8}", cname)
+    return f"{m.group(2)}{m.group(1)}{m.group(3)}{m.group(4)}{m.group(5)}" if m else None
+
+
+def live_odds(dates: set[str], race_ids: set[str] | None = None) -> dict[str, dict]:
+    """今週のオッズ（発売中）: オッズのトップ → 開催ごと → レースごとの単勝・複勝 → 券種タブ. {race_id: {tanpuku, umaren, wide, trio}}."""
+    out = {}
+    top = post(*ODDS_TOP, use_cache=False)
+    days = [(p, c) for p, c in ACTION_RE.findall(top) if c.startswith("pw15orl") and any(d.replace("-", "") in c for d in dates)]
+    seen = set()
+    for p, c in days:
+        if c in seen:
+            continue
+        seen.add(c)
+        for pp, rc in ACTION_RE.findall(post(p, c, use_cache=False)):
+            if not rc.startswith("pw151ouS3"):
+                continue
+            rid = race_id_from_odds_cname(rc)
+            if not rid or rid in out or (race_ids and rid not in race_ids):
+                continue
+            try:
+                first = post(pp, rc, use_cache=False)
+                rec = {"tanpuku": parse_odds(first, "tanpuku")}
+                for kind, (p2, c2) in odds_tabs(first, rc).items():
+                    if kind != "tanpuku":
+                        rec[kind] = parse_odds(post(p2, c2, use_cache=False), kind)
+                out[rid] = rec
+            except FetchError as e:
+                print(rid, e)
+    return out
+
+
 def parse_odds(html: str, kind: str) -> dict:
     """最終オッズのページを解析. tanpuku → {馬番: [単勝, 複勝下限, 複勝上限]}、umaren/trio → {"a-b(-c)": オッズ}、
     wide → {"a-b": [下限, 上限]}. 取消などオッズの無い組は入れない."""

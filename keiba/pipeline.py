@@ -164,6 +164,9 @@ def load_cards(date: dt.date, cards_dir: Path = CARDS_DIR) -> list[dict]:
         c = json.loads(p.read_text(encoding="utf-8"))
         c.setdefault("date", date.isoformat())
         c["_path"] = str(p)
+        op = folder / "odds" / p.name   # tools/fetch_live_odds.py が保存した発売中の組み合わせオッズ
+        if op.exists():
+            c["_odds"] = json.loads(op.read_text(encoding="utf-8"))
         cards.append(c)
     return cards
 
