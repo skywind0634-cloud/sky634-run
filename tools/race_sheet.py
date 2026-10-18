@@ -12,6 +12,38 @@ SHORT = [("★ 血統の穴", "★血統穴"), ("専門家の見解", "専門家
          ("最新の種牡馬傾向", "最新種牡馬"), ("★主流", "反主流")]
 
 
+ORDER = [("◎妙味条件(厳格)", "◎厳格", "単勝・ワイド・馬連・3連複。実オッズでも 141%/135%（単勝だけなら193%/188%）"),
+         ("★混戦穴", "★混戦穴", "1番人気4.1倍以上の混戦だけ。ワイド＋3連複。実オッズ5年 186%/120%/138%"),
+         ("★フラグ軸", "★フラグ軸", "ワイド＋3連複。実オッズ5年 128%/110%/114%"),
+         ("**★フラグ点", "★フラグ点", "1番人気がフラグ点-2以下のとき2〜6番人気の+2以上。単勝115/113/140%・ワイド133/137/195%"),
+         ("本線", "本線", "妙味馬の単勝＋馬連。単勝は実オッズで139%/142%、馬連は98%/114%"),
+         ("準本線", "準本線", "少額の単複。単勝124%/175%"),
+         ("穴ワイド", "穴ワイド", "少額。94%/108%（ほぼトントン、高配当の取りこぼし防ぎ）")]
+
+
+def card_summary(path):
+    """買い目カードを、買い方ごと（強い順）に全レース分まとめる."""
+    txt = open(path, encoding="utf-8").read()
+    rows = {k: [] for _, k, _ in ORDER}
+    for b in re.split(r"\n(?=### )", txt):
+        if not b.startswith("### "):
+            continue
+        title = re.sub(r"^\S+ ", "", b.splitlines()[0][4:]).split(" ")[0]
+        for l in b.splitlines():
+            t = l.strip().lstrip("- ").strip()
+            for pre, key, _ in ORDER:
+                if t.startswith(pre) and not t.startswith(("本線の買い目", "本線（単勝）", "本線: なし")):
+                    body = t.split("）: ", 1)[-1] if "）: " in t else t.split("** → ", 1)[-1]
+                    pts = len(re.findall(r"\d+-\d+(?:-\d+)?", body)) + len(re.findall(r"単勝 \d+", body)) + 2 * len(re.findall(r"単複 \d+", body))
+                    rows[key].append(f"  - {title}: {body}（{pts}点）")
+                    break
+    out = ["【今日の買い目カード（買い方ごと・強い順）】"]
+    for _, key, note in ORDER:
+        out.append(f"■ {key}（{note}）")
+        out += rows[key] or ["  - 該当なし"]
+    return "\n".join(out)
+
+
 def main(path):
     out = []
     race = None
@@ -95,6 +127,7 @@ def main(path):
     flush()
     # 買い目に出た馬番を馬に印付け
     txt = "\n".join(out)
+    print(card_summary(path))
     print(txt)
 
 
