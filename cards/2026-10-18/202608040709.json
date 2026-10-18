@@ -1,6 +1,6 @@
 {
  "race_id": "202608040709",
- "provisional_numbers": false,
+ "provisional_numbers": true,
  "date": "2026-10-18",
  "course": "京都",
  "race_no": 9,
@@ -9,10 +9,10 @@
  "surface": "芝",
  "distance": 1600,
  "layout": "外",
- "going": "良",
+ "going": null,
  "entries": [
   {
-   "gate": 1,
+   "gate": null,
    "number": 1,
    "horse_id": "2022104879",
    "name": "テーオーシュタイン",
@@ -21,8 +21,8 @@
    "weight": 58.0,
    "jockey": "戸崎圭太",
    "trainer": "梅田智之",
-   "odds": 9.9,
-   "popularity": 5,
+   "odds": 7.2,
+   "popularity": 3,
    "body_weight_diff": -2,
    "sire": "ワールドエース",
    "dam": "ソングライティング",
@@ -121,7 +121,7 @@
    }
   },
   {
-   "gate": 2,
+   "gate": null,
    "number": 2,
    "horse_id": "2022100080",
    "name": "リカントロポ",
@@ -130,8 +130,8 @@
    "weight": 58.0,
    "jockey": "田口貫太",
    "trainer": "梅田智之",
-   "odds": 8.3,
-   "popularity": 3,
+   "odds": 9.6,
+   "popularity": 4,
    "body_weight_diff": 4,
    "sire": "グレーターロンドン",
    "dam": "ホワイトアルバム",
@@ -231,7 +231,7 @@
    }
   },
   {
-   "gate": 3,
+   "gate": null,
    "number": 3,
    "horse_id": "2023104430",
    "name": "リアンマヒナ",
@@ -240,7 +240,7 @@
    "weight": 56.0,
    "jockey": "岩田望来",
    "trainer": "高橋一哉",
-   "odds": 3.1,
+   "odds": 2.6,
    "popularity": 2,
    "body_weight_diff": 0,
    "sire": "モズアスコット",
@@ -345,7 +345,7 @@
    }
   },
   {
-   "gate": 4,
+   "gate": null,
    "number": 4,
    "horse_id": "2023103958",
    "name": "アロンソア",
@@ -354,8 +354,8 @@
    "weight": 56.0,
    "jockey": "川又賢治",
    "trainer": "牧田和弥",
-   "odds": 24.0,
-   "popularity": 8,
+   "odds": 49.3,
+   "popularity": 7,
    "body_weight_diff": -8,
    "sire": "インディチャンプ",
    "dam": "レッドフィオーレ",
@@ -457,7 +457,7 @@
    }
   },
   {
-   "gate": 5,
+   "gate": null,
    "number": 5,
    "horse_id": "2021105367",
    "name": "コンテネレッツア",
@@ -466,8 +466,8 @@
    "weight": 56.0,
    "jockey": "松山弘平",
    "trainer": "宮田敬介",
-   "odds": 9.6,
-   "popularity": 4,
+   "odds": 14.5,
+   "popularity": 5,
    "body_weight_diff": 4,
    "sire": "エピファネイア",
    "dam": "アドマイヤセプター",
@@ -570,7 +570,7 @@
    }
   },
   {
-   "gate": 6,
+   "gate": null,
    "number": 6,
    "horse_id": "2022110106",
    "name": "アメリカンポリス",
@@ -579,7 +579,7 @@
    "weight": 58.0,
    "jockey": "吉村誠之助",
    "trainer": "池江泰寿",
-   "odds": 17.1,
+   "odds": 25.3,
    "popularity": 6,
    "body_weight_diff": -8,
    "sire": "Into Mischief",
@@ -681,7 +681,7 @@
    }
   },
   {
-   "gate": 7,
+   "gate": null,
    "number": 7,
    "horse_id": "2021104929",
    "name": "ルトゥール",
@@ -690,8 +690,8 @@
    "weight": 56.0,
    "jockey": "荻野極",
    "trainer": "平岩大典",
-   "odds": 18.2,
-   "popularity": 7,
+   "odds": null,
+   "popularity": null,
    "body_weight_diff": 4,
    "sire": "モーリス",
    "dam": "ルフォール",
@@ -794,7 +794,7 @@
    }
   },
   {
-   "gate": 8,
+   "gate": null,
    "number": 8,
    "horse_id": "2023103440",
    "name": "サーディンラン",
@@ -803,7 +803,7 @@
    "weight": 56.0,
    "jockey": "C.ルメール",
    "trainer": "武英智",
-   "odds": 2.1,
+   "odds": 2.0,
    "popularity": 1,
    "body_weight_diff": 2,
    "sire": "レイデオロ",
