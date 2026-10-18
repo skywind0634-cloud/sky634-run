@@ -175,6 +175,9 @@ def ticket_card(card: dict, evals: list[HorseEval]) -> list[str]:
     sp = sub_picks(evals)
     if sp:
         L.append("  - 準本線（7〜9番人気・走る条件が満点。検証では単勝101%/172%・複勝94%/123%、少額の単複）: " + "、".join(f"単複 {h.number}（{h.name}・{h.pop_rank}人気）" for h in sp))
+    r7 = r7_hit_line(card, evals)
+    if r7:
+        L.append(r7)
     if card.get("_odds"):
         from .combo import picks
         cp = picks(card["_odds"], flag_marks(card, evals))
@@ -243,6 +246,28 @@ def flag_axis_package(card: dict, evals: list[HorseEval], chaos: bool = False) -
     trio = sorted({"-".join(map(str, sorted((a.number, pop[x], pop[y])))) for x in (1, 2) for y in range(1, 6)
                    if x != y and x in pop and y in pop}, key=lambda t: [int(v) for v in t.split("-")])
     return f"軸 {a.number}{a.name}（{a.pop_rank}人気・点{sc[a.number]:+d}）→ ワイド " + "、".join(wide) + " ／ 3連複 " + "、".join(trio)
+
+
+def r7_hit_line(card: dict, evals: list[HorseEval]) -> str | None:
+    """7R は当てにいく（2026-10-18 ユーザー指示: 当たらないと資金が持たない）. 5年の7Rで的中率の高い形（tools/r7_hit.py, docs/analysis/r7_hit.md）:
+    1番人気2.0倍以下で1〜3番人気のフラグ点最大が+2以上 → その馬の複勝（的中67〜77%・回収95〜106%）。
+    1番人気2.0倍以下 → 1番人気の複勝（的中80〜85%・回収90〜95%）。それ以外で+2以上 → その馬の複勝（的中48〜69%・回収81〜106%）。"""
+    if card.get("race_no") != 7:
+        return None
+    sc = flag_scores(card, evals)
+    o1, _ = fav_odds(evals)
+    fav = sorted([h for h in evals if h.pop_rank and h.pop_rank <= 3], key=lambda h: (-sc.get(h.number, 0), h.pop_rank))
+    if not fav:
+        return None
+    best = fav[0]; one = next((h for h in evals if h.pop_rank == 1), None)
+    b = f"{best.number}{best.name}（{best.pop_rank}人気・点{sc.get(best.number, 0):+d}）"
+    if o1 and o1 <= 2.0 and sc.get(best.number, 0) >= 2:
+        return f"  - ◇7R当てにいく（1番人気{o1}倍の堅いレース）: 複勝 {b}（5年の7R 的中67〜77%・回収95〜106%）"
+    if o1 and o1 <= 2.0 and one:
+        return f"  - ◇7R当てにいく（1番人気{o1}倍の堅いレース）: 複勝 {one.number}{one.name}（1番人気。5年の7R 的中80〜85%・回収90〜95%）"
+    if sc.get(best.number, 0) >= 2:
+        return f"  - ◇7R当てにいく: 複勝 {b}（5年の7R 的中48〜69%・回収81〜106%）"
+    return f"  - ◇7R当てにいく: 堅い形なし（1番人気{o1 or '?'}倍・1〜3番人気にフラグ点+2以上なし）→ 7Rは見送るか、他の買い目を少額で"
 
 
 def longshot_net(card: dict, evals: list[HorseEval]) -> dict:
