@@ -113,16 +113,7 @@
      "behind": 0.1
     }
    ],
-   "pedigree": {
-    "S": "リオンディーズ",
-    "D": "ラルケット",
-    "DS": "ファルブラヴ",
-    "DD": "アズサユミ",
-    "SS": "キングカメハメハ",
-    "SSS": "Kingmambo",
-    "SSSS": "Mr. Prospector",
-    "DSS": "Fairy King"
-   }
+   "pedigree": {}
   },
   {
    "gate": 1,
