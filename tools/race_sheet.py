@@ -75,7 +75,7 @@ def main(path):
         for num, h in sorted(horses.items(), key=lambda x: x[1]["pop"]):
             tags = "・".join(h["tags"])
             buy = " ★買う:" + "+".join(h["buy"]) if h["buy"] else ""
-            out.append(f"  {num:>2} {h['name']}（{h['pop']}人気・{h['odds']}倍）{buy}｜{tags}")
+            out.append(f"  {num:>2} {h['name']}（{h['pop']}人気・{h['odds'] if h['odds'] == 'オッズ前' else h['odds'] + '倍'}）{buy}｜{tags}")
     for l in open(path, encoding="utf-8").read().split("\n"):
         if l.startswith("### "):
             flush()
@@ -110,19 +110,19 @@ def main(path):
             cat = next((v for k, v in SHORT if l[2:].startswith(k)), None)
             continue
         if l.startswith("**本線（単勝）"):
-            mm = re.search(r"(\d+) (\S+?)（(\d+)人気・([\d.]+)倍", l)
+            mm = re.search(r"(\d+) (\S+?)（(?:想定)?(\d+)(?:人気|番手)・([\d.]+倍|オッズ前)", l)
             if mm:
-                h = horses.setdefault(int(mm.group(1)), dict(name=mm.group(2), pop=int(mm.group(3)), odds=mm.group(4), tags=[], buy=[]))
+                h = horses.setdefault(int(mm.group(1)), dict(name=mm.group(2), pop=int(mm.group(3)), odds=mm.group(4).replace("倍", ""), tags=[], buy=[]))
                 h["buy"].append("本線")
             cat = "本線根拠"; continue
         if cat == "本線根拠" and l.startswith("  - "):
             last = next(reversed(horses.values()))
             last["tags"].append("根拠:" + l[4:].split("（")[0][:40])
             continue
-        mm = re.match(r"  - (\d+) (\S+?)（(\d+)人気・([\d.]+)倍", l)
+        mm = re.match(r"  - (\d+) (\S+?)（(?:想定)?(\d+)(?:人気|番手)・([\d.]+倍|オッズ前)", l)
         if cat and mm:
             num = int(mm.group(1))
-            h = horses.setdefault(num, dict(name=mm.group(2), pop=int(mm.group(3)), odds=mm.group(4), tags=[], buy=[]))
+            h = horses.setdefault(num, dict(name=mm.group(2), pop=int(mm.group(3)), odds=mm.group(4).replace("倍", ""), tags=[], buy=[]))
             body = l.split("：", 1)[1] if "：" in l else ""
             ms = re.findall(r"([◎○▽×▼])（", body) + re.findall(r"）([○▼]) A/E", body) + re.findall(r"最新の傾向 ([○▼])", body)
             marks = "".join(sorted(set(ms), key="◎○▽×▼".index))
