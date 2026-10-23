@@ -846,7 +846,14 @@
      "behind": 1.5
     }
    ],
-   "pedigree": {}
+   "pedigree": {
+    "S": "アニマルキングダム",
+    "D": "ジェイエルマリーン",
+    "DS": "バゴ",
+    "DD": "ホウライサンデー",
+    "SS": "Leroidesanimaux",
+    "DSS": "Nashwan"
+   }
   },
   {
    "gate": null,
