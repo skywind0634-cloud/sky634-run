@@ -571,6 +571,22 @@ SOUMA_EXT_SIRES = {"アイルハヴアナザー", "ウォーエンブレム", "�
 TURF_START_DIRT = {("東京", 1600), ("中山", 1200), ("福島", 1150), ("新潟", 1200), ("京都", 1400), ("阪神", 1400), ("阪神", 2000), ("中京", 1400)}
 
 
+def SIRE_GOING() -> dict:
+    """種牡馬×馬場で上がる父（data/knowledge/sire_going.json, tools/sire_going_roi.py）."""
+    global _SG
+    try:
+        return _SG
+    except NameError:
+        pass
+    import json
+    from .config import KNOWLEDGE_DIR
+    try:
+        _SG = json.loads((KNOWLEDGE_DIR / "sire_going.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        _SG = {}
+    return _SG
+
+
 def PED5_FLAGS() -> dict:
     """5代血統表からの祖先フラグ（data/knowledge/ped5_flags.json, tools/ped5_flags.py）."""
     global _PED5
@@ -728,9 +744,13 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
         if su == "ダ" and not going.startswith("良") and h.sire_line in ("サドラーズウェルズ系", "ガリレオ系"):
             why.append("ダートの道悪×父サドラーズウェルズ系 ×（A/E 0.72/0.71/0.90）")
         # ダートの重・不良（tools/wet_dirt.py, docs/analysis/wet_dirt.md, 2026-10-24）
+        # 種牡馬×馬場（稍重・重不良で良より上がる父, tools/sire_going_roi.py → data/knowledge/sire_going.json, 2026-10-24）
+        wk = "稍重" if going.startswith("稍") else "重不良" if going[:1] in ("重", "不") else None
+        sg = SIRE_GOING().get(su, {}).get(wk, {}).get(h.sire) if wk else None
+        if sg and not (su == "芝" and h.sire == "ダイワメジャー"):  # 芝の道悪×ダイワメジャーは既存の◎で数える
+            why.append(f"{'ダート' if su == 'ダ' else '芝'}の{'稍重' if wk == '稍重' else '重・不良'}×父{h.sire} ○（A/E {'/'.join('-' if v is None else f'{v:.2f}' for v in sg['ae'])}。"
+                       f"良は{sg['good']:.2f}・道悪の単勝{sg['tan']}%・複勝{sg['fuku']}%）")
         if su == "ダ" and going[:1] in ("重", "不"):
-            if h.sire == "マジェスティックウォリアー":
-                why.append("ダートの重・不良×父マジェスティックウォリアー ○（A/E 1.14/1.10/1.28。良は1.01）")
             if h.sire_line == "ヘネシー系":
                 why.append("ダートの重・不良×父ヘネシー系 ▽（A/E 0.84/0.94/0.87。良は1.04）")
             if h.sire_line == "ダイワメジャー系":
