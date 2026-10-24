@@ -187,8 +187,14 @@ def ticket_card(card: dict, evals: list[HorseEval]) -> list[str]:
         if cp.get("ワイド"):
             L.append("  - ◆期待値ワイド（オッズ10〜50倍で上乗せの積1.5以上。2024/2025-26 で回収158%/201%・的中8〜12%）: ワイド "
                      + "、".join(f"{c}（{o:.1f}倍・比{r:.2f}）" for c, o, r in cp["ワイド"]))
+    e78 = flag_axis_package(card, evals, th=3) if card.get("race_no") in (7, 8) else None
+    if e78:
+        L.append("  - ◎7・8R（7R・8Rは本命枠。4〜9番人気でフラグ点+3以上の1頭を軸に ワイド→1〜3番人気＋3連複 軸−1〜2番人気−1〜5番人気。"
+                 "5年の7R・8Rで回収102%/114%/131%・的中22〜30%・払戻中央3,000〜4,000円、+4以上なら125%/145%/158%, docs/analysis/early_upset.md）: " + e78)
     ch = flag_axis_package(card, evals, chaos=True)
     fa = flag_axis_package(card, evals)
+    if e78 and fa and fa.split("（")[0] == e78.split("（")[0]:
+        fa = None
     if ch:
         L.append("  - ★混戦穴（1番人気4.1倍以上の混戦で、7〜12番人気・フラグ点+3以上の1頭を軸に ワイド→1〜3番人気＋3連複 軸−1〜2番人気−1〜5番人気。"
                  "実オッズ5年で回収186%/120%/138%・的中12〜21%・万馬券12本。フラグ選定期間内の確認, docs/analysis/shape_flag.md）: " + ch)
@@ -225,7 +231,7 @@ def race_shape(evals: list[HorseEval]) -> str | None:
             f"3連複の中央払戻{trio}）")
 
 
-def flag_axis_package(card: dict, evals: list[HorseEval], chaos: bool = False) -> str | None:
+def flag_axis_package(card: dict, evals: list[HorseEval], chaos: bool = False, th: int | None = None) -> str | None:
     """★フラグ軸: 4〜9番人気でフラグ点+4以上の上位1頭 → ワイド 1〜3番人気＋3連複 軸−1〜2番人気−1〜5番人気（10点, tools/longshot_grid.py）.
     chaos=True は★混戦穴: 1番人気4.1倍以上のレースだけ、7〜12番人気でフラグ点+3以上（tools/shape_flag.py）."""
     sc = flag_scores(card, evals)
@@ -235,7 +241,7 @@ def flag_axis_package(card: dict, evals: list[HorseEval], chaos: bool = False) -
             return None
         lo, hi, th = 7, 12, 3
     else:
-        lo, hi, th = 4, 9, 4
+        lo, hi, th = 4, 9, th or 4
     cand = sorted([h for h in evals if lo <= (h.pop_rank or 0) <= hi and sc.get(h.number, 0) >= th],
                   key=lambda h: (-sc[h.number], h.pop_rank))
     if not cand:
