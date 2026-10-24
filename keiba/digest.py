@@ -187,10 +187,10 @@ def ticket_card(card: dict, evals: list[HorseEval]) -> list[str]:
         if cp.get("ワイド"):
             L.append("  - ◆期待値ワイド（オッズ10〜50倍で上乗せの積1.5以上。2024/2025-26 で回収158%/201%・的中8〜12%）: ワイド "
                      + "、".join(f"{c}（{o:.1f}倍・比{r:.2f}）" for c, o, r in cp["ワイド"]))
-    e78 = flag_axis_package(card, evals, th=3) if card.get("race_no") in (7, 8) else None
+    e78 = flag_axis_package(card, evals) if card.get("race_no") in (7, 8) else None
     if e78:
-        L.append("  - ◎7・8R（7R・8Rは本命枠。4〜9番人気でフラグ点+3以上の1頭を軸に ワイド→1〜3番人気＋3連複 軸−1〜2番人気−1〜5番人気。"
-                 "5年の7R・8Rで回収102%/114%/131%・的中22〜30%・払戻中央3,000〜4,000円、+4以上なら125%/145%/158%, docs/analysis/early_upset.md）: " + e78)
+        L.append("  - ◎7・8R（7R・8Rは本命枠。3〜10番人気でフラグ点+4以上の1頭を軸に ワイド→1〜3番人気＋3連複 軸−1〜2番人気−1〜5番人気。"
+                 "5年の7R・8Rで回収104%/139%/154%・的中19〜31%・払戻中央2,700〜3,700円。+3以上は82〜139%で不安定なので使わない, docs/analysis/axis_band_check.md）: " + e78)
     ch = flag_axis_package(card, evals, chaos=True)
     fa = flag_axis_package(card, evals)
     if e78 and fa and fa.split("（")[0] == e78.split("（")[0]:
@@ -199,8 +199,8 @@ def ticket_card(card: dict, evals: list[HorseEval]) -> list[str]:
         L.append("  - ★混戦穴（1番人気4.1倍以上の混戦で、7〜12番人気・フラグ点+3以上の1頭を軸に ワイド→1〜3番人気＋3連複 軸−1〜2番人気−1〜5番人気。"
                  "実オッズ5年で回収186%/120%/138%・的中12〜21%・万馬券12本。フラグ選定期間内の確認, docs/analysis/shape_flag.md）: " + ch)
     if fa and (not ch or fa.split("（")[0] != ch.split("（")[0]):
-        L.append("  - ★フラグ軸（高配当狙い。4〜9番人気でフラグ点+4以上の1頭を軸に ワイド→1〜3番人気＋3連複 軸−1〜2番人気−1〜5番人気。"
-                 "実オッズ5年で回収128%/110%/114%・的中23%・万馬券16本。勝ち週は3割、最大12週連敗。フラグ選定期間内の確認）: " + fa)
+        L.append("  - ★フラグ軸（高配当狙い。3〜10番人気でフラグ点+4以上の1頭を軸に ワイド→1〜3番人気＋3連複 軸−1〜2番人気−1〜5番人気。"
+                 "5年で回収124%/116%/107%・的中22〜27%（3〜10番人気に広げた後, docs/analysis/axis_band_check.md）。勝ち週は3割、最大12週連敗。フラグ選定期間内の確認）: " + fa)
     lw = longshot_wide(card, evals)
     if lw:
         L.append("  - 穴ワイド（7番人気以下で材料が重なる上位2頭→1〜4番人気。検証 回収94%/108%・的中17〜19%・払戻中央約2,000円。"
@@ -241,7 +241,7 @@ def flag_axis_package(card: dict, evals: list[HorseEval], chaos: bool = False, t
             return None
         lo, hi, th = 7, 12, 3
     else:
-        lo, hi, th = 4, 9, th or 4
+        lo, hi, th = 3, 10, th or 4   # 2026-10-24: 4〜9番人気→3〜10番人気（帯の境目に根拠がないので広げた。+4以上の成績は帯をずらしても保たれる, docs/analysis/axis_band_check.md）
     cand = sorted([h for h in evals if lo <= (h.pop_rank or 0) <= hi and sc.get(h.number, 0) >= th],
                   key=lambda h: (-sc[h.number], h.pop_rank))
     if not cand:
