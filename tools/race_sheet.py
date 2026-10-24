@@ -24,6 +24,61 @@ ORDER = [("◇7R当てにいく", "◇7R当てにいく", "7Rは的中率重視�
          ("穴ワイド", "穴ワイド", "少額。94%/108%（ほぼトントン、高配当の取りこぼし防ぎ）")]
 
 
+SMALL_CAP = 15  # 少額枠は1日15点まで（2026-10-24 ユーザー「どんだけ金使わせるんだよ」）
+
+
+def _tickets(body):
+    return re.findall(r"(単勝 \d+|ワイド \d+-\d+|馬連 \d+-\d+|3連複 \d+-\d+-\d+)", body)
+
+
+def _split(line):
+    title, body = line[4:].split(": ", 1)
+    return title, re.sub(r"（\d+点）$", "", body)
+
+
+def buy_list(rows):
+    """本命枠（◆・◎厳格）と少額枠（本線の単勝・★混戦穴/★フラグ軸・穴ワイド、1日15点まで）だけを並べる（2026-10-24）."""
+    out = ["【今日買うもの】（これ以外は買わない）", "■ 本命枠（ふだんの金額。◆期待値・◎厳格。1レース10点まで）"]
+    main = []
+    for key in ("◆期待値3連複", "◆期待値ワイド"):
+        for l in rows[key]:
+            t, b = _split(l)
+            main.append(f"  - {t} {key}: " + " / ".join(re.findall(r"\d+-\d+(?:-\d+)?", b)))
+    for l in rows["◎厳格"]:
+        t, b = _split(l)
+        axis, rest = b.split(" → ", 1)
+        first = re.match(r"(\d+)", rest.split("単勝 ")[1]).group(1) if "単勝 " in rest else None
+        tk = [x for x in _tickets(rest) if first and first in re.findall(r"\d+", x)]
+        sel = ([x for x in tk if x.startswith("単勝")][:1] + [x for x in tk if x.startswith("ワイド")][:3]
+               + [x for x in tk if x.startswith("馬連")][:1] + [x for x in tk if x.startswith("3連複")][:5])
+        main.append(f"  - {t} ◎厳格 軸{first}: " + " / ".join(sel) + f"（{len(sel)}点）")
+    out += main or ["  - なし（今日は本命枠の該当なし）"]
+    out.append(f"■ 少額枠（1点100円・1日{SMALL_CAP}点まで。本線の単勝→★混戦穴/★フラグ軸→穴ワイドの順）")
+    small, n = [], 0
+    cand = []
+    for l in rows["本線"]:
+        t, b = _split(l)
+        cand += [(t, "本線", [x]) for x in _tickets(b) if x.startswith("単勝")]
+    for key in ("★混戦穴", "★フラグ軸"):
+        for l in rows[key]:
+            t, b = _split(l)
+            ws = re.findall(r"\d+-\d+(?!-)", b.split("／")[0]) if "／" in b else []
+            cand.append((t, key, [f"ワイド {w}" for w in ws[:3]]))
+    for l in rows["穴ワイド"]:
+        t, b = _split(l)
+        first = b.split(" / ")[0]
+        ws = re.findall(r"\d+-\d+", first)[:2]
+        cand.append((t, "穴ワイド", [f"ワイド {w}" for w in ws]))
+    for t, key, tk in cand:
+        if not tk or n + len(tk) > SMALL_CAP:
+            continue
+        n += len(tk)
+        small.append(f"  - {t} {key}: " + " / ".join(tk) + f"（{len(tk)}点）")
+    out += small or ["  - なし"]
+    out.append(f"  （少額枠 合計{n}点）")
+    return out
+
+
 def card_summary(path):
     """買い目カードを、買い方ごと（強い順）に全レース分まとめる."""
     txt = open(path, encoding="utf-8").read()
@@ -40,7 +95,7 @@ def card_summary(path):
                     pts = len(re.findall(r"\d+-\d+(?:-\d+)?", body)) + len(re.findall(r"単勝 \d+", body)) + 2 * len(re.findall(r"単複 \d+", body))
                     rows[key].append(f"  - {title}: {body}（{pts}点）")
                     break
-    out = ["【今日の買い目カード（買い方ごと・強い順）】"]
+    out = buy_list(rows) + ["", "【参考: 全部の買い方のカード（買うのは上の【今日買うもの】だけ。取りこぼしの確認用）】"]
     for _, key, note in ORDER:
         out.append(f"■ {key}（{note}）")
         out += rows[key] or ["  - 該当なし"]
