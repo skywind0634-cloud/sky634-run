@@ -727,6 +727,18 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
             why.append(f"{su}×父ディスクリートキャット×4歳以上 ○（A/E ダ1.11/1.33/1.14・芝1.19/1.08/1.33）")
         if su == "ダ" and not going.startswith("良") and h.sire_line in ("サドラーズウェルズ系", "ガリレオ系"):
             why.append("ダートの道悪×父サドラーズウェルズ系 ×（A/E 0.72/0.71/0.90）")
+        # ダートの重・不良（tools/wet_dirt.py, docs/analysis/wet_dirt.md, 2026-10-24）
+        if su == "ダ" and going[:1] in ("重", "不"):
+            if h.sire == "マジェスティックウォリアー":
+                why.append("ダートの重・不良×父マジェスティックウォリアー ○（A/E 1.14/1.10/1.28。良は1.01）")
+            if h.sire_line == "ヘネシー系":
+                why.append("ダートの重・不良×父ヘネシー系 ▽（A/E 0.84/0.94/0.87。良は1.04）")
+            if h.sire_line == "ダイワメジャー系":
+                why.append("ダートの重・不良×父ダイワメジャー系 ▽（A/E 0.88/0.80/0.47。良は0.95）")
+            if h.sire == "キズナ":
+                why.append("ダートの重・不良×父キズナ ▽（A/E 0.91/0.74/0.89。良は1.08）")
+        if su == "ダ" and going.startswith("不") and 7 <= (h.pop_rank or 0) <= 12 and (e.get("gate") or 9) <= 3:
+            why.append("ダートの不良×枠1〜3×7〜12番人気 ○（A/E 1.38/1.40/1.81・複勝回収85/93/166%。外枠7-8は0.89）")
         # 第4章 ダンチヒ系（tools/book_ch4_danzig.py）
         if su == "ダ" and co in ("東京", "中京") and h.sire_line in ("デインヒル系", "ウォーフロント系", "グリーンデザート系", "ダンチヒ系") and h.sire != "ハービンジャー":
             why.append("直線の長いダート×父ダンチヒ系 ▽（A/E 0.92/0.74/0.91）")
