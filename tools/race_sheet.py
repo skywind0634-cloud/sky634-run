@@ -24,7 +24,7 @@ ORDER = [("◇7R当てにいく", "◇7R当てにいく", "7Rは的中率重視�
          ("穴ワイド", "穴ワイド", "少額。94%/108%（ほぼトントン、高配当の取りこぼし防ぎ）")]
 
 
-SMALL_CAP = 15  # 少額枠は1日15点まで（2026-10-24 ユーザー「どんだけ金使わせるんだよ」）
+SMALL_CAP = 30  # 少額枠は1日30点まで（2026-10-24 ユーザー「どんだけ金使わせるんだよ」。本線の馬連（最大5点）を戻して15→30）
 
 
 def _tickets(body):
@@ -37,7 +37,7 @@ def _split(line):
 
 
 def buy_list(rows):
-    """本命枠（◆・◎厳格）と少額枠（本線の単勝・★混戦穴/★フラグ軸・穴ワイド、1日15点まで）だけを並べる（2026-10-24）."""
+    """本命枠（◆・◎厳格）と少額枠（本線の単勝＋馬連・★混戦穴/★フラグ軸・穴ワイド、1日30点まで）だけを並べる（2026-10-24）."""
     out = ["【今日買うもの】（これ以外は買わない）", "■ 本命枠（ふだんの金額。◆期待値・◎厳格。1レース10点まで）"]
     main = []
     for key in ("◆期待値3連複", "◆期待値ワイド"):
@@ -53,12 +53,14 @@ def buy_list(rows):
                + [x for x in tk if x.startswith("馬連")][:1] + [x for x in tk if x.startswith("3連複")][:5])
         main.append(f"  - {t} ◎厳格 軸{first}: " + " / ".join(sel) + f"（{len(sel)}点）")
     out += main or ["  - なし（今日は本命枠の該当なし）"]
-    out.append(f"■ 少額枠（1点100円・1日{SMALL_CAP}点まで。本線の単勝→★混戦穴/★フラグ軸→穴ワイドの順）")
+    out.append(f"■ 少額枠（1点100円・1日{SMALL_CAP}点まで。本線の単勝＋馬連→★混戦穴/★フラグ軸→穴ワイドの順）")
     small, n = [], 0
     cand = []
     for l in rows["本線"]:
         t, b = _split(l)
-        cand += [(t, "本線", [x]) for x in _tickets(b) if x.startswith("単勝")]
+        tk = _tickets(b)
+        # 本線は単勝＋馬連（最大5点）（想定2,000円以上の組だけ。10/24 京都12R 馬連2-7 9,930円を外した反省）
+        cand.append((t, "本線", [x for x in tk if x.startswith("単勝")][:1] + [x for x in tk if x.startswith("馬連")][:5]))
     for key in ("★混戦穴", "★フラグ軸"):
         for l in rows[key]:
             t, b = _split(l)
