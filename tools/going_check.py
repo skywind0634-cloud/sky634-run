@@ -1,7 +1,7 @@
 """朝の買い目を基本に、当日の馬場発表で「朝の予想のままでよいか」を確かめる（2026-10-24, ユーザー「朝の予想を基本に、途中で馬場を見て当初の予想でよいか検証することも大事」）.
 レースごとに、朝の馬場（朝のカード）と今の馬場（最新のカード）を比べ、
 - 同じ → 「朝のまま」
-- 変わった → 今の馬場で作った【今日買うもの】と朝の分の差（追加・外す）と、馬場で付いた／消えた材料（種牡馬×馬場・ダート道悪など）を出す。
+- 変わった → 朝のオッズ・人気のまま馬場だけ今の発表に替えて作った【今日買うもの】と朝の分の差（オッズ・人気の変化では買い目を変えない）（追加・外す）と、馬場で付いた／消えた材料（種牡馬×馬場・ダート道悪など）を出す。
 使い方: python3 tools/going_check.py <日付> <朝のカードのコミット>（例: git の朝の版）
 """
 import datetime as dt, json, re, subprocess, sys
@@ -19,11 +19,21 @@ from going_scenarios import buy_lines  # noqa: E402
 GOING_WORDS = ("稍重", "重・不良", "不良", "道悪", "時計がかかる", "反主流")
 
 
-def morning_going(day, rev, name):
+def _git_json(rev, path):
     try:
-        return json.loads(subprocess.run(["git", "show", f"{rev}:cards/{day}/{name}"], cwd=ROOT, capture_output=True, text=True, check=True).stdout).get("going")
+        return json.loads(subprocess.run(["git", "show", f"{rev}:{path}"], cwd=ROOT, capture_output=True, text=True, check=True).stdout)
     except (subprocess.CalledProcessError, ValueError):
         return None
+
+
+def morning_card(day, rev, name):
+    """朝の版のカード（朝のオッズ・人気のまま）。馬場だけを今の発表に替えて比べるため（オッズ・人気の変化では買い目を変えない）."""
+    c = _git_json(rev, f"cards/{day}/{name}")
+    if c:
+        o = _git_json(rev, f"cards/{day}/odds/{name}")
+        if o:
+            c["_odds"] = o
+    return c
 
 
 def going_notes(txt):
@@ -42,14 +52,15 @@ def main(day, rev):
         name = next((p.name for p in folder.glob("*.json") if json.loads(p.read_text()).get("race_no") == c["race_no"] and json.loads(p.read_text()).get("course") == c["course"]), None)
         if not c.get("going"):
             print(f"## {c['course']}{c['race_no']}R: 今の馬場の発表が取れない（発走後など）… 朝のまま\n"); continue
-        g0, g1 = morning_going(day, rev, name) or "良", c["going"]
+        c0 = morning_card(day, rev, name) or c   # 朝のオッズ・人気で固定し、馬場だけ替える
+        g0, g1 = c0.get("going") or "良", c["going"]
         head = f"## {c['course']}{c['race_no']}R {c.get('surface')}{c.get('distance')}: 朝 {g0} → 今 {g1}"
         grp = lambda g: "良" if g.startswith("良") else "稍重" if g.startswith("稍") else "重" if g.startswith("重") else "不良"
         if grp(g0) == grp(g1):
             print(head + " … **朝のままでよい**\n"); continue
         txts = {}
         for g in (g0, g1):
-            cc = dict(c); cc["going"] = g
+            cc = dict(c0); cc["going"] = g
             txts[g] = digest.text(cc, evaluate_race(cc, st, conn, n_sims=0), report.race_title(cc))
         b0, b1 = set(buy_lines(txts[g0])), set(buy_lines(txts[g1]))
         print(head + (" … 買い目は朝のままでよい（材料は変わる）" if b0 == b1 else " … **買い目を見直す**"))
