@@ -9,7 +9,7 @@
  "surface": "芝",
  "distance": 1800,
  "layout": "外",
- "going": "良",
+ "going": null,
  "entries": [
   {
    "gate": 1,
@@ -691,7 +691,7 @@
    "weight": 54.0,
    "jockey": "松本大輝",
    "trainer": "石坂公一",
-   "odds": 101.1,
+   "odds": 101.0,
    "popularity": 10,
    "body_weight_diff": 0,
    "sire": "シスキン",
