@@ -1473,9 +1473,34 @@ def g1_history_lines(card: dict, evals: list[HorseEval]) -> list[str]:
     return L
 
 
+GRADED = ("G1", "G2", "G3")
+
+
+def star_ok(card: dict, h: HorseEval, n: int) -> bool:
+    """★血統穴の足切り（2026-10-25, tools/star_check.py・ユーザー指示）: 単勝50倍以上（3着内A/E 0.67）と12頭以下（0.72）は外す。重賞は外さない."""
+    if card.get("grade") in GRADED:
+        return True
+    return (h.odds or 999) < 50 and n >= 13
+
+
+def star_boost(card: dict, evals: list[HorseEval], d: dict) -> list[tuple[HorseEval, list[str]]]:
+    """★特推し: ★血統穴が 専門家・検証済み・開催×血統○・7〜9番人気の走る条件 と重なる馬（過去1年で3着内A/E 1.40〜1.79・複勝回収103〜121%, docs/analysis/star_check.md）."""
+    exp = {h.number for h, _ in d["専門家"]}
+    ver = {h.number for h, _ in d["検証済み"]}
+    stg = {num for num, t in stage_blood_horses(card, evals) if "○" in t or "◎" in t}
+    run79 = {h.number for h, _ in d["走る条件"] if 7 <= (h.pop_rank or 0) <= 9}
+    out = []
+    for h, _ in d["★"]:
+        why = [k for k, st in (("専門家", exp), ("検証済み", ver), ("開催×血統○", stg), ("7〜9番人気の走る条件", run79)) if h.number in st]
+        if why:
+            out.append((h, why))
+    return out
+
+
 def text(card: dict, evals: list[HorseEval], title: str) -> str:
     sc_ = flag_scores(card, evals)
     d = race_digest(evals, sc_)
+    d["★"] = [(h, w) for h, w in d["★"] if star_ok(card, h, len(evals))]
     L = [f"### {title}"]
     shp = race_shape(evals)
     if shp:
@@ -1486,6 +1511,12 @@ def text(card: dict, evals: list[HorseEval], title: str) -> str:
         L.append("フラグ点（○−×）: " + "、".join(f"{h.number}{h.name}({h.pop_rank}人気){sc_[h.number]:+d}"
                                               for h in sorted(evals, key=lambda h: h.pop_rank or 99) if sc_.get(h.number)))
     L += ticket_card(card, evals)
+    pop = {h.pop_rank: h.number for h in evals if h.pop_rank}
+    for h, why in star_boost(card, evals, d):
+        tk = [f"ワイド {'-'.join(map(str, sorted((pop[p], h.number))))}" for p in (1, 2, 3) if p in pop and pop[p] != h.number]
+        tk += [f"3連複 {'-'.join(map(str, sorted((pop[1], pop[p], h.number))))}" for p in (2, 3) if 1 in pop and p in pop and h.number not in (pop[1], pop[p])]
+        L.append(f"  - ★特推し（★血統穴×{'・'.join(why)}。過去1年で3着内A/E 1.40〜1.79・複勝回収103〜121%。複勝は安いのでワイド・3連複の相手に, docs/analysis/star_check.md）: "
+                 f"{h.number}{h.name}（{h.pop_rank}人気） → " + " / ".join(tk))
     if d["本線"]:
         from .betting import value_plan
         vp = value_plan(evals, len(card.get("entries") or evals))
@@ -1500,7 +1531,7 @@ def text(card: dict, evals: list[HorseEval], title: str) -> str:
             L += [f"  - {r}" for r in reasons(h)]
     else:
         L.append("本線: なし（妙味馬の条件に届く馬がいない）")
-    labels = {"★": "★ 血統の穴（8番人気以下で血統要素が最上位。単独では単勝・複勝・ワイド・馬連・3連複どの買い方も回収率56〜91%で負け越し。妙味条件(厳格)と重なる馬だけ買う＝厳格軸の買い目に含まれる。それ以外は見るだけ）", "専門家": "専門家の見解に該当", "検証済み": "検証済みの傾向（3期間で回収率100%超）に該当", "走る条件": "人気帯の中で走る条件が重なる（検証: 7〜9番人気の満点は単勝101%/172%。10番人気以下は複勝60〜70%台で単独では買わない。ヒモ候補）",
+    labels = {"★": "★ 血統の穴（8番人気以下で血統要素が最上位。単勝50倍以上と12頭以下は外す（重賞は外さない）。単独では負け越し（単72%・複66%）。専門家・検証済み・開催×血統○・7〜9番人気の走る条件と重なれば★特推し、それ以外はワイド・3連複の相手候補, docs/analysis/star_check.md）", "専門家": "専門家の見解に該当", "検証済み": "検証済みの傾向（3期間で回収率100%超）に該当", "走る条件": "人気帯の中で走る条件が重なる（検証: 7〜9番人気の満点は単勝101%/172%。10番人気以下は複勝60〜70%台で単独では買わない。ヒモ候補）",
               "妙味条件": "回収率の高い条件に該当", "牝系": "牝系がこの条件で走る", "危険": "過信禁物の人気馬（1〜3番人気。2021-26年の検証で、どんな条件の組み合わせでも1番人気は半分以上3着内に来る＝馬券から消してはいけない。同じ人気の平均より3着内率が5〜10ポイント低いだけなので、軸・1着付けにしない。3連複・ワイドのヒモには残す）"}
     for k, lab in labels.items():
         if not d[k]:
