@@ -247,6 +247,8 @@ def applicable(card: dict, entry: dict, sire, sire_line, damsire, damsire_line, 
            "popularity": entry.get("popularity"), "grade": card.get("grade"), "gate": entry.get("gate")}
     out = []
     for i, n in enumerate(notes):
+        if n.get("horse") and entry.get("name") not in n["horse"]:   # 馬ごとの見解（2026-10-26: 坂上氏の重賞血統査定など）
+            continue
         if subject_match(n, sire, sire_line, damsire, damsire_line) and matches(n.get("condition", {}), ctx):
             out.append((n, checks.get(n.get("id") or f"note{i}", {})))
     return out
