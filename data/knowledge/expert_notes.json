@@ -478,6 +478,378 @@
    },
    "direction": "+",
    "summary": "中山内回り2200は母父のスピードで機動力のある中距離馬を狙う（キタサンブラック×Invincible Spirit 等）"
+  },
+  {
+   "id": "kameya_kikka_kingmambo_2026",
+   "author": "亀谷敬正（netkeiba コラムの要約）",
+   "url": "https://news.netkeiba.com/?pid=column_view&cid=57662",
+   "date": "2026-10-21",
+   "sire_line": "キングカメハメハ系",
+   "condition": {
+    "course": "京都",
+    "surface": "芝",
+    "distance_min": 3000,
+    "distance_max": 3200
+   },
+   "direction": "+",
+   "summary": "新装京都の菊花賞（2023年以降）で4番人気以下から3着内に来たのは父キングマンボ系。京都芝長距離はキングマンボ系×トニービンの血統構成が好走（天皇賞春も同じ傾向）"
+  },
+  {
+   "id": "kameya_kikka_pattern_2026",
+   "author": "亀谷敬正（netkeiba「血統ビーム的 傾向と対策」2026-10-23 の要約。ユーザー提供のスクリーンショット）",
+   "url": "https://news.netkeiba.com/（2026-10-23 19:00 菊花賞予想コラム）",
+   "date": "2026-10-23",
+   "condition": {
+    "course": "京都",
+    "surface": "芝",
+    "distance_min": 3000,
+    "distance_max": 3000
+   },
+   "direction": "+",
+   "summary": "菊花賞は「末脚を伸ばせる欧州型」。前走2勝クラス以上で上がり2位以内×（父欧州型 または 父サンデー系×母父欧州型）の馬と、芝2400m重賞の勝ち馬が3年連続で1-3着を独占（該当馬の複勝的中46%・複勝回収179%・ワイドBOX179%）。2026年の該当: エムズビギン・アウダーシア・ダノンヒストリー・マジョレルブルー、芝2400m重賞勝ち: ロブチェン・ゴーイントゥスカイ"
+  },
+  {
+   "id": "kameya_tenno_aki_2026",
+   "author": "亀谷敬正（競馬サロン「重賞アプローチS」天皇賞・秋の要約。ユーザー提供のスクリーンショット）",
+   "url": "https://keiba-salon.com/（亀谷敬正の重賞アプローチS/天皇賞・秋、ファンタジーS）",
+   "date": "2026-10-26",
+   "condition": {
+    "course": "東京",
+    "surface": "芝",
+    "distance_min": 2000,
+    "distance_max": 2000,
+    "grade": "G1"
+   },
+   "direction": "+",
+   "summary": "天皇賞・秋は主流血統が走る舞台で父サンデー系、特に父ディープ系。5番人気以内の父サンデー系の複勝率は2015-19年18%→2020-25年47%。母父欧州型が有利（2020-25年 父サンデー系×母父欧州型は5頭中4頭が馬券、2023年は1-3着独占、2025年ジャスティンパレス8人気3着）。東京芝G1全体で欧州型優勢。2020年以降の連対12頭中10頭が芝2400m以上G1連対実績、馬券18頭中16頭が中9週以上。"
+  },
+  {
+   "id": "sakagami_tenno_aki_2026",
+   "author": "坂上明大（東スポ競馬「重賞血統査定」2026-10-26 の要約。ユーザー提供のスクリーンショット）",
+   "url": "https://tospo-keiba.jp/（【天皇賞秋】適性＆能力で満点評価は2頭！近年はトニービンの血が大活躍）",
+   "date": "2026-10-26",
+   "condition": {
+    "course": "東京",
+    "surface": "芝",
+    "distance_min": 2000,
+    "distance_max": 2000,
+    "grade": "G1"
+   },
+   "direction": "+",
+   "summary": "天皇賞・秋は主流血統が走るが、近年は末脚型のフランス血統、特にトニービン内包馬が5連覇。適性・能力とも★5はダノンデサイル・マスカレードボール。適性★5: ネブラディスク・レガレイラ・レディネス（スワーヴリチャード×Shamardal）。DB確認: 天皇賞秋2021-25でトニービン5代内の馬は21走3着内8（5勝）A/E1.29、なしは0.77（ほかの東京芝2000重賞では差なし）。"
+  },
+  {
+   "id": "sakagami_tenno_aki_2026_エルトンバローズ",
+   "author": "坂上明大（東スポ競馬「重賞血統査定」天皇賞・秋 2026-10-26 の要約）",
+   "url": "https://tospo-keiba.jp/（【天皇賞秋】適性＆能力で満点評価は2頭）",
+   "date": "2026-10-26",
+   "horse": [
+    "エルトンバローズ"
+   ],
+   "condition": {
+    "course": "東京",
+    "surface": "芝",
+    "distance_min": 2000,
+    "distance_max": 2000,
+    "grade": "G1"
+   },
+   "direction": "-",
+   "summary": "適性★3・能力★3。ディープブリランテ×ブライアンズタイムで馬力・底力型、芝1600〜1800向き。東京G1では決め手不足"
+  },
+  {
+   "id": "sakagami_tenno_aki_2026_クロワデュノール",
+   "author": "坂上明大（東スポ競馬「重賞血統査定」天皇賞・秋 2026-10-26 の要約）",
+   "url": "https://tospo-keiba.jp/（【天皇賞秋】適性＆能力で満点評価は2頭）",
+   "date": "2026-10-26",
+   "horse": [
+    "クロワデュノール"
+   ],
+   "condition": {
+    "course": "東京",
+    "surface": "芝",
+    "distance_min": 2000,
+    "distance_max": 2000,
+    "grade": "G1",
+    "qualitative": true
+   },
+   "direction": "+",
+   "summary": "適性★4・能力★5。キタサンブラック×Cape Cross、舞台を選ばず安定。有馬記念の方が合うが大崩れしにくい"
+  },
+  {
+   "id": "sakagami_tenno_aki_2026_コスモキュランダ",
+   "author": "坂上明大（東スポ競馬「重賞血統査定」天皇賞・秋 2026-10-26 の要約）",
+   "url": "https://tospo-keiba.jp/（【天皇賞秋】適性＆能力で満点評価は2頭）",
+   "date": "2026-10-26",
+   "horse": [
+    "コスモキュランダ"
+   ],
+   "condition": {
+    "course": "東京",
+    "surface": "芝",
+    "distance_min": 2000,
+    "distance_max": 2000,
+    "grade": "G1"
+   },
+   "direction": "-",
+   "summary": "適性★3・能力★4。アルアイン産駒、His Majestyのクロスで馬力・底力。ハイペースの小回り向き"
+  },
+  {
+   "id": "sakagami_tenno_aki_2026_サクラファレル",
+   "author": "坂上明大（東スポ競馬「重賞血統査定」天皇賞・秋 2026-10-26 の要約）",
+   "url": "https://tospo-keiba.jp/（【天皇賞秋】適性＆能力で満点評価は2頭）",
+   "date": "2026-10-26",
+   "horse": [
+    "サクラファレル"
+   ],
+   "condition": {
+    "course": "東京",
+    "surface": "芝",
+    "distance_min": 2000,
+    "distance_max": 2000,
+    "grade": "G1",
+    "qualitative": true
+   },
+   "direction": "+",
+   "summary": "適性★4・能力★3。サートゥルナーリア×シンボリクリスエス、大箱向き。サンデーの血が薄く少し割引"
+  },
+  {
+   "id": "sakagami_tenno_aki_2026_シェイクユアハート",
+   "author": "坂上明大（東スポ競馬「重賞血統査定」天皇賞・秋 2026-10-26 の要約）",
+   "url": "https://tospo-keiba.jp/（【天皇賞秋】適性＆能力で満点評価は2頭）",
+   "date": "2026-10-26",
+   "horse": [
+    "シェイクユアハート"
+   ],
+   "condition": {
+    "course": "東京",
+    "surface": "芝",
+    "distance_min": 2000,
+    "distance_max": 2000,
+    "grade": "G1",
+    "qualitative": true
+   },
+   "direction": "+",
+   "summary": "適性★4・能力★4。ハーツクライ産駒の晩成型。母の子は内回り向きが多く、初の東京が課題"
+  },
+  {
+   "id": "sakagami_tenno_aki_2026_シャンパンカラー",
+   "author": "坂上明大（東スポ競馬「重賞血統査定」天皇賞・秋 2026-10-26 の要約）",
+   "url": "https://tospo-keiba.jp/（【天皇賞秋】適性＆能力で満点評価は2頭）",
+   "date": "2026-10-26",
+   "horse": [
+    "シャンパンカラー"
+   ],
+   "condition": {
+    "course": "東京",
+    "surface": "芝",
+    "distance_min": 2000,
+    "distance_max": 2000,
+    "grade": "G1"
+   },
+   "direction": "-",
+   "summary": "適性★3・能力★3。ドゥラメンテ産駒のマイルG1馬。2000mは距離が長い"
+  },
+  {
+   "id": "sakagami_tenno_aki_2026_ジュンブロッサム",
+   "author": "坂上明大（東スポ競馬「重賞血統査定」天皇賞・秋 2026-10-26 の要約）",
+   "url": "https://tospo-keiba.jp/（【天皇賞秋】適性＆能力で満点評価は2頭）",
+   "date": "2026-10-26",
+   "horse": [
+    "ジュンブロッサム"
+   ],
+   "condition": {
+    "course": "東京",
+    "surface": "芝",
+    "distance_min": 2000,
+    "distance_max": 2000,
+    "grade": "G1",
+    "qualitative": true
+   },
+   "direction": "+",
+   "summary": "適性★4・能力★3。ワールドエース産駒、芝1600〜2000の機動力型。東京芝2000は得意条件の一つ"
+  },
+  {
+   "id": "sakagami_tenno_aki_2026_ジョバンニ",
+   "author": "坂上明大（東スポ競馬「重賞血統査定」天皇賞・秋 2026-10-26 の要約）",
+   "url": "https://tospo-keiba.jp/（【天皇賞秋】適性＆能力で満点評価は2頭）",
+   "date": "2026-10-26",
+   "horse": [
+    "ジョバンニ"
+   ],
+   "condition": {
+    "course": "東京",
+    "surface": "芝",
+    "distance_min": 2000,
+    "distance_max": 2000,
+    "grade": "G1"
+   },
+   "direction": "-",
+   "summary": "適性★3・能力★3。エピファネイア産駒のピッチ走法、小回りの中長距離向き。東京の末脚勝負は分が悪い"
+  },
+  {
+   "id": "sakagami_tenno_aki_2026_セイウンハーデス",
+   "author": "坂上明大（東スポ競馬「重賞血統査定」天皇賞・秋 2026-10-26 の要約）",
+   "url": "https://tospo-keiba.jp/（【天皇賞秋】適性＆能力で満点評価は2頭）",
+   "date": "2026-10-26",
+   "horse": [
+    "セイウンハーデス"
+   ],
+   "condition": {
+    "course": "東京",
+    "surface": "芝",
+    "distance_min": 2000,
+    "distance_max": 2000,
+    "grade": "G1",
+    "qualitative": true
+   },
+   "direction": "+",
+   "summary": "適性★4・能力★3。シルバーステート産駒のパワー型。力の要る馬場・上がりのかかる競馬が理想、東京なら渋った馬場がベター"
+  },
+  {
+   "id": "sakagami_tenno_aki_2026_タガノデュード",
+   "author": "坂上明大（東スポ競馬「重賞血統査定」天皇賞・秋 2026-10-26 の要約）",
+   "url": "https://tospo-keiba.jp/（【天皇賞秋】適性＆能力で満点評価は2頭）",
+   "date": "2026-10-26",
+   "horse": [
+    "タガノデュード"
+   ],
+   "condition": {
+    "course": "東京",
+    "surface": "芝",
+    "distance_min": 2000,
+    "distance_max": 2000,
+    "grade": "G1"
+   },
+   "direction": "-",
+   "summary": "適性★3・能力★3。ヤマカツエース×ハーツクライ、馬力と底力。小回りの中距離がベスト"
+  },
+  {
+   "id": "sakagami_tenno_aki_2026_ダノンデサイル",
+   "author": "坂上明大（東スポ競馬「重賞血統査定」天皇賞・秋 2026-10-26 の要約）",
+   "url": "https://tospo-keiba.jp/（【天皇賞秋】適性＆能力で満点評価は2頭）",
+   "date": "2026-10-26",
+   "horse": [
+    "ダノンデサイル"
+   ],
+   "condition": {
+    "course": "東京",
+    "surface": "芝",
+    "distance_min": 2000,
+    "distance_max": 2000,
+    "grade": "G1"
+   },
+   "direction": "+",
+   "summary": "適性★5・能力★5。エピファネイア×Congrats、A.P.Indy譲りのストライドが広い東京向き。爆発力は現役屈指"
+  },
+  {
+   "id": "sakagami_tenno_aki_2026_ネブラディスク",
+   "author": "坂上明大（東スポ競馬「重賞血統査定」天皇賞・秋 2026-10-26 の要約）",
+   "url": "https://tospo-keiba.jp/（【天皇賞秋】適性＆能力で満点評価は2頭）",
+   "date": "2026-10-26",
+   "horse": [
+    "ネブラディスク"
+   ],
+   "condition": {
+    "course": "東京",
+    "surface": "芝",
+    "distance_min": 2000,
+    "distance_max": 2000,
+    "grade": "G1"
+   },
+   "direction": "+",
+   "summary": "適性★5・能力★3。リスグラシューの半弟、ドゥラメンテ（母がサンデー×トニービン）。天皇賞秋の適性はメンバー上位"
+  },
+  {
+   "id": "sakagami_tenno_aki_2026_ホウオウビスケッツ",
+   "author": "坂上明大（東スポ競馬「重賞血統査定」天皇賞・秋 2026-10-26 の要約）",
+   "url": "https://tospo-keiba.jp/（【天皇賞秋】適性＆能力で満点評価は2頭）",
+   "date": "2026-10-26",
+   "horse": [
+    "ホウオウビスケッツ"
+   ],
+   "condition": {
+    "course": "東京",
+    "surface": "芝",
+    "distance_min": 2000,
+    "distance_max": 2000,
+    "grade": "G1",
+    "qualitative": true
+   },
+   "direction": "+",
+   "summary": "適性★4・能力★3。マインドユアビスケッツ×ルーラーシップ、先行力と底力、母母父ディープで瞬発力も。展開が向けば好走"
+  },
+  {
+   "id": "sakagami_tenno_aki_2026_マスカレードボール",
+   "author": "坂上明大（東スポ競馬「重賞血統査定」天皇賞・秋 2026-10-26 の要約）",
+   "url": "https://tospo-keiba.jp/（【天皇賞秋】適性＆能力で満点評価は2頭）",
+   "date": "2026-10-26",
+   "horse": [
+    "マスカレードボール"
+   ],
+   "condition": {
+    "course": "東京",
+    "surface": "芝",
+    "distance_min": 2000,
+    "distance_max": 2000,
+    "grade": "G1"
+   },
+   "direction": "+",
+   "summary": "適性★5・能力★5。ドゥラメンテ×ディープの主流配合、末脚は現役屈指。東京が最も生きる舞台で連覇も十分"
+  },
+  {
+   "id": "sakagami_tenno_aki_2026_リアライズシリウス",
+   "author": "坂上明大（東スポ競馬「重賞血統査定」天皇賞・秋 2026-10-26 の要約）",
+   "url": "https://tospo-keiba.jp/（【天皇賞秋】適性＆能力で満点評価は2頭）",
+   "date": "2026-10-26",
+   "horse": [
+    "リアライズシリウス"
+   ],
+   "condition": {
+    "course": "東京",
+    "surface": "芝",
+    "distance_min": 2000,
+    "distance_max": 2000,
+    "grade": "G1",
+    "qualitative": true
+   },
+   "direction": "+",
+   "summary": "適性★4・能力★3。ポエティックフレア産駒の中距離寄りマイラー。東京2000は守備範囲だがG1では切れ負けの心配"
+  },
+  {
+   "id": "sakagami_tenno_aki_2026_レガレイラ",
+   "author": "坂上明大（東スポ競馬「重賞血統査定」天皇賞・秋 2026-10-26 の要約）",
+   "url": "https://tospo-keiba.jp/（【天皇賞秋】適性＆能力で満点評価は2頭）",
+   "date": "2026-10-26",
+   "horse": [
+    "レガレイラ"
+   ],
+   "condition": {
+    "course": "東京",
+    "surface": "芝",
+    "distance_min": 2000,
+    "distance_max": 2000,
+    "grade": "G1"
+   },
+   "direction": "+",
+   "summary": "適性★5・能力★4。アーバンシックと酷似した血統（スワーヴリチャード×ハービンジャー）。末脚の爆発力、父は東京芝2000で複勝率52%"
+  },
+  {
+   "id": "sakagami_tenno_aki_2026_レディネス",
+   "author": "坂上明大（東スポ競馬「重賞血統査定」天皇賞・秋 2026-10-26 の要約）",
+   "url": "https://tospo-keiba.jp/（【天皇賞秋】適性＆能力で満点評価は2頭）",
+   "date": "2026-10-26",
+   "horse": [
+    "レディネス"
+   ],
+   "condition": {
+    "course": "東京",
+    "surface": "芝",
+    "distance_min": 2000,
+    "distance_max": 2000,
+    "grade": "G1"
+   },
+   "direction": "+",
+   "summary": "適性★5・能力★3。スワーヴリチャード×Shamardal・Danzig。東京芝2000と好相性の父で、舞台適性はメンバー上位"
   }
  ]
 }
