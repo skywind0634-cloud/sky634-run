@@ -711,6 +711,19 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
         pf = set(PED5_FLAGS().get(e.get("horse_id") or "", [])) | ({"サクラバクシンオー"} if "サクラバクシンオー" in (e.get("pedigree") or {}).values() else set())
         if su == "芝" and d <= 1200 and not going.startswith("良") and "サクラバクシンオー" in pf:
             why.append("芝1200以下の道悪×5代にサクラバクシンオー ○（A/E 1.21/1.07/1.11）")
+        # 祖先・クロス×コースの形（坂上氏の血統査定の「血の特徴」を検証, tools/ancestor_traits.py, 2026-10-26）
+        if su == "芝":
+            lay = card.get("layout") or ""
+            big = co == "東京" or (co in ("新潟", "京都", "阪神") and "外" in lay)
+            small = co in ("中山", "福島", "小倉", "札幌", "函館") or "内" in lay
+            if co == "東京" and "サンデー3×3以内" in pf:
+                why.append("東京芝×サンデーサイレンス3×3（末脚） ○（A/E 1.15/1.27/1.38。小回りは0.95/0.99/0.94）")
+            if big and "Storm Cat" in pf:
+                why.append("芝の大箱コース×5代にStorm Cat ○（A/E 1.05/1.06/1.04）")
+            if small and "Seattle Slew" in pf:
+                why.append("芝の小回り×5代にSeattle Slew（大きいストライド） ▽（A/E 0.91/0.94/0.96。大箱は0.96/1.06/0.97）")
+            if small and "Princequillo" in pf:
+                why.append("芝の小回り×5代にPrincequillo（大箱向き） ▽（A/E 0.92/0.86/0.97）")
         if su == "芝" and not going.startswith("良") and h.sire_line == "プリンスリーギフト系":
             why.append("芝の道悪×父プリンスリーギフト系 ○（A/E 1.07/1.05/1.16。良は0.84〜1.02）")
         # 第4章 ミスタープロスペクター系（tools/book_ch4_mrp.py）
