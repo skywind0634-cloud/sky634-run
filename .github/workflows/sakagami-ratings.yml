@@ -1,0 +1,66 @@
+name: sakagami-ratings
+# 坂上明大「重賞血統査定」（東スポ競馬）の各馬の適性・能力の★の数だけを集める（本文は保存しない）。ratings ブランチの sakagami.json
+on:
+  workflow_dispatch:
+    inputs:
+      pages: {description: "一覧ページを何ページ見るか", default: "15"}
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: collect
+        run: |
+          python3 - <<'PY'
+          import json, re, time, urllib.request, html
+          UA = {"User-Agent": "Mozilla/5.0"}
+          def get(u):
+              try:
+                  return urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=30).read().decode("utf-8", "ignore")
+              except Exception as e:
+                  print("ERR", u, e); return ""
+          ids = set()
+          for p in range(1, int("${{ inputs.pages }}") + 1):
+              for u in (f"https://tospo-keiba.jp/sakagamiblood?page={p}", f"https://tospo-keiba.jp/sakagamiblood/page/{p}"):
+                  h = get(u); ids |= set(re.findall(r"/sakagamiblood/(\d+)", h)); time.sleep(2)
+          print("articles", len(ids))
+          out = []
+          for i in sorted(ids, key=int):
+              h = get(f"https://tospo-keiba.jp/sakagamiblood/{i}"); time.sleep(2)
+              if not h:
+                  continue
+              title = html.unescape((re.search(r"<title>(.*?)</title>", h, re.S) or [None, ""])[1]).strip()
+              date = (re.search(r"(20\d\d)[/.-](\d\d?)[/.-](\d\d?)", h) or None)
+              txt = html.unescape(re.sub(r"<[^>]+>", "\n", h))
+              lines = [l.strip() for l in txt.split("\n") if l.strip()]
+              horses, last = [], None
+              for j, l in enumerate(lines):
+                  m = re.match(r"適性評価[:：]\s*(★+)", l)
+                  if m:
+                      k = j - 1
+                      name = None
+                      while k >= 0 and k > j - 60:
+                          if re.fullmatch(r"[ァ-ヴー・A-Za-z' ]{2,20}", lines[k]) and lines[k] not in ("Halo", "Wishing Well"):
+                              name = lines[k]
+                          if re.match(r"適性評価|能力評価", lines[k]):
+                              break
+                          k -= 1
+                      ab = next((re.match(r"能力評価[:：]\s*(★+)", x).group(1) for x in lines[j + 1:j + 4] if re.match(r"能力評価[:：]\s*★", x)), "")
+                      horses.append({"name": name, "fit": len(m.group(1)), "ability": len(ab)})
+              out.append({"id": i, "title": title, "date": "-".join(date.groups()) if date else None, "horses": horses})
+          json.dump(out, open("/tmp/sakagami.json", "w"), ensure_ascii=False, indent=1)
+          print("saved", len(out), sum(len(a["horses"]) for a in out))
+          PY
+      - name: save
+        run: |
+          git config user.name "keiba-bot"
+          git config user.email "keiba-bot@users.noreply.github.com"
+          if git fetch -q origin ratings; then git checkout -q -f -B ratings origin/ratings
+          else git checkout -q --orphan ratings; git rm -rq --cached . >/dev/null 2>&1 || true; fi
+          cp /tmp/sakagami.json sakagami.json
+          git add sakagami.json
+          git commit -qm "sakagami ratings" || exit 0
+          git push -q origin HEAD:ratings
