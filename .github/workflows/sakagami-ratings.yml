@@ -3,7 +3,8 @@ name: sakagami-ratings
 on:
   workflow_dispatch:
     inputs:
-      pages: {description: "一覧ページを何ページ見るか", default: "15"}
+      seeds: {description: "起点の記事ID（スペース区切り）", default: "76588 75861 76316 72013 70967 66645 56951 64304 60508 59299 57984 76210 68542 68309 67028"}
+      limit: {description: "最大記事数", default: "250"}
 permissions:
   contents: write
 jobs:
@@ -22,16 +23,19 @@ jobs:
                   return urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=30).read().decode("utf-8", "ignore")
               except Exception as e:
                   print("ERR", u, e); return ""
-          ids = set()
-          for p in range(1, int("${{ inputs.pages }}") + 1):
-              for u in (f"https://tospo-keiba.jp/sakagamiblood?page={p}", f"https://tospo-keiba.jp/sakagamiblood/page/{p}"):
-                  h = get(u); ids |= set(re.findall(r"/sakagamiblood/(\d+)", h)); time.sleep(2)
-          print("articles", len(ids))
-          out = []
-          for i in sorted(ids, key=int):
+          queue = "${{ inputs.seeds }}".split(); seen = set(); out = []
+          while queue and len(seen) < int("${{ inputs.limit }}"):
+              i = queue.pop(0)
+              if i in seen:
+                  continue
+              seen.add(i)
               h = get(f"https://tospo-keiba.jp/sakagamiblood/{i}"); time.sleep(2)
               if not h:
                   continue
+              for x in re.findall(r"sakagamiblood/(\d+)", h):
+                  if x not in seen:
+                      queue.append(x)
+              print(i, len(h), h.count("適性評価"))
               title = html.unescape((re.search(r"<title>(.*?)</title>", h, re.S) or [None, ""])[1]).strip()
               date = (re.search(r"(20\d\d)[/.-](\d\d?)[/.-](\d\d?)", h) or None)
               txt = html.unescape(re.sub(r"<[^>]+>", "\n", h))
