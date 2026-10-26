@@ -32,10 +32,17 @@ jobs:
               h = get(f"https://tospo-keiba.jp/sakagamiblood/{i}"); time.sleep(2)
               if not h:
                   continue
+              # 本文は __NEXT_DATA__ などの JSON に \\uXXXX で埋め込まれていることがある → ほどく
+              h = h.replace("\\/", "/")
+              h = re.sub(r"\\u([0-9a-fA-F]{4})", lambda m: chr(int(m.group(1), 16)), h)
+              h = h.replace("\\n", "\n").replace("\\u003c", "<").replace("\\u003e", ">")
               for x in re.findall(r"sakagamiblood/(\d+)", h):
                   if x not in seen:
                       queue.append(x)
-              print(i, len(h), h.count("適性評価"))
+              print(i, len(h), h.count("適性評価"), h.count("能力評価"), [m.start() for m in re.finditer("適性評価", h)][:3])
+              k = h.find("適性評価")
+              if k > 0 and i == "${{ inputs.seeds }}".split()[0]:
+                  print("SAMPLE", repr(h[k - 300:k + 120]))
               title = html.unescape((re.search(r"<title>(.*?)</title>", h, re.S) or [None, ""])[1]).strip()
               date = (re.search(r"(20\d\d)[/.-](\d\d?)[/.-](\d\d?)", h) or None)
               txt = html.unescape(re.sub(r"<[^>]+>", "\n", h))
