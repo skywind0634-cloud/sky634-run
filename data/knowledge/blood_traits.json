@@ -153,14 +153,15 @@
    "entity": "父=キズナ",
    "cond": "長距離",
    "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 27,
+   "source": "坂上明大の血統査定・望田潤ブログ",
+   "n_art": 30,
    "urls": [
     "https://tospo-keiba.jp/sakagamiblood/49557",
     "https://tospo-keiba.jp/sakagamiblood/49845",
     "https://tospo-keiba.jp/sakagamiblood/50445",
     "https://tospo-keiba.jp/sakagamiblood/52206",
-    "https://tospo-keiba.jp/sakagamiblood/53047"
+    "https://tospo-keiba.jp/sakagamiblood/53047",
+    "https://nas-quillo.hatenablog.com/entry/2026/10/07/095659"
    ],
    "n_run": 632,
    "ae_in": 1.206,
@@ -298,13 +299,13 @@
    "cond": "長距離",
    "dir": "+",
    "source": "望田潤ブログ・坂上明大の血統査定",
-   "n_art": 20,
+   "n_art": 22,
    "urls": [
     "https://nas-quillo.hatenablog.com/entry/0498f41a2399ca88d43f714a3a5389de",
     "https://nas-quillo.hatenablog.com/entry/08e8ef72430f576ec748ec4d88e3ea83",
+    "https://nas-quillo.hatenablog.com/entry/2026/10/07/095659",
+    "https://nas-quillo.hatenablog.com/entry/2026/10/21/114458",
     "https://nas-quillo.hatenablog.com/entry/4033022754161dbb89ea2b2433df6f1a",
-    "https://nas-quillo.hatenablog.com/entry/5231f836a962eff1193e5f466fb68a80",
-    "https://nas-quillo.hatenablog.com/entry/594ca2392832483d20e720a05a519b50",
     "https://tospo-keiba.jp/sakagamiblood/52204"
    ],
    "n_run": 462,
@@ -528,14 +529,14 @@
    "cond": "大箱",
    "dir": "+",
    "source": "望田潤ブログ・坂上明大の血統査定",
-   "n_art": 16,
+   "n_art": 17,
    "urls": [
     "https://nas-quillo.hatenablog.com/entry/2026/02/23/100345",
     "https://nas-quillo.hatenablog.com/entry/2026/09/27/084657",
+    "https://nas-quillo.hatenablog.com/entry/2026/10/12/085947",
     "https://nas-quillo.hatenablog.com/entry/53287f156607cecf3937ae1c2b9ad2f0",
     "https://tospo-keiba.jp/sakagamiblood/50447",
-    "https://tospo-keiba.jp/sakagamiblood/57710",
-    "https://tospo-keiba.jp/sakagamiblood/59079"
+    "https://tospo-keiba.jp/sakagamiblood/57710"
    ],
    "n_run": 1518,
    "ae_in": 1.054,

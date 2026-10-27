@@ -1,7 +1,7 @@
 {
 "_meta": {
 "source": "望田潤ブログ",
-"articles": 603,
+"articles": 615,
 "tool": "tools/trait_mining.py",
 "note": "本文は保存せず、文中の『血×条件』の共起回数と出典URLのみ"
 },
@@ -38,8 +38,8 @@
 "entity": "ディープインパクト",
 "cond": "長距離",
 "dir": "+",
-"n_sent": 22,
-"n_art": 22,
+"n_sent": 23,
+"n_art": 23,
 "urls": [
 "https://nas-quillo.hatenablog.com/entry/0cd615e2c9abd0026944920112ead054",
 "https://nas-quillo.hatenablog.com/entry/15a8c6bfed213ab964db673b2f74963f",
@@ -52,8 +52,8 @@
 "entity": "ステイゴールド",
 "cond": "長距離",
 "dir": "+",
-"n_sent": 35,
-"n_art": 20,
+"n_sent": 37,
+"n_art": 22,
 "urls": [
 "https://nas-quillo.hatenablog.com/entry/0498f41a2399ca88d43f714a3a5389de",
 "https://nas-quillo.hatenablog.com/entry/0cd615e2c9abd0026944920112ead054",
@@ -77,6 +77,20 @@
 ]
 },
 {
+"entity": "ディープインパクト",
+"cond": "大箱",
+"dir": "+",
+"n_sent": 19,
+"n_art": 19,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/02f7dcf74eb8038a5b5fee1d714ded79",
+"https://nas-quillo.hatenablog.com/entry/10aa3b8ab61018de37d8182d14389a6e",
+"https://nas-quillo.hatenablog.com/entry/15a8c6bfed213ab964db673b2f74963f",
+"https://nas-quillo.hatenablog.com/entry/1e32f2ebb4538174f83b24f7cb6aac0a",
+"https://nas-quillo.hatenablog.com/entry/2026/02/10/092452"
+]
+},
+{
 "entity": "エピファネイア",
 "cond": "長距離",
 "dir": "+",
@@ -88,20 +102,6 @@
 "https://nas-quillo.hatenablog.com/entry/2025/10/20/182416",
 "https://nas-quillo.hatenablog.com/entry/2025/11/24/093559",
 "https://nas-quillo.hatenablog.com/entry/2026/04/07/235623"
-]
-},
-{
-"entity": "ディープインパクト",
-"cond": "大箱",
-"dir": "+",
-"n_sent": 18,
-"n_art": 18,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/02f7dcf74eb8038a5b5fee1d714ded79",
-"https://nas-quillo.hatenablog.com/entry/10aa3b8ab61018de37d8182d14389a6e",
-"https://nas-quillo.hatenablog.com/entry/15a8c6bfed213ab964db673b2f74963f",
-"https://nas-quillo.hatenablog.com/entry/1e32f2ebb4538174f83b24f7cb6aac0a",
-"https://nas-quillo.hatenablog.com/entry/2026/02/10/092452"
 ]
 },
 {
@@ -119,6 +119,20 @@
 ]
 },
 {
+"entity": "ディープインパクト",
+"cond": "マイル",
+"dir": "+",
+"n_sent": 21,
+"n_art": 17,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/02f7dcf74eb8038a5b5fee1d714ded79",
+"https://nas-quillo.hatenablog.com/entry/048fa00769832b4afa9ece88593fdd81",
+"https://nas-quillo.hatenablog.com/entry/2026/02/23/100345",
+"https://nas-quillo.hatenablog.com/entry/2026/04/07/235623",
+"https://nas-quillo.hatenablog.com/entry/2026/09/12/084422"
+]
+},
+{
 "entity": "Storm Cat",
 "cond": "マイル",
 "dir": "+",
@@ -133,20 +147,6 @@
 ]
 },
 {
-"entity": "ディープインパクト",
-"cond": "マイル",
-"dir": "+",
-"n_sent": 20,
-"n_art": 16,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/02f7dcf74eb8038a5b5fee1d714ded79",
-"https://nas-quillo.hatenablog.com/entry/048fa00769832b4afa9ece88593fdd81",
-"https://nas-quillo.hatenablog.com/entry/2026/02/23/100345",
-"https://nas-quillo.hatenablog.com/entry/2026/04/07/235623",
-"https://nas-quillo.hatenablog.com/entry/2026/09/12/084422"
-]
-},
-{
 "entity": "Danzig",
 "cond": "小回り",
 "dir": "+",
@@ -158,6 +158,20 @@
 "https://nas-quillo.hatenablog.com/entry/2025/11/26/170250",
 "https://nas-quillo.hatenablog.com/entry/2025/11/27/160120",
 "https://nas-quillo.hatenablog.com/entry/2026/01/18/093707"
+]
+},
+{
+"entity": "Green Desert",
+"cond": "短距離",
+"dir": "+",
+"n_sent": 16,
+"n_art": 15,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2025/11/12/200946",
+"https://nas-quillo.hatenablog.com/entry/2026/01/24/092148",
+"https://nas-quillo.hatenablog.com/entry/2026/06/21/090719",
+"https://nas-quillo.hatenablog.com/entry/2026/06/27/091948",
+"https://nas-quillo.hatenablog.com/entry/2026/09/27/084657"
 ]
 },
 {
@@ -189,17 +203,17 @@
 ]
 },
 {
-"entity": "Green Desert",
-"cond": "短距離",
+"entity": "ドレフォン",
+"cond": "ダート",
 "dir": "+",
-"n_sent": 15,
+"n_sent": 19,
 "n_art": 14,
 "urls": [
-"https://nas-quillo.hatenablog.com/entry/2025/11/12/200946",
-"https://nas-quillo.hatenablog.com/entry/2026/01/24/092148",
-"https://nas-quillo.hatenablog.com/entry/2026/06/21/090719",
-"https://nas-quillo.hatenablog.com/entry/2026/06/27/091948",
-"https://nas-quillo.hatenablog.com/entry/2026/09/27/084657"
+"https://nas-quillo.hatenablog.com/entry/03715161fe847f08158ab567e5e9eba7",
+"https://nas-quillo.hatenablog.com/entry/10097f11a4980006910ac454f96e20c5",
+"https://nas-quillo.hatenablog.com/entry/2026/01/28/133620",
+"https://nas-quillo.hatenablog.com/entry/2026/04/14/002221",
+"https://nas-quillo.hatenablog.com/entry/2026/04/15/102835"
 ]
 },
 {
@@ -231,20 +245,6 @@
 ]
 },
 {
-"entity": "ドレフォン",
-"cond": "ダート",
-"dir": "+",
-"n_sent": 18,
-"n_art": 13,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/03715161fe847f08158ab567e5e9eba7",
-"https://nas-quillo.hatenablog.com/entry/10097f11a4980006910ac454f96e20c5",
-"https://nas-quillo.hatenablog.com/entry/2026/01/28/133620",
-"https://nas-quillo.hatenablog.com/entry/2026/04/14/002221",
-"https://nas-quillo.hatenablog.com/entry/2026/04/15/102835"
-]
-},
-{
 "entity": "エピファネイア",
 "cond": "大箱",
 "dir": "+",
@@ -273,6 +273,20 @@
 ]
 },
 {
+"entity": "オルフェーヴル",
+"cond": "長距離",
+"dir": "+",
+"n_sent": 13,
+"n_art": 12,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/0498f41a2399ca88d43f714a3a5389de",
+"https://nas-quillo.hatenablog.com/entry/08e8ef72430f576ec748ec4d88e3ea83",
+"https://nas-quillo.hatenablog.com/entry/2026/10/07/095659",
+"https://nas-quillo.hatenablog.com/entry/2026/10/21/114458",
+"https://nas-quillo.hatenablog.com/entry/4033022754161dbb89ea2b2433df6f1a"
+]
+},
+{
 "entity": "Nureyev",
 "cond": "大箱",
 "dir": "+",
@@ -298,6 +312,20 @@
 "https://nas-quillo.hatenablog.com/entry/2026/07/11/091011",
 "https://nas-quillo.hatenablog.com/entry/2026/09/09/085049",
 "https://nas-quillo.hatenablog.com/entry/2e5ce92fa4b25fad06b839d32c559e60"
+]
+},
+{
+"entity": "デインヒル",
+"cond": "短距離",
+"dir": "+",
+"n_sent": 12,
+"n_art": 12,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/03/08/094417",
+"https://nas-quillo.hatenablog.com/entry/2026/03/11/103906",
+"https://nas-quillo.hatenablog.com/entry/2026/06/21/090719",
+"https://nas-quillo.hatenablog.com/entry/2026/06/27/091948",
+"https://nas-quillo.hatenablog.com/entry/2026/09/12/084422"
 ]
 },
 {
@@ -371,20 +399,6 @@
 ]
 },
 {
-"entity": "デインヒル",
-"cond": "短距離",
-"dir": "+",
-"n_sent": 11,
-"n_art": 11,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/2026/03/08/094417",
-"https://nas-quillo.hatenablog.com/entry/2026/03/11/103906",
-"https://nas-quillo.hatenablog.com/entry/2026/06/21/090719",
-"https://nas-quillo.hatenablog.com/entry/2026/06/27/091948",
-"https://nas-quillo.hatenablog.com/entry/2026/09/12/084422"
-]
-},
-{
 "entity": "エピファネイア",
 "cond": "小回り",
 "dir": "+",
@@ -441,17 +455,17 @@
 ]
 },
 {
-"entity": "オルフェーヴル",
+"entity": "ゴールドシップ",
 "cond": "長距離",
 "dir": "+",
-"n_sent": 10,
+"n_sent": 11,
 "n_art": 10,
 "urls": [
 "https://nas-quillo.hatenablog.com/entry/0498f41a2399ca88d43f714a3a5389de",
-"https://nas-quillo.hatenablog.com/entry/08e8ef72430f576ec748ec4d88e3ea83",
-"https://nas-quillo.hatenablog.com/entry/4033022754161dbb89ea2b2433df6f1a",
-"https://nas-quillo.hatenablog.com/entry/5231f836a962eff1193e5f466fb68a80",
-"https://nas-quillo.hatenablog.com/entry/594ca2392832483d20e720a05a519b50"
+"https://nas-quillo.hatenablog.com/entry/2026/04/07/235623",
+"https://nas-quillo.hatenablog.com/entry/2026/05/10/091314",
+"https://nas-quillo.hatenablog.com/entry/2026/10/07/095659",
+"https://nas-quillo.hatenablog.com/entry/22ff8e26ef5f37a0284eb59119efc4dd"
 ]
 },
 {
@@ -511,6 +525,20 @@
 ]
 },
 {
+"entity": "デインヒル",
+"cond": "牝馬",
+"dir": "+",
+"n_sent": 11,
+"n_art": 10,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/02bac919ae35fba1f65338f8816282da",
+"https://nas-quillo.hatenablog.com/entry/2025/10/23/105723",
+"https://nas-quillo.hatenablog.com/entry/2026/01/24/092148",
+"https://nas-quillo.hatenablog.com/entry/2026/02/07/090645",
+"https://nas-quillo.hatenablog.com/entry/2026/06/07/091059"
+]
+},
+{
 "entity": "Nureyev",
 "cond": "小回り",
 "dir": "+",
@@ -553,6 +581,20 @@
 ]
 },
 {
+"entity": "Danzig",
+"cond": "短距離",
+"dir": "+",
+"n_sent": 10,
+"n_art": 10,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2025/09/27/091929",
+"https://nas-quillo.hatenablog.com/entry/2026/03/08/094417",
+"https://nas-quillo.hatenablog.com/entry/2026/06/21/090719",
+"https://nas-quillo.hatenablog.com/entry/2026/07/01/110148",
+"https://nas-quillo.hatenablog.com/entry/2026/10/18/085821"
+]
+},
+{
 "entity": "ロードカナロア",
 "cond": "大箱",
 "dir": "+",
@@ -581,20 +623,6 @@
 ]
 },
 {
-"entity": "ゴールドシップ",
-"cond": "長距離",
-"dir": "+",
-"n_sent": 10,
-"n_art": 9,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/0498f41a2399ca88d43f714a3a5389de",
-"https://nas-quillo.hatenablog.com/entry/2026/04/07/235623",
-"https://nas-quillo.hatenablog.com/entry/2026/05/10/091314",
-"https://nas-quillo.hatenablog.com/entry/22ff8e26ef5f37a0284eb59119efc4dd",
-"https://nas-quillo.hatenablog.com/entry/4033022754161dbb89ea2b2433df6f1a"
-]
-},
-{
 "entity": "ハーツクライ",
 "cond": "短距離",
 "dir": "+",
@@ -620,20 +648,6 @@
 "https://nas-quillo.hatenablog.com/entry/2025/09/23/183003",
 "https://nas-quillo.hatenablog.com/entry/2025/11/26/170250",
 "https://nas-quillo.hatenablog.com/entry/2025/11/27/160120"
-]
-},
-{
-"entity": "デインヒル",
-"cond": "牝馬",
-"dir": "+",
-"n_sent": 10,
-"n_art": 9,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/02bac919ae35fba1f65338f8816282da",
-"https://nas-quillo.hatenablog.com/entry/2025/10/23/105723",
-"https://nas-quillo.hatenablog.com/entry/2026/01/24/092148",
-"https://nas-quillo.hatenablog.com/entry/2026/02/07/090645",
-"https://nas-quillo.hatenablog.com/entry/2026/06/07/091059"
 ]
 },
 {
@@ -749,6 +763,20 @@
 ]
 },
 {
+"entity": "父=ステイゴールド",
+"cond": "長距離",
+"dir": "+",
+"n_sent": 11,
+"n_art": 8,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/0498f41a2399ca88d43f714a3a5389de",
+"https://nas-quillo.hatenablog.com/entry/0cd615e2c9abd0026944920112ead054",
+"https://nas-quillo.hatenablog.com/entry/2026/04/07/235623",
+"https://nas-quillo.hatenablog.com/entry/2026/10/21/114458",
+"https://nas-quillo.hatenablog.com/entry/5231f836a962eff1193e5f466fb68a80"
+]
+},
+{
 "entity": "Princely Gift",
 "cond": "長距離",
 "dir": "+",
@@ -847,20 +875,6 @@
 ]
 },
 {
-"entity": "Danzig",
-"cond": "短距離",
-"dir": "+",
-"n_sent": 8,
-"n_art": 8,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/2025/09/27/091929",
-"https://nas-quillo.hatenablog.com/entry/2026/03/08/094417",
-"https://nas-quillo.hatenablog.com/entry/2026/06/21/090719",
-"https://nas-quillo.hatenablog.com/entry/2026/07/01/110148",
-"https://nas-quillo.hatenablog.com/entry/38053b5bc741ebe199cdd9a87da00ffb"
-]
-},
-{
 "entity": "Northern Dancer",
 "cond": "牝馬",
 "dir": "+",
@@ -956,20 +970,6 @@
 "https://nas-quillo.hatenablog.com/entry/2026/09/02/192426",
 "https://nas-quillo.hatenablog.com/entry/2026/09/17/074327",
 "https://nas-quillo.hatenablog.com/entry/3607056f9960efa9b6300867bdee1178"
-]
-},
-{
-"entity": "父=ステイゴールド",
-"cond": "長距離",
-"dir": "+",
-"n_sent": 10,
-"n_art": 7,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/0498f41a2399ca88d43f714a3a5389de",
-"https://nas-quillo.hatenablog.com/entry/0cd615e2c9abd0026944920112ead054",
-"https://nas-quillo.hatenablog.com/entry/2026/04/07/235623",
-"https://nas-quillo.hatenablog.com/entry/5231f836a962eff1193e5f466fb68a80",
-"https://nas-quillo.hatenablog.com/entry/594ca2392832483d20e720a05a519b50"
 ]
 },
 {
@@ -1155,6 +1155,20 @@
 ]
 },
 {
+"entity": "ノーザンテースト",
+"cond": "マイル",
+"dir": "+",
+"n_sent": 7,
+"n_art": 7,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/1fd8e12091c94302ca1f7fbb739b9abe",
+"https://nas-quillo.hatenablog.com/entry/2025/12/30/221212",
+"https://nas-quillo.hatenablog.com/entry/2026/07/16/162237",
+"https://nas-quillo.hatenablog.com/entry/2026/09/13/090742",
+"https://nas-quillo.hatenablog.com/entry/2026/10/12/085947"
+]
+},
+{
 "entity": "Sadler's Wells",
 "cond": "小回り",
 "dir": "+",
@@ -1222,6 +1236,20 @@
 "https://nas-quillo.hatenablog.com/entry/2026/09/19/090705",
 "https://nas-quillo.hatenablog.com/entry/53287f156607cecf3937ae1c2b9ad2f0",
 "https://nas-quillo.hatenablog.com/entry/bbb2dafa92d9e4eb1959cbbb2923533f"
+]
+},
+{
+"entity": "Sir Gaylord",
+"cond": "大箱",
+"dir": "+",
+"n_sent": 7,
+"n_art": 7,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2025/11/24/093559",
+"https://nas-quillo.hatenablog.com/entry/2026/05/29/083840",
+"https://nas-quillo.hatenablog.com/entry/2026/06/06/170122",
+"https://nas-quillo.hatenablog.com/entry/2026/10/14/144916",
+"https://nas-quillo.hatenablog.com/entry/493e5b06b40daf212a8ee6e80cb4f4d4"
 ]
 },
 {
@@ -1491,17 +1519,17 @@
 ]
 },
 {
-"entity": "ノーザンテースト",
-"cond": "マイル",
+"entity": "Darshaan",
+"cond": "牝馬",
 "dir": "+",
-"n_sent": 6,
+"n_sent": 10,
 "n_art": 6,
 "urls": [
-"https://nas-quillo.hatenablog.com/entry/1fd8e12091c94302ca1f7fbb739b9abe",
-"https://nas-quillo.hatenablog.com/entry/2025/12/30/221212",
-"https://nas-quillo.hatenablog.com/entry/2026/07/16/162237",
-"https://nas-quillo.hatenablog.com/entry/2026/09/13/090742",
-"https://nas-quillo.hatenablog.com/entry/6ace2d0192e59d1327baf4c8bbb42934"
+"https://nas-quillo.hatenablog.com/entry/0774ba8e92d6d9826d9e0bf1b1fc12dc",
+"https://nas-quillo.hatenablog.com/entry/2026/03/04/110445",
+"https://nas-quillo.hatenablog.com/entry/2026/10/04/090703",
+"https://nas-quillo.hatenablog.com/entry/27351d3d45e8aa865d464d3653290c71",
+"https://nas-quillo.hatenablog.com/entry/bfe997da3755a325a1905d39d88db246"
 ]
 },
 {
@@ -1516,6 +1544,20 @@
 "https://nas-quillo.hatenablog.com/entry/2026/07/25/085308",
 "https://nas-quillo.hatenablog.com/entry/594ca2392832483d20e720a05a519b50",
 "https://nas-quillo.hatenablog.com/entry/5dec203a127bbfa7cfedd41b1907233e"
+]
+},
+{
+"entity": "Habitat",
+"cond": "牝馬",
+"dir": "+",
+"n_sent": 6,
+"n_art": 6,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/01/17/093138",
+"https://nas-quillo.hatenablog.com/entry/2026/01/24/092148",
+"https://nas-quillo.hatenablog.com/entry/2026/04/14/002221",
+"https://nas-quillo.hatenablog.com/entry/2026/10/04/090703",
+"https://nas-quillo.hatenablog.com/entry/594ca2392832483d20e720a05a519b50"
 ]
 },
 {
@@ -1561,17 +1603,17 @@
 ]
 },
 {
-"entity": "Sir Gaylord",
-"cond": "大箱",
+"entity": "Kingmambo",
+"cond": "マイル",
 "dir": "+",
 "n_sent": 6,
 "n_art": 6,
 "urls": [
-"https://nas-quillo.hatenablog.com/entry/2025/11/24/093559",
-"https://nas-quillo.hatenablog.com/entry/2026/05/29/083840",
-"https://nas-quillo.hatenablog.com/entry/2026/06/06/170122",
-"https://nas-quillo.hatenablog.com/entry/493e5b06b40daf212a8ee6e80cb4f4d4",
-"https://nas-quillo.hatenablog.com/entry/4bf33081d2dcb96e0ad6df7039a1aa29"
+"https://nas-quillo.hatenablog.com/entry/2025/11/29/095547",
+"https://nas-quillo.hatenablog.com/entry/2025/12/24/104510",
+"https://nas-quillo.hatenablog.com/entry/2026/10/12/085947",
+"https://nas-quillo.hatenablog.com/entry/2e60007b0809fb44f96fcb3e3bfd3942",
+"https://nas-quillo.hatenablog.com/entry/8243044a1e5406fe7abeea485350e6ad"
 ]
 },
 {
@@ -2023,6 +2065,20 @@
 ]
 },
 {
+"entity": "Nureyev",
+"cond": "牝馬",
+"dir": "+",
+"n_sent": 5,
+"n_art": 5,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/13cd60cbf7b8be3bc0a2ecc5d534eb30",
+"https://nas-quillo.hatenablog.com/entry/2026/06/07/091059",
+"https://nas-quillo.hatenablog.com/entry/2026/10/14/144916",
+"https://nas-quillo.hatenablog.com/entry/657b10e9be03c70961369bffa048d229",
+"https://nas-quillo.hatenablog.com/entry/7cc302007b25885004d01bc1bf27c594"
+]
+},
+{
 "entity": "Lyphard",
 "cond": "持続",
 "dir": "+",
@@ -2051,6 +2107,20 @@
 ]
 },
 {
+"entity": "リオンディーズ",
+"cond": "牝馬",
+"dir": "+",
+"n_sent": 5,
+"n_art": 5,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2025/10/02/103844",
+"https://nas-quillo.hatenablog.com/entry/2025/12/24/104510",
+"https://nas-quillo.hatenablog.com/entry/2026/10/14/144916",
+"https://nas-quillo.hatenablog.com/entry/7cc302007b25885004d01bc1bf27c594",
+"https://nas-quillo.hatenablog.com/entry/cb4605df72f9b7caf415afa5b2cbdb3f"
+]
+},
+{
 "entity": "Sir Ivor",
 "cond": "牝馬",
 "dir": "+",
@@ -2062,20 +2132,6 @@
 "https://nas-quillo.hatenablog.com/entry/7cc302007b25885004d01bc1bf27c594",
 "https://nas-quillo.hatenablog.com/entry/a8945236e1e7fa6ab42717dc3ac2105f",
 "https://nas-quillo.hatenablog.com/entry/f73f4c0c14d48d90ad7503711c048840"
-]
-},
-{
-"entity": "Darshaan",
-"cond": "牝馬",
-"dir": "+",
-"n_sent": 9,
-"n_art": 5,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/0774ba8e92d6d9826d9e0bf1b1fc12dc",
-"https://nas-quillo.hatenablog.com/entry/2026/03/04/110445",
-"https://nas-quillo.hatenablog.com/entry/27351d3d45e8aa865d464d3653290c71",
-"https://nas-quillo.hatenablog.com/entry/bfe997da3755a325a1905d39d88db246",
-"https://nas-quillo.hatenablog.com/entry/ea5920e38fce80cb6ace817de52e1bd8"
 ]
 },
 {
@@ -2191,20 +2247,6 @@
 ]
 },
 {
-"entity": "Habitat",
-"cond": "牝馬",
-"dir": "+",
-"n_sent": 5,
-"n_art": 5,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/2026/01/17/093138",
-"https://nas-quillo.hatenablog.com/entry/2026/01/24/092148",
-"https://nas-quillo.hatenablog.com/entry/2026/04/14/002221",
-"https://nas-quillo.hatenablog.com/entry/594ca2392832483d20e720a05a519b50",
-"https://nas-quillo.hatenablog.com/entry/8243044a1e5406fe7abeea485350e6ad"
-]
-},
-{
 "entity": "サンデーサイレンス",
 "cond": "牝馬",
 "dir": "+",
@@ -2244,20 +2286,6 @@
 "https://nas-quillo.hatenablog.com/entry/48d486aeffe04499cdd2c5df180f376a",
 "https://nas-quillo.hatenablog.com/entry/8243044a1e5406fe7abeea485350e6ad",
 "https://nas-quillo.hatenablog.com/entry/89f4728128d0594db13ccc78a1015aad"
-]
-},
-{
-"entity": "Kingmambo",
-"cond": "マイル",
-"dir": "+",
-"n_sent": 5,
-"n_art": 5,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/2025/11/29/095547",
-"https://nas-quillo.hatenablog.com/entry/2025/12/24/104510",
-"https://nas-quillo.hatenablog.com/entry/2e60007b0809fb44f96fcb3e3bfd3942",
-"https://nas-quillo.hatenablog.com/entry/8243044a1e5406fe7abeea485350e6ad",
-"https://nas-quillo.hatenablog.com/entry/9ee1a37e2fafa3f94678a1bc17bb4c31"
 ]
 },
 {
@@ -2373,6 +2401,20 @@
 ]
 },
 {
+"entity": "父=デインヒル",
+"cond": "牝馬",
+"dir": "+",
+"n_sent": 5,
+"n_art": 5,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/02bac919ae35fba1f65338f8816282da",
+"https://nas-quillo.hatenablog.com/entry/2025/10/23/105723",
+"https://nas-quillo.hatenablog.com/entry/2026/02/07/090645",
+"https://nas-quillo.hatenablog.com/entry/2026/06/07/091059",
+"https://nas-quillo.hatenablog.com/entry/2026/10/04/090703"
+]
+},
+{
 "entity": "Kingmambo",
 "cond": "ダート",
 "dir": "+",
@@ -2454,6 +2496,20 @@
 "https://nas-quillo.hatenablog.com/entry/8c783e4c8607a643693ee7722456bb85",
 "https://nas-quillo.hatenablog.com/entry/9ac46fd012aacca9407a3c1c7c3a70e4",
 "https://nas-quillo.hatenablog.com/entry/f258566e740362bd359a76c6e95a1ce8"
+]
+},
+{
+"entity": "父=ディープインパクト",
+"cond": "マイル",
+"dir": "+",
+"n_sent": 5,
+"n_art": 5,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/09/27/084657",
+"https://nas-quillo.hatenablog.com/entry/2026/10/12/085947",
+"https://nas-quillo.hatenablog.com/entry/54c25e19878cd4cbac05a649240ba6cc",
+"https://nas-quillo.hatenablog.com/entry/8c783e4c8607a643693ee7722456bb85",
+"https://nas-quillo.hatenablog.com/entry/9ac46fd012aacca9407a3c1c7c3a70e4"
 ]
 },
 {
@@ -2708,6 +2764,19 @@
 ]
 },
 {
+"entity": "Gone West",
+"cond": "短距離",
+"dir": "+",
+"n_sent": 4,
+"n_art": 4,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/10/21/114458",
+"https://nas-quillo.hatenablog.com/entry/65fad83abef29fed52993bdbb09958cc",
+"https://nas-quillo.hatenablog.com/entry/65fad83abef29fed52993bdbb09958cc_1",
+"https://nas-quillo.hatenablog.com/entry/6efca9ae52b84f3dc8848e2804143423"
+]
+},
+{
 "entity": "Dancing Brave",
 "cond": "小回り",
 "dir": "+",
@@ -2760,19 +2829,6 @@
 ]
 },
 {
-"entity": "Nureyev",
-"cond": "牝馬",
-"dir": "+",
-"n_sent": 4,
-"n_art": 4,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/13cd60cbf7b8be3bc0a2ecc5d534eb30",
-"https://nas-quillo.hatenablog.com/entry/2026/06/07/091059",
-"https://nas-quillo.hatenablog.com/entry/657b10e9be03c70961369bffa048d229",
-"https://nas-quillo.hatenablog.com/entry/7cc302007b25885004d01bc1bf27c594"
-]
-},
-{
 "entity": "シルバーステート",
 "cond": "大箱",
 "dir": "+",
@@ -2799,19 +2855,6 @@
 ]
 },
 {
-"entity": "リオンディーズ",
-"cond": "牝馬",
-"dir": "+",
-"n_sent": 4,
-"n_art": 4,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/2025/10/02/103844",
-"https://nas-quillo.hatenablog.com/entry/2025/12/24/104510",
-"https://nas-quillo.hatenablog.com/entry/7cc302007b25885004d01bc1bf27c594",
-"https://nas-quillo.hatenablog.com/entry/cb4605df72f9b7caf415afa5b2cbdb3f"
-]
-},
-{
 "entity": "Darshaan",
 "cond": "瞬発",
 "dir": "+",
@@ -2822,6 +2865,19 @@
 "https://nas-quillo.hatenablog.com/entry/27351d3d45e8aa865d464d3653290c71",
 "https://nas-quillo.hatenablog.com/entry/b759401278558e60da561bd374c30dd8",
 "https://nas-quillo.hatenablog.com/entry/ea5920e38fce80cb6ace817de52e1bd8"
+]
+},
+{
+"entity": "トニービン",
+"cond": "牝馬",
+"dir": "+",
+"n_sent": 4,
+"n_art": 4,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/04/14/002221",
+"https://nas-quillo.hatenablog.com/entry/2026/10/14/144916",
+"https://nas-quillo.hatenablog.com/entry/4708457c0b93118b998cc373054446f1",
+"https://nas-quillo.hatenablog.com/entry/89f4728128d0594db13ccc78a1015aad"
 ]
 },
 {
@@ -2847,6 +2903,19 @@
 "https://nas-quillo.hatenablog.com/entry/2025/10/08/194729",
 "https://nas-quillo.hatenablog.com/entry/2026/06/25/093933",
 "https://nas-quillo.hatenablog.com/entry/657b10e9be03c70961369bffa048d229",
+"https://nas-quillo.hatenablog.com/entry/6a71f8538440f8d7d5296f735103def4"
+]
+},
+{
+"entity": "Try My Best",
+"cond": "牝馬",
+"dir": "+",
+"n_sent": 4,
+"n_art": 4,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/0381e3f7969f56999c9786189abd21e1",
+"https://nas-quillo.hatenablog.com/entry/2026/03/19/114824",
+"https://nas-quillo.hatenablog.com/entry/2026/10/07/095659",
 "https://nas-quillo.hatenablog.com/entry/6a71f8538440f8d7d5296f735103def4"
 ]
 },
@@ -2955,6 +3024,19 @@
 ]
 },
 {
+"entity": "Kingmambo",
+"cond": "大箱",
+"dir": "+",
+"n_sent": 4,
+"n_art": 4,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2025/11/29/095547",
+"https://nas-quillo.hatenablog.com/entry/2026/05/24/085844",
+"https://nas-quillo.hatenablog.com/entry/2026/10/12/085947",
+"https://nas-quillo.hatenablog.com/entry/b507c26ae6549425b3a521f7dbc16790"
+]
+},
+{
 "entity": "ダイワメジャー",
 "cond": "持続",
 "dir": "+",
@@ -3056,19 +3138,6 @@
 "https://nas-quillo.hatenablog.com/entry/4b4251cd83dce6b231e9e57ede14838c",
 "https://nas-quillo.hatenablog.com/entry/8a6cec1953b315b9c18ba57aceebb208",
 "https://nas-quillo.hatenablog.com/entry/bbe0b1bb489e167e39211885f423c56a"
-]
-},
-{
-"entity": "父=デインヒル",
-"cond": "牝馬",
-"dir": "+",
-"n_sent": 4,
-"n_art": 4,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/02bac919ae35fba1f65338f8816282da",
-"https://nas-quillo.hatenablog.com/entry/2025/10/23/105723",
-"https://nas-quillo.hatenablog.com/entry/2026/02/07/090645",
-"https://nas-quillo.hatenablog.com/entry/2026/06/07/091059"
 ]
 },
 {
@@ -3268,15 +3337,15 @@
 },
 {
 "entity": "父=ディープインパクト",
-"cond": "マイル",
+"cond": "大箱",
 "dir": "+",
 "n_sent": 4,
 "n_art": 4,
 "urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/02/23/100345",
 "https://nas-quillo.hatenablog.com/entry/2026/09/27/084657",
-"https://nas-quillo.hatenablog.com/entry/54c25e19878cd4cbac05a649240ba6cc",
-"https://nas-quillo.hatenablog.com/entry/8c783e4c8607a643693ee7722456bb85",
-"https://nas-quillo.hatenablog.com/entry/9ac46fd012aacca9407a3c1c7c3a70e4"
+"https://nas-quillo.hatenablog.com/entry/2026/10/12/085947",
+"https://nas-quillo.hatenablog.com/entry/53287f156607cecf3937ae1c2b9ad2f0"
 ]
 },
 {
@@ -3640,6 +3709,18 @@
 ]
 },
 {
+"entity": "ノーザンテースト",
+"cond": "大箱",
+"dir": "+",
+"n_sent": 3,
+"n_art": 3,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/10/12/085947",
+"https://nas-quillo.hatenablog.com/entry/3b27066b6837c5ba2f37434e2e8a96b8",
+"https://nas-quillo.hatenablog.com/entry/6ace2d0192e59d1327baf4c8bbb42934"
+]
+},
+{
 "entity": "父=ハーツクライ",
 "cond": "晩成",
 "dir": "+",
@@ -3661,18 +3742,6 @@
 "https://nas-quillo.hatenablog.com/entry/2026/07/08/100809",
 "https://nas-quillo.hatenablog.com/entry/65fad83abef29fed52993bdbb09958cc",
 "https://nas-quillo.hatenablog.com/entry/65fad83abef29fed52993bdbb09958cc_1"
-]
-},
-{
-"entity": "Gone West",
-"cond": "短距離",
-"dir": "+",
-"n_sent": 3,
-"n_art": 3,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/65fad83abef29fed52993bdbb09958cc",
-"https://nas-quillo.hatenablog.com/entry/65fad83abef29fed52993bdbb09958cc_1",
-"https://nas-quillo.hatenablog.com/entry/6efca9ae52b84f3dc8848e2804143423"
 ]
 },
 {
@@ -3868,18 +3937,6 @@
 ]
 },
 {
-"entity": "トニービン",
-"cond": "牝馬",
-"dir": "+",
-"n_sent": 3,
-"n_art": 3,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/2026/04/14/002221",
-"https://nas-quillo.hatenablog.com/entry/4708457c0b93118b998cc373054446f1",
-"https://nas-quillo.hatenablog.com/entry/89f4728128d0594db13ccc78a1015aad"
-]
-},
-{
 "entity": "Vaguely Noble",
 "cond": "ダート",
 "dir": "+",
@@ -3900,18 +3957,6 @@
 "urls": [
 "https://nas-quillo.hatenablog.com/entry/2025/11/09/095242",
 "https://nas-quillo.hatenablog.com/entry/2026/07/22/084903",
-"https://nas-quillo.hatenablog.com/entry/6a71f8538440f8d7d5296f735103def4"
-]
-},
-{
-"entity": "Try My Best",
-"cond": "牝馬",
-"dir": "+",
-"n_sent": 3,
-"n_art": 3,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/0381e3f7969f56999c9786189abd21e1",
-"https://nas-quillo.hatenablog.com/entry/2026/03/19/114824",
 "https://nas-quillo.hatenablog.com/entry/6a71f8538440f8d7d5296f735103def4"
 ]
 },
@@ -3988,6 +4033,18 @@
 ]
 },
 {
+"entity": "キズナ",
+"cond": "長距離",
+"dir": "+",
+"n_sent": 3,
+"n_art": 3,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/10/07/095659",
+"https://nas-quillo.hatenablog.com/entry/594ca2392832483d20e720a05a519b50",
+"https://nas-quillo.hatenablog.com/entry/89f4728128d0594db13ccc78a1015aad"
+]
+},
+{
 "entity": "Princequillo",
 "cond": "牝馬",
 "dir": "+",
@@ -4036,15 +4093,15 @@
 ]
 },
 {
-"entity": "Kingmambo",
+"entity": "Smart Strike",
 "cond": "大箱",
 "dir": "+",
-"n_sent": 3,
+"n_sent": 4,
 "n_art": 3,
 "urls": [
-"https://nas-quillo.hatenablog.com/entry/2025/11/29/095547",
-"https://nas-quillo.hatenablog.com/entry/2026/05/24/085844",
-"https://nas-quillo.hatenablog.com/entry/b507c26ae6549425b3a521f7dbc16790"
+"https://nas-quillo.hatenablog.com/entry/2026/10/18/085821",
+"https://nas-quillo.hatenablog.com/entry/b507c26ae6549425b3a521f7dbc16790",
+"https://nas-quillo.hatenablog.com/entry/bcf531cc7c70d7cfd7cca20ae6c35bf8"
 ]
 },
 {
@@ -4540,6 +4597,18 @@
 ]
 },
 {
+"entity": "リオンディーズ",
+"cond": "小回り",
+"dir": "+",
+"n_sent": 3,
+"n_art": 3,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/10/14/144916",
+"https://nas-quillo.hatenablog.com/entry/b3992bd483aef7aa1c46d381569761b7",
+"https://nas-quillo.hatenablog.com/entry/cb4605df72f9b7caf415afa5b2cbdb3f"
+]
+},
+{
 "entity": "父=リオンディーズ",
 "cond": "マイル",
 "dir": "+",
@@ -4705,18 +4774,6 @@
 "https://nas-quillo.hatenablog.com/entry/2026/08/06/091409",
 "https://nas-quillo.hatenablog.com/entry/53287f156607cecf3937ae1c2b9ad2f0",
 "https://nas-quillo.hatenablog.com/entry/89f4728128d0594db13ccc78a1015aad"
-]
-},
-{
-"entity": "父=ディープインパクト",
-"cond": "大箱",
-"dir": "+",
-"n_sent": 3,
-"n_art": 3,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/2026/02/23/100345",
-"https://nas-quillo.hatenablog.com/entry/2026/09/27/084657",
-"https://nas-quillo.hatenablog.com/entry/53287f156607cecf3937ae1c2b9ad2f0"
 ]
 },
 {
@@ -4972,6 +5029,18 @@
 ]
 },
 {
+"entity": "ネオユニヴァース",
+"cond": "小回り",
+"dir": "+",
+"n_sent": 3,
+"n_art": 3,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/04/07/235623",
+"https://nas-quillo.hatenablog.com/entry/2026/10/04/090703",
+"https://nas-quillo.hatenablog.com/entry/9ff0ca38361141138f4ef7243742725b"
+]
+},
+{
 "entity": "Nijinsky",
 "cond": "長距離",
 "dir": "+",
@@ -4993,6 +5062,18 @@
 "https://nas-quillo.hatenablog.com/entry/2026/04/01/144854",
 "https://nas-quillo.hatenablog.com/entry/2026/07/11/091011",
 "https://nas-quillo.hatenablog.com/entry/fe5d51ac0e0aa302178ed3c0064470b1"
+]
+},
+{
+"entity": "El Gran Senor",
+"cond": "牝馬",
+"dir": "+",
+"n_sent": 3,
+"n_art": 3,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/0381e3f7969f56999c9786189abd21e1",
+"https://nas-quillo.hatenablog.com/entry/2026/03/19/114824",
+"https://nas-quillo.hatenablog.com/entry/2026/10/07/095659"
 ]
 },
 {
@@ -5319,17 +5400,6 @@
 "urls": [
 "https://nas-quillo.hatenablog.com/entry/2025/09/19/095917",
 "https://nas-quillo.hatenablog.com/entry/d801240f4ee9c09c706584085208d0e5"
-]
-},
-{
-"entity": "ノーザンテースト",
-"cond": "大箱",
-"dir": "+",
-"n_sent": 2,
-"n_art": 2,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/3b27066b6837c5ba2f37434e2e8a96b8",
-"https://nas-quillo.hatenablog.com/entry/6ace2d0192e59d1327baf4c8bbb42934"
 ]
 },
 {
@@ -5850,17 +5920,6 @@
 ]
 },
 {
-"entity": "キズナ",
-"cond": "長距離",
-"dir": "+",
-"n_sent": 2,
-"n_art": 2,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/594ca2392832483d20e720a05a519b50",
-"https://nas-quillo.hatenablog.com/entry/89f4728128d0594db13ccc78a1015aad"
-]
-},
-{
 "entity": "Ribot",
 "cond": "長距離",
 "dir": "+",
@@ -5890,6 +5949,17 @@
 "n_art": 2,
 "urls": [
 "https://nas-quillo.hatenablog.com/entry/2026/07/12/090217",
+"https://nas-quillo.hatenablog.com/entry/594ca2392832483d20e720a05a519b50"
+]
+},
+{
+"entity": "父=Habitat",
+"cond": "牝馬",
+"dir": "+",
+"n_sent": 2,
+"n_art": 2,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/10/04/090703",
 "https://nas-quillo.hatenablog.com/entry/594ca2392832483d20e720a05a519b50"
 ]
 },
@@ -5979,17 +6049,6 @@
 "urls": [
 "https://nas-quillo.hatenablog.com/entry/2025/11/30/093303",
 "https://nas-quillo.hatenablog.com/entry/c7b30b53a38af2730a552a91be6dcbc4"
-]
-},
-{
-"entity": "Smart Strike",
-"cond": "大箱",
-"dir": "+",
-"n_sent": 3,
-"n_art": 2,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/b507c26ae6549425b3a521f7dbc16790",
-"https://nas-quillo.hatenablog.com/entry/bcf531cc7c70d7cfd7cca20ae6c35bf8"
 ]
 },
 {
@@ -6796,17 +6855,6 @@
 ]
 },
 {
-"entity": "リオンディーズ",
-"cond": "小回り",
-"dir": "+",
-"n_sent": 2,
-"n_art": 2,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/b3992bd483aef7aa1c46d381569761b7",
-"https://nas-quillo.hatenablog.com/entry/cb4605df72f9b7caf415afa5b2cbdb3f"
-]
-},
-{
 "entity": "Nureyev",
 "cond": "長距離",
 "dir": "+",
@@ -7566,17 +7614,6 @@
 ]
 },
 {
-"entity": "ネオユニヴァース",
-"cond": "小回り",
-"dir": "+",
-"n_sent": 2,
-"n_art": 2,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/2026/04/07/235623",
-"https://nas-quillo.hatenablog.com/entry/9ff0ca38361141138f4ef7243742725b"
-]
-},
-{
 "entity": "Cape Cross",
 "cond": "小回り",
 "dir": "+",
@@ -7596,6 +7633,17 @@
 "urls": [
 "https://nas-quillo.hatenablog.com/entry/2025/10/19/093307",
 "https://nas-quillo.hatenablog.com/entry/f258566e740362bd359a76c6e95a1ce8"
+]
+},
+{
+"entity": "Helen Street",
+"cond": "短距離",
+"dir": "+",
+"n_sent": 2,
+"n_art": 2,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/10/21/114458",
+"https://nas-quillo.hatenablog.com/entry/99491e89673b3d2e1067169693184cbd"
 ]
 },
 {
@@ -7728,17 +7776,6 @@
 "urls": [
 "https://nas-quillo.hatenablog.com/entry/0381e3f7969f56999c9786189abd21e1",
 "https://nas-quillo.hatenablog.com/entry/2026/02/22/091901"
-]
-},
-{
-"entity": "El Gran Senor",
-"cond": "牝馬",
-"dir": "+",
-"n_sent": 2,
-"n_art": 2,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/0381e3f7969f56999c9786189abd21e1",
-"https://nas-quillo.hatenablog.com/entry/2026/03/19/114824"
 ]
 },
 {
@@ -8094,6 +8131,17 @@
 ]
 },
 {
+"entity": "Street Cry",
+"cond": "短距離",
+"dir": "+",
+"n_sent": 2,
+"n_art": 2,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/02/11/163602",
+"https://nas-quillo.hatenablog.com/entry/2026/10/18/085821"
+]
+},
+{
 "entity": "Nasrullah",
 "cond": "小回り",
 "dir": "+",
@@ -8116,6 +8164,17 @@
 ]
 },
 {
+"entity": "パイロ",
+"cond": "ダート",
+"dir": "+",
+"n_sent": 2,
+"n_art": 2,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/02/25/230033",
+"https://nas-quillo.hatenablog.com/entry/2026/10/21/114458"
+]
+},
+{
 "entity": "Cornish Prince",
 "cond": "ダート",
 "dir": "+",
@@ -8124,6 +8183,17 @@
 "urls": [
 "https://nas-quillo.hatenablog.com/entry/2026/02/22/091901",
 "https://nas-quillo.hatenablog.com/entry/2026/04/01/144854"
+]
+},
+{
+"entity": "Best in Show",
+"cond": "牝馬",
+"dir": "+",
+"n_sent": 2,
+"n_art": 2,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/03/19/114824",
+"https://nas-quillo.hatenablog.com/entry/2026/10/07/095659"
 ]
 },
 {
@@ -8215,6 +8285,17 @@
 ]
 },
 {
+"entity": "オルフェーヴル",
+"cond": "大箱",
+"dir": "+",
+"n_sent": 2,
+"n_art": 2,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/04/07/235623",
+"https://nas-quillo.hatenablog.com/entry/2026/10/21/114458"
+]
+},
+{
 "entity": "Herbager",
 "cond": "長距離",
 "dir": "+",
@@ -8234,6 +8315,17 @@
 "urls": [
 "https://nas-quillo.hatenablog.com/entry/2026/04/26/090617",
 "https://nas-quillo.hatenablog.com/entry/2026/05/21/090035"
+]
+},
+{
+"entity": "Shirley Heights",
+"cond": "マイル",
+"dir": "+",
+"n_sent": 2,
+"n_art": 2,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/04/12/093010",
+"https://nas-quillo.hatenablog.com/entry/2026/10/04/090703"
 ]
 },
 {
@@ -8366,6 +8458,17 @@
 "urls": [
 "https://nas-quillo.hatenablog.com/entry/2026/08/06/091409",
 "https://nas-quillo.hatenablog.com/entry/2026/09/09/085049"
+]
+},
+{
+"entity": "アグネスタキオン",
+"cond": "ダート",
+"dir": "+",
+"n_sent": 2,
+"n_art": 2,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/09/17/074327",
+"https://nas-quillo.hatenablog.com/entry/2026/10/21/114458"
 ]
 },
 {
@@ -9561,16 +9664,6 @@
 {
 "entity": "父=キズナ",
 "cond": "長距離",
-"dir": "+",
-"n_sent": 1,
-"n_art": 1,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/594ca2392832483d20e720a05a519b50"
-]
-},
-{
-"entity": "父=Habitat",
-"cond": "牝馬",
 "dir": "+",
 "n_sent": 1,
 "n_art": 1,
@@ -12599,16 +12692,6 @@
 ]
 },
 {
-"entity": "Helen Street",
-"cond": "短距離",
-"dir": "+",
-"n_sent": 1,
-"n_art": 1,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/99491e89673b3d2e1067169693184cbd"
-]
-},
-{
 "entity": "父=Helen Street",
 "cond": "短距離",
 "dir": "+",
@@ -14229,16 +14312,6 @@
 ]
 },
 {
-"entity": "Street Cry",
-"cond": "短距離",
-"dir": "+",
-"n_sent": 1,
-"n_art": 1,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/2026/02/11/163602"
-]
-},
-{
 "entity": "Millicent",
 "cond": "小回り",
 "dir": "+",
@@ -14401,16 +14474,6 @@
 {
 "entity": "Storm Bird",
 "cond": "牝馬",
-"dir": "+",
-"n_sent": 1,
-"n_art": 1,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/2026/02/25/230033"
-]
-},
-{
-"entity": "パイロ",
-"cond": "ダート",
 "dir": "+",
 "n_sent": 1,
 "n_art": 1,
@@ -14816,16 +14879,6 @@
 "n_art": 1,
 "urls": [
 "https://nas-quillo.hatenablog.com/entry/2026/03/30/223802"
-]
-},
-{
-"entity": "Best in Show",
-"cond": "牝馬",
-"dir": "+",
-"n_sent": 1,
-"n_art": 1,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/2026/03/19/114824"
 ]
 },
 {
@@ -15489,16 +15542,6 @@
 ]
 },
 {
-"entity": "オルフェーヴル",
-"cond": "大箱",
-"dir": "+",
-"n_sent": 1,
-"n_art": 1,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/2026/04/07/235623"
-]
-},
-{
 "entity": "Vice Regent",
 "cond": "小回り",
 "dir": "+",
@@ -15566,16 +15609,6 @@
 "n_art": 1,
 "urls": [
 "https://nas-quillo.hatenablog.com/entry/2026/04/26/090617"
-]
-},
-{
-"entity": "Shirley Heights",
-"cond": "マイル",
-"dir": "+",
-"n_sent": 1,
-"n_art": 1,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/2026/04/12/093010"
 ]
 },
 {
@@ -17549,16 +17582,6 @@
 ]
 },
 {
-"entity": "アグネスタキオン",
-"cond": "ダート",
-"dir": "+",
-"n_sent": 1,
-"n_art": 1,
-"urls": [
-"https://nas-quillo.hatenablog.com/entry/2026/09/17/074327"
-]
-},
-{
 "entity": "キズナ",
 "cond": "道悪",
 "dir": "+",
@@ -17646,6 +17669,146 @@
 "n_art": 1,
 "urls": [
 "https://nas-quillo.hatenablog.com/entry/2026/09/27/084657"
+]
+},
+{
+"entity": "Dansili",
+"cond": "牝馬",
+"dir": "+",
+"n_sent": 1,
+"n_art": 1,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/10/04/090703"
+]
+},
+{
+"entity": "父=Dansili",
+"cond": "牝馬",
+"dir": "+",
+"n_sent": 1,
+"n_art": 1,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/10/04/090703"
+]
+},
+{
+"entity": "父=Darshaan",
+"cond": "牝馬",
+"dir": "+",
+"n_sent": 1,
+"n_art": 1,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/10/04/090703"
+]
+},
+{
+"entity": "ネオユニヴァース",
+"cond": "大箱",
+"dir": "+",
+"n_sent": 1,
+"n_art": 1,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/10/04/090703"
+]
+},
+{
+"entity": "ネオユニヴァース",
+"cond": "マイル",
+"dir": "+",
+"n_sent": 1,
+"n_art": 1,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/10/04/090703"
+]
+},
+{
+"entity": "エルコンドルパサー",
+"cond": "長距離",
+"dir": "+",
+"n_sent": 1,
+"n_art": 1,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/10/07/095659"
+]
+},
+{
+"entity": "Crimson Saint",
+"cond": "大箱",
+"dir": "+",
+"n_sent": 1,
+"n_art": 1,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/10/12/085947"
+]
+},
+{
+"entity": "父=Crimson Saint",
+"cond": "大箱",
+"dir": "+",
+"n_sent": 1,
+"n_art": 1,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/10/12/085947"
+]
+},
+{
+"entity": "Crimson Saint",
+"cond": "マイル",
+"dir": "+",
+"n_sent": 1,
+"n_art": 1,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/10/12/085947"
+]
+},
+{
+"entity": "父=Crimson Saint",
+"cond": "マイル",
+"dir": "+",
+"n_sent": 1,
+"n_art": 1,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/10/12/085947"
+]
+},
+{
+"entity": "Round Table",
+"cond": "大箱",
+"dir": "+",
+"n_sent": 1,
+"n_art": 1,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/10/18/085821"
+]
+},
+{
+"entity": "Helen Street",
+"cond": "持続",
+"dir": "+",
+"n_sent": 1,
+"n_art": 1,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/10/21/114458"
+]
+},
+{
+"entity": "Helen Street",
+"cond": "マイル",
+"dir": "+",
+"n_sent": 1,
+"n_art": 1,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/10/21/114458"
+]
+},
+{
+"entity": "Wild Again",
+"cond": "牝馬",
+"dir": "+",
+"n_sent": 1,
+"n_art": 1,
+"urls": [
+"https://nas-quillo.hatenablog.com/entry/2026/10/21/114458"
 ]
 }
 ],
@@ -40548,6 +40711,366 @@
 "+",
 1
 ]
+],
+"https://nas-quillo.hatenablog.com/entry/2026/10/03/091705": [],
+"https://nas-quillo.hatenablog.com/entry/2026/10/04/090703": [
+[
+"Shirley Heights",
+"マイル",
+"+",
+1
+],
+[
+"Dansili",
+"牝馬",
+"+",
+1
+],
+[
+"父=Dansili",
+"牝馬",
+"+",
+1
+],
+[
+"デインヒル",
+"牝馬",
+"+",
+1
+],
+[
+"父=デインヒル",
+"牝馬",
+"+",
+1
+],
+[
+"Darshaan",
+"牝馬",
+"+",
+1
+],
+[
+"父=Darshaan",
+"牝馬",
+"+",
+1
+],
+[
+"Habitat",
+"牝馬",
+"+",
+1
+],
+[
+"父=Habitat",
+"牝馬",
+"+",
+1
+],
+[
+"ネオユニヴァース",
+"大箱",
+"+",
+1
+],
+[
+"ネオユニヴァース",
+"小回り",
+"+",
+1
+],
+[
+"ネオユニヴァース",
+"マイル",
+"+",
+1
 ]
+],
+"https://nas-quillo.hatenablog.com/entry/2026/10/07/095659": [
+[
+"ドレフォン",
+"ダート",
+"+",
+1
+],
+[
+"Try My Best",
+"牝馬",
+"+",
+1
+],
+[
+"Best in Show",
+"牝馬",
+"+",
+1
+],
+[
+"El Gran Senor",
+"牝馬",
+"+",
+1
+],
+[
+"オルフェーヴル",
+"長距離",
+"+",
+1
+],
+[
+"ゴールドシップ",
+"長距離",
+"+",
+1
+],
+[
+"ディープインパクト",
+"長距離",
+"+",
+1
+],
+[
+"ステイゴールド",
+"長距離",
+"+",
+1
+],
+[
+"エルコンドルパサー",
+"長距離",
+"+",
+1
+],
+[
+"キズナ",
+"長距離",
+"+",
+1
+]
+],
+"https://nas-quillo.hatenablog.com/entry/2026/10/10/085706": [],
+"https://nas-quillo.hatenablog.com/entry/2026/10/12/085947": [
+[
+"Kingmambo",
+"大箱",
+"+",
+1
+],
+[
+"Kingmambo",
+"マイル",
+"+",
+1
+],
+[
+"ノーザンテースト",
+"大箱",
+"+",
+1
+],
+[
+"ノーザンテースト",
+"マイル",
+"+",
+1
+],
+[
+"ディープインパクト",
+"大箱",
+"+",
+1
+],
+[
+"父=ディープインパクト",
+"大箱",
+"+",
+1
+],
+[
+"ディープインパクト",
+"マイル",
+"+",
+1
+],
+[
+"父=ディープインパクト",
+"マイル",
+"+",
+1
+],
+[
+"Crimson Saint",
+"大箱",
+"+",
+1
+],
+[
+"父=Crimson Saint",
+"大箱",
+"+",
+1
+],
+[
+"Crimson Saint",
+"マイル",
+"+",
+1
+],
+[
+"父=Crimson Saint",
+"マイル",
+"+",
+1
+]
+],
+"https://nas-quillo.hatenablog.com/entry/2026/10/14/144916": [
+[
+"リオンディーズ",
+"小回り",
+"+",
+1
+],
+[
+"リオンディーズ",
+"牝馬",
+"+",
+1
+],
+[
+"トニービン",
+"牝馬",
+"+",
+1
+],
+[
+"Nureyev",
+"牝馬",
+"+",
+1
+],
+[
+"Sir Gaylord",
+"大箱",
+"+",
+1
+]
+],
+"https://nas-quillo.hatenablog.com/entry/2026/10/17/090605": [],
+"https://nas-quillo.hatenablog.com/entry/2026/10/18/085821": [
+[
+"Street Cry",
+"短距離",
+"+",
+1
+],
+[
+"デインヒル",
+"短距離",
+"+",
+1
+],
+[
+"Green Desert",
+"短距離",
+"+",
+1
+],
+[
+"Danzig",
+"短距離",
+"+",
+1
+],
+[
+"Smart Strike",
+"大箱",
+"+",
+1
+],
+[
+"Round Table",
+"大箱",
+"+",
+1
+]
+],
+"https://nas-quillo.hatenablog.com/entry/2026/10/19/221334": [],
+"https://nas-quillo.hatenablog.com/entry/2026/10/21/114458": [
+[
+"Danzig",
+"短距離",
+"+",
+1
+],
+[
+"Gone West",
+"短距離",
+"+",
+1
+],
+[
+"Helen Street",
+"持続",
+"+",
+1
+],
+[
+"Helen Street",
+"短距離",
+"+",
+1
+],
+[
+"Helen Street",
+"マイル",
+"+",
+1
+],
+[
+"パイロ",
+"ダート",
+"+",
+1
+],
+[
+"Wild Again",
+"牝馬",
+"+",
+1
+],
+[
+"ステイゴールド",
+"長距離",
+"+",
+1
+],
+[
+"父=ステイゴールド",
+"長距離",
+"+",
+1
+],
+[
+"オルフェーヴル",
+"大箱",
+"+",
+1
+],
+[
+"オルフェーヴル",
+"長距離",
+"+",
+2
+],
+[
+"アグネスタキオン",
+"ダート",
+"+",
+1
+]
+],
+"https://nas-quillo.hatenablog.com/entry/2026/10/24/085233": [],
+"https://nas-quillo.hatenablog.com/entry/2026/10/25/085609": []
 }
 }
