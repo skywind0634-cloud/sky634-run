@@ -649,7 +649,8 @@ def BLOOD_TRAITS() -> list:
     import json
     from .config import KNOWLEDGE_DIR
     try:
-        _BT = json.loads((KNOWLEDGE_DIR / "blood_traits.json").read_text(encoding="utf-8"))["traits"]
+        _d = json.loads((KNOWLEDGE_DIR / "blood_traits.json").read_text(encoding="utf-8"))
+        _BT = _d["traits"] + [dict(t, par=True) for t in _d.get("par", [])]
     except (OSError, ValueError, KeyError):
         _BT = []
     return _BT
@@ -801,6 +802,9 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
                 why.append("芝の大箱コース×5代にStorm Cat ○（A/E 1.05/1.06/1.04）")
             if small and "Seattle Slew" in pf:
                 why.append("芝の小回り×5代にSeattle Slew（大きいストライド） ▽（A/E 0.91/0.94/0.96。大箱は0.96/1.06/0.97）")
+            # 望田氏「Robertoは小回り」: 人気薄（7番人気以下）で見ると、小回りは人気並み（0.99/0.97/1.06）で大箱が割引（0.79/0.97/0.89）
+            if big and "Roberto" in pf and (h.pop_rank or 0) >= 7:
+                why.append("芝の大箱×5代にRoberto×7番人気以下 ▽（A/E 0.79/0.97/0.89。小回りは0.99/0.97/1.06。望田潤ブログ「Robertoは小回り」の裏返し）")
             if small and "Princequillo" in pf:
                 why.append("芝の小回り×5代にPrincequillo（大箱向き） ▽（A/E 0.92/0.86/0.97）")
         # コラムの「血×条件」（望田潤ブログ・坂上明大の血統査定の本文から拾い、実績で裏付けのあったもの, tools/trait_check.py, 2026-10-27）
@@ -809,6 +813,9 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
             if "血:" + t["entity"] in pf and t["cond"] in tcs:
                 who = t["entity"] if t["entity"].startswith("父=") else f"5代に{t['entity']}" if "（" not in t["entity"] else t["entity"]
                 cn = t["cond"] + ("（予想展開）" if t["cond"] in ("瞬発", "持続") else "")
+                if t.get("par"):   # 主張通り・人気並み: 消さない・加点もしない（表示だけ）
+                    why.append(f"{cn}×{who}（{t['source']}） △主張通り・人気並み（A/E {'/'.join(f'{x:.2f}' for x in t['ae_in_3'])}）")
+                    continue
                 why.append(f"{cn}×{who}（{t['source']}） {'○' if t['dir'] == '+' else '▽'}（同じ血の他の条件の{t['ratio']:.2f}倍・A/E {'/'.join(f'{x:.2f}' for x in t['ae_in_3'])}）")
         if su == "芝" and not going.startswith("良") and h.sire_line == "プリンスリーギフト系":
             why.append("芝の道悪×父プリンスリーギフト系 ○（A/E 1.07/1.05/1.16。良は0.84〜1.02）")

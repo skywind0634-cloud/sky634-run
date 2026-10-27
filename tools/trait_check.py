@@ -143,11 +143,29 @@ def main(pf, *cfs):
             continue
         seen[k] = r; uniq.append(r)
     ok = uniq
+    # 主張通り・人気並み（条件内A/Eが3期とも1.00以上だが、同じ血の他の条件より浮くほどではない）→ 予想では△（加点しない・表示だけ）
+    # 大半の馬が持つ血（サンデーサイレンス・Halo 等, 3割以上）は区別にならないので除く
+    gen = [len(q) for q in P["pos"]]
+    def share(ent):
+        b = ent.removeprefix("父=").split("（")[0]
+        n = 0
+        for anc in P["horses"].values():
+            gs = [g for g, a in zip(gen, anc) if a == b]
+            n += bool(gs) and (ent.startswith("父=") and anc[0] == b or ent == b or ent.endswith("（3代以内）") and min(gs) <= 3 or ent.endswith("（クロス）") and len(gs) >= 2)
+        return n / max(len(P["horses"]), 1)
+    par, pseen = [], set()
+    for r in sorted(res, key=lambda r: -r["n_art"]):
+        k = (r["base"].removeprefix("父="), r["cond"])
+        if (r["ok"] or r["dir"] != "+" or r["n_run"] < 300 or k in pseen or None in r["ae_in_3"]
+                or not all(a >= 1.0 for a in r["ae_in_3"]) or not 0.95 <= r["ratio"] < 1.08 or share(r["entity"]) >= 0.3):
+            continue
+        pseen.add(k); par.append(r)
+    par_keep = [{k: r[k] for k in ("entity", "cond", "dir", "source", "n_art", "n_run", "ae_in", "ratio", "ae_in_3")} for r in par]
     keep = [{k: r[k] for k in ("entity", "cond", "dir", "source", "n_art", "urls", "n_run", "ae_in", "ae_out", "ratio", "ae_in_3", "ratio_3", "win_ret")} for r in ok]
     (ROOT / "data" / "knowledge" / "blood_traits.json").write_text(json.dumps(
         {"_meta": {"description": "コラムの『血×条件』のうち実績で裏付けのあったもの（tools/trait_check.py）。本文は保存せず出典URLのみ",
                    "rule": "条件内A/E 3期とも1.00以上・条件内÷条件外 3期とも1.00以上かつ通算1.08以上・走数300以上"},
-         "traits": keep}, ensure_ascii=False, indent=1), encoding="utf-8")
+         "traits": keep, "par": par_keep}, ensure_ascii=False, indent=1), encoding="utf-8")
     L = ["# コラムの「血×条件」の検証（tools/trait_mining.py → tools/trait_check.py）", "",
          f"拾った主張 {len(claims)} 件（3記事以上で言及）のうち、実績で裏付けのあったもの {len(ok)} 件。",
          "A/E＝3着内の実数÷人気からの見込み。条件内÷条件外＝同じ血を持つ馬の中での比（1より大きいほど、その条件で浮く）。3期＝2021-23 / 2024 / 2025-26。", "",
@@ -157,6 +175,10 @@ def main(pf, *cfs):
         return " / ".join(f"{a:.2f}" if a else "-" for a in v)
     for r in ok:
         L.append(f"| {r['entity']} | {r['cond']} | {r['dir']} | {r['source']} | {r['n_art']} | {r['n_run']} | {r['ae_in']:.2f}（{f3(r['ae_in_3'])}） | {r['ratio']:.2f}（{f3(r['ratio_3'])}） | {r['win_ret']:.0f}% |")
+    L += ["", f"## 主張通り・人気並み（{len(par)}件。条件内A/Eが3期とも1.00以上・他の条件比0.95〜1.08。予想では△で表示だけ、加点しない）", "",
+          "| 血 | 条件 | 出典 | 記事数 | 条件内の走数 | 条件内A/E（3期） | 他の条件比 |", "|---|---|---|---|---|---|---|"]
+    for r in par:
+        L.append(f"| {r['entity']} | {r['cond']} | {r['source']} | {r['n_art']} | {r['n_run']} | {r['ae_in']:.2f}（{f3(r['ae_in_3'])}） | {r['ratio']:.2f} |")
     L += ["", "## 裏付けなし（記事数の多い順・上位80件）", "",
           "| 血 | 条件 | 向き | 出典 | 記事数 | 条件内の走数 | 条件内A/E | 条件内÷条件外（3期） |", "|---|---|---|---|---|---|---|---|"]
     for r in sorted([r for r in res if not r["ok"]], key=lambda r: -r["n_art"])[:80]:

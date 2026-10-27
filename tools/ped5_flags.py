@@ -23,11 +23,13 @@ FLAGS = {
     "Storm Cat": {"Storm Cat", "ストームキャット"},
     "Seattle Slew": {"Seattle Slew", "シアトルスルー"},
     "Princequillo": {"Princequillo", "プリンスキロ"},
+    "Roberto": {"Roberto", "ロベルト"},
 }
 
 
 try:
-    TRAIT_ENTS = sorted({t["entity"] for t in json.loads((ROOT / "data" / "knowledge" / "blood_traits.json").read_text(encoding="utf-8"))["traits"]})
+    _bt = json.loads((ROOT / "data" / "knowledge" / "blood_traits.json").read_text(encoding="utf-8"))
+    TRAIT_ENTS = sorted({t["entity"] for t in _bt["traits"] + _bt.get("par", [])})
 except (OSError, ValueError, KeyError):
     TRAIT_ENTS = []
 
