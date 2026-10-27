@@ -26,6 +26,12 @@ FLAGS = {
 }
 
 
+try:
+    TRAIT_ENTS = sorted({t["entity"] for t in json.loads((ROOT / "data" / "knowledge" / "blood_traits.json").read_text(encoding="utf-8"))["traits"]})
+except (OSError, ValueError, KeyError):
+    TRAIT_ENTS = []
+
+
 def main(path):
     P = json.loads(Path(path).read_text(encoding="utf-8"))
     H, pos = P["horses"], P["pos"]
@@ -37,6 +43,17 @@ def main(path):
         sg = [g for g, side in ss if side == "S"]; dg = [g for g, side in ss if side == "D"]
         if sg and dg and min(sg) <= 3 and min(dg) <= 3:
             f.append("サンデー3×3以内")
+        # コラムの「血×条件」で裏付けのあった血（data/knowledge/blood_traits.json, tools/trait_check.py）→「血:名前」
+        gen = [len(p) for p in pos]
+        for ent in TRAIT_ENTS:
+            if ent.startswith("父="):
+                if names and names[0] == ent[2:]:
+                    f.append("血:" + ent)
+                continue
+            b = ent.split("（")[0]
+            gs = [g for g, a in zip(gen, names) if a == b]
+            if gs and (ent == b or (ent.endswith("（3代以内）") and min(gs) <= 3) or (ent.endswith("（クロス）") and len(gs) >= 2)):
+                f.append("血:" + ent)
         if f:
             out[hid] = f
     (ROOT / "data" / "knowledge" / "ped5_flags.json").write_text(json.dumps({"_meta": "tools/ped5_flags.py", "flags": out}, ensure_ascii=False), encoding="utf-8")

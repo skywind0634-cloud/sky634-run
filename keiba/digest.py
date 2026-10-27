@@ -639,6 +639,52 @@ def PED5_FLAGS() -> dict:
     return _PED5
 
 
+def BLOOD_TRAITS() -> list:
+    """コラム（望田潤ブログ・坂上明大の血統査定）の「血×条件」のうち実績で裏付けのあったもの（data/knowledge/blood_traits.json, tools/trait_check.py）."""
+    global _BT
+    try:
+        return _BT
+    except NameError:
+        pass
+    import json
+    from .config import KNOWLEDGE_DIR
+    try:
+        _BT = json.loads((KNOWLEDGE_DIR / "blood_traits.json").read_text(encoding="utf-8"))["traits"]
+    except (OSError, ValueError, KeyError):
+        _BT = []
+    return _BT
+
+
+def race_trait_conds(card: dict, e: dict) -> set:
+    """レース前に分かる条件（tools/trait_check.py の conds と同じ区分）。ペースは予想展開（前走で前にいた馬の数, front_count）で
+    0-1頭→瞬発、4頭以上→持続 とみなす."""
+    co, su, d = card.get("course"), card.get("surface"), card.get("distance") or 0
+    go = card.get("going") or "良"; lay = card.get("layout") or ""
+    s = {f"{co}{su}"}
+    if go[0] in "稍重不":
+        s.add("道悪")
+    if su == "芝" and go.startswith("良"):
+        s.add("高速馬場")
+    if co == "東京" or (co in ("新潟", "京都", "阪神") and "外" in lay):
+        s.add("大箱")
+    elif co in ("中山", "福島", "小倉", "札幌", "函館") or "内" in lay:
+        s.add("小回り")
+    if d:
+        s.add("短距離" if d <= 1400 else "マイル" if d <= 1800 else "長距離" if d >= 2200 else "中距離")
+    if su == "ダ":
+        s.add("ダート")
+    if su == "芝" and co in ("札幌", "函館"):
+        s.add("洋芝")
+    if str(e.get("sex") or "").startswith("牝"):
+        s.add("牝馬")
+    if e.get("age"):
+        s.add("晩成" if e["age"] >= 5 else "早熟" if e["age"] <= 3 else "")
+    nf = front_count(card)
+    if nf is not None:
+        s.add("瞬発" if nf <= 1 else "持続" if nf >= 4 else "")
+    return s
+
+
 SS_LINES_ALL = {"ディープインパクト系", "ハーツクライ系", "ステイゴールド系", "フジキセキ系", "ゴールドアリュール系", "ネオユニヴァース系", "アグネスタキオン系",
                 "ダイワメジャー系", "ブラックタイド系", "マンハッタンカフェ系", "スペシャルウィーク系", "サンデーサイレンス系"}
 
@@ -757,6 +803,13 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
                 why.append("芝の小回り×5代にSeattle Slew（大きいストライド） ▽（A/E 0.91/0.94/0.96。大箱は0.96/1.06/0.97）")
             if small and "Princequillo" in pf:
                 why.append("芝の小回り×5代にPrincequillo（大箱向き） ▽（A/E 0.92/0.86/0.97）")
+        # コラムの「血×条件」（望田潤ブログ・坂上明大の血統査定の本文から拾い、実績で裏付けのあったもの, tools/trait_check.py, 2026-10-27）
+        tcs = race_trait_conds(card, e)
+        for t in BLOOD_TRAITS():
+            if "血:" + t["entity"] in pf and t["cond"] in tcs:
+                who = t["entity"] if t["entity"].startswith("父=") else f"5代に{t['entity']}" if "（" not in t["entity"] else t["entity"]
+                cn = t["cond"] + ("（予想展開）" if t["cond"] in ("瞬発", "持続") else "")
+                why.append(f"{cn}×{who}（{t['source']}） {'○' if t['dir'] == '+' else '▽'}（同じ血の他の条件の{t['ratio']:.2f}倍・A/E {'/'.join(f'{x:.2f}' for x in t['ae_in_3'])}）")
         if su == "芝" and not going.startswith("良") and h.sire_line == "プリンスリーギフト系":
             why.append("芝の道悪×父プリンスリーギフト系 ○（A/E 1.07/1.05/1.16。良は0.84〜1.02）")
         # 第4章 ミスタープロスペクター系（tools/book_ch4_mrp.py）

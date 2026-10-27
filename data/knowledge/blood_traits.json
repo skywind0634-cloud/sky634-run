@@ -1,0 +1,991 @@
+{
+ "_meta": {
+  "description": "コラムの『血×条件』のうち実績で裏付けのあったもの（tools/trait_check.py）。本文は保存せず出典URLのみ",
+  "rule": "条件内A/E 3期とも1.00以上・条件内÷条件外 3期とも1.00以上かつ通算1.08以上・走数300以上"
+ },
+ "traits": [
+  {
+   "entity": "Kingmambo（クロス）",
+   "cond": "ダート",
+   "dir": "+",
+   "source": "望田潤ブログ・坂上明大の血統査定",
+   "n_art": 16,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/2026/01/14/153915",
+    "https://nas-quillo.hatenablog.com/entry/2026/05/27/185132",
+    "https://nas-quillo.hatenablog.com/entry/2026/09/17/074327",
+    "https://nas-quillo.hatenablog.com/entry/48d486aeffe04499cdd2c5df180f376a",
+    "https://nas-quillo.hatenablog.com/entry/6c3599f03b59f4b36d986c4bba2020a9",
+    "https://tospo-keiba.jp/sakagamiblood/52206"
+   ],
+   "n_run": 371,
+   "ae_in": 1.18,
+   "ae_out": 0.95,
+   "ratio": 1.243,
+   "ae_in_3": [
+    1.13,
+    1.38,
+    1.13
+   ],
+   "ratio_3": [
+    1.53,
+    1.32,
+    1.08
+   ],
+   "win_ret": 84.3
+  },
+  {
+   "entity": "ドゥラメンテ",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "望田潤ブログ・坂上明大の血統査定",
+   "n_art": 19,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/0498f41a2399ca88d43f714a3a5389de",
+    "https://nas-quillo.hatenablog.com/entry/2e60007b0809fb44f96fcb3e3bfd3942",
+    "https://nas-quillo.hatenablog.com/entry/572f0953695b4eb4f91718b7e3b31209",
+    "https://nas-quillo.hatenablog.com/entry/a426f90a3dbeb756e2d295dc9e3b03dd",
+    "https://nas-quillo.hatenablog.com/entry/f73f4c0c14d48d90ad7503711c048840",
+    "https://tospo-keiba.jp/sakagamiblood/50445"
+   ],
+   "n_run": 469,
+   "ae_in": 1.179,
+   "ae_out": 0.951,
+   "ratio": 1.24,
+   "ae_in_3": [
+    1.28,
+    1.03,
+    1.1
+   ],
+   "ratio_3": [
+    1.34,
+    1.11,
+    1.16
+   ],
+   "win_ret": 70.6
+  },
+  {
+   "entity": "Nureyev（3代以内）",
+   "cond": "中距離",
+   "dir": "+",
+   "source": "坂上明大の血統査定",
+   "n_art": 10,
+   "urls": [
+    "https://tospo-keiba.jp/sakagamiblood/49557",
+    "https://tospo-keiba.jp/sakagamiblood/53337",
+    "https://tospo-keiba.jp/sakagamiblood/53636",
+    "https://tospo-keiba.jp/sakagamiblood/58515",
+    "https://tospo-keiba.jp/sakagamiblood/60288"
+   ],
+   "n_run": 530,
+   "ae_in": 1.126,
+   "ae_out": 0.916,
+   "ratio": 1.229,
+   "ae_in_3": [
+    1.03,
+    1.31,
+    1.31
+   ],
+   "ratio_3": [
+    1.13,
+    1.41,
+    1.4
+   ],
+   "win_ret": 70.8
+  },
+  {
+   "entity": "Kingmambo（クロス）",
+   "cond": "持続",
+   "dir": "+",
+   "source": "坂上明大の血統査定",
+   "n_art": 31,
+   "urls": [
+    "https://tospo-keiba.jp/sakagamiblood/50121",
+    "https://tospo-keiba.jp/sakagamiblood/50683",
+    "https://tospo-keiba.jp/sakagamiblood/51882",
+    "https://tospo-keiba.jp/sakagamiblood/52806",
+    "https://tospo-keiba.jp/sakagamiblood/54700"
+   ],
+   "n_run": 472,
+   "ae_in": 1.14,
+   "ae_out": 0.932,
+   "ratio": 1.223,
+   "ae_in_3": [
+    1.02,
+    1.32,
+    1.17
+   ],
+   "ratio_3": [
+    1.37,
+    1.19,
+    1.26
+   ],
+   "win_ret": 78.8
+  },
+  {
+   "entity": "モーリス",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/2026/04/11/093117",
+    "https://nas-quillo.hatenablog.com/entry/2026/07/30/081927",
+    "https://nas-quillo.hatenablog.com/entry/cb4605df72f9b7caf415afa5b2cbdb3f"
+   ],
+   "n_run": 871,
+   "ae_in": 1.083,
+   "ae_out": 0.899,
+   "ratio": 1.204,
+   "ae_in_3": [
+    1.09,
+    1.01,
+    1.11
+   ],
+   "ratio_3": [
+    1.23,
+    1.12,
+    1.22
+   ],
+   "win_ret": 89.2
+  },
+  {
+   "entity": "父=キズナ",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "坂上明大の血統査定",
+   "n_art": 27,
+   "urls": [
+    "https://tospo-keiba.jp/sakagamiblood/49557",
+    "https://tospo-keiba.jp/sakagamiblood/49845",
+    "https://tospo-keiba.jp/sakagamiblood/50445",
+    "https://tospo-keiba.jp/sakagamiblood/52206",
+    "https://tospo-keiba.jp/sakagamiblood/53047"
+   ],
+   "n_run": 632,
+   "ae_in": 1.206,
+   "ae_out": 1.007,
+   "ratio": 1.197,
+   "ae_in_3": [
+    1.28,
+    1.18,
+    1.15
+   ],
+   "ratio_3": [
+    1.2,
+    1.22,
+    1.22
+   ],
+   "win_ret": 84.5
+  },
+  {
+   "entity": "Seattle Slew（クロス）",
+   "cond": "ダート",
+   "dir": "+",
+   "source": "坂上明大の血統査定",
+   "n_art": 20,
+   "urls": [
+    "https://tospo-keiba.jp/sakagamiblood/50966",
+    "https://tospo-keiba.jp/sakagamiblood/51275",
+    "https://tospo-keiba.jp/sakagamiblood/53451",
+    "https://tospo-keiba.jp/sakagamiblood/56816",
+    "https://tospo-keiba.jp/sakagamiblood/57240"
+   ],
+   "n_run": 1262,
+   "ae_in": 1.076,
+   "ae_out": 0.931,
+   "ratio": 1.155,
+   "ae_in_3": [
+    1.03,
+    1.12,
+    1.09
+   ],
+   "ratio_3": [
+    1.03,
+    1.23,
+    1.22
+   ],
+   "win_ret": 92.8
+  },
+  {
+   "entity": "マンハッタンカフェ",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "望田潤ブログ・坂上明大の血統査定",
+   "n_art": 9,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/2025/09/19/095917",
+    "https://nas-quillo.hatenablog.com/entry/2026/04/07/235623",
+    "https://nas-quillo.hatenablog.com/entry/2026/05/10/091314",
+    "https://nas-quillo.hatenablog.com/entry/2026/05/16/090740",
+    "https://nas-quillo.hatenablog.com/entry/594ca2392832483d20e720a05a519b50",
+    "https://tospo-keiba.jp/sakagamiblood/57237"
+   ],
+   "n_run": 328,
+   "ae_in": 1.205,
+   "ae_out": 1.048,
+   "ratio": 1.15,
+   "ae_in_3": [
+    1.17,
+    1.54,
+    1.09
+   ],
+   "ratio_3": [
+    1.1,
+    1.37,
+    1.11
+   ],
+   "win_ret": 60.5
+  },
+  {
+   "entity": "Darshaan",
+   "cond": "小回り",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/0774ba8e92d6d9826d9e0bf1b1fc12dc",
+    "https://nas-quillo.hatenablog.com/entry/2026/03/04/110445",
+    "https://nas-quillo.hatenablog.com/entry/f73f4c0c14d48d90ad7503711c048840"
+   ],
+   "n_run": 1658,
+   "ae_in": 1.049,
+   "ae_out": 0.914,
+   "ratio": 1.148,
+   "ae_in_3": [
+    1.05,
+    1.15,
+    1.01
+   ],
+   "ratio_3": [
+    1.18,
+    1.29,
+    1.05
+   ],
+   "win_ret": 83.8
+  },
+  {
+   "entity": "オルフェーヴル",
+   "cond": "小回り",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 5,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/2026/01/12/095047",
+    "https://nas-quillo.hatenablog.com/entry/2026/05/31/092358",
+    "https://nas-quillo.hatenablog.com/entry/65a91fa3a5cbd9836cc31e00f43bb915",
+    "https://nas-quillo.hatenablog.com/entry/bbe0b1bb489e167e39211885f423c56a",
+    "https://nas-quillo.hatenablog.com/entry/e7753fb10f93ee09fd5de1e0c22ba55a"
+   ],
+   "n_run": 1368,
+   "ae_in": 1.115,
+   "ae_out": 0.975,
+   "ratio": 1.144,
+   "ae_in_3": [
+    1.15,
+    1.14,
+    1.02
+   ],
+   "ratio_3": [
+    1.13,
+    1.3,
+    1.13
+   ],
+   "win_ret": 99.9
+  },
+  {
+   "entity": "オルフェーヴル",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "望田潤ブログ・坂上明大の血統査定",
+   "n_art": 20,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/0498f41a2399ca88d43f714a3a5389de",
+    "https://nas-quillo.hatenablog.com/entry/08e8ef72430f576ec748ec4d88e3ea83",
+    "https://nas-quillo.hatenablog.com/entry/4033022754161dbb89ea2b2433df6f1a",
+    "https://nas-quillo.hatenablog.com/entry/5231f836a962eff1193e5f466fb68a80",
+    "https://nas-quillo.hatenablog.com/entry/594ca2392832483d20e720a05a519b50",
+    "https://tospo-keiba.jp/sakagamiblood/52204"
+   ],
+   "n_run": 462,
+   "ae_in": 1.157,
+   "ae_out": 1.022,
+   "ratio": 1.133,
+   "ae_in_3": [
+    1.2,
+    1.06,
+    1.09
+   ],
+   "ratio_3": [
+    1.14,
+    1.05,
+    1.15
+   ],
+   "win_ret": 78.9
+  },
+  {
+   "entity": "キズナ",
+   "cond": "瞬発",
+   "dir": "+",
+   "source": "坂上明大の血統査定",
+   "n_art": 13,
+   "urls": [
+    "https://tospo-keiba.jp/sakagamiblood/49557",
+    "https://tospo-keiba.jp/sakagamiblood/51586",
+    "https://tospo-keiba.jp/sakagamiblood/52206",
+    "https://tospo-keiba.jp/sakagamiblood/54699",
+    "https://tospo-keiba.jp/sakagamiblood/57237"
+   ],
+   "n_run": 750,
+   "ae_in": 1.146,
+   "ae_out": 1.011,
+   "ratio": 1.133,
+   "ae_in_3": [
+    1.26,
+    1.18,
+    1.02
+   ],
+   "ratio_3": [
+    1.19,
+    1.23,
+    1.05
+   ],
+   "win_ret": 67.2
+  },
+  {
+   "entity": "ヘネシー（3代以内）",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/2025/12/14/092453",
+    "https://nas-quillo.hatenablog.com/entry/314d63fb4b4d05d3a36c7e71e8a9f16b",
+    "https://nas-quillo.hatenablog.com/entry/abe1100519e9aecb0d799514d09c029f"
+   ],
+   "n_run": 1973,
+   "ae_in": 1.092,
+   "ae_out": 0.964,
+   "ratio": 1.132,
+   "ae_in_3": [
+    1.1,
+    1.09,
+    1.08
+   ],
+   "ratio_3": [
+    1.19,
+    1.04,
+    1.11
+   ],
+   "win_ret": 67.4
+  },
+  {
+   "entity": "ヘネシー",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/2025/12/14/092453",
+    "https://nas-quillo.hatenablog.com/entry/314d63fb4b4d05d3a36c7e71e8a9f16b",
+    "https://nas-quillo.hatenablog.com/entry/abe1100519e9aecb0d799514d09c029f"
+   ],
+   "n_run": 2396,
+   "ae_in": 1.079,
+   "ae_out": 0.958,
+   "ratio": 1.126,
+   "ae_in_3": [
+    1.1,
+    1.09,
+    1.05
+   ],
+   "ratio_3": [
+    1.17,
+    1.09,
+    1.09
+   ],
+   "win_ret": 65.5
+  },
+  {
+   "entity": "Roberto（3代以内）",
+   "cond": "持続",
+   "dir": "+",
+   "source": "望田潤ブログ・坂上明大の血統査定",
+   "n_art": 14,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/2026/04/22/102829",
+    "https://nas-quillo.hatenablog.com/entry/2026/05/06/144632",
+    "https://nas-quillo.hatenablog.com/entry/3828a9f976d5184f14ef7e12b557e87b",
+    "https://nas-quillo.hatenablog.com/entry/8243044a1e5406fe7abeea485350e6ad",
+    "https://tospo-keiba.jp/sakagamiblood/55968",
+    "https://tospo-keiba.jp/sakagamiblood/58515"
+   ],
+   "n_run": 2461,
+   "ae_in": 1.049,
+   "ae_out": 0.945,
+   "ratio": 1.11,
+   "ae_in_3": [
+    1.02,
+    1.01,
+    1.18
+   ],
+   "ratio_3": [
+    1.07,
+    1.15,
+    1.24
+   ],
+   "win_ret": 58.1
+  },
+  {
+   "entity": "クロフネ",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 5,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/46faba60cfd083d8db2458c07a6efe1c",
+    "https://nas-quillo.hatenablog.com/entry/4df3f78e4e26bb0a85bccf4241808f4c",
+    "https://nas-quillo.hatenablog.com/entry/6870385670c4d9153228e66e5c2bbb9d",
+    "https://nas-quillo.hatenablog.com/entry/73c8fa5f25edace732769e04cc0fc6e9",
+    "https://nas-quillo.hatenablog.com/entry/f33fa25d3464cee4d9fe1c9413dbfe91"
+   ],
+   "n_run": 455,
+   "ae_in": 1.096,
+   "ae_out": 0.992,
+   "ratio": 1.104,
+   "ae_in_3": [
+    1.05,
+    1.2,
+    1.11
+   ],
+   "ratio_3": [
+    1.09,
+    1.26,
+    1.05
+   ],
+   "win_ret": 92.8
+  },
+  {
+   "entity": "Storm Cat",
+   "cond": "瞬発",
+   "dir": "+",
+   "source": "坂上明大の血統査定",
+   "n_art": 13,
+   "urls": [
+    "https://tospo-keiba.jp/sakagamiblood/49846",
+    "https://tospo-keiba.jp/sakagamiblood/49944",
+    "https://tospo-keiba.jp/sakagamiblood/51586",
+    "https://tospo-keiba.jp/sakagamiblood/54699",
+    "https://tospo-keiba.jp/sakagamiblood/57237"
+   ],
+   "n_run": 4011,
+   "ae_in": 1.104,
+   "ae_out": 1.006,
+   "ratio": 1.098,
+   "ae_in_3": [
+    1.09,
+    1.15,
+    1.1
+   ],
+   "ratio_3": [
+    1.08,
+    1.13,
+    1.11
+   ],
+   "win_ret": 85.8
+  },
+  {
+   "entity": "サンデーサイレンス（クロス）",
+   "cond": "京都芝",
+   "dir": "+",
+   "source": "坂上明大の血統査定",
+   "n_art": 8,
+   "urls": [
+    "https://tospo-keiba.jp/sakagamiblood/54473",
+    "https://tospo-keiba.jp/sakagamiblood/57985",
+    "https://tospo-keiba.jp/sakagamiblood/63785",
+    "https://tospo-keiba.jp/sakagamiblood/64299",
+    "https://tospo-keiba.jp/sakagamiblood/67029"
+   ],
+   "n_run": 1377,
+   "ae_in": 1.083,
+   "ae_out": 0.987,
+   "ratio": 1.097,
+   "ae_in_3": [
+    1.15,
+    1.11,
+    1.05
+   ],
+   "ratio_3": [
+    1.19,
+    1.13,
+    1.04
+   ],
+   "win_ret": 72.2
+  },
+  {
+   "entity": "父=ディープインパクト",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ・坂上明大の血統査定",
+   "n_art": 16,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/2026/02/23/100345",
+    "https://nas-quillo.hatenablog.com/entry/2026/09/27/084657",
+    "https://nas-quillo.hatenablog.com/entry/53287f156607cecf3937ae1c2b9ad2f0",
+    "https://tospo-keiba.jp/sakagamiblood/50447",
+    "https://tospo-keiba.jp/sakagamiblood/57710",
+    "https://tospo-keiba.jp/sakagamiblood/59079"
+   ],
+   "n_run": 1518,
+   "ae_in": 1.054,
+   "ae_out": 0.962,
+   "ratio": 1.096,
+   "ae_in_3": [
+    1.03,
+    1.11,
+    1.34
+   ],
+   "ratio_3": [
+    1.07,
+    1.24,
+    1.25
+   ],
+   "win_ret": 71.9
+  },
+  {
+   "entity": "ドレフォン",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/2026/05/17/092351",
+    "https://nas-quillo.hatenablog.com/entry/8c783e4c8607a643693ee7722456bb85",
+    "https://nas-quillo.hatenablog.com/entry/ee6e1de13284d7992eb50cfb457b34bb"
+   ],
+   "n_run": 481,
+   "ae_in": 1.162,
+   "ae_out": 1.062,
+   "ratio": 1.095,
+   "ae_in_3": [
+    1.15,
+    1.17,
+    1.17
+   ],
+   "ratio_3": [
+    1.16,
+    1.05,
+    1.07
+   ],
+   "win_ret": 85.4
+  },
+  {
+   "entity": "サンデーサイレンス（クロス）",
+   "cond": "東京芝",
+   "dir": "+",
+   "source": "坂上明大の血統査定",
+   "n_art": 12,
+   "urls": [
+    "https://tospo-keiba.jp/sakagamiblood/50134",
+    "https://tospo-keiba.jp/sakagamiblood/51881",
+    "https://tospo-keiba.jp/sakagamiblood/54976",
+    "https://tospo-keiba.jp/sakagamiblood/57482",
+    "https://tospo-keiba.jp/sakagamiblood/59079"
+   ],
+   "n_run": 1947,
+   "ae_in": 1.078,
+   "ae_out": 0.985,
+   "ratio": 1.095,
+   "ae_in_3": [
+    1.07,
+    1.08,
+    1.09
+   ],
+   "ratio_3": [
+    1.11,
+    1.09,
+    1.09
+   ],
+   "win_ret": 93.3
+  },
+  {
+   "entity": "ノーザンテースト（3代以内）",
+   "cond": "道悪",
+   "dir": "+",
+   "source": "坂上明大の血統査定",
+   "n_art": 4,
+   "urls": [
+    "https://tospo-keiba.jp/sakagamiblood/51276",
+    "https://tospo-keiba.jp/sakagamiblood/57709",
+    "https://tospo-keiba.jp/sakagamiblood/61660",
+    "https://tospo-keiba.jp/sakagamiblood/64886"
+   ],
+   "n_run": 1336,
+   "ae_in": 1.045,
+   "ae_out": 0.955,
+   "ratio": 1.095,
+   "ae_in_3": [
+    1.02,
+    1.06,
+    1.16
+   ],
+   "ratio_3": [
+    1.09,
+    1.04,
+    1.17
+   ],
+   "win_ret": 76.3
+  },
+  {
+   "entity": "デインヒル（3代以内）",
+   "cond": "小回り",
+   "dir": "+",
+   "source": "望田潤ブログ・坂上明大の血統査定",
+   "n_art": 17,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/2025/12/28/092816",
+    "https://nas-quillo.hatenablog.com/entry/2026/01/24/092148",
+    "https://nas-quillo.hatenablog.com/entry/2026/06/14/090533",
+    "https://nas-quillo.hatenablog.com/entry/2026/09/12/084422",
+    "https://nas-quillo.hatenablog.com/entry/7cc302007b25885004d01bc1bf27c594",
+    "https://tospo-keiba.jp/sakagamiblood/56675"
+   ],
+   "n_run": 3611,
+   "ae_in": 1.08,
+   "ae_out": 0.988,
+   "ratio": 1.092,
+   "ae_in_3": [
+    1.1,
+    1.02,
+    1.06
+   ],
+   "ratio_3": [
+    1.1,
+    1.13,
+    1.05
+   ],
+   "win_ret": 76.8
+  },
+  {
+   "entity": "ノーザンテースト（3代以内）",
+   "cond": "中山芝",
+   "dir": "+",
+   "source": "坂上明大の血統査定",
+   "n_art": 4,
+   "urls": [
+    "https://tospo-keiba.jp/sakagamiblood/52806",
+    "https://tospo-keiba.jp/sakagamiblood/57237",
+    "https://tospo-keiba.jp/sakagamiblood/66350",
+    "https://tospo-keiba.jp/sakagamiblood/70476"
+   ],
+   "n_run": 400,
+   "ae_in": 1.06,
+   "ae_out": 0.971,
+   "ratio": 1.092,
+   "ae_in_3": [
+    1.03,
+    1.18,
+    1.04
+   ],
+   "ratio_3": [
+    1.09,
+    1.17,
+    1.0
+   ],
+   "win_ret": 40.5
+  },
+  {
+   "entity": "Nureyev（クロス）",
+   "cond": "瞬発",
+   "dir": "+",
+   "source": "坂上明大の血統査定",
+   "n_art": 7,
+   "urls": [
+    "https://tospo-keiba.jp/sakagamiblood/51881",
+    "https://tospo-keiba.jp/sakagamiblood/54217",
+    "https://tospo-keiba.jp/sakagamiblood/57709",
+    "https://tospo-keiba.jp/sakagamiblood/63349",
+    "https://tospo-keiba.jp/sakagamiblood/63785"
+   ],
+   "n_run": 785,
+   "ae_in": 1.077,
+   "ae_out": 0.987,
+   "ratio": 1.091,
+   "ae_in_3": [
+    1.09,
+    1.04,
+    1.08
+   ],
+   "ratio_3": [
+    1.1,
+    1.08,
+    1.1
+   ],
+   "win_ret": 46.9
+  },
+  {
+   "entity": "Graustark",
+   "cond": "中距離",
+   "dir": "+",
+   "source": "坂上明大の血統査定",
+   "n_art": 5,
+   "urls": [
+    "https://tospo-keiba.jp/sakagamiblood/50121",
+    "https://tospo-keiba.jp/sakagamiblood/60288",
+    "https://tospo-keiba.jp/sakagamiblood/63785",
+    "https://tospo-keiba.jp/sakagamiblood/73418",
+    "https://tospo-keiba.jp/sakagamiblood/76588"
+   ],
+   "n_run": 1169,
+   "ae_in": 1.08,
+   "ae_out": 0.989,
+   "ratio": 1.091,
+   "ae_in_3": [
+    1.06,
+    1.04,
+    1.15
+   ],
+   "ratio_3": [
+    1.05,
+    1.06,
+    1.2
+   ],
+   "win_ret": 79.6
+  },
+  {
+   "entity": "父=ディープインパクト",
+   "cond": "高速馬場",
+   "dir": "+",
+   "source": "坂上明大の血統査定",
+   "n_art": 5,
+   "urls": [
+    "https://tospo-keiba.jp/sakagamiblood/54699",
+    "https://tospo-keiba.jp/sakagamiblood/57237",
+    "https://tospo-keiba.jp/sakagamiblood/58780",
+    "https://tospo-keiba.jp/sakagamiblood/63180",
+    "https://tospo-keiba.jp/sakagamiblood/76079"
+   ],
+   "n_run": 2724,
+   "ae_in": 1.023,
+   "ae_out": 0.937,
+   "ratio": 1.091,
+   "ae_in_3": [
+    1.0,
+    1.04,
+    1.33
+   ],
+   "ratio_3": [
+    1.06,
+    1.24,
+    1.55
+   ],
+   "win_ret": 72.2
+  },
+  {
+   "entity": "サンデーサイレンス（クロス）",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "望田潤ブログ・坂上明大の血統査定",
+   "n_art": 40,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/2025/10/19/093307",
+    "https://nas-quillo.hatenablog.com/entry/2025/12/24/104510",
+    "https://nas-quillo.hatenablog.com/entry/6870385670c4d9153228e66e5c2bbb9d",
+    "https://nas-quillo.hatenablog.com/entry/f6b7697465793829040b68cdf4a0fd2d",
+    "https://tospo-keiba.jp/sakagamiblood/50965",
+    "https://tospo-keiba.jp/sakagamiblood/51881"
+   ],
+   "n_run": 1870,
+   "ae_in": 1.072,
+   "ae_out": 0.986,
+   "ratio": 1.088,
+   "ae_in_3": [
+    1.08,
+    1.07,
+    1.07
+   ],
+   "ratio_3": [
+    1.12,
+    1.08,
+    1.06
+   ],
+   "win_ret": 68.1
+  },
+  {
+   "entity": "サンデーサイレンス（クロス）",
+   "cond": "瞬発",
+   "dir": "+",
+   "source": "坂上明大の血統査定",
+   "n_art": 30,
+   "urls": [
+    "https://tospo-keiba.jp/sakagamiblood/50684",
+    "https://tospo-keiba.jp/sakagamiblood/54217",
+    "https://tospo-keiba.jp/sakagamiblood/57709",
+    "https://tospo-keiba.jp/sakagamiblood/58780",
+    "https://tospo-keiba.jp/sakagamiblood/59601"
+   ],
+   "n_run": 3158,
+   "ae_in": 1.065,
+   "ae_out": 0.979,
+   "ratio": 1.088,
+   "ae_in_3": [
+    1.02,
+    1.07,
+    1.1
+   ],
+   "ratio_3": [
+    1.05,
+    1.09,
+    1.11
+   ],
+   "win_ret": 75.3
+  },
+  {
+   "entity": "父=ロードカナロア",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "坂上明大の血統査定",
+   "n_art": 6,
+   "urls": [
+    "https://tospo-keiba.jp/sakagamiblood/50447",
+    "https://tospo-keiba.jp/sakagamiblood/51276",
+    "https://tospo-keiba.jp/sakagamiblood/52479",
+    "https://tospo-keiba.jp/sakagamiblood/57710",
+    "https://tospo-keiba.jp/sakagamiblood/59079"
+   ],
+   "n_run": 1433,
+   "ae_in": 1.076,
+   "ae_out": 0.99,
+   "ratio": 1.087,
+   "ae_in_3": [
+    1.01,
+    1.13,
+    1.15
+   ],
+   "ratio_3": [
+    1.02,
+    1.17,
+    1.15
+   ],
+   "win_ret": 75.1
+  },
+  {
+   "entity": "マンハッタンカフェ",
+   "cond": "小回り",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 5,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/2025/09/27/091929",
+    "https://nas-quillo.hatenablog.com/entry/2026/01/24/092148",
+    "https://nas-quillo.hatenablog.com/entry/2026/03/14/092352",
+    "https://nas-quillo.hatenablog.com/entry/2d323563c973a1381ba747fedf90ad7c",
+    "https://nas-quillo.hatenablog.com/entry/fe5d51ac0e0aa302178ed3c0064470b1"
+   ],
+   "n_run": 1787,
+   "ae_in": 1.111,
+   "ae_out": 1.023,
+   "ratio": 1.086,
+   "ae_in_3": [
+    1.14,
+    1.22,
+    1.01
+   ],
+   "ratio_3": [
+    1.12,
+    1.09,
+    1.02
+   ],
+   "win_ret": 64.2
+  },
+  {
+   "entity": "ハービンジャー",
+   "cond": "小回り",
+   "dir": "+",
+   "source": "望田潤ブログ・坂上明大の血統査定",
+   "n_art": 15,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/1e31e40896b5d322e6ad99185077fb1d",
+    "https://nas-quillo.hatenablog.com/entry/2025/11/30/093303",
+    "https://nas-quillo.hatenablog.com/entry/2026/03/07/092017",
+    "https://nas-quillo.hatenablog.com/entry/2026/07/01/110148",
+    "https://nas-quillo.hatenablog.com/entry/43a429acf83184157e9b4d5ba0dc9869",
+    "https://tospo-keiba.jp/sakagamiblood/50121"
+   ],
+   "n_run": 1682,
+   "ae_in": 1.045,
+   "ae_out": 0.964,
+   "ratio": 1.085,
+   "ae_in_3": [
+    1.03,
+    1.08,
+    1.04
+   ],
+   "ratio_3": [
+    1.02,
+    1.17,
+    1.16
+   ],
+   "win_ret": 71.8
+  },
+  {
+   "entity": "A.P. Indy",
+   "cond": "瞬発",
+   "dir": "+",
+   "source": "坂上明大の血統査定",
+   "n_art": 5,
+   "urls": [
+    "https://tospo-keiba.jp/sakagamiblood/55488",
+    "https://tospo-keiba.jp/sakagamiblood/56673",
+    "https://tospo-keiba.jp/sakagamiblood/59079",
+    "https://tospo-keiba.jp/sakagamiblood/68810",
+    "https://tospo-keiba.jp/sakagamiblood/69981"
+   ],
+   "n_run": 913,
+   "ae_in": 1.107,
+   "ae_out": 1.023,
+   "ratio": 1.083,
+   "ae_in_3": [
+    1.08,
+    1.13,
+    1.12
+   ],
+   "ratio_3": [
+    1.06,
+    1.09,
+    1.11
+   ],
+   "win_ret": 73.7
+  },
+  {
+   "entity": "Danzig",
+   "cond": "瞬発",
+   "dir": "+",
+   "source": "坂上明大の血統査定",
+   "n_art": 6,
+   "urls": [
+    "https://tospo-keiba.jp/sakagamiblood/49944",
+    "https://tospo-keiba.jp/sakagamiblood/56953",
+    "https://tospo-keiba.jp/sakagamiblood/63349",
+    "https://tospo-keiba.jp/sakagamiblood/70870",
+    "https://tospo-keiba.jp/sakagamiblood/71764"
+   ],
+   "n_run": 5163,
+   "ae_in": 1.069,
+   "ae_out": 0.989,
+   "ratio": 1.081,
+   "ae_in_3": [
+    1.1,
+    1.05,
+    1.04
+   ],
+   "ratio_3": [
+    1.11,
+    1.06,
+    1.05
+   ],
+   "win_ret": 79.8
+  }
+ ]
+}

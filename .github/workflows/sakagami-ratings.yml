@@ -1,5 +1,6 @@
 name: sakagami-ratings
-# 坂上明大「重賞血統査定」（東スポ競馬）の各馬の適性・能力の★の数だけを集める（本文は保存しない）。ratings ブランチの sakagami.json
+# 坂上明大「重賞血統査定」（東スポ競馬）の各馬の適性・能力の★の数と、本文中の「血×条件」の件数（tools/trait_mining.py）を集める（本文は保存しない）。
+# 裏付けの確認（tools/trait_check.py）→ data/knowledge/blood_traits.json・ped5_flags.json も更新。ratings ブランチの sakagami.json
 on:
   schedule:
     - cron: "17 21 * * 4"   # 金曜 6:17 JST（月曜〜木曜に出る週末の重賞の回を拾う）
@@ -44,7 +45,7 @@ jobs:
               # 本文は __NEXT_DATA__ などの JSON に \\uXXXX で埋め込まれていることがある → ほどく
               h = h.replace("\\/", "/")
               h = re.sub(r"\\u([0-9a-fA-F]{4})", lambda m: chr(int(m.group(1), 16)), h)
-              h = h.replace("\\n", "\n").replace("\\u003c", "<").replace("\\u003e", ">")
+              h = h.replace("\\n", "\n").replace("\\u003c", "<").replace("\\u003e", ">").replace('\\"', '"')
               for x in re.findall(r"sakagamiblood/(\d+)", h):
                   if x not in seen:
                       queue.append(x)
@@ -53,6 +54,10 @@ jobs:
               if k > 0 and i == "${{ inputs.seeds }}".split()[0]:
                   print("SAMPLE", repr(h[k - 300:k + 120]))
               title = html.unescape((re.search(r"<title>(.*?)</title>", h, re.S) or [None, ""])[1]).strip()
+              # 血統の特徴（血×条件）を数えるための本文（ランナー内だけ。保存しない）
+              os.makedirs("/tmp/sk", exist_ok=True)
+              open(f"/tmp/sk/{i}.txt", "w").write(f"URL: https://tospo-keiba.jp/sakagamiblood/{i}\nTITLE: {title}\n\n"
+                                                  + "\n".join(l.strip() for l in html.unescape(re.sub(r"<[^>]+>", "\n", h)).split("\n") if l.strip()))
               date = (re.search(r"(20\d\d)[/.-](\d\d?)[/.-](\d\d?)", h) or None)
               txt = html.unescape(re.sub(r"<[^>]+>", "\n", h))
               lines = [l.strip() for l in txt.split("\n") if l.strip()]
@@ -78,12 +83,21 @@ jobs:
           json.dump(out, open("/tmp/sakagami.json", "w"), ensure_ascii=False, indent=1)
           print("saved", len(out), sum(len(a["horses"]) for a in out))
           PY
+      - name: blood traits (血×条件)
+        run: |
+          git fetch -q origin ped-data && git show origin/ped-data:data/ped5_full.json > /tmp/ped5_full.json
+          mkdir -p /tmp/skc
+          [ -d /tmp/sk ] && python3 -I tools/sakagami_prep.py /tmp/sk /tmp/skc data/keiba.db || true
+          python3 tools/trait_mining.py /tmp/ped5_full.json 坂上明大の血統査定 data/knowledge/claims_sakagami.json /tmp/skc
+          python3 tools/trait_check.py /tmp/ped5_full.json data/knowledge/claims_mochida.json data/knowledge/claims_sakagami.json | head -3
+          python3 tools/ped5_flags.py /tmp/ped5_full.json
+          rm -rf /tmp/sk /tmp/skc
       - name: save to main (knowledge)
         run: |
           git config user.name "keiba-bot"
           git config user.email "keiba-bot@users.noreply.github.com"
           cp /tmp/sakagami.json data/knowledge/sakagami_ratings.json
-          git add data/knowledge/sakagami_ratings.json
+          git add data/knowledge/sakagami_ratings.json data/knowledge/claims_sakagami.json data/knowledge/blood_traits.json data/knowledge/ped5_flags.json docs/analysis/blood_traits.md
           git commit -qm "坂上氏の★（★の数だけ）" || true
           for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && break; sleep 5; done
       - name: save
