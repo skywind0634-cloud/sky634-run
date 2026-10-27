@@ -1,9 +1,11 @@
 name: sakagami-ratings
 # 坂上明大「重賞血統査定」（東スポ競馬）の各馬の適性・能力の★の数だけを集める（本文は保存しない）。ratings ブランチの sakagami.json
 on:
+  schedule:
+    - cron: "17 21 * * 4"   # 金曜 6:17 JST（月曜〜木曜に出る週末の重賞の回を拾う）
   workflow_dispatch:
     inputs:
-      seeds: {description: "起点の記事ID（スペース区切り）", default: "76588 75861 76316 72013 70967 66645 56951 64304 60508 59299 57984 76210 68542 68309 67028"}
+      seeds: {description: "起点の記事ID（スペース区切り）", default: "76780 76700 76588 75861 76316 72013 70967 66645 56951 64304 60508 59299 57984 76210 68542 68309 67028"}
       limit: {description: "最大記事数", default: "250"}
 permissions:
   contents: write
@@ -23,7 +25,14 @@ jobs:
                   return urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=30).read().decode("utf-8", "ignore")
               except Exception as e:
                   print("ERR", u, e); return ""
-          queue = "${{ inputs.seeds }}".split(); seen = set(); out = []
+          import os
+          known = {}
+          if os.path.exists("data/knowledge/sakagami_ratings.json"):
+              known = {a["id"]: a for a in json.load(open("data/knowledge/sakagami_ratings.json"))}
+          seeds = "${{ inputs.seeds }}".split() or []
+          if not seeds:
+              seeds = [str(int(max(known, key=int)) + k) for k in range(1, 400)] if known else ["76588"]
+          queue = seeds; seen = set(); out = []
           while queue and len(seen) < int("${{ inputs.limit }}"):
               i = queue.pop(0)
               if i in seen:
@@ -62,9 +71,21 @@ jobs:
                       ab = next((re.match(r"能力評価[:：]\s*(★+)", x).group(1) for x in lines[j + 1:j + 4] if re.match(r"能力評価[:：]\s*★", x)), "")
                       horses.append({"name": name, "fit": len(m.group(1)), "ability": len(ab)})
               out.append({"id": i, "title": title, "date": "-".join(date.groups()) if date else None, "horses": horses})
+          for a in out:
+              if a["horses"]:
+                  known[a["id"]] = a
+          out = sorted(known.values(), key=lambda a: int(a["id"]))
           json.dump(out, open("/tmp/sakagami.json", "w"), ensure_ascii=False, indent=1)
           print("saved", len(out), sum(len(a["horses"]) for a in out))
           PY
+      - name: save to main (knowledge)
+        run: |
+          git config user.name "keiba-bot"
+          git config user.email "keiba-bot@users.noreply.github.com"
+          cp /tmp/sakagami.json data/knowledge/sakagami_ratings.json
+          git add data/knowledge/sakagami_ratings.json
+          git commit -qm "坂上氏の★（★の数だけ）" || true
+          for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && break; sleep 5; done
       - name: save
         run: |
           git config user.name "keiba-bot"

@@ -11,6 +11,7 @@
 """
 from __future__ import annotations
 
+import datetime as dt
 import re
 
 from collections import defaultdict
@@ -599,6 +600,29 @@ def SIRE_GOING() -> dict:
     return _SG
 
 
+def SAKAGAMI() -> dict:
+    """坂上明大「重賞血統査定」の★（馬名→[(記事の日付, 適性, 能力)]）. data/knowledge/sakagami_ratings.json（sky634-run の sakagami-ratings で取得・★の数だけ）."""
+    global _SKG
+    try:
+        return _SKG
+    except NameError:
+        pass
+    import json
+    from collections import defaultdict
+    from .config import KNOWLEDGE_DIR
+    _SKG = defaultdict(list)
+    try:
+        for a in json.loads((KNOWLEDGE_DIR / "sakagami_ratings.json").read_text(encoding="utf-8")):
+            if a.get("date"):
+                d = "-".join(f"{int(x):02d}" if i else x for i, x in enumerate(a["date"].split("-")))
+                for h in a["horses"]:
+                    if h.get("name"):
+                        _SKG[h["name"]].append((d, h["fit"], h["ability"]))
+    except (OSError, ValueError):
+        pass
+    return _SKG
+
+
 def PED5_FLAGS() -> dict:
     """5代血統表からの祖先フラグ（data/knowledge/ped5_flags.json, tools/ped5_flags.py）."""
     global _PED5
@@ -711,6 +735,15 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
         pf = set(PED5_FLAGS().get(e.get("horse_id") or "", [])) | ({"サクラバクシンオー"} if "サクラバクシンオー" in (e.get("pedigree") or {}).values() else set())
         if su == "芝" and d <= 1200 and not going.startswith("良") and "サクラバクシンオー" in pf:
             why.append("芝1200以下の道悪×5代にサクラバクシンオー ○（A/E 1.21/1.07/1.11）")
+        # 坂上明大「重賞血統査定」の★（そのレースの週の記事。tools/sakagami_check.py, 2024-09〜2026-10 の241本で検証）
+        cd = card.get("date") or ""
+        rt = [x for x in SAKAGAMI().get(e.get("name") or "", []) if cd and x[0] <= cd and (dt.date.fromisoformat(cd) - dt.date.fromisoformat(x[0])).days <= 8]
+        if rt:
+            _, fit, ab = rt[-1]
+            if fit == 5 and ab == 5:
+                why.append("坂上明大の血統査定 適性★5・能力★5 ○（過去2年の重賞105頭でA/E 1.13・単勝回収106%）")
+            elif fit and fit <= 3:
+                why.append(f"坂上明大の血統査定 適性★{fit} ▽（★2はA/E 0.68・★3は0.85）")
         # 祖先・クロス×コースの形（坂上氏の血統査定の「血の特徴」を検証, tools/ancestor_traits.py, 2026-10-26）
         if su == "芝":
             lay = card.get("layout") or ""
