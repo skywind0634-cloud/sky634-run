@@ -6,6 +6,7 @@ on:
       tag: {description: "保存名", required: true}
       urls: {description: "URL（スペース区切り）", required: true}
       pubkey: {description: "暗号化用の公開鍵（PEM を base64）", required: true}
+      dom: {description: "ヘッドレスChromeで描画後のDOMも保存する（1/0。静的なページは0で速い）", default: "1"}
 permissions:
   contents: write
 concurrency:
@@ -14,7 +15,7 @@ concurrency:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - name: fetch and seal
@@ -23,7 +24,7 @@ jobs:
           for u in ${{ inputs.urls }}; do
             i=$((i+1)); curl -sL -A 'Mozilla/5.0' --max-time 60 "$u" -o "/tmp/p/$(printf %02d $i).html"; echo "$u" >> /tmp/p/urls.txt
             # スクリプトで中身を読み込むページ用: ヘッドレスChromeで描画後の DOM も保存
-            timeout 90 google-chrome --headless=new --no-sandbox --disable-gpu --virtual-time-budget=30000 --dump-dom "$u" > "/tmp/p/$(printf %02d $i).dom.html" 2>/dev/null || true
+            [ "${{ inputs.dom }}" = "0" ] || timeout 90 google-chrome --headless=new --no-sandbox --disable-gpu --virtual-time-budget=30000 --dump-dom "$u" > "/tmp/p/$(printf %02d $i).dom.html" 2>/dev/null || true
             sleep 2
           done
           tar czf /tmp/p.tgz -C /tmp p
