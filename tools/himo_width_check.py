@@ -33,8 +33,13 @@ PLANS = [
     ("ワイド1〜5／3連複 軸−1〜5の2頭（10点）", range(1, 6), ("box", range(1, 6))),
     ("ワイド1〜3／3連複 軸−1〜3−1〜3（3点）", range(1, 4), ("box", range(1, 4))),
     ("ワイド1〜3だけ（3連複なし）", range(1, 4), None),
+    ("ワイド1〜4だけ（3連複なし）", range(1, 5), None),
+    ("ワイド1〜5だけ（3連複なし）", range(1, 6), None),
+    ("ワイド1〜6だけ（3連複なし）", range(1, 7), None),
     ("ワイド1〜5／3連複 軸−1〜2−1〜4（10点以内）", range(1, 6), ("2nd", (1, 2), range(1, 5))),
     ("ワイド1〜4／3連複 軸−1〜2−1〜5（10点以内）", range(1, 5), ("2nd", (1, 2), range(1, 6))),
+    ("ワイド1〜6／3連複 軸−1〜2−1〜3（10点以内）", range(1, 7), ("2nd", (1, 2), range(1, 4))),
+    ("ワイド1〜5／3連複 軸−1〜3−1〜4（10点以内）", range(1, 6), ("box", range(1, 5))),
 ]
 
 
@@ -53,11 +58,13 @@ def main():
     c = sqlite3.connect(ROOT / "data" / "keiba.db")
     info = {r[0]: (r[1], json.loads(r[2])) for r in c.execute("select race_id,race_no,payouts from races where payouts is not null")}
     pn = {(r[0], r[1]): r[2] for r in c.execute("select race_id,popularity,number from results where popularity is not null")}
+    fav = {r[0]: r[1] for r in c.execute("select race_id,odds from results where popularity=1")}
     R = defaultdict(list)
     for r in json.load(open(ROOT / "data" / "cache" / "flag_backtest_rows.json")):
         R[r["rid"]].append(r)
     AXES = {"◎フラグ点+5（3番人気以下）": (5, 18, False), "★フラグ軸（3番人気以下・+4以上）": (4, 18, False),
-            "◎7・8R（3〜10番人気・+4以上, 7R・8Rだけ）": (4, 10, True)}
+            "◎7・8R（3〜10番人気・+4以上, 7R・8Rだけ）": (4, 10, True),
+            "★混戦穴（1番人気4.1倍以上・7〜12番人気・+3以上）": (3, 12, "chaos")}
     agg = defaultdict(lambda: [[0, 0, 0, 0] for _ in range(3)])   # races, cost, back, hit races
     day = defaultdict(lambda: [0, 0])
     for rid, hs in R.items():
@@ -68,9 +75,11 @@ def main():
         sc = {h["pop"]: h["plus"] - h["minus"] for h in hs}
         n = lambda q, rid=rid: pn.get((rid, q))
         for an, (th, hi, only78) in AXES.items():
-            if only78 and rno not in (7, 8):
+            if only78 is True and rno not in (7, 8):
                 continue
-            cand = [q for q in sc if sc[q] >= th and 3 <= q <= hi]
+            if only78 == "chaos" and not (fav.get(rid) or 0) >= 4.1:
+                continue
+            cand = [q for q in sc if sc[q] >= th and (7 if only78 == "chaos" else 3) <= q <= hi]
             if not cand:
                 continue
             ax = sorted(cand, key=lambda q: (-sc[q], q))[0]

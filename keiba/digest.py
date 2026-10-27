@@ -246,6 +246,8 @@ def flag_axis_package(card: dict, evals: list[HorseEval], chaos: bool = False, t
         o1, _ = fav_odds(evals)
         if not o1 or o1 < 4.1:
             return None
+        if card.get("race_no") in (7, 8):   # 7R・8Rの★混戦穴は5年で回収75%/0%/17%（38レース, docs/analysis/himo_width_check.md）→ 出さない
+            return None
         lo, hi, th = 7, 12, 3
     else:
         lo, th = 3, th or 4   # 2026-10-24: 4〜9番人気→3番人気以下すべて（人気の境目に根拠はなく、人気薄ほど効くのはフラグ点。docs/analysis/axis_band_check.md）

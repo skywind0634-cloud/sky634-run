@@ -65,7 +65,7 @@ def buy_list(rows):
         ws = re.findall(r"\d+-\d+(?!-)", b.split("／")[0]); ts = re.findall(r"\d+-\d+-\d+", b.split("／")[1]) if "／" in b else []
         main.append(f"  - {t} {key}: " + " / ".join([f"ワイド {w}" for w in ws] + [f"3連複 {x}" for x in ts]) + f"（{len(ws) + len(ts)}点）")
     out += main or ["  - なし（今日は本命枠の該当なし）"]
-    out.append(f"■ 少額枠（1点100円・1日{SMALL_CAP}点まで。本線の単勝＋馬連→★混戦穴/★フラグ軸→穴ワイドの順）")
+    out.append(f"■ 少額枠（1点100円・1日{SMALL_CAP}点まで。本線の単勝＋馬連→★混戦穴（ワイド＋3連複）/★フラグ軸（ワイド）→穴ワイドの順）")
     small, n = [], 0
     cand = []
     for l in rows["本線"]:
@@ -77,7 +77,10 @@ def buy_list(rows):
         for l in rows[key]:
             t, b = _split(l)
             ws = re.findall(r"\d+-\d+(?!-)", b.split("／")[0]) if "／" in b else []
-            cand.append((t, key, [f"ワイド {w}" for w in ws[:3]]))
+            # 2026-10-27 紐の検証（docs/analysis/himo_width_check.md）: ★混戦穴はワイドだけだと2024が73%で、3連複を足すと185/120/136%
+            # → ワイド＋3連複（10点）。★フラグ軸はワイド1〜5番人気だけ（108/124/115%・的中20〜27%）
+            ts = re.findall(r"\d+-\d+-\d+", b.split("／")[1]) if key == "★混戦穴" and "／" in b else []
+            cand.append((t, key, [f"ワイド {w}" for w in ws[:5]] + [f"3連複 {x}" for x in ts]))
     for l in rows["穴ワイド"]:
         t, b = _split(l)
         first = b.split(" / ")[0]
