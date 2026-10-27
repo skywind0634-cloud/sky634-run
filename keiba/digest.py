@@ -190,14 +190,14 @@ def ticket_card(card: dict, evals: list[HorseEval]) -> list[str]:
                      + "、".join(f"{c}（{o:.1f}倍・比{r:.2f}）" for c, o, r in cp["ワイド"]))
     e5 = flag_axis_package(card, evals, th=5)
     if e5:
-        L.append("  - ◎フラグ点+5（本命枠。人気に関係なく3番人気以下でフラグ点+5以上の1頭を軸に ワイド→1〜3番人気＋3連複 軸−1〜2番人気−1〜5番人気。"
-                 "5年で回収222%/166%/166%・的中15〜24%・払戻中央1,900〜4,200円。7番人気以下に限っても262%/173%/159%, docs/analysis/axis_band_check.md）: " + e5)
+        L.append("  - ◎フラグ点+5（本命枠。人気に関係なく3番人気以下でフラグ点+5以上の1頭を軸に ワイド→1〜5番人気＋3連複 軸−1〜2番人気−1〜4番人気。"
+                 "5年で回収256%/148%/141%・的中19〜29%, docs/analysis/himo_width_check.md）: " + e5)
     e78 = flag_axis_package(card, evals, hi=10) if card.get("race_no") in (7, 8) else None
     if e5 and e78 and e78.split("（")[0] == e5.split("（")[0]:
         e78 = None
     if e78:
-        L.append("  - ◎7・8R（7R・8Rは本命枠。3〜10番人気でフラグ点+4以上の1頭を軸に ワイド→1〜3番人気＋3連複 軸−1〜2番人気−1〜5番人気。"
-                 "5年の7R・8Rで回収104%/139%/154%・的中19〜31%・払戻中央2,700〜3,700円。+3以上は82〜139%で不安定なので使わない, docs/analysis/axis_band_check.md）: " + e78)
+        L.append("  - ◎7・8R（7R・8Rは本命枠。3〜10番人気でフラグ点+4以上の1頭を軸に ワイド→1〜5番人気＋3連複 軸−1〜2番人気−1〜4番人気。"
+                 "5年の7R・8Rで回収110%/123%/155%・的中23〜35%。+3以上は不安定なので使わない, docs/analysis/himo_width_check.md）: " + e78)
     ch = flag_axis_package(card, evals, chaos=True)
     fa = flag_axis_package(card, evals)
     if fa and any(x and fa.split("（")[0] == x.split("（")[0] for x in (e78, e5)):
@@ -206,8 +206,8 @@ def ticket_card(card: dict, evals: list[HorseEval]) -> list[str]:
         L.append("  - ★混戦穴（1番人気4.1倍以上の混戦で、7〜12番人気・フラグ点+3以上の1頭を軸に ワイド→1〜3番人気＋3連複 軸−1〜2番人気−1〜5番人気。"
                  "実オッズ5年で回収186%/120%/138%・的中12〜21%・万馬券12本。フラグ選定期間内の確認, docs/analysis/shape_flag.md）: " + ch)
     if fa and (not ch or fa.split("（")[0] != ch.split("（")[0]):
-        L.append("  - ★フラグ軸（高配当狙い。3番人気以下（人気の上限なし）でフラグ点+4以上の1頭を軸に ワイド→1〜3番人気＋3連複 軸−1〜2番人気−1〜5番人気。"
-                 "5年で回収133%/118%/113%・的中17〜23%（人気の上限を外した後, docs/analysis/axis_band_check.md）。勝ち週は3割、最大12週連敗。フラグ選定期間内の確認）: " + fa)
+        L.append("  - ★フラグ軸（高配当狙い。3番人気以下（人気の上限なし）でフラグ点+4以上の1頭を軸に ワイド→1〜5番人気＋3連複 軸−1〜2番人気−1〜4番人気。"
+                 "5年で回収142%/104%/120%・的中20〜27%（docs/analysis/himo_width_check.md）。勝ち週は3割、最大12週連敗。フラグ選定期間内の確認）: " + fa)
     lw = longshot_wide(card, evals)
     if lw:
         L.append("  - 穴ワイド（7番人気以下で材料が重なる上位2頭→1〜4番人気。検証 回収94%/108%・的中17〜19%・払戻中央約2,000円。"
@@ -255,8 +255,11 @@ def flag_axis_package(card: dict, evals: list[HorseEval], chaos: bool = False, t
         return None
     a = cand[0]
     pop = {h.pop_rank: h.number for h in evals if h.pop_rank and h.number != a.number}
-    wide = [f"{a.number}-{pop[p]}" for p in (1, 2, 3) if p in pop]
-    trio = sorted({"-".join(map(str, sorted((a.number, pop[x], pop[y])))) for x in (1, 2) for y in range(1, 6)
+    # 2026-10-27 ユーザー「人気馬は紐として拾え」: ワイドを1〜5番人気へ広げ、3連複は軸−1〜2−1〜4番人気（10点以内）。
+    # 5年で的中が2〜8ポイント上がり、回収率は3期平均で同じ（◎+5 184→182%・★フラグ軸 121→122%・◎7・8R 132→129%, docs/analysis/himo_width_check.md）。★混戦穴は未検証なので従来の形
+    wl, tl = ((1, 2, 3), range(1, 6)) if chaos else ((1, 2, 3, 4, 5), range(1, 5))
+    wide = [f"{a.number}-{pop[p]}" for p in wl if p in pop]
+    trio = sorted({"-".join(map(str, sorted((a.number, pop[x], pop[y])))) for x in (1, 2) for y in tl
                    if x != y and x in pop and y in pop}, key=lambda t: [int(v) for v in t.split("-")])
     return f"軸 {a.number}{a.name}（{a.pop_rank}人気・点{sc[a.number]:+d}）→ ワイド " + "、".join(wide) + " ／ 3連複 " + "、".join(trio)
 
