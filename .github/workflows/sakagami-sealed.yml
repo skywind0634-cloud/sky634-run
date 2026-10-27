@@ -1,0 +1,60 @@
+name: sakagami-sealed
+# 坂上明大「重賞血統査定」の本文を取得し、渡された公開鍵で暗号化して sealed ブランチに保存（中身は公開しない。手動）。
+# 血統の特徴（祖先×条件）を読み取るため。記事IDは data/knowledge/sakagami_ratings.json の全回（ids 指定で絞れる）。
+on:
+  workflow_dispatch:
+    inputs:
+      pubkey: {description: "暗号化用の公開鍵（PEM を base64）", required: true}
+      ids: {description: "記事ID（スペース区切り, 空なら全回）", default: ""}
+      tag: {description: "保存名", default: "sakagami"}
+permissions:
+  contents: write
+concurrency:
+  group: fetch-sealed
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: fetch
+        run: |
+          python3 - <<'PY'
+          import json, re, time, urllib.request, html, os
+          ids = "${{ inputs.ids }}".split() or [a["id"] for a in json.load(open("data/knowledge/sakagami_ratings.json"))]
+          os.makedirs("/tmp/p", exist_ok=True)
+          for i in ids:
+              u = f"https://tospo-keiba.jp/sakagamiblood/{i}"
+              try:
+                  h = urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0"}), timeout=30).read().decode("utf-8", "ignore")
+              except Exception as e:
+                  print("ERR", i, e); continue
+              time.sleep(2)
+              h = h.replace("\\/", "/")
+              h = re.sub(r"\\u([0-9a-fA-F]{4})", lambda m: chr(int(m.group(1), 16)), h)
+              h = h.replace("\\n", "\n").replace('\\"', '"')
+              title = html.unescape((re.search(r"<title>(.*?)</title>", h, re.S) or [None, ""])[1]).strip()
+              txt = html.unescape(re.sub(r"<[^>]+>", "\n", h))
+              lines = [l.strip() for l in txt.split("\n") if l.strip()]
+              open(f"/tmp/p/{i}.txt", "w").write(f"URL: {u}\nTITLE: {title}\n\n" + "\n".join(lines))
+          print(len(os.listdir("/tmp/p")), "本")
+          PY
+          tar czf /tmp/p.tgz -C /tmp p
+          echo "${{ inputs.pubkey }}" | base64 -d > /tmp/pub.pem
+          openssl rand -out /tmp/k.bin 32
+          openssl enc -aes-256-cbc -pbkdf2 -salt -in /tmp/p.tgz -out /tmp/data.enc -pass file:/tmp/k.bin
+          openssl pkeyutl -encrypt -pubin -inkey /tmp/pub.pem -pkeyopt rsa_padding_mode:oaep -in /tmp/k.bin -out /tmp/key.enc
+          rm -f /tmp/k.bin /tmp/p.tgz; rm -rf /tmp/p
+      - name: save
+        run: |
+          git config user.name "keiba-bot"
+          git config user.email "keiba-bot@users.noreply.github.com"
+          for t in 1 2 3; do
+            if git fetch -q origin sealed; then git checkout -q -f -B sealed origin/sealed
+            else git checkout -q --orphan sealed; git rm -rq --cached . >/dev/null 2>&1 || true; fi
+            mkdir -p sealed/${{ inputs.tag }} && cp /tmp/data.enc /tmp/key.enc sealed/${{ inputs.tag }}/
+            git add sealed/${{ inputs.tag }}
+            git commit -qm "sealed ${{ inputs.tag }}" || exit 0
+            git push -q origin HEAD:sealed && break; sleep 5
+          done
