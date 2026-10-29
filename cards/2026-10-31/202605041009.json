@@ -162,17 +162,7 @@
      "behind": 0.8
     }
    ],
-   "pedigree": {
-    "S": "ニューイヤーズデイ",
-    "D": "フェニアンサイクル",
-    "DS": "ロードカナロア",
-    "DD": "アリアプーラ",
-    "SS": "Street Cry",
-    "SSS": "Machiavellian",
-    "DSS": "キングカメハメハ",
-    "DSSS": "Kingmambo",
-    "DSSSS": "Mr. Prospector"
-   }
+   "pedigree": {}
   },
   {
    "gate": null,
