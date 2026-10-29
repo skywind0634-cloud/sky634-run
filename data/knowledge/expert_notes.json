@@ -850,6 +850,111 @@
    },
    "direction": "+",
    "summary": "適性★5・能力★3。スワーヴリチャード×Shamardal・Danzig。東京芝2000と好相性の父で、舞台適性はメンバー上位"
+  },
+  {
+   "id": "mochida_tenno_aki_2026_tonybin",
+   "author": "望田潤（netkeiba コラム【天皇賞(秋)予想】トニービン5連覇、ダンジグ不振 8枠は過去10年連対ゼロ 2026-10-25 の要約）",
+   "url": "https://news.netkeiba.com/?pid=column_view&cid=59793",
+   "date": "2026-10-25",
+   "horse": [
+    "シェイクユアハート",
+    "シャンパンカラー",
+    "タガノデュード",
+    "ネブラディスク",
+    "ホウオウビスケッツ",
+    "マスカレードボール",
+    "レガレイラ",
+    "レディネス"
+   ],
+   "condition": {
+    "course": "東京",
+    "surface": "芝",
+    "distance_min": 2000,
+    "distance_max": 2000,
+    "grade": "G1"
+   },
+   "direction": "+",
+   "summary": "天皇賞(秋)は過去5年の勝ち馬4頭がトニービンの血を引く（トニービン5連覇）。DB確認: 2021-25でトニービン5代内21走3着内8 A/E1.29（なし0.77）"
+  },
+  {
+   "id": "mochida_tenno_aki_2026_danzig",
+   "author": "望田潤（netkeiba コラム【天皇賞(秋)予想】トニービン5連覇、ダンジグ不振 8枠は過去10年連対ゼロ 2026-10-25 の要約）",
+   "url": "https://news.netkeiba.com/?pid=column_view&cid=59793",
+   "date": "2026-10-25",
+   "horse": [
+    "クロワデュノール",
+    "レガレイラ",
+    "レディネス",
+    "シャンパンカラー",
+    "ジュンブロッサム",
+    "コスモキュランダ",
+    "リアライズシリウス",
+    "タガノデュード"
+   ],
+   "condition": {
+    "course": "東京",
+    "surface": "芝",
+    "distance_min": 2000,
+    "distance_max": 2000,
+    "grade": "G1"
+   },
+   "direction": "-",
+   "summary": "ダンジグの血を引く馬は天皇賞(秋)過去10年[1-1-3-33]（勝ったのはモーリスだけ）。主要4場の芝G1で東京の成績が最も悪い。DB確認: 2021-25でDanzig5代内20走3着内1 A/E0.33、他の東京芝2000重賞でも0.61（35走）"
+  },
+  {
+   "id": "mochida_tenno_aki_2026_gate8",
+   "author": "望田潤（netkeiba コラム【天皇賞(秋)予想】トニービン5連覇、ダンジグ不振 8枠は過去10年連対ゼロ 2026-10-25 の要約）",
+   "url": "https://news.netkeiba.com/?pid=column_view&cid=59793",
+   "date": "2026-10-25",
+   "horse": [
+    "サクラファレル",
+    "ジョバンニ",
+    "ダノンデサイル"
+   ],
+   "condition": {
+    "course": "東京",
+    "surface": "芝",
+    "distance_min": 2000,
+    "distance_max": 2000,
+    "grade": "G1"
+   },
+   "direction": "-",
+   "summary": "天皇賞(秋)の8枠は過去10年[0-0-1-20]、馬番15〜18番は[0-0-0-11]。DB確認: 2021-25の8枠10走3着内0（7枠も10走3着内1）。他の東京芝2000のOP以上では8枠A/E1.03で差なし＝天皇賞(秋)だけの傾向"
+  },
+  {
+   "id": "mochida_tenno_aki_2026_pace",
+   "author": "望田潤（netkeiba コラム【天皇賞(秋)予想】トニービン5連覇、ダンジグ不振 8枠は過去10年連対ゼロ 2026-10-25 の要約）",
+   "url": "https://news.netkeiba.com/?pid=column_view&cid=59793",
+   "date": "2026-10-25",
+   "horse": [],
+   "condition": {
+    "course": "東京",
+    "surface": "芝",
+    "distance_min": 2000,
+    "distance_max": 2000,
+    "grade": "G1",
+    "qualitative": true
+   },
+   "direction": "+",
+   "summary": "スローの上がり勝負の年（25・24年）はドウデュースやミュージアムマイルのようなピッチの速さ、緩みなく流れた年（23・22年）はイクイノックスやジャスティンパレスのようなヌレイエフ的・ナスペリオン的な持続的末脚が際立つ"
+  },
+  {
+   "id": "mochida_fantasy_2026_stormcat",
+   "author": "望田潤（netkeiba コラム【ファンタジーS予想】近2年はストームキャットのワンツー 2026-10-25 の要約）",
+   "url": "https://news.netkeiba.com/?pid=column_writer_backnumber（望田潤 2026-10-25）",
+   "date": "2026-10-25",
+   "horse": [
+    "ブライトスクリプト",
+    "レニュアージュ"
+   ],
+   "condition": {
+    "course": "京都",
+    "surface": "芝",
+    "distance_min": 1400,
+    "distance_max": 1400
+   },
+   "direction": "+",
+   "summary": "京都芝外1400のファンタジーSは近2年ストームキャット（3×5などのクロス）のワンツー、人気薄の前残りに注意。DB確認: ファンタジーSでStorm Catクロス4走3着内2（A/E3.18）、あり1.02、なし0.71。京都芝外1400全体でもあり1.08・なし0.97"
   }
  ]
 }
