@@ -7,6 +7,8 @@ on:
       pubkey: {description: "暗号化用の公開鍵（PEM を base64）", required: true}
       keyword: {description: "残すページに含まれる語", default: "キーンランド"}
       tag: {description: "保存名", default: "jra-odds"}
+      start: {description: "起点（path|cname）。海外は https://jra.jp/JRADB/accessSP.html|pk01pde01/5F", default: "/JRADB/accessO.html|pw15oli00/6D"}
+      prefix: {description: "たどる cname の先頭", default: "pw15"}
 permissions:
   contents: write
 concurrency:
@@ -27,14 +29,17 @@ jobs:
       - name: fetch
         env:
           KW: ${{ inputs.keyword }}
+          START: ${{ inputs.start }}
+          PREFIX: ${{ inputs.prefix }}
         run: |
           python3 - <<'PY'
           import os
           from keiba.scraper import jra
           os.makedirs("/tmp/p", exist_ok=True)
           kw = os.environ["KW"]
-          top = jra.post(*jra.ODDS_TOP, use_cache=False)
-          seen, q, n = set(), [(p, c, 0) for p, c in jra.ACTION_RE.findall(top) if c.startswith("pw15")], 0
+          sp, sc = os.environ["START"].split("|")
+          pre = tuple(os.environ["PREFIX"].split(","))
+          q, seen, n = [(sp, sc, 0)], set(), 0
           while q and n < 120:
               p, c, d = q.pop(0)
               if c in seen:
@@ -47,8 +52,8 @@ jobs:
               n += 1
               if kw in h:
                   open(f"/tmp/p/{len(os.listdir('/tmp/p')):03d}_{c.replace('/', '_')}.html", "w").write(h)
-                  if d < 2:
-                      q += [(pp, cc, d + 1) for pp, cc in jra.ACTION_RE.findall(h) if cc.startswith("pw15") and cc not in seen]
+                  if d < 3:
+                      q += [(pp, cc, d + 1) for pp, cc in jra.ACTION_RE.findall(h) if cc.startswith(pre) and cc not in seen]
           print(n, "pages,", len(os.listdir("/tmp/p")), "kept")
           PY
           tar czf /tmp/p.tgz -C /tmp p
