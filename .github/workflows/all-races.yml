@@ -1,0 +1,64 @@
+name: all-races
+# 分析用の全レースDB（1R〜12R・新馬・未勝利を含む、障害以外）を data/keiba_all.db に貯め、all-races ブランチに keiba_all.db.gz で保存する
+# （2026-11-08 ユーザー「亀谷・望田氏は1Rから結果を集めて分析している。7R以降だけでは前半のレースや新馬・未勝利の分が抜けて、ばらつきがある」）.
+# 予想の対象（7R以降・未勝利と障害を除く）は変えない。7R以降は data/keiba.db を種にするので取り直さない。
+# 毎週月曜は先週分を足す。手動実行で過去分を遡る（約5時間ごとに保存して自動で続ける）。
+on:
+  schedule:
+    - cron: "37 19 * * 0"   # 月 4:37 JST（先週末の分）
+  workflow_dispatch:
+    inputs:
+      from: {description: "開始日 (YYYY-MM-DD)", default: "2021-01-01"}
+      to: {description: "終了日 (YYYY-MM-DD, 空なら今日)", default: ""}
+      budget_min: {description: "1回の取り込み時間（分）", default: "300"}
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: all-races
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install -r requirements.txt
+      - name: seed
+        run: |
+          if git fetch -q origin all-races; then git show origin/all-races:keiba_all.db.gz | gunzip > data/keiba_all.db
+          else cp data/keiba.db data/keiba_all.db; fi
+          python3 -c "import sqlite3;c=sqlite3.connect('data/keiba_all.db');print('races',c.execute('select count(*) from races').fetchone())"
+      - name: import
+        id: imp
+        continue-on-error: true
+        env:
+          KEIBA_DB: data/keiba_all.db
+          KEIBA_ALL_RACES: "1"
+        run: |
+          FROM="${{ inputs.from }}"; TO="${{ inputs.to }}"
+          if [ "${{ github.event_name }}" = "schedule" ]; then FROM=$(date -u -d '9 days ago' +%F); TO=$(date -u +%F); fi
+          [ -z "$FROM" ] && FROM=2021-01-01
+          [ -z "$TO" ] && TO=$(date -u +%F)
+          echo "取り込み期間: $FROM 〜 $TO"
+          python -m keiba.cli update-results --from "$FROM" --to "$TO" --time-budget-min "${{ inputs.budget_min || '120' }}" --newest-first
+      - name: save
+        run: |
+          python3 -c "import sqlite3;c=sqlite3.connect('data/keiba_all.db');print('races',c.execute('select count(*) from races').fetchone(), c.execute('select min(date),max(date) from races').fetchone())"
+          gzip -9 -c data/keiba_all.db > /tmp/keiba_all.db.gz
+          ls -la /tmp/keiba_all.db.gz
+          git config user.name "keiba-bot"; git config user.email "keiba-bot@users.noreply.github.com"
+          git checkout -q -f --orphan all-races-tmp
+          git rm -rq --cached . >/dev/null 2>&1 || true
+          cp /tmp/keiba_all.db.gz keiba_all.db.gz
+          git add keiba_all.db.gz
+          git commit -qm "all races $(date -u +%FT%H%M)"
+          git push -q -f origin HEAD:all-races
+      - name: continue
+        if: ${{ github.event_name == 'workflow_dispatch' && steps.imp.outputs.pending == 'true' && steps.imp.outputs.imported != '0' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run all-races.yml --ref main -f from="${{ inputs.from }}" -f to="${{ inputs.to }}" -f budget_min="${{ inputs.budget_min }}"
