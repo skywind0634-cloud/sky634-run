@@ -1,0 +1,117 @@
+{
+ "race": "2026年 ブリーダーズカップターフ（JRA 0:15頃のオッズ / 米国の予想オッズ(ML, FanDuel 10/27)）",
+ "runners": [
+  {
+   "num": 1,
+   "name": "エシカルダイヤモンド",
+   "global_odds": 11,
+   "jra_odds": 17.6,
+   "jra_pop": 8,
+   "jp": false
+  },
+  {
+   "num": 2,
+   "name": "ベンヴェヌートチェッリーニ",
+   "global_odds": 7,
+   "jra_odds": 4.4,
+   "jra_pop": 2,
+   "jp": false
+  },
+  {
+   "num": 3,
+   "name": "ミナレットステーション",
+   "global_odds": 16,
+   "jra_odds": 17.3,
+   "jra_pop": 7,
+   "jp": false
+  },
+  {
+   "num": 4,
+   "name": "ファーブリッジ",
+   "global_odds": 21,
+   "jra_odds": 58.9,
+   "jra_pop": 13,
+   "jp": false
+  },
+  {
+   "num": 5,
+   "name": "エルコルドベス",
+   "global_odds": 16,
+   "jra_odds": 25.8,
+   "jra_pop": 10,
+   "jp": false
+  },
+  {
+   "num": 6,
+   "name": "バーナムスクエア",
+   "global_odds": 9,
+   "jra_odds": 18.4,
+   "jra_pop": 9,
+   "jp": false
+  },
+  {
+   "num": 7,
+   "name": "ホタツェル",
+   "global_odds": 16,
+   "jra_odds": 13.6,
+   "jra_pop": 6,
+   "jp": false
+  },
+  {
+   "num": 9,
+   "name": "ジョアンナウォルシュ",
+   "global_odds": 13,
+   "jra_odds": 26.5,
+   "jra_pop": 11,
+   "jp": false
+  },
+  {
+   "num": 10,
+   "name": "ティファニー",
+   "global_odds": 11,
+   "jra_odds": 9.3,
+   "jra_pop": 5,
+   "jp": false
+  },
+  {
+   "num": 11,
+   "name": "シュルヴィー",
+   "global_odds": 16,
+   "jra_odds": 56.9,
+   "jra_pop": 12,
+   "jp": false
+  },
+  {
+   "num": 12,
+   "name": "ダイヤモンドネックレス",
+   "global_odds": 4,
+   "jra_odds": 3.7,
+   "jra_pop": 1,
+   "jp": false
+  },
+  {
+   "num": 13,
+   "name": "ベイシティローラー",
+   "global_odds": 6,
+   "jra_odds": 6.3,
+   "jra_pop": 3,
+   "jp": false
+  },
+  {
+   "num": 14,
+   "name": "ディープモンスター",
+   "global_odds": 31,
+   "jra_odds": 7.4,
+   "jra_pop": 4,
+   "jp": true
+  },
+  {
+   "num": 15,
+   "name": "マップオブスターズ",
+   "global_odds": 31,
+   "jra_odds": 80.2,
+   "jra_pop": 14,
+   "jp": false
+  }
+ ]
+}

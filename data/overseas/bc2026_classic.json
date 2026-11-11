@@ -1,0 +1,61 @@
+{
+ "race": "2026年 ブリーダーズカップクラシック（JRA 0:15頃のオッズ / 米国の予想オッズ(ML, FanDuel 10/27)）",
+ "runners": [
+  {
+   "num": 1,
+   "name": "テーオーパスワード",
+   "global_odds": 31,
+   "jra_odds": 73.9,
+   "jra_pop": 7,
+   "jp": true
+  },
+  {
+   "num": 2,
+   "name": "ソヴリンティ",
+   "global_odds": 3.5,
+   "jra_odds": 4.1,
+   "jra_pop": 2,
+   "jp": false
+  },
+  {
+   "num": 3,
+   "name": "ゴールデンテンポ",
+   "global_odds": 6,
+   "jra_odds": 8.2,
+   "jra_pop": 4,
+   "jp": false
+  },
+  {
+   "num": 4,
+   "name": "ザプーマ",
+   "global_odds": 11,
+   "jra_odds": 38.6,
+   "jra_pop": 6,
+   "jp": false
+  },
+  {
+   "num": 5,
+   "name": "フォーエバーヤング",
+   "global_odds": 3,
+   "jra_odds": 1.4,
+   "jra_pop": 1,
+   "jp": true
+  },
+  {
+   "num": 7,
+   "name": "ナイツブリッジ",
+   "global_odds": 5.5,
+   "jra_odds": 7.8,
+   "jra_pop": 3,
+   "jp": false
+  },
+  {
+   "num": 8,
+   "name": "ナポレオンソロ",
+   "global_odds": 16,
+   "jra_odds": 29.7,
+   "jra_pop": 5,
+   "jp": false
+  }
+ ]
+}

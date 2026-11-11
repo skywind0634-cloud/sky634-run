@@ -127,7 +127,7 @@ def main(pf, *cfs):
         for x in d["claims"]:
             if x["n_art"] >= 3:
                 claims.append(dict(x, source=src))
-    c = sqlite3.connect(ROOT / "data" / "keiba.db")
+    c = sqlite3.connect(Path(__import__("os").environ.get("ANALYSIS_DB") or (ROOT / "data" / "keiba.db")))
     claims = [dict(x, entity=x["entity"] + v, base=x["entity"]) for x in claims
               for v in (("", "（3代以内）", "（クロス）") if not x["entity"].startswith("父=") else ("",))]
     res = evaluate(claims, P, c)

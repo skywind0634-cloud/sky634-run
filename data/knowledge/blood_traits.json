@@ -9,49 +9,49 @@
    "cond": "ダート",
    "dir": "+",
    "source": "望田潤ブログ・坂上明大の血統査定",
-   "n_art": 16,
+   "n_art": 32,
    "urls": [
+    "https://nas-quillo.hatenablog.com/entry/0552544d262caafa10ce6dde6c459f84",
+    "https://nas-quillo.hatenablog.com/entry/1b3480924d2e814210603d95dedcbab8",
     "https://nas-quillo.hatenablog.com/entry/2026/01/14/153915",
     "https://nas-quillo.hatenablog.com/entry/2026/05/27/185132",
     "https://nas-quillo.hatenablog.com/entry/2026/09/17/074327",
-    "https://nas-quillo.hatenablog.com/entry/48d486aeffe04499cdd2c5df180f376a",
-    "https://nas-quillo.hatenablog.com/entry/6c3599f03b59f4b36d986c4bba2020a9",
     "https://tospo-keiba.jp/sakagamiblood/52206"
    ],
-   "n_run": 371,
-   "ae_in": 1.18,
-   "ae_out": 0.95,
-   "ratio": 1.243,
+   "n_run": 378,
+   "ae_in": 1.175,
+   "ae_out": 0.943,
+   "ratio": 1.245,
    "ae_in_3": [
     1.13,
     1.38,
-    1.13
+    1.12
    ],
    "ratio_3": [
     1.53,
     1.32,
     1.08
    ],
-   "win_ret": 84.3
+   "win_ret": 82.7
   },
   {
    "entity": "ドゥラメンテ",
    "cond": "長距離",
    "dir": "+",
    "source": "望田潤ブログ・坂上明大の血統査定",
-   "n_art": 19,
+   "n_art": 33,
    "urls": [
+    "https://nas-quillo.hatenablog.com/entry/0427aca103b4de884cc46b5b7dd2f120",
     "https://nas-quillo.hatenablog.com/entry/0498f41a2399ca88d43f714a3a5389de",
+    "https://nas-quillo.hatenablog.com/entry/15e7a7079fb2b84c0f69a6df2891d7ba",
+    "https://nas-quillo.hatenablog.com/entry/2026/11/03/115536",
     "https://nas-quillo.hatenablog.com/entry/2e60007b0809fb44f96fcb3e3bfd3942",
-    "https://nas-quillo.hatenablog.com/entry/572f0953695b4eb4f91718b7e3b31209",
-    "https://nas-quillo.hatenablog.com/entry/a426f90a3dbeb756e2d295dc9e3b03dd",
-    "https://nas-quillo.hatenablog.com/entry/f73f4c0c14d48d90ad7503711c048840",
     "https://tospo-keiba.jp/sakagamiblood/50445"
    ],
-   "n_run": 469,
-   "ae_in": 1.179,
-   "ae_out": 0.951,
-   "ratio": 1.24,
+   "n_run": 470,
+   "ae_in": 1.177,
+   "ae_out": 0.948,
+   "ratio": 1.241,
    "ae_in_3": [
     1.28,
     1.03,
@@ -62,7 +62,7 @@
     1.11,
     1.16
    ],
-   "win_ret": 70.6
+   "win_ret": 70.5
   },
   {
    "entity": "Nureyev（3代以内）",
@@ -77,129 +77,363 @@
     "https://tospo-keiba.jp/sakagamiblood/58515",
     "https://tospo-keiba.jp/sakagamiblood/60288"
    ],
-   "n_run": 530,
-   "ae_in": 1.126,
-   "ae_out": 0.916,
-   "ratio": 1.229,
+   "n_run": 531,
+   "ae_in": 1.125,
+   "ae_out": 0.919,
+   "ratio": 1.224,
    "ae_in_3": [
     1.03,
     1.31,
-    1.31
+    1.3
    ],
    "ratio_3": [
     1.13,
     1.41,
-    1.4
+    1.36
    ],
-   "win_ret": 70.8
+   "win_ret": 70.6
   },
   {
    "entity": "Kingmambo（クロス）",
    "cond": "持続",
    "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 31,
+   "source": "望田潤ブログ・坂上明大の血統査定",
+   "n_art": 35,
    "urls": [
+    "https://nas-quillo.hatenablog.com/entry/104a0c7c9e8cced853b3bf6ae8bc8157",
+    "https://nas-quillo.hatenablog.com/entry/45952d82201799b59142e2d7b85c8bd9",
+    "https://nas-quillo.hatenablog.com/entry/4a1535b98e1732eb965ae314604fc751",
+    "https://nas-quillo.hatenablog.com/entry/ba78c1cd1c178a9f4809c105dda0f068",
     "https://tospo-keiba.jp/sakagamiblood/50121",
-    "https://tospo-keiba.jp/sakagamiblood/50683",
-    "https://tospo-keiba.jp/sakagamiblood/51882",
-    "https://tospo-keiba.jp/sakagamiblood/52806",
-    "https://tospo-keiba.jp/sakagamiblood/54700"
+    "https://tospo-keiba.jp/sakagamiblood/50683"
    ],
-   "n_run": 472,
-   "ae_in": 1.14,
-   "ae_out": 0.932,
-   "ratio": 1.223,
+   "n_run": 480,
+   "ae_in": 1.134,
+   "ae_out": 0.929,
+   "ratio": 1.221,
    "ae_in_3": [
     1.02,
     1.32,
-    1.17
+    1.16
    ],
    "ratio_3": [
     1.37,
     1.19,
     1.26
    ],
-   "win_ret": 78.8
+   "win_ret": 77.5
   },
   {
    "entity": "モーリス",
    "cond": "大箱",
    "dir": "+",
    "source": "望田潤ブログ",
-   "n_art": 3,
+   "n_art": 16,
    "urls": [
-    "https://nas-quillo.hatenablog.com/entry/2026/04/11/093117",
-    "https://nas-quillo.hatenablog.com/entry/2026/07/30/081927",
-    "https://nas-quillo.hatenablog.com/entry/cb4605df72f9b7caf415afa5b2cbdb3f"
+    "https://nas-quillo.hatenablog.com/entry/00c8fe0e7cc4eff282345b56ab76a450",
+    "https://nas-quillo.hatenablog.com/entry/06a05d5ceabbae8559eac7db45b8c916",
+    "https://nas-quillo.hatenablog.com/entry/0e3a673a7220d726588a389491239b7c",
+    "https://nas-quillo.hatenablog.com/entry/1cd64fdaee6443555673b278e22c2dfd",
+    "https://nas-quillo.hatenablog.com/entry/2026/04/11/093117"
    ],
-   "n_run": 871,
-   "ae_in": 1.083,
+   "n_run": 896,
+   "ae_in": 1.091,
    "ae_out": 0.899,
-   "ratio": 1.204,
+   "ratio": 1.215,
    "ae_in_3": [
     1.09,
     1.01,
-    1.11
+    1.13
    ],
    "ratio_3": [
     1.23,
     1.12,
+    1.25
+   ],
+   "win_ret": 87.2
+  },
+  {
+   "entity": "Blushing Groom（3代以内）",
+   "cond": "短距離",
+   "dir": "+",
+   "source": "望田潤ブログ・坂上明大の血統査定",
+   "n_art": 13,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/01965fccbaa3b5f7457aeaf3a05ca317",
+    "https://nas-quillo.hatenablog.com/entry/03848c0ec160a72393054ee4b61353e9",
+    "https://nas-quillo.hatenablog.com/entry/1a7bafafb13d1d105f67e56f3bf4fba6",
+    "https://nas-quillo.hatenablog.com/entry/27eec4c074b7c4e494019aa5a2901947",
+    "https://nas-quillo.hatenablog.com/entry/3a8247137528966351850fddfd2d5ef8",
+    "https://tospo-keiba.jp/sakagamiblood/55980"
+   ],
+   "n_run": 438,
+   "ae_in": 1.183,
+   "ae_out": 0.98,
+   "ratio": 1.208,
+   "ae_in_3": [
+    1.15,
+    1.39,
+    1.08
+   ],
+   "ratio_3": [
+    1.21,
+    1.08,
     1.22
    ],
-   "win_ret": 89.2
+   "win_ret": 195.1
   },
   {
    "entity": "父=キズナ",
    "cond": "長距離",
    "dir": "+",
-   "source": "坂上明大の血統査定・望田潤ブログ",
-   "n_art": 30,
+   "source": "望田潤ブログ・坂上明大の血統査定",
+   "n_art": 33,
    "urls": [
-    "https://tospo-keiba.jp/sakagamiblood/49557",
-    "https://tospo-keiba.jp/sakagamiblood/49845",
-    "https://tospo-keiba.jp/sakagamiblood/50445",
-    "https://tospo-keiba.jp/sakagamiblood/52206",
-    "https://tospo-keiba.jp/sakagamiblood/53047",
-    "https://nas-quillo.hatenablog.com/entry/2026/10/07/095659"
+    "https://nas-quillo.hatenablog.com/entry/01383fb0f13fddb8790784e7c690037b",
+    "https://nas-quillo.hatenablog.com/entry/2ff4aaed3e1beb8af65304cc4d79e92c",
+    "https://nas-quillo.hatenablog.com/entry/32fecc87eab5be6113421391552f8326",
+    "https://nas-quillo.hatenablog.com/entry/594ca2392832483d20e720a05a519b50",
+    "https://nas-quillo.hatenablog.com/entry/b7479e804c2bbd99f342ae3d1a8846ff",
+    "https://tospo-keiba.jp/sakagamiblood/49557"
    ],
-   "n_run": 632,
-   "ae_in": 1.206,
-   "ae_out": 1.007,
-   "ratio": 1.197,
+   "n_run": 637,
+   "ae_in": 1.207,
+   "ae_out": 1.005,
+   "ratio": 1.201,
    "ae_in_3": [
     1.28,
     1.18,
-    1.15
+    1.16
    ],
    "ratio_3": [
     1.2,
     1.22,
-    1.22
+    1.24
    ],
    "win_ret": 84.5
+  },
+  {
+   "entity": "Acropolis",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 6,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/18c906b249673dcf2c10f92c42789ba3",
+    "https://nas-quillo.hatenablog.com/entry/2fa4a8417baf3725e7d782c047b13e59",
+    "https://nas-quillo.hatenablog.com/entry/71ece8a6bd757b9f89faf918968cff34",
+    "https://nas-quillo.hatenablog.com/entry/909c9977e8e2f55bbe96fa4db95be2ff",
+    "https://nas-quillo.hatenablog.com/entry/af591788b247ea73dbc2b16b3595e959"
+   ],
+   "n_run": 646,
+   "ae_in": 1.202,
+   "ae_out": 1.002,
+   "ratio": 1.2,
+   "ae_in_3": [
+    1.27,
+    1.18,
+    1.16
+   ],
+   "ratio_3": [
+    1.2,
+    1.21,
+    1.24
+   ],
+   "win_ret": 83.3
+  },
+  {
+   "entity": "Secretariat（クロス）",
+   "cond": "瞬発",
+   "dir": "+",
+   "source": "望田潤ブログ・坂上明大の血統査定",
+   "n_art": 8,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/2026/02/23/100345",
+    "https://nas-quillo.hatenablog.com/entry/6d444fd3787951cd2e6fd773e830530c",
+    "https://nas-quillo.hatenablog.com/entry/a943bf221df677f20e51fe95991671ff",
+    "https://tospo-keiba.jp/sakagamiblood/60764",
+    "https://tospo-keiba.jp/sakagamiblood/63482",
+    "https://tospo-keiba.jp/sakagamiblood/64886"
+   ],
+   "n_run": 300,
+   "ae_in": 1.178,
+   "ae_out": 0.983,
+   "ratio": 1.198,
+   "ae_in_3": [
+    1.16,
+    1.24,
+    1.16
+   ],
+   "ratio_3": [
+    1.16,
+    1.27,
+    1.2
+   ],
+   "win_ret": 37.3
+  },
+  {
+   "entity": "Unbridled's Song",
+   "cond": "早熟",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/649347c2cebd048bfed57e05ea7f3974",
+    "https://nas-quillo.hatenablog.com/entry/78fa14b68fb2955b4346fc29c4c39be8",
+    "https://nas-quillo.hatenablog.com/entry/8ad92921993f06516ae433539a6acca1",
+    "https://nas-quillo.hatenablog.com/entry/c76a462f3670f81ba5a0838c6157f5c3"
+   ],
+   "n_run": 1374,
+   "ae_in": 1.074,
+   "ae_out": 0.901,
+   "ratio": 1.192,
+   "ae_in_3": [
+    1.09,
+    1.16,
+    1.02
+   ],
+   "ratio_3": [
+    1.14,
+    1.28,
+    1.23
+   ],
+   "win_ret": 89.6
+  },
+  {
+   "entity": "Unbridled's Song（3代以内）",
+   "cond": "早熟",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/649347c2cebd048bfed57e05ea7f3974",
+    "https://nas-quillo.hatenablog.com/entry/78fa14b68fb2955b4346fc29c4c39be8",
+    "https://nas-quillo.hatenablog.com/entry/8ad92921993f06516ae433539a6acca1",
+    "https://nas-quillo.hatenablog.com/entry/c76a462f3670f81ba5a0838c6157f5c3"
+   ],
+   "n_run": 1312,
+   "ae_in": 1.068,
+   "ae_out": 0.9,
+   "ratio": 1.187,
+   "ae_in_3": [
+    1.09,
+    1.15,
+    1.01
+   ],
+   "ratio_3": [
+    1.14,
+    1.25,
+    1.23
+   ],
+   "win_ret": 90.9
+  },
+  {
+   "entity": "Sadler's Wells（3代以内）",
+   "cond": "洋芝",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 5,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/40d031e7222b64e6578ba9b39329c51f",
+    "https://nas-quillo.hatenablog.com/entry/593ea1adf72890a7e29a1eb3a684c2df",
+    "https://nas-quillo.hatenablog.com/entry/8b308e4b28c88ed38ddfbab271ff1273",
+    "https://nas-quillo.hatenablog.com/entry/d0335c4f2b2ebc9dce1b1654b0e5754e",
+    "https://nas-quillo.hatenablog.com/entry/fe6af6a8bfed206a44c671d360db88c3"
+   ],
+   "n_run": 321,
+   "ae_in": 1.134,
+   "ae_out": 0.961,
+   "ratio": 1.18,
+   "ae_in_3": [
+    1.14,
+    1.1,
+    1.13
+   ],
+   "ratio_3": [
+    1.19,
+    1.09,
+    1.19
+   ],
+   "win_ret": 52.3
+  },
+  {
+   "entity": "ステラマドリッド",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/22bcdcc00a1d1fe573e3666c581713af",
+    "https://nas-quillo.hatenablog.com/entry/a2289b58f68fe81767484ec714d758e4",
+    "https://nas-quillo.hatenablog.com/entry/b041b560db0ca219ca253b74b2cc8e6b"
+   ],
+   "n_run": 379,
+   "ae_in": 1.186,
+   "ae_out": 1.014,
+   "ratio": 1.17,
+   "ae_in_3": [
+    1.16,
+    1.19,
+    1.22
+   ],
+   "ratio_3": [
+    1.12,
+    1.3,
+    1.17
+   ],
+   "win_ret": 112.4
+  },
+  {
+   "entity": "ヘニーヒューズ",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 8,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/11abfb0057ce22e21da968d360fa1b54",
+    "https://nas-quillo.hatenablog.com/entry/2a22a17e6498b9afa6bd2665bfac22bf",
+    "https://nas-quillo.hatenablog.com/entry/367c91ffb21dcb1f9463631b3443bbcf",
+    "https://nas-quillo.hatenablog.com/entry/50467f8b28a231c0e6c43fc3fb99a0c7",
+    "https://nas-quillo.hatenablog.com/entry/94142afcfcef906cec89e17d5174aeb3"
+   ],
+   "n_run": 1463,
+   "ae_in": 1.091,
+   "ae_out": 0.938,
+   "ratio": 1.164,
+   "ae_in_3": [
+    1.12,
+    1.15,
+    1.0
+   ],
+   "ratio_3": [
+    1.17,
+    1.17,
+    1.16
+   ],
+   "win_ret": 57.2
   },
   {
    "entity": "Seattle Slew（クロス）",
    "cond": "ダート",
    "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 20,
+   "source": "望田潤ブログ・坂上明大の血統査定",
+   "n_art": 35,
    "urls": [
-    "https://tospo-keiba.jp/sakagamiblood/50966",
-    "https://tospo-keiba.jp/sakagamiblood/51275",
-    "https://tospo-keiba.jp/sakagamiblood/53451",
-    "https://tospo-keiba.jp/sakagamiblood/56816",
-    "https://tospo-keiba.jp/sakagamiblood/57240"
+    "https://nas-quillo.hatenablog.com/entry/0424e54a2a9d121f898d49f081755970",
+    "https://nas-quillo.hatenablog.com/entry/0b9a3dba052208b4061b6c2149b9c019",
+    "https://nas-quillo.hatenablog.com/entry/3c854d95c748f5db2ff0cb74f7755c22",
+    "https://nas-quillo.hatenablog.com/entry/4453bd7224b16ced7a695815ba5b98c3",
+    "https://nas-quillo.hatenablog.com/entry/5e6bd612712535ff6e2effdce9ebef08",
+    "https://tospo-keiba.jp/sakagamiblood/50966"
    ],
-   "n_run": 1262,
-   "ae_in": 1.076,
-   "ae_out": 0.931,
-   "ratio": 1.155,
+   "n_run": 1271,
+   "ae_in": 1.079,
+   "ae_out": 0.932,
+   "ratio": 1.157,
    "ae_in_3": [
     1.03,
     1.12,
-    1.09
+    1.1
    ],
    "ratio_3": [
     1.03,
@@ -209,50 +443,110 @@
    "win_ret": 92.8
   },
   {
+   "entity": "アフリート",
+   "cond": "ダート",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 8,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/16689f39eddf11a6cdc7dfc4448cb930",
+    "https://nas-quillo.hatenablog.com/entry/25c1fd5c6aa0330e57a262df988be81e",
+    "https://nas-quillo.hatenablog.com/entry/41642d890879969021607326c8117bc7",
+    "https://nas-quillo.hatenablog.com/entry/507af7b529e7a85a4ae0a1e450f823f5",
+    "https://nas-quillo.hatenablog.com/entry/79764144d14279effeec04680199e3d3"
+   ],
+   "n_run": 1937,
+   "ae_in": 1.024,
+   "ae_out": 0.888,
+   "ratio": 1.154,
+   "ae_in_3": [
+    1.01,
+    1.1,
+    1.01
+   ],
+   "ratio_3": [
+    1.07,
+    1.22,
+    1.33
+   ],
+   "win_ret": 108.6
+  },
+  {
    "entity": "マンハッタンカフェ",
    "cond": "長距離",
    "dir": "+",
    "source": "望田潤ブログ・坂上明大の血統査定",
-   "n_art": 9,
+   "n_art": 20,
    "urls": [
+    "https://nas-quillo.hatenablog.com/entry/0b0f7c5db16fe9a294e5b0b5bf6c228e",
+    "https://nas-quillo.hatenablog.com/entry/0e1d1e09d0389beff7bd35a935f96eab",
     "https://nas-quillo.hatenablog.com/entry/2025/09/19/095917",
     "https://nas-quillo.hatenablog.com/entry/2026/04/07/235623",
     "https://nas-quillo.hatenablog.com/entry/2026/05/10/091314",
-    "https://nas-quillo.hatenablog.com/entry/2026/05/16/090740",
-    "https://nas-quillo.hatenablog.com/entry/594ca2392832483d20e720a05a519b50",
     "https://tospo-keiba.jp/sakagamiblood/57237"
    ],
-   "n_run": 328,
-   "ae_in": 1.205,
+   "n_run": 330,
+   "ae_in": 1.207,
    "ae_out": 1.048,
-   "ratio": 1.15,
+   "ratio": 1.152,
    "ae_in_3": [
     1.17,
     1.54,
-    1.09
+    1.1
    ],
    "ratio_3": [
     1.1,
     1.37,
     1.11
    ],
-   "win_ret": 60.5
+   "win_ret": 61.4
+  },
+  {
+   "entity": "マルゼンスキー（3代以内）",
+   "cond": "小回り",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 5,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/3b02da6fbbfa69485d38010261bb23c1",
+    "https://nas-quillo.hatenablog.com/entry/55256479c981b5c2b7bbf8a61eab1770",
+    "https://nas-quillo.hatenablog.com/entry/c3794bd39e6f8c1385ec2fe473679dd3",
+    "https://nas-quillo.hatenablog.com/entry/e4e11686ef189e01adc299f09faa5cd7",
+    "https://nas-quillo.hatenablog.com/entry/f388410f9fea02eba99cec720bab12c2"
+   ],
+   "n_run": 411,
+   "ae_in": 1.11,
+   "ae_out": 0.964,
+   "ratio": 1.152,
+   "ae_in_3": [
+    1.05,
+    1.11,
+    1.31
+   ],
+   "ratio_3": [
+    1.02,
+    1.5,
+    1.55
+   ],
+   "win_ret": 102.1
   },
   {
    "entity": "Darshaan",
    "cond": "小回り",
    "dir": "+",
    "source": "望田潤ブログ",
-   "n_art": 3,
+   "n_art": 8,
    "urls": [
     "https://nas-quillo.hatenablog.com/entry/0774ba8e92d6d9826d9e0bf1b1fc12dc",
     "https://nas-quillo.hatenablog.com/entry/2026/03/04/110445",
-    "https://nas-quillo.hatenablog.com/entry/f73f4c0c14d48d90ad7503711c048840"
+    "https://nas-quillo.hatenablog.com/entry/34bb189d22ca1de3646b1161039775cf",
+    "https://nas-quillo.hatenablog.com/entry/636fa1ab6bdcac171a041060aad86d49",
+    "https://nas-quillo.hatenablog.com/entry/7a90462d47bb23315d3736f06c7960e0"
    ],
-   "n_run": 1658,
-   "ae_in": 1.049,
-   "ae_out": 0.914,
-   "ratio": 1.148,
+   "n_run": 1662,
+   "ae_in": 1.048,
+   "ae_out": 0.918,
+   "ratio": 1.142,
    "ae_in_3": [
     1.05,
     1.15,
@@ -261,27 +555,140 @@
    "ratio_3": [
     1.18,
     1.29,
-    1.05
+    1.04
    ],
-   "win_ret": 83.8
+   "win_ret": 83.7
+  },
+  {
+   "entity": "Bold Reason",
+   "cond": "洋芝",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/40d031e7222b64e6578ba9b39329c51f",
+    "https://nas-quillo.hatenablog.com/entry/875b7aee2672facd9f55f71f94a331fa",
+    "https://nas-quillo.hatenablog.com/entry/8b308e4b28c88ed38ddfbab271ff1273",
+    "https://nas-quillo.hatenablog.com/entry/e0b5b1add95f3c818a5bbc3163d248ae"
+   ],
+   "n_run": 409,
+   "ae_in": 1.115,
+   "ae_out": 0.978,
+   "ratio": 1.14,
+   "ae_in_3": [
+    1.12,
+    1.09,
+    1.1
+   ],
+   "ratio_3": [
+    1.14,
+    1.13,
+    1.15
+   ],
+   "win_ret": 61.2
+  },
+  {
+   "entity": "Gone West",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 9,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/11a271d28d6f981e2ad69157b0f67be3",
+    "https://nas-quillo.hatenablog.com/entry/11abfb0057ce22e21da968d360fa1b54",
+    "https://nas-quillo.hatenablog.com/entry/58e9b6a40da7fc15f2037ac8ed41b2f6",
+    "https://nas-quillo.hatenablog.com/entry/6923eac24cfb6db40538ae697cb24bf7",
+    "https://nas-quillo.hatenablog.com/entry/7b97e46e1bb39bd3ecfd9fe3d664b42d"
+   ],
+   "n_run": 544,
+   "ae_in": 1.093,
+   "ae_out": 0.961,
+   "ratio": 1.138,
+   "ae_in_3": [
+    1.09,
+    1.1,
+    1.1
+   ],
+   "ratio_3": [
+    1.11,
+    1.15,
+    1.17
+   ],
+   "win_ret": 50.4
+  },
+  {
+   "entity": "Vaguely Noble",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 8,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/2026/05/24/085844",
+    "https://nas-quillo.hatenablog.com/entry/3575048d9c94a5009be9f77ddb05cce1",
+    "https://nas-quillo.hatenablog.com/entry/636fa1ab6bdcac171a041060aad86d49",
+    "https://nas-quillo.hatenablog.com/entry/64e662dde4a316155a959bd7b582b74d",
+    "https://nas-quillo.hatenablog.com/entry/9f6e2acde7d76a398acbaf99a447d43b"
+   ],
+   "n_run": 1613,
+   "ae_in": 1.127,
+   "ae_out": 0.995,
+   "ratio": 1.133,
+   "ae_in_3": [
+    1.15,
+    1.01,
+    1.16
+   ],
+   "ratio_3": [
+    1.14,
+    1.04,
+    1.19
+   ],
+   "win_ret": 82.1
+  },
+  {
+   "entity": "Unbridled（3代以内）",
+   "cond": "道悪",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/bf3c3088206aa2452e23c3ac4e8c6d26",
+    "https://nas-quillo.hatenablog.com/entry/c0a0a7369529af7133d551f07f9b85be",
+    "https://nas-quillo.hatenablog.com/entry/d13e767891778e17d7524477a6b542d4"
+   ],
+   "n_run": 1477,
+   "ae_in": 1.109,
+   "ae_out": 0.979,
+   "ratio": 1.132,
+   "ae_in_3": [
+    1.13,
+    1.01,
+    1.13
+   ],
+   "ratio_3": [
+    1.15,
+    1.03,
+    1.15
+   ],
+   "win_ret": 88.1
   },
   {
    "entity": "オルフェーヴル",
    "cond": "小回り",
    "dir": "+",
    "source": "望田潤ブログ",
-   "n_art": 5,
+   "n_art": 26,
    "urls": [
+    "https://nas-quillo.hatenablog.com/entry/05ab613c13c3b0f3d0314fa0dcc1e230",
+    "https://nas-quillo.hatenablog.com/entry/1d1ad67c554833a2390ba6ba2aeb4818",
     "https://nas-quillo.hatenablog.com/entry/2026/01/12/095047",
     "https://nas-quillo.hatenablog.com/entry/2026/05/31/092358",
-    "https://nas-quillo.hatenablog.com/entry/65a91fa3a5cbd9836cc31e00f43bb915",
-    "https://nas-quillo.hatenablog.com/entry/bbe0b1bb489e167e39211885f423c56a",
-    "https://nas-quillo.hatenablog.com/entry/e7753fb10f93ee09fd5de1e0c22ba55a"
+    "https://nas-quillo.hatenablog.com/entry/283a843b91a8f4691c1fa4d18bb2513e"
    ],
-   "n_run": 1368,
-   "ae_in": 1.115,
-   "ae_out": 0.975,
-   "ratio": 1.144,
+   "n_run": 1370,
+   "ae_in": 1.113,
+   "ae_out": 0.984,
+   "ratio": 1.131,
    "ae_in_3": [
     1.15,
     1.14,
@@ -290,28 +697,85 @@
    "ratio_3": [
     1.13,
     1.3,
-    1.13
+    1.08
    ],
-   "win_ret": 99.9
+   "win_ret": 99.8
+  },
+  {
+   "entity": "Terlingua（クロス）",
+   "cond": "道悪",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 5,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/16689f39eddf11a6cdc7dfc4448cb930",
+    "https://nas-quillo.hatenablog.com/entry/475b33c2cd65fb7699b6940d4242ce24",
+    "https://nas-quillo.hatenablog.com/entry/92c2a70b1996cc84fccd4ea8ce63269e",
+    "https://nas-quillo.hatenablog.com/entry/a9b03183a099d8b4f348f0c1d2b1304c",
+    "https://nas-quillo.hatenablog.com/entry/fe215b67365ea2a3e503ca361e9eab72"
+   ],
+   "n_run": 465,
+   "ae_in": 1.122,
+   "ae_out": 0.992,
+   "ratio": 1.131,
+   "ae_in_3": [
+    1.12,
+    1.18,
+    1.11
+   ],
+   "ratio_3": [
+    1.16,
+    1.29,
+    1.07
+   ],
+   "win_ret": 46.6
+  },
+  {
+   "entity": "ヘネシー（3代以内）",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/2025/12/14/092453",
+    "https://nas-quillo.hatenablog.com/entry/314d63fb4b4d05d3a36c7e71e8a9f16b",
+    "https://nas-quillo.hatenablog.com/entry/abe1100519e9aecb0d799514d09c029f",
+    "https://nas-quillo.hatenablog.com/entry/e1a2ebb0b18b84dd88edd8c41de48b6a"
+   ],
+   "n_run": 1989,
+   "ae_in": 1.092,
+   "ae_out": 0.965,
+   "ratio": 1.131,
+   "ae_in_3": [
+    1.1,
+    1.09,
+    1.08
+   ],
+   "ratio_3": [
+    1.18,
+    1.04,
+    1.11
+   ],
+   "win_ret": 66.9
   },
   {
    "entity": "オルフェーヴル",
    "cond": "長距離",
    "dir": "+",
    "source": "望田潤ブログ・坂上明大の血統査定",
-   "n_art": 22,
+   "n_art": 48,
    "urls": [
     "https://nas-quillo.hatenablog.com/entry/0498f41a2399ca88d43f714a3a5389de",
     "https://nas-quillo.hatenablog.com/entry/08e8ef72430f576ec748ec4d88e3ea83",
-    "https://nas-quillo.hatenablog.com/entry/2026/10/07/095659",
-    "https://nas-quillo.hatenablog.com/entry/2026/10/21/114458",
-    "https://nas-quillo.hatenablog.com/entry/4033022754161dbb89ea2b2433df6f1a",
+    "https://nas-quillo.hatenablog.com/entry/15e7a7079fb2b84c0f69a6df2891d7ba",
+    "https://nas-quillo.hatenablog.com/entry/1835d59dc318c5d88e62008edcc00fdb",
+    "https://nas-quillo.hatenablog.com/entry/1bf593b20cba8a156737b9f7c6b7b718",
     "https://tospo-keiba.jp/sakagamiblood/52204"
    ],
-   "n_run": 462,
+   "n_run": 463,
    "ae_in": 1.157,
-   "ae_out": 1.022,
-   "ratio": 1.133,
+   "ae_out": 1.025,
+   "ratio": 1.128,
    "ae_in_3": [
     1.2,
     1.06,
@@ -320,81 +784,82 @@
    "ratio_3": [
     1.14,
     1.05,
-    1.15
+    1.13
    ],
-   "win_ret": 78.9
+   "win_ret": 78.7
   },
   {
-   "entity": "キズナ",
-   "cond": "瞬発",
+   "entity": "アフリート（3代以内）",
+   "cond": "ダート",
    "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 13,
+   "source": "望田潤ブログ",
+   "n_art": 8,
    "urls": [
-    "https://tospo-keiba.jp/sakagamiblood/49557",
-    "https://tospo-keiba.jp/sakagamiblood/51586",
-    "https://tospo-keiba.jp/sakagamiblood/52206",
-    "https://tospo-keiba.jp/sakagamiblood/54699",
-    "https://tospo-keiba.jp/sakagamiblood/57237"
+    "https://nas-quillo.hatenablog.com/entry/16689f39eddf11a6cdc7dfc4448cb930",
+    "https://nas-quillo.hatenablog.com/entry/25c1fd5c6aa0330e57a262df988be81e",
+    "https://nas-quillo.hatenablog.com/entry/41642d890879969021607326c8117bc7",
+    "https://nas-quillo.hatenablog.com/entry/507af7b529e7a85a4ae0a1e450f823f5",
+    "https://nas-quillo.hatenablog.com/entry/79764144d14279effeec04680199e3d3"
    ],
-   "n_run": 750,
-   "ae_in": 1.146,
-   "ae_out": 1.011,
-   "ratio": 1.133,
+   "n_run": 1628,
+   "ae_in": 1.023,
+   "ae_out": 0.908,
+   "ratio": 1.127,
    "ae_in_3": [
-    1.26,
-    1.18,
+    1.02,
+    1.04,
     1.02
    ],
    "ratio_3": [
-    1.19,
-    1.23,
-    1.05
+    1.06,
+    1.11,
+    1.31
    ],
-   "win_ret": 67.2
+   "win_ret": 114.8
   },
   {
-   "entity": "ヘネシー（3代以内）",
-   "cond": "マイル",
+   "entity": "Venetian Jester",
+   "cond": "ダート",
    "dir": "+",
    "source": "望田潤ブログ",
    "n_art": 3,
    "urls": [
-    "https://nas-quillo.hatenablog.com/entry/2025/12/14/092453",
-    "https://nas-quillo.hatenablog.com/entry/314d63fb4b4d05d3a36c7e71e8a9f16b",
-    "https://nas-quillo.hatenablog.com/entry/abe1100519e9aecb0d799514d09c029f"
+    "https://nas-quillo.hatenablog.com/entry/16689f39eddf11a6cdc7dfc4448cb930",
+    "https://nas-quillo.hatenablog.com/entry/79764144d14279effeec04680199e3d3",
+    "https://nas-quillo.hatenablog.com/entry/d90a9d7f40a2933dba417e5c11497f97"
    ],
-   "n_run": 1973,
-   "ae_in": 1.092,
-   "ae_out": 0.964,
-   "ratio": 1.132,
+   "n_run": 1628,
+   "ae_in": 1.023,
+   "ae_out": 0.908,
+   "ratio": 1.127,
    "ae_in_3": [
-    1.1,
-    1.09,
-    1.08
+    1.02,
+    1.04,
+    1.02
    ],
    "ratio_3": [
-    1.19,
-    1.04,
-    1.11
+    1.06,
+    1.11,
+    1.31
    ],
-   "win_ret": 67.4
+   "win_ret": 114.8
   },
   {
    "entity": "ヘネシー",
    "cond": "マイル",
    "dir": "+",
    "source": "望田潤ブログ",
-   "n_art": 3,
+   "n_art": 4,
    "urls": [
     "https://nas-quillo.hatenablog.com/entry/2025/12/14/092453",
     "https://nas-quillo.hatenablog.com/entry/314d63fb4b4d05d3a36c7e71e8a9f16b",
-    "https://nas-quillo.hatenablog.com/entry/abe1100519e9aecb0d799514d09c029f"
+    "https://nas-quillo.hatenablog.com/entry/abe1100519e9aecb0d799514d09c029f",
+    "https://nas-quillo.hatenablog.com/entry/e1a2ebb0b18b84dd88edd8c41de48b6a"
    ],
-   "n_run": 2396,
+   "n_run": 2421,
    "ae_in": 1.079,
-   "ae_out": 0.958,
-   "ratio": 1.126,
+   "ae_out": 0.959,
+   "ratio": 1.125,
    "ae_in_3": [
     1.1,
     1.09,
@@ -405,26 +870,307 @@
     1.09,
     1.09
    ],
-   "win_ret": 65.5
+   "win_ret": 65.0
+  },
+  {
+   "entity": "エアグルーヴ（3代以内）",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 6,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/05ab613c13c3b0f3d0314fa0dcc1e230",
+    "https://nas-quillo.hatenablog.com/entry/68470e70b13807f918582efc25e72c26",
+    "https://nas-quillo.hatenablog.com/entry/891fc50af9fde2e427e3d23ef8971483",
+    "https://nas-quillo.hatenablog.com/entry/9207b09e2c828927d1634e2d8094f961",
+    "https://nas-quillo.hatenablog.com/entry/9821478245ba8a313c29b392f6bd196a"
+   ],
+   "n_run": 1154,
+   "ae_in": 1.089,
+   "ae_out": 0.969,
+   "ratio": 1.124,
+   "ae_in_3": [
+    1.14,
+    1.04,
+    1.03
+   ],
+   "ratio_3": [
+    1.16,
+    1.05,
+    1.11
+   ],
+   "win_ret": 57.1
+  },
+  {
+   "entity": "ハーツクライ",
+   "cond": "洋芝",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 6,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/77a08451fbc9535c9102c481aad2c72a",
+    "https://nas-quillo.hatenablog.com/entry/7a90462d47bb23315d3736f06c7960e0",
+    "https://nas-quillo.hatenablog.com/entry/8e64f315ada556e374a0efd87e558052",
+    "https://nas-quillo.hatenablog.com/entry/9803f56ae2633660af65f90ca6ce1995",
+    "https://nas-quillo.hatenablog.com/entry/a6b271a3c1d8091c01b8ced4a53260cb"
+   ],
+   "n_run": 620,
+   "ae_in": 1.084,
+   "ae_out": 0.966,
+   "ratio": 1.122,
+   "ae_in_3": [
+    1.04,
+    1.14,
+    1.12
+   ],
+   "ratio_3": [
+    1.06,
+    1.18,
+    1.19
+   ],
+   "win_ret": 90.4
+  },
+  {
+   "entity": "ヨハネスブルグ（3代以内）",
+   "cond": "小回り",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/4218891f23ef5eb881dbbf8482f67714",
+    "https://nas-quillo.hatenablog.com/entry/8353700d6f80f3bb5ec0ab631f384dfa",
+    "https://nas-quillo.hatenablog.com/entry/c4ce8b62f11355cc72204c33eb0a5b96",
+    "https://nas-quillo.hatenablog.com/entry/e4dd6c8bb7edfcf425ae83e7102dff04"
+   ],
+   "n_run": 776,
+   "ae_in": 1.054,
+   "ae_out": 0.942,
+   "ratio": 1.119,
+   "ae_in_3": [
+    1.02,
+    1.08,
+    1.06
+   ],
+   "ratio_3": [
+    1.15,
+    1.18,
+    1.07
+   ],
+   "win_ret": 134.1
+  },
+  {
+   "entity": "ダイナカール",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/1a341b57b423aa06e7d2b283fc243ae1",
+    "https://nas-quillo.hatenablog.com/entry/55256479c981b5c2b7bbf8a61eab1770",
+    "https://nas-quillo.hatenablog.com/entry/7c5896a1e266aedd2a8d7ad626ad6460"
+   ],
+   "n_run": 1190,
+   "ae_in": 1.084,
+   "ae_out": 0.968,
+   "ratio": 1.119,
+   "ae_in_3": [
+    1.13,
+    1.04,
+    1.02
+   ],
+   "ratio_3": [
+    1.16,
+    1.05,
+    1.1
+   ],
+   "win_ret": 56.8
+  },
+  {
+   "entity": "Cozzene（3代以内）",
+   "cond": "牝馬",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/2026/04/14/002221",
+    "https://nas-quillo.hatenablog.com/entry/2026/08/06/091409",
+    "https://nas-quillo.hatenablog.com/entry/2e9e99ca41ff290a53c71704fa135008"
+   ],
+   "n_run": 1023,
+   "ae_in": 1.097,
+   "ae_out": 0.981,
+   "ratio": 1.118,
+   "ae_in_3": [
+    1.13,
+    1.17,
+    1.01
+   ],
+   "ratio_3": [
+    1.13,
+    1.22,
+    1.04
+   ],
+   "win_ret": 123.7
+  },
+  {
+   "entity": "パイロ",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 7,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/054617756f66e564cc5eade39a84363f",
+    "https://nas-quillo.hatenablog.com/entry/0a1850ab60d1f5e989e4cb2b0d012f28",
+    "https://nas-quillo.hatenablog.com/entry/33a1395634d9be74884a7171fc063aad",
+    "https://nas-quillo.hatenablog.com/entry/3fbf06e66a41ed6ceabdd7c4266c9121",
+    "https://nas-quillo.hatenablog.com/entry/604603acdea3a3c1b424dcd14c77aec5"
+   ],
+   "n_run": 316,
+   "ae_in": 1.146,
+   "ae_out": 1.026,
+   "ratio": 1.117,
+   "ae_in_3": [
+    1.1,
+    1.16,
+    1.22
+   ],
+   "ratio_3": [
+    1.05,
+    1.2,
+    1.19
+   ],
+   "win_ret": 247.0
+  },
+  {
+   "entity": "Darshaan",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 5,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/37e78adaddd183f51ea2f0378413f281",
+    "https://nas-quillo.hatenablog.com/entry/7a90462d47bb23315d3736f06c7960e0",
+    "https://nas-quillo.hatenablog.com/entry/858562eff19e567914677035add22d2c",
+    "https://nas-quillo.hatenablog.com/entry/ea03f1b42b15f64b7ac27e7d29f57bcc",
+    "https://nas-quillo.hatenablog.com/entry/f8ba3f1fe40582d20dfaa87863d84e9c"
+   ],
+   "n_run": 1055,
+   "ae_in": 1.062,
+   "ae_out": 0.951,
+   "ratio": 1.117,
+   "ae_in_3": [
+    1.01,
+    1.11,
+    1.1
+   ],
+   "ratio_3": [
+    1.06,
+    1.13,
+    1.17
+   ],
+   "win_ret": 95.6
+  },
+  {
+   "entity": "エルコンドルパサー（3代以内）",
+   "cond": "ダート",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/2f979776aaa0258a1e7c5b259f81beba",
+    "https://nas-quillo.hatenablog.com/entry/bbab2832dfd95b26111e8a08292a6097",
+    "https://nas-quillo.hatenablog.com/entry/c89fc33789baf7beab2e808d111b1855"
+   ],
+   "n_run": 911,
+   "ae_in": 1.081,
+   "ae_out": 0.97,
+   "ratio": 1.114,
+   "ae_in_3": [
+    1.06,
+    1.06,
+    1.12
+   ],
+   "ratio_3": [
+    1.18,
+    1.03,
+    1.07
+   ],
+   "win_ret": 103.0
+  },
+  {
+   "entity": "ダイワメジャー",
+   "cond": "道悪",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 26,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/00d35f3805578829d2a24e1330e04523",
+    "https://nas-quillo.hatenablog.com/entry/04d4c16a84b8b0a1b96c683c2a543859",
+    "https://nas-quillo.hatenablog.com/entry/1a7bafafb13d1d105f67e56f3bf4fba6",
+    "https://nas-quillo.hatenablog.com/entry/1e5c8b2d7b4f562fc277005550748582",
+    "https://nas-quillo.hatenablog.com/entry/2026/04/14/002221"
+   ],
+   "n_run": 1762,
+   "ae_in": 1.019,
+   "ae_out": 0.916,
+   "ratio": 1.113,
+   "ae_in_3": [
+    1.01,
+    1.09,
+    1.01
+   ],
+   "ratio_3": [
+    1.15,
+    1.18,
+    1.03
+   ],
+   "win_ret": 65.4
+  },
+  {
+   "entity": "Storm Bird（クロス）",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/03db7689fa13b90f1c030b5c1124cf7b",
+    "https://nas-quillo.hatenablog.com/entry/24bc5df79f1a6153d00aaf5386b30917",
+    "https://nas-quillo.hatenablog.com/entry/6d1aacd92fffe739e7df118123581761"
+   ],
+   "n_run": 885,
+   "ae_in": 1.14,
+   "ae_out": 1.024,
+   "ratio": 1.113,
+   "ae_in_3": [
+    1.2,
+    1.12,
+    1.13
+   ],
+   "ratio_3": [
+    1.16,
+    1.11,
+    1.1
+   ],
+   "win_ret": 68.8
   },
   {
    "entity": "Roberto（3代以内）",
    "cond": "持続",
    "dir": "+",
    "source": "望田潤ブログ・坂上明大の血統査定",
-   "n_art": 14,
+   "n_art": 27,
    "urls": [
+    "https://nas-quillo.hatenablog.com/entry/104a0c7c9e8cced853b3bf6ae8bc8157",
     "https://nas-quillo.hatenablog.com/entry/2026/04/22/102829",
     "https://nas-quillo.hatenablog.com/entry/2026/05/06/144632",
-    "https://nas-quillo.hatenablog.com/entry/3828a9f976d5184f14ef7e12b557e87b",
-    "https://nas-quillo.hatenablog.com/entry/8243044a1e5406fe7abeea485350e6ad",
-    "https://tospo-keiba.jp/sakagamiblood/55968",
-    "https://tospo-keiba.jp/sakagamiblood/58515"
+    "https://nas-quillo.hatenablog.com/entry/26bf925f5282b2e79096f81db56e0df9",
+    "https://nas-quillo.hatenablog.com/entry/3683001328a72d8ba29963ec636107f9",
+    "https://tospo-keiba.jp/sakagamiblood/55968"
    ],
-   "n_run": 2461,
-   "ae_in": 1.049,
-   "ae_out": 0.945,
-   "ratio": 1.11,
+   "n_run": 2466,
+   "ae_in": 1.048,
+   "ae_out": 0.943,
+   "ratio": 1.112,
    "ae_in_3": [
     1.02,
     1.01,
@@ -433,67 +1179,9 @@
    "ratio_3": [
     1.07,
     1.15,
-    1.24
+    1.26
    ],
-   "win_ret": 58.1
-  },
-  {
-   "entity": "クロフネ",
-   "cond": "長距離",
-   "dir": "+",
-   "source": "望田潤ブログ",
-   "n_art": 5,
-   "urls": [
-    "https://nas-quillo.hatenablog.com/entry/46faba60cfd083d8db2458c07a6efe1c",
-    "https://nas-quillo.hatenablog.com/entry/4df3f78e4e26bb0a85bccf4241808f4c",
-    "https://nas-quillo.hatenablog.com/entry/6870385670c4d9153228e66e5c2bbb9d",
-    "https://nas-quillo.hatenablog.com/entry/73c8fa5f25edace732769e04cc0fc6e9",
-    "https://nas-quillo.hatenablog.com/entry/f33fa25d3464cee4d9fe1c9413dbfe91"
-   ],
-   "n_run": 455,
-   "ae_in": 1.096,
-   "ae_out": 0.992,
-   "ratio": 1.104,
-   "ae_in_3": [
-    1.05,
-    1.2,
-    1.11
-   ],
-   "ratio_3": [
-    1.09,
-    1.26,
-    1.05
-   ],
-   "win_ret": 92.8
-  },
-  {
-   "entity": "Storm Cat",
-   "cond": "瞬発",
-   "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 13,
-   "urls": [
-    "https://tospo-keiba.jp/sakagamiblood/49846",
-    "https://tospo-keiba.jp/sakagamiblood/49944",
-    "https://tospo-keiba.jp/sakagamiblood/51586",
-    "https://tospo-keiba.jp/sakagamiblood/54699",
-    "https://tospo-keiba.jp/sakagamiblood/57237"
-   ],
-   "n_run": 4011,
-   "ae_in": 1.104,
-   "ae_out": 1.006,
-   "ratio": 1.098,
-   "ae_in_3": [
-    1.09,
-    1.15,
-    1.1
-   ],
-   "ratio_3": [
-    1.08,
-    1.13,
-    1.11
-   ],
-   "win_ret": 85.8
+   "win_ret": 58.2
   },
   {
    "entity": "サンデーサイレンス（クロス）",
@@ -508,78 +1196,247 @@
     "https://tospo-keiba.jp/sakagamiblood/64299",
     "https://tospo-keiba.jp/sakagamiblood/67029"
    ],
-   "n_run": 1377,
-   "ae_in": 1.083,
-   "ae_out": 0.987,
-   "ratio": 1.097,
+   "n_run": 1435,
+   "ae_in": 1.098,
+   "ae_out": 0.988,
+   "ratio": 1.111,
    "ae_in_3": [
     1.15,
     1.11,
-    1.05
+    1.08
    ],
    "ratio_3": [
     1.19,
     1.13,
-    1.04
+    1.06
    ],
-   "win_ret": 72.2
+   "win_ret": 74.1
   },
   {
-   "entity": "父=ディープインパクト",
-   "cond": "大箱",
-   "dir": "+",
-   "source": "望田潤ブログ・坂上明大の血統査定",
-   "n_art": 17,
-   "urls": [
-    "https://nas-quillo.hatenablog.com/entry/2026/02/23/100345",
-    "https://nas-quillo.hatenablog.com/entry/2026/09/27/084657",
-    "https://nas-quillo.hatenablog.com/entry/2026/10/12/085947",
-    "https://nas-quillo.hatenablog.com/entry/53287f156607cecf3937ae1c2b9ad2f0",
-    "https://tospo-keiba.jp/sakagamiblood/50447",
-    "https://tospo-keiba.jp/sakagamiblood/57710"
-   ],
-   "n_run": 1518,
-   "ae_in": 1.054,
-   "ae_out": 0.962,
-   "ratio": 1.096,
-   "ae_in_3": [
-    1.03,
-    1.11,
-    1.34
-   ],
-   "ratio_3": [
-    1.07,
-    1.24,
-    1.25
-   ],
-   "win_ret": 71.9
-  },
-  {
-   "entity": "ドレフォン",
-   "cond": "大箱",
+   "entity": "エルコンドルパサー",
+   "cond": "ダート",
    "dir": "+",
    "source": "望田潤ブログ",
    "n_art": 3,
    "urls": [
-    "https://nas-quillo.hatenablog.com/entry/2026/05/17/092351",
-    "https://nas-quillo.hatenablog.com/entry/8c783e4c8607a643693ee7722456bb85",
-    "https://nas-quillo.hatenablog.com/entry/ee6e1de13284d7992eb50cfb457b34bb"
+    "https://nas-quillo.hatenablog.com/entry/2f979776aaa0258a1e7c5b259f81beba",
+    "https://nas-quillo.hatenablog.com/entry/bbab2832dfd95b26111e8a08292a6097",
+    "https://nas-quillo.hatenablog.com/entry/c89fc33789baf7beab2e808d111b1855"
    ],
-   "n_run": 481,
-   "ae_in": 1.162,
-   "ae_out": 1.062,
-   "ratio": 1.095,
+   "n_run": 954,
+   "ae_in": 1.063,
+   "ae_out": 0.96,
+   "ratio": 1.108,
    "ae_in_3": [
-    1.15,
-    1.17,
-    1.17
-   ],
-   "ratio_3": [
-    1.16,
-    1.05,
+    1.06,
+    1.06,
     1.07
    ],
-   "win_ret": 85.4
+   "ratio_3": [
+    1.18,
+    1.03,
+    1.07
+   ],
+   "win_ret": 99.6
+  },
+  {
+   "entity": "Cozzene（3代以内）",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 5,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/2026/04/14/002221",
+    "https://nas-quillo.hatenablog.com/entry/995f4d55bcd419bde9d3556f09650d24",
+    "https://nas-quillo.hatenablog.com/entry/caf1bf75aadb6b01e47140ce9daa2807",
+    "https://nas-quillo.hatenablog.com/entry/eff1b5c672c516c11e6f702c3206c994",
+    "https://nas-quillo.hatenablog.com/entry/fd17f68272645dac4ebfdc9345660ae3"
+   ],
+   "n_run": 741,
+   "ae_in": 1.104,
+   "ae_out": 0.997,
+   "ratio": 1.107,
+   "ae_in_3": [
+    1.19,
+    1.08,
+    1.02
+   ],
+   "ratio_3": [
+    1.18,
+    1.06,
+    1.05
+   ],
+   "win_ret": 107.1
+  },
+  {
+   "entity": "クロフネ",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 16,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/0897843cec6999707aefe4f9888d08c1",
+    "https://nas-quillo.hatenablog.com/entry/0b0e9b0f4d920d9b2e87dd9c606281b6",
+    "https://nas-quillo.hatenablog.com/entry/27d93288571eee4fa72850feead6002f",
+    "https://nas-quillo.hatenablog.com/entry/28ad238c56aceba0649e24e932213f3d",
+    "https://nas-quillo.hatenablog.com/entry/46faba60cfd083d8db2458c07a6efe1c"
+   ],
+   "n_run": 458,
+   "ae_in": 1.092,
+   "ae_out": 0.99,
+   "ratio": 1.103,
+   "ae_in_3": [
+    1.05,
+    1.2,
+    1.11
+   ],
+   "ratio_3": [
+    1.09,
+    1.26,
+    1.05
+   ],
+   "win_ret": 92.2
+  },
+  {
+   "entity": "ハービンジャー",
+   "cond": "早熟",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/17785c57067867d6bc9a2281b03f3a88",
+    "https://nas-quillo.hatenablog.com/entry/9bf746e1942b4140661425569f557117",
+    "https://nas-quillo.hatenablog.com/entry/f738b0015bc48b5a6a6ff7a3d5d0844c"
+   ],
+   "n_run": 972,
+   "ae_in": 1.066,
+   "ae_out": 0.967,
+   "ratio": 1.103,
+   "ae_in_3": [
+    1.04,
+    1.07,
+    1.12
+   ],
+   "ratio_3": [
+    1.03,
+    1.11,
+    1.21
+   ],
+   "win_ret": 71.8
+  },
+  {
+   "entity": "父=ハーツクライ",
+   "cond": "持続",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 8,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/06e7d7356fef33406f5a01bed6ef6733",
+    "https://nas-quillo.hatenablog.com/entry/0f4cfa80026577e83863f2fdab627bd3",
+    "https://nas-quillo.hatenablog.com/entry/5495a0c2f45b731260176d6cf9d70f65",
+    "https://nas-quillo.hatenablog.com/entry/615181796c8ec9ff181a801d345e89de",
+    "https://nas-quillo.hatenablog.com/entry/7d6260bca14cd4d458155a20f55a38ee"
+   ],
+   "n_run": 2036,
+   "ae_in": 1.018,
+   "ae_out": 0.925,
+   "ratio": 1.101,
+   "ae_in_3": [
+    1.02,
+    1.01,
+    1.04
+   ],
+   "ratio_3": [
+    1.08,
+    1.22,
+    1.12
+   ],
+   "win_ret": 67.7
+  },
+  {
+   "entity": "Pulpit（3代以内）",
+   "cond": "ダート",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/13cc477d13602a59c8fcd9587eb489f5",
+    "https://nas-quillo.hatenablog.com/entry/16689f39eddf11a6cdc7dfc4448cb930",
+    "https://nas-quillo.hatenablog.com/entry/4cbedab3fc63bed2db3c80fc55665f00",
+    "https://nas-quillo.hatenablog.com/entry/654ae5ceadd30997cc329d9815f44095"
+   ],
+   "n_run": 3287,
+   "ae_in": 1.042,
+   "ae_out": 0.946,
+   "ratio": 1.101,
+   "ae_in_3": [
+    1.06,
+    1.1,
+    1.0
+   ],
+   "ratio_3": [
+    1.04,
+    1.37,
+    1.07
+   ],
+   "win_ret": 96.8
+  },
+  {
+   "entity": "Capote",
+   "cond": "道悪",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/2025/10/19/093307",
+    "https://nas-quillo.hatenablog.com/entry/2e5e75dec94e1f0ab8dc0fe18daaa80b",
+    "https://nas-quillo.hatenablog.com/entry/a074551f51431a48e720bbe2d764d366",
+    "https://nas-quillo.hatenablog.com/entry/bbab2832dfd95b26111e8a08292a6097"
+   ],
+   "n_run": 769,
+   "ae_in": 1.058,
+   "ae_out": 0.963,
+   "ratio": 1.099,
+   "ae_in_3": [
+    1.07,
+    1.05,
+    1.05
+   ],
+   "ratio_3": [
+    1.04,
+    1.09,
+    1.16
+   ],
+   "win_ret": 65.5
+  },
+  {
+   "entity": "Storm Cat（クロス）",
+   "cond": "道悪",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 12,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/16dec25a656607d8d8be5e25f729cc81",
+    "https://nas-quillo.hatenablog.com/entry/215517da0f4aa10620f9202ed7c3653c",
+    "https://nas-quillo.hatenablog.com/entry/3c854d95c748f5db2ff0cb74f7755c22",
+    "https://nas-quillo.hatenablog.com/entry/502a29d055461f7b5fe7b511ff23390b",
+    "https://nas-quillo.hatenablog.com/entry/5e2fe4d0eb8e078488fa899a56e5e1fa"
+   ],
+   "n_run": 670,
+   "ae_in": 1.131,
+   "ae_out": 1.03,
+   "ratio": 1.098,
+   "ae_in_3": [
+    1.12,
+    1.12,
+    1.14
+   ],
+   "ratio_3": [
+    1.1,
+    1.25,
+    1.05
+   ],
+   "win_ret": 59.1
   },
   {
    "entity": "サンデーサイレンス（クロス）",
@@ -594,79 +1451,133 @@
     "https://tospo-keiba.jp/sakagamiblood/57482",
     "https://tospo-keiba.jp/sakagamiblood/59079"
    ],
-   "n_run": 1947,
-   "ae_in": 1.078,
-   "ae_out": 0.985,
-   "ratio": 1.095,
+   "n_run": 2007,
+   "ae_in": 1.083,
+   "ae_out": 0.986,
+   "ratio": 1.098,
    "ae_in_3": [
     1.07,
     1.08,
-    1.09
+    1.1
    ],
    "ratio_3": [
     1.11,
     1.09,
     1.09
    ],
-   "win_ret": 93.3
+   "win_ret": 93.7
   },
   {
-   "entity": "ノーザンテースト（3代以内）",
-   "cond": "道悪",
+   "entity": "エアグルーヴ（3代以内）",
+   "cond": "大箱",
    "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 4,
+   "source": "望田潤ブログ",
+   "n_art": 14,
    "urls": [
-    "https://tospo-keiba.jp/sakagamiblood/51276",
-    "https://tospo-keiba.jp/sakagamiblood/57709",
-    "https://tospo-keiba.jp/sakagamiblood/61660",
-    "https://tospo-keiba.jp/sakagamiblood/64886"
+    "https://nas-quillo.hatenablog.com/entry/0cad14b3b3dbc19bf96d65b7ad4f5980",
+    "https://nas-quillo.hatenablog.com/entry/1a341b57b423aa06e7d2b283fc243ae1",
+    "https://nas-quillo.hatenablog.com/entry/281058026078e8aae8054e03ea9efadc",
+    "https://nas-quillo.hatenablog.com/entry/29da66ef713593db9bcd38657fe2f6f9",
+    "https://nas-quillo.hatenablog.com/entry/68922eaa77d32c048ed16338c355b909"
    ],
-   "n_run": 1336,
-   "ae_in": 1.045,
-   "ae_out": 0.955,
-   "ratio": 1.095,
+   "n_run": 2475,
+   "ae_in": 1.052,
+   "ae_out": 0.959,
+   "ratio": 1.097,
    "ae_in_3": [
+    1.08,
     1.02,
-    1.06,
+    1.01
+   ],
+   "ratio_3": [
+    1.12,
+    1.03,
+    1.11
+   ],
+   "win_ret": 77.2
+  },
+  {
+   "entity": "ドレフォン",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 5,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/2026/05/17/092351",
+    "https://nas-quillo.hatenablog.com/entry/8c783e4c8607a643693ee7722456bb85",
+    "https://nas-quillo.hatenablog.com/entry/901158f0637035194dc082a3bdda79f3",
+    "https://nas-quillo.hatenablog.com/entry/c5ded1357d74f6ec514c0ffe6c7969e0",
+    "https://nas-quillo.hatenablog.com/entry/ee6e1de13284d7992eb50cfb457b34bb"
+   ],
+   "n_run": 492,
+   "ae_in": 1.164,
+   "ae_out": 1.061,
+   "ratio": 1.097,
+   "ae_in_3": [
+    1.15,
+    1.17,
+    1.17
+   ],
+   "ratio_3": [
+    1.16,
+    1.05,
+    1.08
+   ],
+   "win_ret": 84.7
+  },
+  {
+   "entity": "Miswaki",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/1e32f2ebb4538174f83b24f7cb6aac0a",
+    "https://nas-quillo.hatenablog.com/entry/6fbbae6d3ee9dc3582047e99e9cec7bd",
+    "https://nas-quillo.hatenablog.com/entry/a933fc5ce93434cb9da49d40f0879d18"
+   ],
+   "n_run": 825,
+   "ae_in": 1.087,
+   "ae_out": 0.991,
+   "ratio": 1.097,
+   "ae_in_3": [
+    1.04,
+    1.08,
+    1.15
+   ],
+   "ratio_3": [
+    1.03,
+    1.11,
+    1.17
+   ],
+   "win_ret": 71.6
+  },
+  {
+   "entity": "リオンディーズ",
+   "cond": "ダート",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/37aad44a33eabe9a075f5a09fda694ac",
+    "https://nas-quillo.hatenablog.com/entry/5e0f4030e289707d19f7a6a1f16e84e7",
+    "https://nas-quillo.hatenablog.com/entry/b7a7d42f722f95c229174c3ae459795e"
+   ],
+   "n_run": 822,
+   "ae_in": 1.084,
+   "ae_out": 0.988,
+   "ratio": 1.097,
+   "ae_in_3": [
+    1.01,
+    1.09,
     1.16
    ],
    "ratio_3": [
-    1.09,
-    1.04,
-    1.17
-   ],
-   "win_ret": 76.3
-  },
-  {
-   "entity": "デインヒル（3代以内）",
-   "cond": "小回り",
-   "dir": "+",
-   "source": "望田潤ブログ・坂上明大の血統査定",
-   "n_art": 17,
-   "urls": [
-    "https://nas-quillo.hatenablog.com/entry/2025/12/28/092816",
-    "https://nas-quillo.hatenablog.com/entry/2026/01/24/092148",
-    "https://nas-quillo.hatenablog.com/entry/2026/06/14/090533",
-    "https://nas-quillo.hatenablog.com/entry/2026/09/12/084422",
-    "https://nas-quillo.hatenablog.com/entry/7cc302007b25885004d01bc1bf27c594",
-    "https://tospo-keiba.jp/sakagamiblood/56675"
-   ],
-   "n_run": 3611,
-   "ae_in": 1.08,
-   "ae_out": 0.988,
-   "ratio": 1.092,
-   "ae_in_3": [
-    1.1,
     1.02,
-    1.06
-   ],
-   "ratio_3": [
     1.1,
-    1.13,
-    1.05
+    1.18
    ],
-   "win_ret": 76.8
+   "win_ret": 58.9
   },
   {
    "entity": "ノーザンテースト（3代以内）",
@@ -682,8 +1593,8 @@
    ],
    "n_run": 400,
    "ae_in": 1.06,
-   "ae_out": 0.971,
-   "ratio": 1.092,
+   "ae_out": 0.968,
+   "ratio": 1.096,
    "ae_in_3": [
     1.03,
     1.18,
@@ -692,38 +1603,185 @@
    "ratio_3": [
     1.09,
     1.17,
-    1.0
+    1.02
    ],
    "win_ret": 40.5
   },
   {
-   "entity": "Nureyev（クロス）",
-   "cond": "瞬発",
+   "entity": "父=ディープインパクト",
+   "cond": "大箱",
    "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 7,
+   "source": "望田潤ブログ・坂上明大の血統査定",
+   "n_art": 29,
    "urls": [
-    "https://tospo-keiba.jp/sakagamiblood/51881",
-    "https://tospo-keiba.jp/sakagamiblood/54217",
-    "https://tospo-keiba.jp/sakagamiblood/57709",
-    "https://tospo-keiba.jp/sakagamiblood/63349",
-    "https://tospo-keiba.jp/sakagamiblood/63785"
+    "https://nas-quillo.hatenablog.com/entry/01b88f8a68e4c2122191b0bb79e55588",
+    "https://nas-quillo.hatenablog.com/entry/1e5c8b2d7b4f562fc277005550748582",
+    "https://nas-quillo.hatenablog.com/entry/2026/02/23/100345",
+    "https://nas-quillo.hatenablog.com/entry/2026/09/27/084657",
+    "https://nas-quillo.hatenablog.com/entry/2026/10/12/085947",
+    "https://tospo-keiba.jp/sakagamiblood/50447"
    ],
-   "n_run": 785,
-   "ae_in": 1.077,
-   "ae_out": 0.987,
-   "ratio": 1.091,
+   "n_run": 1520,
+   "ae_in": 1.053,
+   "ae_out": 0.961,
+   "ratio": 1.095,
    "ae_in_3": [
-    1.09,
-    1.04,
-    1.08
+    1.03,
+    1.11,
+    1.31
    ],
    "ratio_3": [
-    1.1,
+    1.07,
+    1.24,
+    1.23
+   ],
+   "win_ret": 71.8
+  },
+  {
+   "entity": "クロフネ（3代以内）",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 12,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/16a82d5fa344077e05fb9738ea538474",
+    "https://nas-quillo.hatenablog.com/entry/399b71e3611e04d8043f7ff082a31c4d",
+    "https://nas-quillo.hatenablog.com/entry/48fb225b44ee15e1551dd8d16bda07e9",
+    "https://nas-quillo.hatenablog.com/entry/4c03af3c0eee1ba2fefcbaab6590cd27",
+    "https://nas-quillo.hatenablog.com/entry/4ff00214ace1c917e6cc39b7ace27e81"
+   ],
+   "n_run": 1387,
+   "ae_in": 1.07,
+   "ae_out": 0.978,
+   "ratio": 1.095,
+   "ae_in_3": [
     1.08,
+    1.01,
+    1.09
+   ],
+   "ratio_3": [
+    1.14,
+    1.06,
+    1.04
+   ],
+   "win_ret": 103.0
+  },
+  {
+   "entity": "Storm Cat",
+   "cond": "瞬発",
+   "dir": "+",
+   "source": "望田潤ブログ・坂上明大の血統査定",
+   "n_art": 17,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/070210075aa01e1ecf02b53dfd377246",
+    "https://nas-quillo.hatenablog.com/entry/54a58d8cb582e58609c98d19b2d6033a",
+    "https://nas-quillo.hatenablog.com/entry/b2ff79defcb8be86a22f1cc50a5bf091",
+    "https://nas-quillo.hatenablog.com/entry/d6e63822581c55d98feb7763bfa9256e",
+    "https://tospo-keiba.jp/sakagamiblood/49846",
+    "https://tospo-keiba.jp/sakagamiblood/49944"
+   ],
+   "n_run": 4094,
+   "ae_in": 1.101,
+   "ae_out": 1.005,
+   "ratio": 1.095,
+   "ae_in_3": [
+    1.09,
+    1.15,
+    1.09
+   ],
+   "ratio_3": [
+    1.08,
+    1.13,
     1.1
    ],
-   "win_ret": 46.9
+   "win_ret": 85.5
+  },
+  {
+   "entity": "サンデーサイレンス（クロス）",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "望田潤ブログ・坂上明大の血統査定",
+   "n_art": 69,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/054617756f66e564cc5eade39a84363f",
+    "https://nas-quillo.hatenablog.com/entry/2025/10/19/093307",
+    "https://nas-quillo.hatenablog.com/entry/2025/12/24/104510",
+    "https://nas-quillo.hatenablog.com/entry/20a83c9ab83f1fce63142e31be876a8b",
+    "https://nas-quillo.hatenablog.com/entry/26bf925f5282b2e79096f81db56e0df9",
+    "https://tospo-keiba.jp/sakagamiblood/50965"
+   ],
+   "n_run": 1890,
+   "ae_in": 1.078,
+   "ae_out": 0.987,
+   "ratio": 1.092,
+   "ae_in_3": [
+    1.08,
+    1.07,
+    1.09
+   ],
+   "ratio_3": [
+    1.12,
+    1.08,
+    1.07
+   ],
+   "win_ret": 68.0
+  },
+  {
+   "entity": "エルコンドルパサー（3代以内）",
+   "cond": "小回り",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 14,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/221242a7a6cbe181ce75bf61772ca97a",
+    "https://nas-quillo.hatenablog.com/entry/2e0acecc0a5b2fdd8a518557d32dc59e",
+    "https://nas-quillo.hatenablog.com/entry/33160a31ec0bf3a0b96fdf8628d2d9b7",
+    "https://nas-quillo.hatenablog.com/entry/5727f2fc9a5a39b630073da0fb063640",
+    "https://nas-quillo.hatenablog.com/entry/595f70e312e7c18888ff32fec59e2f41"
+   ],
+   "n_run": 752,
+   "ae_in": 1.08,
+   "ae_out": 0.99,
+   "ratio": 1.092,
+   "ae_in_3": [
+    1.02,
+    1.18,
+    1.11
+   ],
+   "ratio_3": [
+    1.06,
+    1.33,
+    1.02
+   ],
+   "win_ret": 58.7
+  },
+  {
+   "entity": "Wild Again",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/054617756f66e564cc5eade39a84363f",
+    "https://nas-quillo.hatenablog.com/entry/1f44a0dcca0e1bd0e1ee9d23f0f4187f",
+    "https://nas-quillo.hatenablog.com/entry/d3274059c970564c8a23a1514c0c4841",
+    "https://nas-quillo.hatenablog.com/entry/ee3f82c911a7684ed6d0300a46be9233"
+   ],
+   "n_run": 1321,
+   "ae_in": 1.079,
+   "ae_out": 0.987,
+   "ratio": 1.092,
+   "ae_in_3": [
+    1.06,
+    1.01,
+    1.16
+   ],
+   "ratio_3": [
+    1.06,
+    1.0,
+    1.22
+   ],
+   "win_ret": 119.7
   },
   {
    "entity": "Graustark",
@@ -738,21 +1796,111 @@
     "https://tospo-keiba.jp/sakagamiblood/73418",
     "https://tospo-keiba.jp/sakagamiblood/76588"
    ],
-   "n_run": 1169,
-   "ae_in": 1.08,
-   "ae_out": 0.989,
-   "ratio": 1.091,
+   "n_run": 1177,
+   "ae_in": 1.078,
+   "ae_out": 0.987,
+   "ratio": 1.092,
    "ae_in_3": [
     1.06,
     1.04,
-    1.15
+    1.14
    ],
    "ratio_3": [
     1.05,
     1.06,
     1.2
    ],
-   "win_ret": 79.6
+   "win_ret": 79.3
+  },
+  {
+   "entity": "デインヒル（3代以内）",
+   "cond": "小回り",
+   "dir": "+",
+   "source": "望田潤ブログ・坂上明大の血統査定",
+   "n_art": 46,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/0edabcdb75b7200e2f999fb2d48936bc",
+    "https://nas-quillo.hatenablog.com/entry/2025/12/28/092816",
+    "https://nas-quillo.hatenablog.com/entry/2026/01/24/092148",
+    "https://nas-quillo.hatenablog.com/entry/2026/06/14/090533",
+    "https://nas-quillo.hatenablog.com/entry/2026/09/12/084422",
+    "https://tospo-keiba.jp/sakagamiblood/56675"
+   ],
+   "n_run": 3617,
+   "ae_in": 1.079,
+   "ae_out": 0.989,
+   "ratio": 1.091,
+   "ae_in_3": [
+    1.1,
+    1.02,
+    1.06
+   ],
+   "ratio_3": [
+    1.1,
+    1.13,
+    1.05
+   ],
+   "win_ret": 76.6
+  },
+  {
+   "entity": "ノーザンテースト（3代以内）",
+   "cond": "道悪",
+   "dir": "+",
+   "source": "望田潤ブログ・坂上明大の血統査定",
+   "n_art": 19,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/00c8fe0e7cc4eff282345b56ab76a450",
+    "https://nas-quillo.hatenablog.com/entry/00d35f3805578829d2a24e1330e04523",
+    "https://nas-quillo.hatenablog.com/entry/0a926d2849582aad0bf63a3c60bbe6b2",
+    "https://nas-quillo.hatenablog.com/entry/25846e5beabc09490188a348a37e9b62",
+    "https://nas-quillo.hatenablog.com/entry/2fcdaad5d50cf366c53932bc6dcc38fa",
+    "https://tospo-keiba.jp/sakagamiblood/51276"
+   ],
+   "n_run": 1352,
+   "ae_in": 1.04,
+   "ae_out": 0.953,
+   "ratio": 1.091,
+   "ae_in_3": [
+    1.02,
+    1.06,
+    1.13
+   ],
+   "ratio_3": [
+    1.09,
+    1.04,
+    1.15
+   ],
+   "win_ret": 75.4
+  },
+  {
+   "entity": "Nureyev（クロス）",
+   "cond": "瞬発",
+   "dir": "+",
+   "source": "望田潤ブログ・坂上明大の血統査定",
+   "n_art": 11,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/10ee515fb7c638b0cab2f7aa827c0e4f",
+    "https://nas-quillo.hatenablog.com/entry/314c930e6ea605d6b5ebe63cf0c9b0cd",
+    "https://nas-quillo.hatenablog.com/entry/73c9d8f3da0cf49adacfe1c738cb30fc",
+    "https://nas-quillo.hatenablog.com/entry/956e1717bf0053f9d291ff2f1a3753cb",
+    "https://tospo-keiba.jp/sakagamiblood/51881",
+    "https://tospo-keiba.jp/sakagamiblood/54217"
+   ],
+   "n_run": 790,
+   "ae_in": 1.077,
+   "ae_out": 0.987,
+   "ratio": 1.091,
+   "ae_in_3": [
+    1.09,
+    1.04,
+    1.08
+   ],
+   "ratio_3": [
+    1.1,
+    1.08,
+    1.1
+   ],
+   "win_ret": 46.6
   },
   {
    "entity": "父=ディープインパクト",
@@ -767,157 +1915,126 @@
     "https://tospo-keiba.jp/sakagamiblood/63180",
     "https://tospo-keiba.jp/sakagamiblood/76079"
    ],
-   "n_run": 2724,
+   "n_run": 2725,
    "ae_in": 1.023,
    "ae_out": 0.937,
    "ratio": 1.091,
    "ae_in_3": [
     1.0,
     1.04,
-    1.33
+    1.32
    ],
    "ratio_3": [
     1.06,
     1.24,
-    1.55
+    1.56
    ],
    "win_ret": 72.2
   },
   {
    "entity": "サンデーサイレンス（クロス）",
-   "cond": "長距離",
-   "dir": "+",
-   "source": "望田潤ブログ・坂上明大の血統査定",
-   "n_art": 40,
-   "urls": [
-    "https://nas-quillo.hatenablog.com/entry/2025/10/19/093307",
-    "https://nas-quillo.hatenablog.com/entry/2025/12/24/104510",
-    "https://nas-quillo.hatenablog.com/entry/6870385670c4d9153228e66e5c2bbb9d",
-    "https://nas-quillo.hatenablog.com/entry/f6b7697465793829040b68cdf4a0fd2d",
-    "https://tospo-keiba.jp/sakagamiblood/50965",
-    "https://tospo-keiba.jp/sakagamiblood/51881"
-   ],
-   "n_run": 1870,
-   "ae_in": 1.072,
-   "ae_out": 0.986,
-   "ratio": 1.088,
-   "ae_in_3": [
-    1.08,
-    1.07,
-    1.07
-   ],
-   "ratio_3": [
-    1.12,
-    1.08,
-    1.06
-   ],
-   "win_ret": 68.1
-  },
-  {
-   "entity": "サンデーサイレンス（クロス）",
    "cond": "瞬発",
    "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 30,
+   "source": "望田潤ブログ・坂上明大の血統査定",
+   "n_art": 37,
    "urls": [
-    "https://tospo-keiba.jp/sakagamiblood/50684",
-    "https://tospo-keiba.jp/sakagamiblood/54217",
-    "https://tospo-keiba.jp/sakagamiblood/57709",
-    "https://tospo-keiba.jp/sakagamiblood/58780",
-    "https://tospo-keiba.jp/sakagamiblood/59601"
+    "https://nas-quillo.hatenablog.com/entry/2fcdaad5d50cf366c53932bc6dcc38fa",
+    "https://nas-quillo.hatenablog.com/entry/34fe29a192ad99bcc3b7444801cd2230",
+    "https://nas-quillo.hatenablog.com/entry/8353700d6f80f3bb5ec0ab631f384dfa",
+    "https://nas-quillo.hatenablog.com/entry/cb4605df72f9b7caf415afa5b2cbdb3f",
+    "https://nas-quillo.hatenablog.com/entry/d3016326f79532df43fd459bfe2edc0a",
+    "https://tospo-keiba.jp/sakagamiblood/50684"
    ],
-   "n_run": 3158,
-   "ae_in": 1.065,
-   "ae_out": 0.979,
-   "ratio": 1.088,
+   "n_run": 3236,
+   "ae_in": 1.069,
+   "ae_out": 0.98,
+   "ratio": 1.09,
    "ae_in_3": [
     1.02,
     1.07,
-    1.1
+    1.11
    ],
    "ratio_3": [
     1.05,
     1.09,
     1.11
    ],
-   "win_ret": 75.3
-  },
-  {
-   "entity": "父=ロードカナロア",
-   "cond": "大箱",
-   "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 6,
-   "urls": [
-    "https://tospo-keiba.jp/sakagamiblood/50447",
-    "https://tospo-keiba.jp/sakagamiblood/51276",
-    "https://tospo-keiba.jp/sakagamiblood/52479",
-    "https://tospo-keiba.jp/sakagamiblood/57710",
-    "https://tospo-keiba.jp/sakagamiblood/59079"
-   ],
-   "n_run": 1433,
-   "ae_in": 1.076,
-   "ae_out": 0.99,
-   "ratio": 1.087,
-   "ae_in_3": [
-    1.01,
-    1.13,
-    1.15
-   ],
-   "ratio_3": [
-    1.02,
-    1.17,
-    1.15
-   ],
-   "win_ret": 75.1
+   "win_ret": 76.5
   },
   {
    "entity": "マンハッタンカフェ",
    "cond": "小回り",
    "dir": "+",
    "source": "望田潤ブログ",
-   "n_art": 5,
+   "n_art": 22,
    "urls": [
+    "https://nas-quillo.hatenablog.com/entry/0849d64e9c0a19d9481758dd0864fd4f",
     "https://nas-quillo.hatenablog.com/entry/2025/09/27/091929",
     "https://nas-quillo.hatenablog.com/entry/2026/01/24/092148",
     "https://nas-quillo.hatenablog.com/entry/2026/03/14/092352",
-    "https://nas-quillo.hatenablog.com/entry/2d323563c973a1381ba747fedf90ad7c",
-    "https://nas-quillo.hatenablog.com/entry/fe5d51ac0e0aa302178ed3c0064470b1"
+    "https://nas-quillo.hatenablog.com/entry/2841c90bf69193355af31a280bb17b0f"
    ],
-   "n_run": 1787,
-   "ae_in": 1.111,
+   "n_run": 1792,
+   "ae_in": 1.114,
    "ae_out": 1.023,
-   "ratio": 1.086,
+   "ratio": 1.089,
    "ae_in_3": [
     1.14,
     1.22,
-    1.01
+    1.02
    ],
    "ratio_3": [
     1.12,
     1.09,
-    1.02
+    1.03
    ],
-   "win_ret": 64.2
+   "win_ret": 64.0
+  },
+  {
+   "entity": "ダイナカール（3代以内）",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/1a341b57b423aa06e7d2b283fc243ae1",
+    "https://nas-quillo.hatenablog.com/entry/55256479c981b5c2b7bbf8a61eab1770",
+    "https://nas-quillo.hatenablog.com/entry/7c5896a1e266aedd2a8d7ad626ad6460"
+   ],
+   "n_run": 601,
+   "ae_in": 1.053,
+   "ae_out": 0.967,
+   "ratio": 1.089,
+   "ae_in_3": [
+    1.04,
+    1.17,
+    1.01
+   ],
+   "ratio_3": [
+    1.08,
+    1.15,
+    1.11
+   ],
+   "win_ret": 54.4
   },
   {
    "entity": "ハービンジャー",
    "cond": "小回り",
    "dir": "+",
    "source": "望田潤ブログ・坂上明大の血統査定",
-   "n_art": 15,
+   "n_art": 51,
    "urls": [
+    "https://nas-quillo.hatenablog.com/entry/042f53631a81872f8f859ad2ddfea8cf",
+    "https://nas-quillo.hatenablog.com/entry/098494bb18c6ed83bfd56c847180b67e",
+    "https://nas-quillo.hatenablog.com/entry/199f92eab0ea5275b18305285445302b",
     "https://nas-quillo.hatenablog.com/entry/1e31e40896b5d322e6ad99185077fb1d",
     "https://nas-quillo.hatenablog.com/entry/2025/11/30/093303",
-    "https://nas-quillo.hatenablog.com/entry/2026/03/07/092017",
-    "https://nas-quillo.hatenablog.com/entry/2026/07/01/110148",
-    "https://nas-quillo.hatenablog.com/entry/43a429acf83184157e9b4d5ba0dc9869",
     "https://tospo-keiba.jp/sakagamiblood/50121"
    ],
    "n_run": 1682,
    "ae_in": 1.045,
-   "ae_out": 0.964,
-   "ratio": 1.085,
+   "ae_out": 0.961,
+   "ratio": 1.088,
    "ae_in_3": [
     1.03,
     1.08,
@@ -931,49 +2048,194 @@
    "win_ret": 71.8
   },
   {
-   "entity": "A.P. Indy",
-   "cond": "瞬発",
+   "entity": "父=ロードカナロア",
+   "cond": "大箱",
    "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 5,
+   "source": "望田潤ブログ・坂上明大の血統査定",
+   "n_art": 11,
    "urls": [
-    "https://tospo-keiba.jp/sakagamiblood/55488",
-    "https://tospo-keiba.jp/sakagamiblood/56673",
-    "https://tospo-keiba.jp/sakagamiblood/59079",
-    "https://tospo-keiba.jp/sakagamiblood/68810",
-    "https://tospo-keiba.jp/sakagamiblood/69981"
+    "https://nas-quillo.hatenablog.com/entry/891fc50af9fde2e427e3d23ef8971483",
+    "https://nas-quillo.hatenablog.com/entry/8c783e4c8607a643693ee7722456bb85",
+    "https://nas-quillo.hatenablog.com/entry/a16c95d7a19ade8a0295f6b3c5eb35ba",
+    "https://nas-quillo.hatenablog.com/entry/aa9e49b8ac21d365f381ceab2ebf3a0a",
+    "https://nas-quillo.hatenablog.com/entry/d6e63822581c55d98feb7763bfa9256e",
+    "https://tospo-keiba.jp/sakagamiblood/50447"
    ],
-   "n_run": 913,
-   "ae_in": 1.107,
-   "ae_out": 1.023,
-   "ratio": 1.083,
+   "n_run": 1448,
+   "ae_in": 1.078,
+   "ae_out": 0.991,
+   "ratio": 1.088,
    "ae_in_3": [
-    1.08,
+    1.01,
     1.13,
-    1.12
+    1.16
    ],
    "ratio_3": [
+    1.02,
+    1.17,
+    1.15
+   ],
+   "win_ret": 75.5
+  },
+  {
+   "entity": "Secretariat（クロス）",
+   "cond": "道悪",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 5,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/10097f11a4980006910ac454f96e20c5",
+    "https://nas-quillo.hatenablog.com/entry/507af7b529e7a85a4ae0a1e450f823f5",
+    "https://nas-quillo.hatenablog.com/entry/b7c3f4ad13aecb7cd719036f848c514a",
+    "https://nas-quillo.hatenablog.com/entry/d13e767891778e17d7524477a6b542d4",
+    "https://nas-quillo.hatenablog.com/entry/eff1b5c672c516c11e6f702c3206c994"
+   ],
+   "n_run": 1475,
+   "ae_in": 1.053,
+   "ae_out": 0.97,
+   "ratio": 1.085,
+   "ae_in_3": [
+    1.07,
+    1.04,
+    1.01
+   ],
+   "ratio_3": [
+    1.1,
+    1.06,
+    1.05
+   ],
+   "win_ret": 69.6
+  },
+  {
+   "entity": "Night Shift",
+   "cond": "小回り",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/16a82d5fa344077e05fb9738ea538474",
+    "https://nas-quillo.hatenablog.com/entry/2026/03/04/110445",
+    "https://nas-quillo.hatenablog.com/entry/2ce83880b05ff9da31a70ce2d849675c",
+    "https://nas-quillo.hatenablog.com/entry/dbc72ce1d258bbfe0ada588cd859e40a"
+   ],
+   "n_run": 901,
+   "ae_in": 1.086,
+   "ae_out": 1.001,
+   "ratio": 1.085,
+   "ae_in_3": [
+    1.04,
+    1.35,
+    1.08
+   ],
+   "ratio_3": [
+    1.08,
+    1.33,
+    1.0
+   ],
+   "win_ret": 67.4
+  },
+  {
+   "entity": "フジキセキ（3代以内）",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ・坂上明大の血統査定",
+   "n_art": 22,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/075781da68f4130fb99b4140386a3da8",
+    "https://nas-quillo.hatenablog.com/entry/0897c59cc0a77fb41cc5fd58ac1b0ae5",
+    "https://nas-quillo.hatenablog.com/entry/19e779d200ac1c58e534b2d1314d9299",
+    "https://nas-quillo.hatenablog.com/entry/2a22a17e6498b9afa6bd2665bfac22bf",
+    "https://nas-quillo.hatenablog.com/entry/346c3852fe86b53b89c610e9ffb9c153",
+    "https://tospo-keiba.jp/sakagamiblood/56951"
+   ],
+   "n_run": 3324,
+   "ae_in": 1.056,
+   "ae_out": 0.973,
+   "ratio": 1.084,
+   "ae_in_3": [
     1.06,
     1.09,
-    1.11
+    1.03
    ],
-   "win_ret": 73.7
+   "ratio_3": [
+    1.07,
+    1.09,
+    1.12
+   ],
+   "win_ret": 69.9
+  },
+  {
+   "entity": "フレンチデピュティ（3代以内）",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 15,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/0897843cec6999707aefe4f9888d08c1",
+    "https://nas-quillo.hatenablog.com/entry/0b0e9b0f4d920d9b2e87dd9c606281b6",
+    "https://nas-quillo.hatenablog.com/entry/2026/01/28/133620",
+    "https://nas-quillo.hatenablog.com/entry/30037d17d6679dc95313cce537e8f7eb",
+    "https://nas-quillo.hatenablog.com/entry/3683001328a72d8ba29963ec636107f9"
+   ],
+   "n_run": 666,
+   "ae_in": 1.073,
+   "ae_out": 0.991,
+   "ratio": 1.082,
+   "ae_in_3": [
+    1.02,
+    1.04,
+    1.15
+   ],
+   "ratio_3": [
+    1.04,
+    1.12,
+    1.1
+   ],
+   "win_ret": 85.5
+  },
+  {
+   "entity": "Unbridled",
+   "cond": "道悪",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "urls": [
+    "https://nas-quillo.hatenablog.com/entry/bf3c3088206aa2452e23c3ac4e8c6d26",
+    "https://nas-quillo.hatenablog.com/entry/c0a0a7369529af7133d551f07f9b85be",
+    "https://nas-quillo.hatenablog.com/entry/d13e767891778e17d7524477a6b542d4"
+   ],
+   "n_run": 3696,
+   "ae_in": 1.057,
+   "ae_out": 0.977,
+   "ratio": 1.082,
+   "ae_in_3": [
+    1.04,
+    1.11,
+    1.05
+   ],
+   "ratio_3": [
+    1.05,
+    1.09,
+    1.12
+   ],
+   "win_ret": 83.3
   },
   {
    "entity": "Danzig",
    "cond": "瞬発",
    "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 6,
+   "source": "望田潤ブログ・坂上明大の血統査定",
+   "n_art": 10,
    "urls": [
+    "https://nas-quillo.hatenablog.com/entry/120fb3108cf2cf506361949ca5baa80d",
+    "https://nas-quillo.hatenablog.com/entry/314c930e6ea605d6b5ebe63cf0c9b0cd",
+    "https://nas-quillo.hatenablog.com/entry/5356dd034d0060207e5326b9d1b8888a",
+    "https://nas-quillo.hatenablog.com/entry/58eec4ee8ddea709c8fd65152fe4ae48",
     "https://tospo-keiba.jp/sakagamiblood/49944",
-    "https://tospo-keiba.jp/sakagamiblood/56953",
-    "https://tospo-keiba.jp/sakagamiblood/63349",
-    "https://tospo-keiba.jp/sakagamiblood/70870",
-    "https://tospo-keiba.jp/sakagamiblood/71764"
+    "https://tospo-keiba.jp/sakagamiblood/56953"
    ],
-   "n_run": 5163,
-   "ae_in": 1.069,
+   "n_run": 5229,
+   "ae_in": 1.07,
    "ae_out": 0.989,
    "ratio": 1.081,
    "ae_in_3": [
@@ -986,32 +2248,17 @@
     1.06,
     1.05
    ],
-   "win_ret": 79.8
+   "win_ret": 79.2
   }
  ],
  "par": [
   {
    "entity": "ディープインパクト",
-   "cond": "大箱",
-   "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 51,
-   "n_run": 8375,
-   "ae_in": 1.033,
-   "ratio": 1.013,
-   "ae_in_3": [
-    1.05,
-    1.02,
-    1.02
-   ]
-  },
-  {
-   "entity": "ディープインパクト",
    "cond": "長距離",
    "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 49,
-   "n_run": 3262,
+   "source": "望田潤ブログ",
+   "n_art": 82,
+   "n_run": 3296,
    "ae_in": 1.057,
    "ratio": 1.037,
    "ae_in_3": [
@@ -1022,11 +2269,191 @@
   },
   {
    "entity": "ディープインパクト",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 78,
+   "n_run": 8591,
+   "ae_in": 1.031,
+   "ratio": 1.011,
+   "ae_in_3": [
+    1.05,
+    1.02,
+    1.01
+   ]
+  },
+  {
+   "entity": "Deputy Minister",
+   "cond": "ダート",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 67,
+   "n_run": 14838,
+   "ae_in": 1.022,
+   "ratio": 1.041,
+   "ae_in_3": [
+    1.0,
+    1.05,
+    1.04
+   ]
+  },
+  {
+   "entity": "Storm Cat（3代以内）",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 59,
+   "n_run": 6364,
+   "ae_in": 1.042,
+   "ratio": 1.04,
+   "ae_in_3": [
+    1.03,
+    1.08,
+    1.03
+   ]
+  },
+  {
+   "entity": "Storm Cat（3代以内）",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 48,
+   "n_run": 9768,
+   "ae_in": 1.02,
+   "ratio": 1.013,
+   "ae_in_3": [
+    1.02,
+    1.06,
+    1.0
+   ]
+  },
+  {
+   "entity": "Nureyev（クロス）",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 47,
+   "n_run": 1771,
+   "ae_in": 1.018,
+   "ratio": 1.027,
+   "ae_in_3": [
+    1.03,
+    1.0,
+    1.01
+   ]
+  },
+  {
+   "entity": "Roberto",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 44,
+   "n_run": 9762,
+   "ae_in": 1.005,
+   "ratio": 1.013,
+   "ae_in_3": [
+    1.01,
+    1.0,
+    1.01
+   ]
+  },
+  {
+   "entity": "キングカメハメハ",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 42,
+   "n_run": 2961,
+   "ae_in": 1.043,
+   "ratio": 1.035,
+   "ae_in_3": [
+    1.06,
+    1.06,
+    1.01
+   ]
+  },
+  {
+   "entity": "Kingmambo",
+   "cond": "小回り",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 39,
+   "n_run": 17153,
+   "ae_in": 1.002,
+   "ratio": 0.993,
+   "ae_in_3": [
+    1.0,
+    1.02,
+    1.0
+   ]
+  },
+  {
+   "entity": "Nureyev（クロス）",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 38,
+   "n_run": 2592,
+   "ae_in": 1.034,
+   "ratio": 1.062,
+   "ae_in_3": [
+    1.05,
+    1.02,
+    1.01
+   ]
+  },
+  {
+   "entity": "キングカメハメハ",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 38,
+   "n_run": 8055,
+   "ae_in": 1.053,
+   "ratio": 1.059,
+   "ae_in_3": [
+    1.07,
+    1.06,
+    1.02
+   ]
+  },
+  {
+   "entity": "デインヒル",
+   "cond": "小回り",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 36,
+   "n_run": 6563,
+   "ae_in": 1.036,
+   "ratio": 1.034,
+   "ae_in_3": [
+    1.08,
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "entity": "ロードカナロア",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 36,
+   "n_run": 1803,
+   "ae_in": 1.069,
+   "ratio": 1.076,
+   "ae_in_3": [
+    1.02,
+    1.16,
+    1.08
+   ]
+  },
+  {
+   "entity": "ディープインパクト",
    "cond": "瞬発",
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 36,
-   "n_run": 4997,
+   "n_run": 5083,
    "ae_in": 1.081,
    "ratio": 1.071,
    "ae_in_3": [
@@ -1036,48 +2463,183 @@
    ]
   },
   {
-   "entity": "Kingmambo",
-   "cond": "小回り",
-   "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 33,
-   "n_run": 17129,
-   "ae_in": 1.002,
-   "ratio": 0.992,
-   "ae_in_3": [
-    1.0,
-    1.02,
-    1.0
-   ]
-  },
-  {
    "entity": "サンデーサイレンス（クロス）",
    "cond": "大箱",
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 32,
-   "n_run": 5459,
-   "ae_in": 1.04,
-   "ratio": 1.066,
+   "n_run": 5624,
+   "ae_in": 1.046,
+   "ratio": 1.072,
    "ae_in_3": [
     1.02,
     1.08,
-    1.04
+    1.05
    ]
   },
   {
    "entity": "Halo（クロス）",
    "cond": "マイル",
    "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 25,
-   "n_run": 14063,
-   "ae_in": 1.003,
-   "ratio": 1.007,
+   "source": "望田潤ブログ",
+   "n_art": 31,
+   "n_run": 14206,
+   "ae_in": 1.004,
+   "ratio": 1.008,
    "ae_in_3": [
     1.0,
     1.0,
     1.01
+   ]
+  },
+  {
+   "entity": "ドレフォン",
+   "cond": "ダート",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 31,
+   "n_run": 1789,
+   "ae_in": 1.099,
+   "ratio": 1.072,
+   "ae_in_3": [
+    1.02,
+    1.1,
+    1.15
+   ]
+  },
+  {
+   "entity": "Secretariat（クロス）",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 30,
+   "n_run": 971,
+   "ae_in": 1.035,
+   "ratio": 1.049,
+   "ae_in_3": [
+    1.04,
+    1.07,
+    1.0
+   ]
+  },
+  {
+   "entity": "Roberto（3代以内）",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 27,
+   "n_run": 1553,
+   "ae_in": 1.034,
+   "ratio": 1.035,
+   "ae_in_3": [
+    1.04,
+    1.03,
+    1.0
+   ]
+  },
+  {
+   "entity": "Nijinsky（クロス）",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 27,
+   "n_run": 929,
+   "ae_in": 1.056,
+   "ratio": 1.064,
+   "ae_in_3": [
+    1.01,
+    1.28,
+    1.02
+   ]
+  },
+  {
+   "entity": "キズナ",
+   "cond": "牝馬",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 26,
+   "n_run": 2101,
+   "ae_in": 1.042,
+   "ratio": 1.014,
+   "ae_in_3": [
+    1.08,
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "entity": "デインヒル",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 26,
+   "n_run": 4819,
+   "ae_in": 1.018,
+   "ratio": 1.0,
+   "ae_in_3": [
+    1.03,
+    1.01,
+    1.01
+   ]
+  },
+  {
+   "entity": "Burghclere",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 26,
+   "n_run": 3963,
+   "ae_in": 1.064,
+   "ratio": 1.046,
+   "ae_in_3": [
+    1.04,
+    1.05,
+    1.1
+   ]
+  },
+  {
+   "entity": "リアルスティール",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 24,
+   "n_run": 416,
+   "ae_in": 1.049,
+   "ratio": 1.038,
+   "ae_in_3": [
+    1.22,
+    1.04,
+    1.0
+   ]
+  },
+  {
+   "entity": "Halo（クロス）",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 24,
+   "n_run": 3164,
+   "ae_in": 1.043,
+   "ratio": 1.049,
+   "ae_in_3": [
+    1.04,
+    1.08,
+    1.03
+   ]
+  },
+  {
+   "entity": "ノーザンテースト（クロス）",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 23,
+   "n_run": 1670,
+   "ae_in": 1.04,
+   "ratio": 1.044,
+   "ae_in_3": [
+    1.04,
+    1.07,
+    1.03
    ]
   },
   {
@@ -1086,7 +2648,7 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 23,
-   "n_run": 10202,
+   "n_run": 10218,
    "ae_in": 1.025,
    "ratio": 1.009,
    "ae_in_3": [
@@ -1101,13 +2663,28 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 23,
-   "n_run": 4217,
-   "ae_in": 1.061,
-   "ratio": 1.07,
+   "n_run": 4292,
+   "ae_in": 1.058,
+   "ratio": 1.066,
    "ae_in_3": [
     1.06,
     1.02,
-    1.08
+    1.07
+   ]
+  },
+  {
+   "entity": "フジキセキ",
+   "cond": "牝馬",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 22,
+   "n_run": 3453,
+   "ae_in": 1.029,
+   "ratio": 1.037,
+   "ae_in_3": [
+    1.01,
+    1.11,
+    1.0
    ]
   },
   {
@@ -1116,9 +2693,9 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 22,
-   "n_run": 1481,
+   "n_run": 1489,
    "ae_in": 1.031,
-   "ratio": 0.994,
+   "ratio": 0.996,
    "ae_in_3": [
     1.05,
     1.0,
@@ -1126,18 +2703,78 @@
    ]
   },
   {
-   "entity": "Nureyev（クロス）",
-   "cond": "マイル",
+   "entity": "デインヒル（3代以内）",
+   "cond": "長距離",
    "dir": "+",
-   "source": "坂上明大の血統査定",
+   "source": "望田潤ブログ",
    "n_art": 21,
-   "n_run": 2575,
-   "ae_in": 1.035,
-   "ratio": 1.063,
+   "n_run": 929,
+   "ae_in": 1.041,
+   "ratio": 1.008,
+   "ae_in_3": [
+    1.03,
+    1.11,
+    1.03
+   ]
+  },
+  {
+   "entity": "フジキセキ（3代以内）",
+   "cond": "小回り",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 21,
+   "n_run": 3992,
+   "ae_in": 1.036,
+   "ratio": 1.058,
+   "ae_in_3": [
+    1.04,
+    1.08,
+    1.0
+   ]
+  },
+  {
+   "entity": "Storm Cat（3代以内）",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 20,
+   "n_run": 1509,
+   "ae_in": 1.04,
+   "ratio": 1.029,
+   "ae_in_3": [
+    1.02,
+    1.05,
+    1.05
+   ]
+  },
+  {
+   "entity": "ハービンジャー",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 20,
+   "n_run": 667,
+   "ae_in": 1.039,
+   "ratio": 1.044,
    "ae_in_3": [
     1.05,
-    1.02,
-    1.01
+    1.08,
+    1.0
+   ]
+  },
+  {
+   "entity": "フレンチデピュティ",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 20,
+   "n_run": 2693,
+   "ae_in": 1.031,
+   "ratio": 1.045,
+   "ae_in_3": [
+    1.05,
+    1.0,
+    1.02
    ]
   },
   {
@@ -1146,9 +2783,9 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 20,
-   "n_run": 17222,
+   "n_run": 17369,
    "ae_in": 1.01,
-   "ratio": 1.041,
+   "ratio": 1.042,
    "ae_in_3": [
     1.01,
     1.05,
@@ -1156,48 +2793,108 @@
    ]
   },
   {
-   "entity": "Deputy Minister",
+   "entity": "ノーザンテースト（クロス）",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 19,
+   "n_run": 2449,
+   "ae_in": 1.036,
+   "ratio": 1.046,
+   "ae_in_3": [
+    1.03,
+    1.13,
+    1.0
+   ]
+  },
+  {
+   "entity": "Busted",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 18,
+   "n_run": 3972,
+   "ae_in": 1.055,
+   "ratio": 1.042,
+   "ae_in_3": [
+    1.04,
+    1.04,
+    1.09
+   ]
+  },
+  {
+   "entity": "Unbridled（3代以内）",
    "cond": "ダート",
    "dir": "+",
    "source": "望田潤ブログ",
    "n_art": 17,
-   "n_run": 14726,
-   "ae_in": 1.022,
-   "ratio": 1.038,
+   "n_run": 3016,
+   "ae_in": 1.034,
+   "ratio": 1.042,
    "ae_in_3": [
-    1.0,
     1.05,
+    1.03,
+    1.0
+   ]
+  },
+  {
+   "entity": "Kingmambo",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 17,
+   "n_run": 9965,
+   "ae_in": 1.03,
+   "ratio": 1.034,
+   "ae_in_3": [
+    1.04,
+    1.05,
+    1.0
+   ]
+  },
+  {
+   "entity": "Caerleon",
+   "cond": "小回り",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 17,
+   "n_run": 4846,
+   "ae_in": 1.058,
+   "ratio": 1.023,
+   "ae_in_3": [
+    1.06,
+    1.03,
+    1.07
+   ]
+  },
+  {
+   "entity": "Buckpasser",
+   "cond": "小回り",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 16,
+   "n_run": 6477,
+   "ae_in": 1.018,
+   "ratio": 1.023,
+   "ae_in_3": [
+    1.01,
+    1.03,
     1.04
    ]
   },
   {
-   "entity": "デインヒル",
-   "cond": "マイル",
-   "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 17,
-   "n_run": 4757,
-   "ae_in": 1.019,
-   "ratio": 1.0,
-   "ae_in_3": [
-    1.03,
-    1.01,
-    1.01
-   ]
-  },
-  {
-   "entity": "Storm Cat（3代以内）",
-   "cond": "マイル",
+   "entity": "Deputy Minister",
+   "cond": "大箱",
    "dir": "+",
    "source": "望田潤ブログ",
    "n_art": 16,
-   "n_run": 9695,
-   "ae_in": 1.022,
-   "ratio": 1.014,
+   "n_run": 5237,
+   "ae_in": 1.023,
+   "ratio": 1.02,
    "ae_in_3": [
     1.02,
-    1.06,
-    1.0
+    1.02,
+    1.03
    ]
   },
   {
@@ -1206,9 +2903,9 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 16,
-   "n_run": 3116,
-   "ae_in": 1.047,
-   "ratio": 1.025,
+   "n_run": 3195,
+   "ae_in": 1.044,
+   "ratio": 1.022,
    "ae_in_3": [
     1.06,
     1.07,
@@ -1221,13 +2918,73 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 16,
-   "n_run": 1041,
-   "ae_in": 1.118,
-   "ratio": 1.063,
+   "n_run": 1047,
+   "ae_in": 1.119,
+   "ratio": 1.064,
    "ae_in_3": [
     1.07,
     1.07,
     1.19
+   ]
+  },
+  {
+   "entity": "フレンチデピュティ",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 15,
+   "n_run": 822,
+   "ae_in": 1.059,
+   "ratio": 1.068,
+   "ae_in_3": [
+    1.03,
+    1.04,
+    1.1
+   ]
+  },
+  {
+   "entity": "Halo（3代以内）",
+   "cond": "道悪",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 15,
+   "n_run": 4609,
+   "ae_in": 1.004,
+   "ratio": 1.017,
+   "ae_in_3": [
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "entity": "リオンディーズ",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 15,
+   "n_run": 728,
+   "ae_in": 1.057,
+   "ratio": 1.048,
+   "ae_in_3": [
+    1.04,
+    1.11,
+    1.04
+   ]
+  },
+  {
+   "entity": "Graustark",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 15,
+   "n_run": 854,
+   "ae_in": 1.053,
+   "ratio": 1.061,
+   "ae_in_3": [
+    1.02,
+    1.03,
+    1.17
    ]
   },
   {
@@ -1236,28 +2993,13 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 15,
-   "n_run": 5618,
-   "ae_in": 1.012,
-   "ratio": 1.032,
+   "n_run": 5656,
+   "ae_in": 1.01,
+   "ratio": 1.031,
    "ae_in_3": [
     1.02,
     1.01,
-    1.01
-   ]
-  },
-  {
-   "entity": "キズナ",
-   "cond": "牝馬",
-   "dir": "+",
-   "source": "望田潤ブログ",
-   "n_art": 14,
-   "n_run": 2089,
-   "ae_in": 1.043,
-   "ratio": 1.013,
-   "ae_in_3": [
-    1.08,
-    1.0,
-    1.01
+    1.0
    ]
   },
   {
@@ -1266,13 +3008,28 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 14,
-   "n_run": 1118,
-   "ae_in": 1.052,
-   "ratio": 1.041,
+   "n_run": 1130,
+   "ae_in": 1.061,
+   "ratio": 1.053,
    "ae_in_3": [
     1.02,
     1.01,
-    1.13
+    1.15
+   ]
+  },
+  {
+   "entity": "フレンチデピュティ",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 13,
+   "n_run": 4781,
+   "ae_in": 1.011,
+   "ratio": 1.025,
+   "ae_in_3": [
+    1.0,
+    1.0,
+    1.03
    ]
   },
   {
@@ -1281,58 +3038,73 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 13,
-   "n_run": 2758,
-   "ae_in": 1.074,
+   "n_run": 2794,
+   "ae_in": 1.073,
    "ratio": 1.069,
    "ae_in_3": [
     1.04,
     1.16,
-    1.07
+    1.06
    ]
   },
   {
-   "entity": "Halo（クロス）",
+   "entity": "ウインドインハーヘア",
    "cond": "長距離",
    "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 13,
-   "n_run": 3136,
-   "ae_in": 1.041,
+   "source": "望田潤ブログ",
+   "n_art": 12,
+   "n_run": 3919,
+   "ae_in": 1.067,
    "ratio": 1.047,
    "ae_in_3": [
-    1.04,
-    1.08,
+    1.05,
+    1.05,
+    1.1
+   ]
+  },
+  {
+   "entity": "サウスヴィグラス",
+   "cond": "短距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 12,
+   "n_run": 1168,
+   "ae_in": 1.03,
+   "ratio": 1.011,
+   "ae_in_3": [
+    1.0,
+    1.05,
+    1.08
+   ]
+  },
+  {
+   "entity": "Caerleon",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 12,
+   "n_run": 3809,
+   "ae_in": 1.037,
+   "ratio": 0.986,
+   "ae_in_3": [
+    1.03,
+    1.09,
     1.02
    ]
   },
   {
-   "entity": "Nureyev（クロス）",
-   "cond": "大箱",
+   "entity": "Le Fabuleux",
+   "cond": "小回り",
    "dir": "+",
    "source": "望田潤ブログ",
    "n_art": 12,
-   "n_run": 1748,
-   "ae_in": 1.014,
-   "ratio": 1.021,
+   "n_run": 6722,
+   "ae_in": 1.038,
+   "ratio": 1.04,
    "ae_in_3": [
-    1.03,
-    1.0,
-    1.0
-   ]
-  },
-  {
-   "entity": "Storm Cat（3代以内）",
-   "cond": "大箱",
-   "dir": "+",
-   "source": "望田潤ブログ",
-   "n_art": 12,
-   "n_run": 6254,
-   "ae_in": 1.046,
-   "ratio": 1.044,
-   "ae_in_3": [
-    1.03,
-    1.08,
-    1.04
+    1.02,
+    1.12,
+    1.02
    ]
   },
   {
@@ -1341,13 +3113,13 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 12,
-   "n_run": 2047,
-   "ae_in": 1.082,
-   "ratio": 1.062,
+   "n_run": 2128,
+   "ae_in": 1.078,
+   "ratio": 1.058,
    "ae_in_3": [
     1.16,
     1.07,
-    1.07
+    1.06
    ]
   },
   {
@@ -1356,9 +3128,9 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 12,
-   "n_run": 4990,
+   "n_run": 5087,
    "ae_in": 1.044,
-   "ratio": 1.054,
+   "ratio": 1.055,
    "ae_in_3": [
     1.01,
     1.08,
@@ -1366,17 +3138,77 @@
    ]
   },
   {
-   "entity": "リオンディーズ",
+   "entity": "Deputy Minister",
    "cond": "マイル",
    "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 12,
-   "n_run": 718,
-   "ae_in": 1.061,
-   "ratio": 1.049,
+   "source": "望田潤ブログ",
+   "n_art": 11,
+   "n_run": 9951,
+   "ae_in": 1.024,
+   "ratio": 1.029,
+   "ae_in_3": [
+    1.01,
+    1.03,
+    1.04
+   ]
+  },
+  {
+   "entity": "Nijinsky",
+   "cond": "瞬発",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 11,
+   "n_run": 4308,
+   "ae_in": 1.063,
+   "ratio": 1.069,
+   "ae_in_3": [
+    1.09,
+    1.11,
+    1.01
+   ]
+  },
+  {
+   "entity": "エンパイアメーカー",
+   "cond": "ダート",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 11,
+   "n_run": 1900,
+   "ae_in": 1.045,
+   "ratio": 1.044,
+   "ae_in_3": [
+    1.01,
+    1.05,
+    1.07
+   ]
+  },
+  {
+   "entity": "Le Fabuleux",
+   "cond": "持続",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 11,
+   "n_run": 10752,
+   "ae_in": 1.015,
+   "ratio": 0.998,
+   "ae_in_3": [
+    1.01,
+    1.04,
+    1.01
+   ]
+  },
+  {
+   "entity": "パイロ",
+   "cond": "ダート",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 11,
+   "n_run": 1387,
+   "ae_in": 1.044,
+   "ratio": 0.983,
    "ae_in_3": [
     1.04,
-    1.11,
+    1.05,
     1.05
    ]
   },
@@ -1386,9 +3218,9 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 11,
-   "n_run": 10177,
-   "ae_in": 1.018,
-   "ratio": 0.96,
+   "n_run": 10293,
+   "ae_in": 1.017,
+   "ratio": 0.959,
    "ae_in_3": [
     1.02,
     1.03,
@@ -1416,43 +3248,103 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 11,
-   "n_run": 10942,
+   "n_run": 11010,
    "ae_in": 1.002,
-   "ratio": 0.988,
+   "ratio": 0.989,
    "ae_in_3": [
     1.0,
-    1.0,
-    1.0
-   ]
-  },
-  {
-   "entity": "Roberto",
-   "cond": "大箱",
-   "dir": "+",
-   "source": "望田潤ブログ",
-   "n_art": 10,
-   "n_run": 9536,
-   "ae_in": 1.004,
-   "ratio": 1.012,
-   "ae_in_3": [
-    1.01,
     1.0,
     1.01
    ]
   },
   {
-   "entity": "ロードカナロア",
-   "cond": "大箱",
+   "entity": "キングカメハメハ",
+   "cond": "瞬発",
    "dir": "+",
    "source": "望田潤ブログ",
    "n_art": 10,
-   "n_run": 1758,
-   "ae_in": 1.07,
-   "ratio": 1.079,
+   "n_run": 4019,
+   "ae_in": 1.062,
+   "ratio": 1.06,
    "ae_in_3": [
+    1.08,
+    1.08,
+    1.04
+   ]
+  },
+  {
+   "entity": "ハービンジャー",
+   "cond": "持続",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 10,
+   "n_run": 1883,
+   "ae_in": 1.013,
+   "ratio": 1.019,
+   "ae_in_3": [
+    1.01,
+    1.03,
+    1.01
+   ]
+  },
+  {
+   "entity": "マンハッタンカフェ",
+   "cond": "牝馬",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 10,
+   "n_run": 1448,
+   "ae_in": 1.043,
+   "ratio": 0.971,
+   "ae_in_3": [
+    1.01,
+    1.22,
+    1.0
+   ]
+  },
+  {
+   "entity": "Storm Bird（クロス）",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 10,
+   "n_run": 1396,
+   "ae_in": 1.041,
+   "ratio": 0.98,
+   "ae_in_3": [
+    1.0,
     1.02,
-    1.16,
-    1.08
+    1.06
+   ]
+  },
+  {
+   "entity": "Sadler's Wells",
+   "cond": "道悪",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 10,
+   "n_run": 7958,
+   "ae_in": 1.002,
+   "ratio": 1.023,
+   "ae_in_3": [
+    1.0,
+    1.01,
+    1.0
+   ]
+  },
+  {
+   "entity": "Roberto（3代以内）",
+   "cond": "道悪",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 10,
+   "n_run": 1012,
+   "ae_in": 1.053,
+   "ratio": 1.054,
+   "ae_in_3": [
+    1.0,
+    1.09,
+    1.31
    ]
   },
   {
@@ -1461,9 +3353,9 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 10,
-   "n_run": 9705,
-   "ae_in": 1.037,
-   "ratio": 1.03,
+   "n_run": 9803,
+   "ae_in": 1.038,
+   "ratio": 1.034,
    "ae_in_3": [
     1.04,
     1.06,
@@ -1471,93 +3363,33 @@
    ]
   },
   {
-   "entity": "キングカメハメハ",
+   "entity": "Lyphard（クロス）",
    "cond": "大箱",
    "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 10,
-   "n_run": 7891,
-   "ae_in": 1.054,
-   "ratio": 1.059,
-   "ae_in_3": [
-    1.07,
-    1.06,
-    1.02
-   ]
-  },
-  {
-   "entity": "Kingmambo",
-   "cond": "大箱",
-   "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 10,
-   "n_run": 9759,
-   "ae_in": 1.031,
-   "ratio": 1.034,
-   "ae_in_3": [
-    1.04,
-    1.05,
-    1.0
-   ]
-  },
-  {
-   "entity": "Deputy Minister",
-   "cond": "マイル",
-   "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 10,
-   "n_run": 9871,
-   "ae_in": 1.022,
-   "ratio": 1.024,
-   "ae_in_3": [
-    1.01,
-    1.03,
-    1.03
-   ]
-  },
-  {
-   "entity": "デインヒル",
-   "cond": "小回り",
-   "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 10,
-   "n_run": 6549,
-   "ae_in": 1.036,
-   "ratio": 1.034,
+   "source": "望田潤ブログ",
+   "n_art": 9,
+   "n_run": 2945,
+   "ae_in": 1.053,
+   "ratio": 1.058,
    "ae_in_3": [
     1.08,
     1.0,
-    1.0
+    1.06
    ]
   },
   {
-   "entity": "Roberto（3代以内）",
-   "cond": "マイル",
+   "entity": "Ribot",
+   "cond": "持続",
    "dir": "+",
    "source": "望田潤ブログ",
    "n_art": 9,
-   "n_run": 1549,
-   "ae_in": 1.036,
-   "ratio": 1.037,
+   "n_run": 5813,
+   "ae_in": 1.016,
+   "ratio": 1.046,
    "ae_in_3": [
-    1.04,
-    1.03,
-    1.01
-   ]
-  },
-  {
-   "entity": "Storm Cat（3代以内）",
-   "cond": "長距離",
-   "dir": "+",
-   "source": "望田潤ブログ",
-   "n_art": 9,
-   "n_run": 1498,
-   "ae_in": 1.039,
-   "ratio": 1.028,
-   "ae_in_3": [
-    1.02,
+    1.0,
     1.05,
-    1.05
+    1.04
    ]
   },
   {
@@ -1566,9 +3398,9 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 9,
-   "n_run": 9919,
+   "n_run": 9968,
    "ae_in": 1.034,
-   "ratio": 1.035,
+   "ratio": 1.036,
    "ae_in_3": [
     1.04,
     1.03,
@@ -1591,72 +3423,72 @@
    ]
   },
   {
-   "entity": "ハービンジャー",
-   "cond": "長距離",
-   "dir": "+",
-   "source": "望田潤ブログ",
-   "n_art": 8,
-   "n_run": 663,
-   "ae_in": 1.043,
-   "ratio": 1.047,
-   "ae_in_3": [
-    1.05,
-    1.08,
-    1.01
-   ]
-  },
-  {
-   "entity": "Roberto",
-   "cond": "中距離",
-   "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 8,
-   "n_run": 4995,
-   "ae_in": 1.033,
-   "ratio": 1.045,
-   "ae_in_3": [
-    1.0,
-    1.01,
-    1.1
-   ]
-  },
-  {
-   "entity": "ハービンジャー",
+   "entity": "Seattle Slew（クロス）",
    "cond": "持続",
    "dir": "+",
    "source": "坂上明大の血統査定",
-   "n_art": 8,
-   "n_run": 1870,
-   "ae_in": 1.015,
-   "ratio": 1.02,
+   "n_art": 9,
+   "n_run": 1481,
+   "ae_in": 1.03,
+   "ratio": 1.004,
    "ae_in_3": [
+    1.08,
     1.01,
-    1.03,
-    1.01
+    1.0
    ]
   },
   {
-   "entity": "Burghclere",
-   "cond": "長距離",
+   "entity": "Flower Bowl",
+   "cond": "ダート",
    "dir": "+",
-   "source": "坂上明大の血統査定",
+   "source": "望田潤ブログ",
    "n_art": 8,
-   "n_run": 3921,
-   "ae_in": 1.063,
-   "ratio": 1.045,
+   "n_run": 3693,
+   "ae_in": 1.035,
+   "ratio": 1.065,
    "ae_in_3": [
     1.04,
-    1.05,
-    1.09
+    1.02,
+    1.04
+   ]
+  },
+  {
+   "entity": "Blushing Groom（3代以内）",
+   "cond": "ダート",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 8,
+   "n_run": 343,
+   "ae_in": 1.08,
+   "ratio": 1.034,
+   "ae_in_3": [
+    1.01,
+    1.25,
+    1.13
+   ]
+  },
+  {
+   "entity": "Burghclere（3代以内）",
+   "cond": "持続",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 8,
+   "n_run": 3062,
+   "ae_in": 1.008,
+   "ratio": 1.032,
+   "ae_in_3": [
+    1.01,
+    1.03,
+    1.0
    ]
   },
   {
    "entity": "Halo（クロス）",
    "cond": "高速馬場",
    "dir": "+",
-   "source": "坂上明大の血統査定",
+   "source": "望田潤ブログ",
    "n_art": 8,
-   "n_run": 17055,
+   "n_run": 17182,
    "ae_in": 1.015,
    "ratio": 1.033,
    "ae_in_3": [
@@ -1666,18 +3498,33 @@
    ]
   },
   {
+   "entity": "Roberto",
+   "cond": "中距離",
+   "dir": "+",
+   "source": "坂上明大の血統査定",
+   "n_art": 8,
+   "n_run": 5066,
+   "ae_in": 1.035,
+   "ratio": 1.046,
+   "ae_in_3": [
+    1.0,
+    1.01,
+    1.1
+   ]
+  },
+  {
    "entity": "ディープインパクト",
    "cond": "中距離",
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 8,
-   "n_run": 4518,
-   "ae_in": 1.04,
-   "ratio": 1.02,
+   "n_run": 4577,
+   "ae_in": 1.038,
+   "ratio": 1.017,
    "ae_in_3": [
     1.05,
     1.0,
-    1.05
+    1.04
    ]
   },
   {
@@ -1686,9 +3533,9 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 8,
-   "n_run": 7531,
+   "n_run": 7582,
    "ae_in": 1.015,
-   "ratio": 0.994,
+   "ratio": 0.992,
    "ae_in_3": [
     1.01,
     1.02,
@@ -1696,48 +3543,108 @@
    ]
   },
   {
-   "entity": "父=ドレフォン",
-   "cond": "ダート",
+   "entity": "Terlingua",
+   "cond": "大箱",
    "dir": "+",
    "source": "望田潤ブログ",
    "n_art": 7,
-   "n_run": 1776,
-   "ae_in": 1.1,
-   "ratio": 1.079,
+   "n_run": 9353,
+   "ae_in": 1.05,
+   "ratio": 1.04,
    "ae_in_3": [
-    1.02,
-    1.1,
-    1.16
+    1.05,
+    1.07,
+    1.04
    ]
   },
   {
-   "entity": "ウインドインハーヘア",
-   "cond": "長距離",
-   "dir": "+",
-   "source": "望田潤ブログ",
-   "n_art": 7,
-   "n_run": 3877,
-   "ae_in": 1.066,
-   "ratio": 1.046,
-   "ae_in_3": [
-    1.05,
-    1.05,
-    1.1
-   ]
-  },
-  {
-   "entity": "マンハッタンカフェ",
+   "entity": "ドレフォン",
    "cond": "牝馬",
    "dir": "+",
    "source": "望田潤ブログ",
    "n_art": 7,
-   "n_run": 1438,
-   "ae_in": 1.042,
-   "ratio": 0.971,
+   "n_run": 1015,
+   "ae_in": 1.091,
+   "ratio": 1.012,
+   "ae_in_3": [
+    1.16,
+    1.06,
+    1.05
+   ]
+  },
+  {
+   "entity": "Buckpasser（クロス）",
+   "cond": "短距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 7,
+   "n_run": 859,
+   "ae_in": 1.027,
+   "ratio": 1.008,
+   "ae_in_3": [
+    1.0,
+    1.09,
+    1.05
+   ]
+  },
+  {
+   "entity": "マンハッタンカフェ",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 7,
+   "n_run": 1504,
+   "ae_in": 1.095,
+   "ratio": 1.051,
+   "ae_in_3": [
+    1.1,
+    1.26,
+    1.01
+   ]
+  },
+  {
+   "entity": "Unbridled（3代以内）",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 7,
+   "n_run": 2372,
+   "ae_in": 1.021,
+   "ratio": 1.005,
+   "ae_in_3": [
+    1.02,
+    1.02,
+    1.03
+   ]
+  },
+  {
+   "entity": "Caerleon",
+   "cond": "牝馬",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 7,
+   "n_run": 3990,
+   "ae_in": 1.034,
+   "ratio": 0.982,
    "ae_in_3": [
     1.01,
-    1.22,
-    1.0
+    1.1,
+    1.04
+   ]
+  },
+  {
+   "entity": "Caerleon",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 7,
+   "n_run": 746,
+   "ae_in": 1.117,
+   "ratio": 1.074,
+   "ae_in_3": [
+    1.09,
+    1.36,
+    1.07
    ]
   },
   {
@@ -1746,13 +3653,13 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 7,
-   "n_run": 999,
-   "ae_in": 1.046,
-   "ratio": 1.028,
+   "n_run": 1008,
+   "ae_in": 1.049,
+   "ratio": 1.032,
    "ae_in_3": [
     1.03,
     1.03,
-    1.07
+    1.08
    ]
   },
   {
@@ -1761,28 +3668,13 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 7,
-   "n_run": 1132,
-   "ae_in": 1.07,
-   "ratio": 1.044,
+   "n_run": 1140,
+   "ae_in": 1.071,
+   "ratio": 1.045,
    "ae_in_3": [
     1.12,
     1.02,
-    1.0
-   ]
-  },
-  {
-   "entity": "キングカメハメハ",
-   "cond": "長距離",
-   "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 7,
-   "n_run": 2942,
-   "ae_in": 1.046,
-   "ratio": 1.038,
-   "ae_in_3": [
-    1.06,
-    1.06,
-    1.02
+    1.01
    ]
   },
   {
@@ -1791,13 +3683,13 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 7,
-   "n_run": 4003,
-   "ae_in": 1.013,
+   "n_run": 4051,
+   "ae_in": 1.014,
    "ratio": 1.034,
    "ae_in_3": [
     1.0,
     1.04,
-    1.02
+    1.03
    ]
   },
   {
@@ -1806,9 +3698,9 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 7,
-   "n_run": 15911,
-   "ae_in": 1.05,
-   "ratio": 1.062,
+   "n_run": 16035,
+   "ae_in": 1.049,
+   "ratio": 1.059,
    "ae_in_3": [
     1.06,
     1.02,
@@ -1821,9 +3713,9 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 7,
-   "n_run": 2930,
-   "ae_in": 1.032,
-   "ratio": 1.004,
+   "n_run": 3017,
+   "ae_in": 1.033,
+   "ratio": 1.006,
    "ae_in_3": [
     1.03,
     1.04,
@@ -1836,28 +3728,118 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 7,
-   "n_run": 1671,
-   "ae_in": 1.053,
-   "ratio": 1.047,
+   "n_run": 1709,
+   "ae_in": 1.059,
+   "ratio": 1.055,
    "ae_in_3": [
     1.0,
     1.08,
-    1.1
+    1.11
    ]
   },
   {
-   "entity": "キタサンブラック",
+   "entity": "Sir Ivor",
+   "cond": "短距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 6,
+   "n_run": 5705,
+   "ae_in": 1.01,
+   "ratio": 1.033,
+   "ae_in_3": [
+    1.0,
+    1.06,
+    1.0
+   ]
+  },
+  {
+   "entity": "Mr. Prospector（クロス）",
    "cond": "大箱",
    "dir": "+",
    "source": "望田潤ブログ",
    "n_art": 6,
-   "n_run": 495,
-   "ae_in": 1.057,
-   "ratio": 1.012,
+   "n_run": 8827,
+   "ae_in": 1.013,
+   "ratio": 1.018,
+   "ae_in_3": [
+    1.01,
+    1.03,
+    1.01
+   ]
+  },
+  {
+   "entity": "Burghclere",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 6,
+   "n_run": 9969,
+   "ae_in": 1.031,
+   "ratio": 1.01,
+   "ae_in_3": [
+    1.05,
+    1.02,
+    1.02
+   ]
+  },
+  {
+   "entity": "Vice Regent",
+   "cond": "ダート",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 6,
+   "n_run": 12449,
+   "ae_in": 1.009,
+   "ratio": 1.024,
+   "ae_in_3": [
+    1.0,
+    1.0,
+    1.02
+   ]
+  },
+  {
+   "entity": "Kingmambo",
+   "cond": "瞬発",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 6,
+   "n_run": 4893,
+   "ae_in": 1.043,
+   "ratio": 1.044,
    "ae_in_3": [
     1.06,
-    1.13,
+    1.05,
     1.02
+   ]
+  },
+  {
+   "entity": "Relaunch",
+   "cond": "ダート",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 6,
+   "n_run": 4642,
+   "ae_in": 1.046,
+   "ratio": 1.06,
+   "ae_in_3": [
+    1.04,
+    1.07,
+    1.04
+   ]
+  },
+  {
+   "entity": "ディープインパクト",
+   "cond": "早熟",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 6,
+   "n_run": 8539,
+   "ae_in": 1.057,
+   "ratio": 1.052,
+   "ae_in_3": [
+    1.08,
+    1.01,
+    1.05
    ]
   },
   {
@@ -1866,13 +3848,13 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 6,
-   "n_run": 466,
-   "ae_in": 1.034,
-   "ratio": 1.041,
+   "n_run": 471,
+   "ae_in": 1.044,
+   "ratio": 1.051,
    "ae_in_3": [
     1.01,
     1.01,
-    1.06
+    1.08
    ]
   },
   {
@@ -1883,7 +3865,7 @@
    "n_art": 6,
    "n_run": 2021,
    "ae_in": 1.014,
-   "ratio": 1.032,
+   "ratio": 1.033,
    "ae_in_3": [
     1.0,
     1.11,
@@ -1896,7 +3878,7 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 6,
-   "n_run": 4761,
+   "n_run": 4841,
    "ae_in": 1.034,
    "ratio": 1.046,
    "ae_in_3": [
@@ -1911,57 +3893,282 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 6,
-   "n_run": 1872,
-   "ae_in": 1.021,
+   "n_run": 1954,
+   "ae_in": 1.022,
    "ratio": 1.04,
    "ae_in_3": [
     1.0,
     1.06,
+    1.01
+   ]
+  },
+  {
+   "entity": "Glorious Song",
+   "cond": "小回り",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 5,
+   "n_run": 3951,
+   "ae_in": 1.008,
+   "ratio": 0.986,
+   "ae_in_3": [
+    1.02,
+    1.01,
     1.0
    ]
   },
   {
-   "entity": "Secretariat（クロス）",
-   "cond": "大箱",
+   "entity": "Mr. Prospector（クロス）",
+   "cond": "マイル",
    "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 6,
-   "n_run": 961,
-   "ae_in": 1.041,
-   "ratio": 1.052,
+   "source": "望田潤ブログ",
+   "n_art": 5,
+   "n_run": 14643,
+   "ae_in": 1.017,
+   "ratio": 1.029,
    "ae_in_3": [
-    1.04,
-    1.07,
+    1.02,
+    1.0,
     1.02
    ]
   },
   {
-   "entity": "Deputy Minister",
-   "cond": "大箱",
+   "entity": "Nureyev（クロス）",
+   "cond": "高速馬場",
    "dir": "+",
    "source": "望田潤ブログ",
    "n_art": 5,
-   "n_run": 5121,
-   "ae_in": 1.026,
-   "ratio": 1.023,
+   "n_run": 2616,
+   "ae_in": 1.017,
+   "ratio": 1.032,
+   "ae_in_3": [
+    1.01,
+    1.01,
+    1.03
+   ]
+  },
+  {
+   "entity": "Blushing Groom",
+   "cond": "道悪",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 5,
+   "n_run": 5628,
+   "ae_in": 1.025,
+   "ratio": 1.05,
    "ae_in_3": [
     1.02,
-    1.02,
+    1.03,
+    1.02
+   ]
+  },
+  {
+   "entity": "Cape Cross",
+   "cond": "小回り",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 5,
+   "n_run": 757,
+   "ae_in": 1.056,
+   "ratio": 1.038,
+   "ae_in_3": [
+    1.0,
+    1.01,
+    1.14
+   ]
+  },
+  {
+   "entity": "ブラックタイド",
+   "cond": "短距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 5,
+   "n_run": 979,
+   "ae_in": 1.01,
+   "ratio": 0.982,
+   "ae_in_3": [
+    1.0,
+    1.03,
+    1.02
+   ]
+  },
+  {
+   "entity": "リアルスティール",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 5,
+   "n_run": 594,
+   "ae_in": 1.059,
+   "ratio": 1.065,
+   "ae_in_3": [
+    1.01,
+    1.01,
+    1.09
+   ]
+  },
+  {
+   "entity": "His Majesty",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 5,
+   "n_run": 1544,
+   "ae_in": 1.026,
+   "ratio": 1.006,
+   "ae_in_3": [
+    1.01,
+    1.05,
     1.04
    ]
   },
   {
-   "entity": "Unbridled（3代以内）",
+   "entity": "Cozzene",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 5,
+   "n_run": 1724,
+   "ae_in": 1.068,
+   "ratio": 1.047,
+   "ae_in_3": [
+    1.04,
+    1.15,
+    1.05
+   ]
+  },
+  {
+   "entity": "ケイティーズファースト（3代以内）",
+   "cond": "晩成",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 5,
+   "n_run": 464,
+   "ae_in": 1.155,
+   "ratio": 1.073,
+   "ae_in_3": [
+    1.05,
+    1.56,
+    1.14
+   ]
+  },
+  {
+   "entity": "Tom Rolfe",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 5,
+   "n_run": 2506,
+   "ae_in": 1.021,
+   "ratio": 1.033,
+   "ae_in_3": [
+    1.02,
+    1.05,
+    1.01
+   ]
+  },
+  {
+   "entity": "Cozzene",
+   "cond": "短距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 5,
+   "n_run": 3022,
+   "ae_in": 1.053,
+   "ratio": 1.036,
+   "ae_in_3": [
+    1.01,
+    1.12,
+    1.06
+   ]
+  },
+  {
+   "entity": "Drone",
    "cond": "ダート",
    "dir": "+",
    "source": "望田潤ブログ",
    "n_art": 5,
-   "n_run": 2992,
-   "ae_in": 1.034,
-   "ratio": 1.038,
+   "n_run": 4048,
+   "ae_in": 1.038,
+   "ratio": 1.027,
    "ae_in_3": [
-    1.05,
+    1.06,
     1.03,
+    1.0
+   ]
+  },
+  {
+   "entity": "Seeking the Gold",
+   "cond": "ダート",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 5,
+   "n_run": 5711,
+   "ae_in": 1.015,
+   "ratio": 0.981,
+   "ae_in_3": [
+    1.01,
+    1.04,
+    1.01
+   ]
+  },
+  {
+   "entity": "Mr. Prospector（クロス）",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 5,
+   "n_run": 2308,
+   "ae_in": 1.046,
+   "ratio": 1.049,
+   "ae_in_3": [
+    1.02,
+    1.06,
+    1.07
+   ]
+  },
+  {
+   "entity": "スペシャルウィーク（3代以内）",
+   "cond": "ダート",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 5,
+   "n_run": 3316,
+   "ae_in": 1.009,
+   "ratio": 1.028,
+   "ae_in_3": [
+    1.01,
+    1.0,
+    1.01
+   ]
+  },
+  {
+   "entity": "Wild Again",
+   "cond": "小回り",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 5,
+   "n_run": 2464,
+   "ae_in": 1.021,
+   "ratio": 1.024,
+   "ae_in_3": [
+    1.03,
+    1.03,
+    1.0
+   ]
+  },
+  {
+   "entity": "Terlingua",
+   "cond": "ダート",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 5,
+   "n_run": 20554,
+   "ae_in": 1.011,
+   "ratio": 0.982,
+   "ae_in_3": [
+    1.01,
+    1.02,
     1.0
    ]
   },
@@ -1971,13 +4178,13 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 5,
-   "n_run": 1785,
-   "ae_in": 1.042,
-   "ratio": 1.031,
+   "n_run": 1822,
+   "ae_in": 1.039,
+   "ratio": 1.029,
    "ae_in_3": [
     1.03,
     1.08,
-    1.04
+    1.03
    ]
   },
   {
@@ -1986,13 +4193,13 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 5,
-   "n_run": 2601,
-   "ae_in": 1.043,
-   "ratio": 1.075,
+   "n_run": 2640,
+   "ae_in": 1.041,
+   "ratio": 1.072,
    "ae_in_3": [
     1.05,
     1.05,
-    1.01
+    1.0
    ]
   },
   {
@@ -2001,13 +4208,13 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 5,
-   "n_run": 5182,
-   "ae_in": 1.042,
-   "ratio": 1.042,
+   "n_run": 5241,
+   "ae_in": 1.039,
+   "ratio": 1.039,
    "ae_in_3": [
     1.06,
     1.01,
-    1.03
+    1.02
    ]
   },
   {
@@ -2016,28 +4223,28 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 5,
-   "n_run": 6269,
-   "ae_in": 1.038,
-   "ratio": 1.037,
+   "n_run": 6331,
+   "ae_in": 1.036,
+   "ratio": 1.035,
    "ae_in_3": [
     1.05,
     1.03,
-    1.02
+    1.01
    ]
   },
   {
-   "entity": "A.P. Indy",
+   "entity": "A.P. Indy（3代以内）",
    "cond": "マイル",
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 5,
-   "n_run": 6129,
-   "ae_in": 1.01,
-   "ratio": 0.966,
+   "n_run": 4013,
+   "ae_in": 1.043,
+   "ratio": 1.02,
    "ae_in_3": [
-    1.02,
-    1.01,
-    1.0
+    1.03,
+    1.06,
+    1.05
    ]
   },
   {
@@ -2046,13 +4253,13 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 5,
-   "n_run": 2096,
-   "ae_in": 1.05,
-   "ratio": 1.037,
+   "n_run": 2115,
+   "ae_in": 1.051,
+   "ratio": 1.04,
    "ae_in_3": [
     1.07,
     1.02,
-    1.04
+    1.05
    ]
   },
   {
@@ -2061,9 +4268,9 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 5,
-   "n_run": 8425,
-   "ae_in": 1.015,
-   "ratio": 1.012,
+   "n_run": 8474,
+   "ae_in": 1.016,
+   "ratio": 1.013,
    "ae_in_3": [
     1.0,
     1.06,
@@ -2086,18 +4293,18 @@
    ]
   },
   {
-   "entity": "A.P. Indy（3代以内）",
+   "entity": "A.P. Indy",
    "cond": "瞬発",
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 5,
-   "n_run": 386,
-   "ae_in": 1.106,
-   "ratio": 1.075,
+   "n_run": 935,
+   "ae_in": 1.103,
+   "ratio": 1.079,
    "ae_in_3": [
-    1.01,
-    1.39,
-    1.07
+    1.08,
+    1.13,
+    1.11
    ]
   },
   {
@@ -2116,93 +4323,363 @@
    ]
   },
   {
-   "entity": "フジキセキ",
-   "cond": "マイル",
-   "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 5,
-   "n_run": 3322,
-   "ae_in": 1.05,
-   "ratio": 1.076,
-   "ae_in_3": [
-    1.06,
-    1.09,
-    1.01
-   ]
-  },
-  {
-   "entity": "パイロ",
-   "cond": "ダート",
-   "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 5,
-   "n_run": 1379,
-   "ae_in": 1.042,
-   "ratio": 0.977,
-   "ae_in_3": [
-    1.04,
-    1.05,
-    1.05
-   ]
-  },
-  {
-   "entity": "His Majesty",
-   "cond": "長距離",
-   "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 5,
-   "n_run": 1538,
-   "ae_in": 1.026,
-   "ratio": 1.007,
-   "ae_in_3": [
-    1.01,
-    1.05,
-    1.04
-   ]
-  },
-  {
-   "entity": "Graustark",
-   "cond": "長距離",
-   "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 5,
-   "n_run": 851,
-   "ae_in": 1.052,
-   "ratio": 1.058,
-   "ae_in_3": [
-    1.02,
-    1.03,
-    1.16
-   ]
-  },
-  {
-   "entity": "Busted",
-   "cond": "長距離",
+   "entity": "Deputy Minister",
+   "cond": "道悪",
    "dir": "+",
    "source": "望田潤ブログ",
    "n_art": 4,
-   "n_run": 3936,
-   "ae_in": 1.053,
-   "ratio": 1.04,
+   "n_run": 6912,
+   "ae_in": 1.015,
+   "ratio": 1.01,
    "ae_in_3": [
+    1.01,
+    1.02,
+    1.02
+   ]
+  },
+  {
+   "entity": "Miswaki",
+   "cond": "小回り",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "n_run": 4008,
+   "ae_in": 1.033,
+   "ratio": 1.064,
+   "ae_in_3": [
+    1.06,
+    1.02,
+    1.02
+   ]
+  },
+  {
+   "entity": "ヘネシー",
+   "cond": "小回り",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "n_run": 2522,
+   "ae_in": 1.033,
+   "ratio": 1.045,
+   "ae_in_3": [
+    1.03,
+    1.11,
+    1.0
+   ]
+  },
+  {
+   "entity": "Miesque",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "n_run": 15588,
+   "ae_in": 1.007,
+   "ratio": 0.998,
+   "ae_in_3": [
+    1.01,
+    1.03,
+    1.0
+   ]
+  },
+  {
+   "entity": "ヘネシー（3代以内）",
+   "cond": "ダート",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "n_run": 4352,
+   "ae_in": 1.006,
+   "ratio": 0.952,
+   "ae_in_3": [
+    1.0,
     1.04,
+    1.0
+   ]
+  },
+  {
+   "entity": "シニスターミニスター",
+   "cond": "小回り",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "n_run": 753,
+   "ae_in": 1.101,
+   "ratio": 0.984,
+   "ae_in_3": [
+    1.1,
+    1.08,
+    1.11
+   ]
+  },
+  {
+   "entity": "Alzao",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "n_run": 10082,
+   "ae_in": 1.035,
+   "ratio": 1.013,
+   "ae_in_3": [
+    1.05,
+    1.03,
+    1.02
+   ]
+  },
+  {
+   "entity": "Alydar",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "n_run": 4585,
+   "ae_in": 1.063,
+   "ratio": 1.049,
+   "ae_in_3": [
+    1.03,
     1.04,
-    1.08
+    1.12
    ]
   },
   {
    "entity": "Le Fabuleux",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "n_run": 6067,
+   "ae_in": 1.036,
+   "ratio": 1.035,
+   "ae_in_3": [
+    1.03,
+    1.08,
+    1.03
+   ]
+  },
+  {
+   "entity": "Wild Again",
    "cond": "持続",
    "dir": "+",
    "source": "望田潤ブログ",
    "n_art": 4,
-   "n_run": 10688,
-   "ae_in": 1.015,
-   "ratio": 0.997,
+   "n_run": 4294,
+   "ae_in": 1.007,
+   "ratio": 0.999,
+   "ae_in_3": [
+    1.02,
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "entity": "Flower Bowl",
+   "cond": "持続",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "n_run": 4530,
+   "ae_in": 1.011,
+   "ratio": 1.011,
+   "ae_in_3": [
+    1.0,
+    1.03,
+    1.06
+   ]
+  },
+  {
+   "entity": "Pulpit",
+   "cond": "ダート",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "n_run": 3606,
+   "ae_in": 1.036,
+   "ratio": 1.039,
+   "ae_in_3": [
+    1.04,
+    1.05,
+    1.03
+   ]
+  },
+  {
+   "entity": "Squander",
+   "cond": "ダート",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "n_run": 921,
+   "ae_in": 1.064,
+   "ratio": 1.009,
+   "ae_in_3": [
+    1.05,
+    1.04,
+    1.1
+   ]
+  },
+  {
+   "entity": "Unbridled",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "n_run": 3082,
+   "ae_in": 1.024,
+   "ratio": 1.031,
    "ae_in_3": [
     1.01,
+    1.03,
+    1.04
+   ]
+  },
+  {
+   "entity": "Vice Regent",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "n_run": 8388,
+   "ae_in": 1.013,
+   "ratio": 1.023,
+   "ae_in_3": [
+    1.0,
+    1.01,
+    1.03
+   ]
+  },
+  {
+   "entity": "Raja Baba",
+   "cond": "小回り",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "n_run": 2234,
+   "ae_in": 1.043,
+   "ratio": 1.072,
+   "ae_in_3": [
+    1.06,
+    1.0,
+    1.02
+   ]
+  },
+  {
+   "entity": "Silver Hawk（3代以内）",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "n_run": 1226,
+   "ae_in": 1.068,
+   "ratio": 1.053,
+   "ae_in_3": [
+    1.03,
     1.04,
+    1.15
+   ]
+  },
+  {
+   "entity": "Silver Hawk（3代以内）",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "n_run": 383,
+   "ae_in": 1.078,
+   "ratio": 1.052,
+   "ae_in_3": [
+    1.03,
+    1.13,
+    1.14
+   ]
+  },
+  {
+   "entity": "Alydar",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "n_run": 2479,
+   "ae_in": 1.051,
+   "ratio": 1.022,
+   "ae_in_3": [
+    1.05,
+    1.02,
+    1.07
+   ]
+  },
+  {
+   "entity": "In Reality",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "n_run": 5232,
+   "ae_in": 1.027,
+   "ratio": 1.025,
+   "ae_in_3": [
+    1.0,
+    1.08,
+    1.04
+   ]
+  },
+  {
+   "entity": "Pacific Princess",
+   "cond": "牝馬",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "n_run": 2206,
+   "ae_in": 1.039,
+   "ratio": 1.014,
+   "ae_in_3": [
+    1.07,
+    1.01,
     1.01
+   ]
+  },
+  {
+   "entity": "Seeking the Gold",
+   "cond": "小回り",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "n_run": 4154,
+   "ae_in": 1.026,
+   "ratio": 1.005,
+   "ae_in_3": [
+    1.0,
+    1.02,
+    1.06
+   ]
+  },
+  {
+   "entity": "Dansili",
+   "cond": "小回り",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "n_run": 1946,
+   "ae_in": 1.067,
+   "ratio": 1.077,
+   "ae_in_3": [
+    1.06,
+    1.09,
+    1.06
+   ]
+  },
+  {
+   "entity": "Silver Hawk（3代以内）",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 4,
+   "n_run": 1752,
+   "ae_in": 1.043,
+   "ratio": 1.023,
+   "ae_in_3": [
+    1.04,
+    1.04,
+    1.06
    ]
   },
   {
@@ -2211,28 +4688,13 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 4,
-   "n_run": 4241,
-   "ae_in": 1.054,
-   "ratio": 1.05,
+   "n_run": 4289,
+   "ae_in": 1.051,
+   "ratio": 1.046,
    "ae_in_3": [
     1.07,
     1.0,
-    1.05
-   ]
-  },
-  {
-   "entity": "ハーツクライ",
-   "cond": "東京芝",
-   "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 4,
-   "n_run": 923,
-   "ae_in": 1.008,
-   "ratio": 1.038,
-   "ae_in_3": [
-    1.01,
-    1.01,
-    1.0
+    1.04
    ]
   },
   {
@@ -2243,7 +4705,7 @@
    "n_art": 4,
    "n_run": 1642,
    "ae_in": 1.023,
-   "ratio": 0.995,
+   "ratio": 0.991,
    "ae_in_3": [
     1.03,
     1.09,
@@ -2251,44 +4713,284 @@
    ]
   },
   {
-   "entity": "サクラバクシンオー",
+   "entity": "シニスターミニスター",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "n_run": 1060,
+   "ae_in": 1.111,
+   "ratio": 0.997,
+   "ae_in_3": [
+    1.12,
+    1.06,
+    1.13
+   ]
+  },
+  {
+   "entity": "ドレフォン",
+   "cond": "早熟",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "n_run": 765,
+   "ae_in": 1.093,
+   "ratio": 1.016,
+   "ae_in_3": [
+    1.0,
+    1.31,
+    1.09
+   ]
+  },
+  {
+   "entity": "ウインドインハーヘア",
    "cond": "大箱",
    "dir": "+",
    "source": "望田潤ブログ",
    "n_art": 3,
-   "n_run": 1278,
-   "ae_in": 1.016,
-   "ratio": 1.027,
+   "n_run": 9866,
+   "ae_in": 1.033,
+   "ratio": 1.012,
    "ae_in_3": [
-    1.01,
-    1.06,
+    1.05,
+    1.02,
+    1.02
+   ]
+  },
+  {
+   "entity": "Alleged",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "n_run": 3350,
+   "ae_in": 1.017,
+   "ratio": 1.023,
+   "ae_in_3": [
+    1.02,
+    1.04,
     1.0
    ]
   },
   {
-   "entity": "Buckpasser",
-   "cond": "小回り",
+   "entity": "Dansili",
+   "cond": "長距離",
    "dir": "+",
    "source": "望田潤ブログ",
    "n_art": 3,
-   "n_run": 6473,
-   "ae_in": 1.018,
-   "ratio": 1.022,
+   "n_run": 706,
+   "ae_in": 1.041,
+   "ratio": 1.015,
    "ae_in_3": [
-    1.01,
-    1.03,
-    1.04
+    1.04,
+    1.1,
+    1.01
    ]
   },
   {
-   "entity": "ノーザンテースト（クロス）",
+   "entity": "Storm Bird（クロス）",
+   "cond": "短距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "n_run": 1345,
+   "ae_in": 1.024,
+   "ratio": 0.954,
+   "ae_in_3": [
+    1.06,
+    1.02,
+    1.0
+   ]
+  },
+  {
+   "entity": "ホワイトマズル",
    "cond": "大箱",
    "dir": "+",
    "source": "望田潤ブログ",
    "n_art": 3,
-   "n_run": 1638,
-   "ae_in": 1.039,
-   "ratio": 1.042,
+   "n_run": 375,
+   "ae_in": 1.065,
+   "ratio": 1.022,
+   "ae_in_3": [
+    1.13,
+    1.01,
+    1.0
+   ]
+  },
+  {
+   "entity": "Alzao（3代以内）",
+   "cond": "持続",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "n_run": 3228,
+   "ae_in": 1.005,
+   "ratio": 1.026,
+   "ae_in_3": [
+    1.0,
+    1.04,
+    1.01
+   ]
+  },
+  {
+   "entity": "Rahy",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "n_run": 2935,
+   "ae_in": 1.028,
+   "ratio": 1.009,
+   "ae_in_3": [
+    1.02,
+    1.02,
+    1.04
+   ]
+  },
+  {
+   "entity": "Giant's Causeway",
+   "cond": "大箱",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "n_run": 1064,
+   "ae_in": 1.058,
+   "ratio": 1.051,
+   "ae_in_3": [
+    1.02,
+    1.01,
+    1.1
+   ]
+  },
+  {
+   "entity": "Alydar",
+   "cond": "短距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "n_run": 4893,
+   "ae_in": 1.019,
+   "ratio": 0.976,
+   "ae_in_3": [
+    1.0,
+    1.04,
+    1.03
+   ]
+  },
+  {
+   "entity": "Tapit",
+   "cond": "道悪",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "n_run": 454,
+   "ae_in": 1.061,
+   "ratio": 1.022,
+   "ae_in_3": [
+    1.04,
+    1.0,
+    1.11
+   ]
+  },
+  {
+   "entity": "Vice Regent",
+   "cond": "道悪",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "n_run": 5990,
+   "ae_in": 1.027,
+   "ratio": 1.038,
+   "ae_in_3": [
+    1.02,
+    1.03,
+    1.03
+   ]
+  },
+  {
+   "entity": "シニスターミニスター",
+   "cond": "短距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "n_run": 915,
+   "ae_in": 1.089,
+   "ratio": 0.964,
+   "ae_in_3": [
+    1.08,
+    1.1,
+    1.09
+   ]
+  },
+  {
+   "entity": "Hopespringseternal",
+   "cond": "牝馬",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "n_run": 1860,
+   "ae_in": 1.064,
+   "ratio": 1.072,
+   "ae_in_3": [
+    1.06,
+    1.1,
+    1.06
+   ]
+  },
+  {
+   "entity": "ブレイヴェストローマン",
+   "cond": "小回り",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "n_run": 811,
+   "ae_in": 1.051,
+   "ratio": 1.078,
+   "ae_in_3": [
+    1.03,
+    1.05,
+    1.09
+   ]
+  },
+  {
+   "entity": "Alzao",
+   "cond": "長距離",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "n_run": 3971,
+   "ae_in": 1.068,
+   "ratio": 1.049,
+   "ae_in_3": [
+    1.05,
+    1.05,
+    1.1
+   ]
+  },
+  {
+   "entity": "ロードカナロア",
+   "cond": "早熟",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "n_run": 1673,
+   "ae_in": 1.015,
+   "ratio": 1.001,
+   "ae_in_3": [
+    1.0,
+    1.02,
+    1.03
+   ]
+  },
+  {
+   "entity": "サウスヴィグラス",
+   "cond": "マイル",
+   "dir": "+",
+   "source": "望田潤ブログ",
+   "n_art": 3,
+   "n_run": 470,
+   "ae_in": 1.041,
+   "ratio": 1.021,
    "ae_in_3": [
     1.04,
     1.07,
@@ -2296,93 +4998,48 @@
    ]
   },
   {
-   "entity": "フレンチデピュティ",
-   "cond": "長距離",
+   "entity": "Unbridled",
+   "cond": "早熟",
    "dir": "+",
    "source": "望田潤ブログ",
    "n_art": 3,
-   "n_run": 816,
-   "ae_in": 1.058,
-   "ratio": 1.066,
+   "n_run": 3970,
+   "ae_in": 1.036,
+   "ratio": 1.059,
    "ae_in_3": [
-    1.03,
     1.04,
-    1.09
-   ]
-  },
-  {
-   "entity": "Lyphard（クロス）",
-   "cond": "大箱",
-   "dir": "+",
-   "source": "望田潤ブログ",
-   "n_art": 3,
-   "n_run": 2862,
-   "ae_in": 1.056,
-   "ratio": 1.061,
-   "ae_in_3": [
-    1.08,
-    1.0,
-    1.06
-   ]
-  },
-  {
-   "entity": "マンハッタンカフェ",
-   "cond": "マイル",
-   "dir": "+",
-   "source": "望田潤ブログ",
-   "n_art": 3,
-   "n_run": 1493,
-   "ae_in": 1.097,
-   "ratio": 1.055,
-   "ae_in_3": [
-    1.1,
-    1.26,
-    1.01
-   ]
-  },
-  {
-   "entity": "フレンチデピュティ",
-   "cond": "マイル",
-   "dir": "+",
-   "source": "望田潤ブログ",
-   "n_art": 3,
-   "n_run": 4744,
-   "ae_in": 1.009,
-   "ratio": 1.021,
-   "ae_in_3": [
-    1.0,
-    1.0,
+    1.06,
     1.02
    ]
   },
   {
-   "entity": "Ribot",
-   "cond": "持続",
+   "entity": "Busted",
+   "cond": "大箱",
    "dir": "+",
    "source": "望田潤ブログ",
    "n_art": 3,
-   "n_run": 5792,
-   "ae_in": 1.016,
-   "ratio": 1.043,
+   "n_run": 10086,
+   "ae_in": 1.025,
+   "ratio": 1.01,
    "ae_in_3": [
-    1.0,
-    1.05,
-    1.04
+    1.04,
+    1.01,
+    1.01
    ]
   },
   {
-   "entity": "エンパイアメーカー",
-   "cond": "ダート",
+   "entity": "Relaunch",
+   "cond": "短距離",
    "dir": "+",
    "source": "望田潤ブログ",
    "n_art": 3,
-   "n_run": 1873,
-   "ae_in": 1.041,
-   "ratio": 1.037,
+   "n_run": 3245,
+   "ae_in": 1.023,
+   "ratio": 0.994,
    "ae_in_3": [
-    1.01,
-    1.05,
-    1.06
+    1.0,
+    1.09,
+    1.01
    ]
   },
   {
@@ -2391,13 +5048,13 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 3,
-   "n_run": 3352,
-   "ae_in": 1.047,
-   "ratio": 1.052,
+   "n_run": 3400,
+   "ae_in": 1.042,
+   "ratio": 1.047,
    "ae_in_3": [
     1.03,
     1.05,
-    1.06
+    1.05
    ]
   },
   {
@@ -2406,13 +5063,13 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 3,
-   "n_run": 2116,
-   "ae_in": 1.065,
-   "ratio": 1.071,
+   "n_run": 2191,
+   "ae_in": 1.067,
+   "ratio": 1.074,
    "ae_in_3": [
     1.12,
     1.09,
-    1.03
+    1.04
    ]
   },
   {
@@ -2421,7 +5078,7 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 3,
-   "n_run": 2658,
+   "n_run": 2720,
    "ae_in": 1.072,
    "ratio": 1.067,
    "ae_in_3": [
@@ -2436,13 +5093,13 @@
    "dir": "+",
    "source": "坂上明大の血統査定",
    "n_art": 3,
-   "n_run": 2465,
-   "ae_in": 1.029,
-   "ratio": 1.028,
+   "n_run": 2494,
+   "ae_in": 1.032,
+   "ratio": 1.032,
    "ae_in_3": [
     1.02,
     1.06,
-    1.03
+    1.04
    ]
   },
   {
@@ -2453,7 +5110,7 @@
    "n_art": 3,
    "n_run": 1634,
    "ae_in": 1.082,
-   "ratio": 1.067,
+   "ratio": 1.066,
    "ae_in_3": [
     1.04,
     1.36,
@@ -2476,21 +5133,6 @@
    ]
   },
   {
-   "entity": "Storm Cat（3代以内）",
-   "cond": "中京芝",
-   "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 3,
-   "n_run": 1492,
-   "ae_in": 1.088,
-   "ratio": 1.079,
-   "ae_in_3": [
-    1.08,
-    1.06,
-    1.13
-   ]
-  },
-  {
    "entity": "キングカメハメハ",
    "cond": "阪神芝",
    "dir": "+",
@@ -2503,51 +5145,6 @@
     1.1,
     1.21,
     1.0
-   ]
-  },
-  {
-   "entity": "デインヒル（3代以内）",
-   "cond": "長距離",
-   "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 3,
-   "n_run": 926,
-   "ae_in": 1.042,
-   "ratio": 1.009,
-   "ae_in_3": [
-    1.03,
-    1.11,
-    1.03
-   ]
-  },
-  {
-   "entity": "Silver Hawk（3代以内）",
-   "cond": "長距離",
-   "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 3,
-   "n_run": 382,
-   "ae_in": 1.079,
-   "ratio": 1.055,
-   "ae_in_3": [
-    1.03,
-    1.13,
-    1.14
-   ]
-  },
-  {
-   "entity": "Alzao",
-   "cond": "大箱",
-   "dir": "+",
-   "source": "坂上明大の血統査定",
-   "n_art": 3,
-   "n_run": 9825,
-   "ae_in": 1.037,
-   "ratio": 1.017,
-   "ae_in_3": [
-    1.05,
-    1.03,
-    1.03
    ]
   }
  ]

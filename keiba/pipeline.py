@@ -266,7 +266,9 @@ def update_results_jra(conn, start: dt.date, end: dt.date, with_pedigree: bool =
             ds = jra.day_date_from_cname(day[1])
             if not ds or not (start.isoformat() <= ds <= end.isoformat()):
                 continue
-            key = "jra:" + day[1].split("/")[0]
+            # 全レースDB（KEIBA_ALL_RACES=1）は keiba.db を種にするので、7R以降だけの「取り込み済み」を引き継がないよう別の印を使う
+            # 印は jraall2:（11/10 まで db.connect が開くたびに1〜6R・未勝利を消していたので、消えた日を取り直すため印を改めた）
+            key = ("jraall2:" if __import__("os").environ.get("KEIBA_ALL_RACES") == "1" else "jra:") + day[1].split("/")[0]
             if db.date_done(conn, key):
                 continue
             if deadline and time.time() > deadline:

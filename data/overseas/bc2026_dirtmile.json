@@ -1,0 +1,85 @@
+{
+ "race": "2026年 ブリーダーズカップダートマイル（JRA 0:15頃のオッズ / 米国の予想オッズ(ML, FanDuel 10/27)）",
+ "runners": [
+  {
+   "num": 1,
+   "name": "ファーザーアドゥ",
+   "global_odds": 3,
+   "jra_odds": 2.1,
+   "jra_pop": 1,
+   "jp": false
+  },
+  {
+   "num": 2,
+   "name": "ティークラフト",
+   "global_odds": 16,
+   "jra_odds": 20.9,
+   "jra_pop": 7,
+   "jp": false
+  },
+  {
+   "num": 3,
+   "name": "フルセラーノ",
+   "global_odds": 11,
+   "jra_odds": 7.2,
+   "jra_pop": 3,
+   "jp": false
+  },
+  {
+   "num": 4,
+   "name": "チャンクオブゴールド",
+   "global_odds": 9,
+   "jra_odds": 9.8,
+   "jra_pop": 5,
+   "jp": false
+  },
+  {
+   "num": 5,
+   "name": "コールバトル",
+   "global_odds": 7,
+   "jra_odds": 14.1,
+   "jra_pop": 6,
+   "jp": false
+  },
+  {
+   "num": 6,
+   "name": "ロードフォンス",
+   "global_odds": 16,
+   "jra_odds": 7.7,
+   "jra_pop": 4,
+   "jp": true
+  },
+  {
+   "num": 7,
+   "name": "ブラケットバスター",
+   "global_odds": 4.5,
+   "jra_odds": 5.1,
+   "jra_pop": 2,
+   "jp": false
+  },
+  {
+   "num": 8,
+   "name": "ムーンライト",
+   "global_odds": 16,
+   "jra_odds": 55.5,
+   "jra_pop": 10,
+   "jp": false
+  },
+  {
+   "num": 10,
+   "name": "オーウェンオールマイティ",
+   "global_odds": 11,
+   "jra_odds": 21.2,
+   "jra_pop": 8,
+   "jp": false
+  },
+  {
+   "num": 11,
+   "name": "アイアンマンカル",
+   "global_odds": 13,
+   "jra_odds": 26.1,
+   "jra_pop": 9,
+   "jp": false
+  }
+ ]
+}

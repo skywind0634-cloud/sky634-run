@@ -1,0 +1,8 @@
+https://www.keiba.go.jp/KeibaWeb/MonthlyConveneInfo/MonthlyConveneInfoTop?k_year=2025&k_month=9
+https://www.keiba.go.jp/KeibaWeb/TodayRaceInfo/RaceList?k_raceDate=2025%2f09%2f28&k_babaCode=31
+https://www.keiba.go.jp/KeibaWeb/TodayRaceInfo/RaceMarkTable?k_raceDate=2025%2f09%2f28&k_raceNo=12&k_babaCode=31
+https://www.keiba.go.jp/KeibaWeb/TodayRaceInfo/DebaTable?k_raceDate=2025%2f09%2f28&k_raceNo=12&k_babaCode=31
+https://www.keiba.go.jp/KeibaWeb/TodayRaceInfo/RefundMoneyList?k_raceDate=2025%2f09%2f28&k_babaCode=31
+https://www.keiba.go.jp/KeibaWeb/TodayRaceInfo/RaceList?k_raceDate=2025%2f10%2f01&k_babaCode=20
+https://www.keiba.go.jp/KeibaWeb/TodayRaceInfo/RaceMarkTable?k_raceDate=2025%2f10%2f01&k_raceNo=12&k_babaCode=20
+https://www.keiba.go.jp/KeibaWeb/TodayRaceInfo/DebaTable?k_raceDate=2025%2f10%2f01&k_raceNo=12&k_babaCode=20

@@ -1,0 +1,109 @@
+{
+ "race": "2026年 ブリーダーズカップマイル（JRA 0:15頃のオッズ / 米国の予想オッズ(ML, FanDuel 10/27)）",
+ "runners": [
+  {
+   "num": 1,
+   "name": "デターミニスティック",
+   "global_odds": 9,
+   "jra_odds": 7.8,
+   "jra_pop": 3,
+   "jp": false
+  },
+  {
+   "num": 2,
+   "name": "レイクフォレスト",
+   "global_odds": 7,
+   "jra_odds": 8.1,
+   "jra_pop": 4,
+   "jp": false
+  },
+  {
+   "num": 3,
+   "name": "ファクトゥールシュヴァル",
+   "global_odds": 31,
+   "jra_odds": 91.2,
+   "jra_pop": 13,
+   "jp": false
+  },
+  {
+   "num": 4,
+   "name": "カボスピリット",
+   "global_odds": 31,
+   "jra_odds": 43.8,
+   "jra_pop": 10,
+   "jp": false
+  },
+  {
+   "num": 5,
+   "name": "アスクイキゴミ",
+   "global_odds": 21,
+   "jra_odds": 5.2,
+   "jra_pop": 2,
+   "jp": true
+  },
+  {
+   "num": 7,
+   "name": "キラート",
+   "global_odds": 31,
+   "jra_odds": 77.8,
+   "jra_pop": 11,
+   "jp": false
+  },
+  {
+   "num": 8,
+   "name": "ノータブルスピーチ",
+   "global_odds": 2.4,
+   "jra_odds": 2.1,
+   "jra_pop": 1,
+   "jp": false
+  },
+  {
+   "num": 9,
+   "name": "レトリカル",
+   "global_odds": 9,
+   "jra_odds": 9.5,
+   "jra_pop": 5,
+   "jp": false
+  },
+  {
+   "num": 10,
+   "name": "ルガル",
+   "global_odds": 31,
+   "jra_odds": 18.1,
+   "jra_pop": 7,
+   "jp": true
+  },
+  {
+   "num": 11,
+   "name": "フォーミダブルマン",
+   "global_odds": 16,
+   "jra_odds": 30.6,
+   "jra_pop": 9,
+   "jp": false
+  },
+  {
+   "num": 12,
+   "name": "トゥルーラブ",
+   "global_odds": 9,
+   "jra_odds": 15.8,
+   "jra_pop": 6,
+   "jp": false
+  },
+  {
+   "num": 13,
+   "name": "ブリリアントバーティ",
+   "global_odds": 31,
+   "jra_odds": 82.9,
+   "jra_pop": 12,
+   "jp": false
+  },
+  {
+   "num": 14,
+   "name": "プエルトリコ",
+   "global_odds": 11,
+   "jra_odds": 26.9,
+   "jra_pop": 8,
+   "jp": false
+  }
+ ]
+}

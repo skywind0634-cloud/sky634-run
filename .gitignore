@@ -5,3 +5,4 @@ data/cache/
 
 # 地方競馬の取得データは nar-data ブランチに保存（作業ブランチには入れない）
 data/nar/
+data/debut.db

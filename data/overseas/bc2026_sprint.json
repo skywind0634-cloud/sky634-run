@@ -1,0 +1,109 @@
+{
+ "race": "2026年 ブリーダーズカップスプリント（JRA 0:15頃のオッズ / 米国の予想オッズ(ML, FanDuel 10/27)）",
+ "runners": [
+  {
+   "num": 1,
+   "name": "マッドハウス",
+   "global_odds": 31,
+   "jra_odds": 87.4,
+   "jra_pop": 13,
+   "jp": false
+  },
+  {
+   "num": 2,
+   "name": "ダークサフロン",
+   "global_odds": 21,
+   "jra_odds": 25.7,
+   "jra_pop": 8,
+   "jp": false
+  },
+  {
+   "num": 3,
+   "name": "リアムスミス",
+   "global_odds": 21,
+   "jra_odds": 16.1,
+   "jra_pop": 6,
+   "jp": false
+  },
+  {
+   "num": 4,
+   "name": "ヒム",
+   "global_odds": 16,
+   "jra_odds": 25.2,
+   "jra_pop": 7,
+   "jp": false
+  },
+  {
+   "num": 5,
+   "name": "リッスンアップシャンス",
+   "global_odds": 13,
+   "jra_odds": 12.8,
+   "jra_pop": 4,
+   "jp": false
+  },
+  {
+   "num": 6,
+   "name": "アメリカンステージ",
+   "global_odds": 31,
+   "jra_odds": 41.5,
+   "jra_pop": 9,
+   "jp": true
+  },
+  {
+   "num": 7,
+   "name": "ビルト",
+   "global_odds": 11,
+   "jra_odds": 15.9,
+   "jra_pop": 5,
+   "jp": false
+  },
+  {
+   "num": 8,
+   "name": "リトルサンダー",
+   "global_odds": 31,
+   "jra_odds": 42.5,
+   "jra_pop": 10,
+   "jp": false
+  },
+  {
+   "num": 9,
+   "name": "ナカトミ",
+   "global_odds": 13,
+   "jra_odds": 12.7,
+   "jra_pop": 3,
+   "jp": false
+  },
+  {
+   "num": 10,
+   "name": "ロールオンビッグジョー",
+   "global_odds": 31,
+   "jra_odds": 65.7,
+   "jra_pop": 12,
+   "jp": false
+  },
+  {
+   "num": 11,
+   "name": "テーオーエルビス",
+   "global_odds": 4.5,
+   "jra_odds": 3.3,
+   "jra_pop": 2,
+   "jp": true
+  },
+  {
+   "num": 12,
+   "name": "ストラダーレ",
+   "global_odds": 21,
+   "jra_odds": 45.6,
+   "jra_pop": 11,
+   "jp": false
+  },
+  {
+   "num": 13,
+   "name": "イングリッシュマン",
+   "global_odds": 1.8,
+   "jra_odds": 2.0,
+   "jra_pop": 1,
+   "jp": false
+  }
+ ]
+}

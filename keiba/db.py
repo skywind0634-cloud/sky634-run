@@ -101,7 +101,12 @@ def connect(path: Path | str = DB_PATH) -> sqlite3.Connection:
     if "layout" not in [r[1] for r in conn.execute("PRAGMA table_info(races)")]:
         conn.execute("ALTER TABLE races ADD COLUMN layout TEXT")
     # 対象外レース（第6レース以前・未勝利戦・障害）は保持しない（過去に取り込んだ分も削除）
-    cond = ("race_no < 7 OR grade = '未勝利' OR name LIKE '%未勝利%' OR surface = '障' OR name LIKE '%障害%'")
+    # 分析用の全レースDB（KEIBA_ALL_RACES=1 か keiba_all*.db）は障害だけ消す（2026-11-10 まで開くたびに1〜6R・未勝利を消していた）
+    import os
+    if os.environ.get("KEIBA_ALL_RACES") == "1" or Path(path).name.startswith("keiba_all"):
+        cond = "surface = '障' OR name LIKE '%障害%'"
+    else:
+        cond = ("race_no < 7 OR grade = '未勝利' OR name LIKE '%未勝利%' OR surface = '障' OR name LIKE '%障害%'")
     conn.execute(f"DELETE FROM results WHERE race_id IN (SELECT race_id FROM races WHERE {cond})")
     conn.execute(f"DELETE FROM races WHERE {cond}")
     conn.commit()

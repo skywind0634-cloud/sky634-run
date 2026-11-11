@@ -1,0 +1,83 @@
+name: flag-refresh
+# 予想の材料（フラグ）のもとデータを毎週、最新の結果で更新する（2026-11-07 ユーザー指示「フラグのもとのデータも更新しろ。更新も自動化すること」）。
+#  1) 望田潤ブログ（sources ブランチ）の「血×条件」を数え直し → 実績で確かめ → blood_traits.json・ped5_flags.json
+#  2) 5年分のレースでフラグの材料を馬ごとに記録し直し（tools/flag_backtest.py, 先週末の結果まで）
+#  3) 材料を1つずつ確かめ、効いていない材料を外し、重みを更新（tools/flag_items_check.py → data/knowledge/flag_weights.json）
+#     keiba/digest.py は flag_weights.json の excluded を点に数えない。今週外れた・入った材料は docs/analysis/flag_items_check.md の先頭に出る。
+# weekly-data（金 16:10 JST、先週末の結果の取り込み）が終わったら自動で動く。飛ばされたときの予備に土曜 0:20 JST。
+on:
+  workflow_run:
+    workflows: ["weekly-keiba-data"]
+    types: [completed]
+  schedule:
+    - cron: "20 15 * * 5"   # 土 0:20 JST（予備）
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: flag-refresh
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: bash -eo pipefail {0}   # 途中で落ちたら止める（11/9 まで | head で失敗が隠れて成功扱いになっていた）
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install -r requirements.txt && mkdir -p data/cache   # data/cache は git に無いので作る
+      - name: blood traits (望田潤ブログ・坂上明大の血×条件)
+        run: |
+          # sky634-run（公開）にはコラム本文（sources）を置かないので、数え直しはせず既存の claims_*.json を最新の結果で確かめ直すだけ
+          git fetch -q origin ped-data
+          git show origin/ped-data:data/ped5_full.json > /tmp/ped5_full.json
+          python3 tools/trait_check.py /tmp/ped5_full.json data/knowledge/claims_mochida.json data/knowledge/claims_sakagami.json | sed -n 1,3p
+          python3 tools/ped5_flags.py /tmp/ped5_full.json
+      - name: cond x sire scan (条件×父・母父の総当たり)
+        run: python3 tools/jockey_profile.py && python3 tools/cond_sire_scan.py | sed -n 1,5p && python3 tools/conn_class_scan.py | sed -n 1,5p && python3 tools/multi_angle_scan.py | sed -n 1,6p && python3 tools/myomi_scan.py | sed -n 1,7p
+      - name: flag rows (5年分・材料ごと)
+        run: SFX=_items python3 tools/flag_backtest.py 2021-01-01 "$(date -u +%F)" 4 | tail -3
+      - name: flag weights (材料を1つずつ確かめる)
+        run: python3 tools/flag_items_check.py | sed -n 1,12p
+      # 2026-11-08 ユーザー「儲かる買い方の組み合わせを探せと何度も言っている」: フォーメーションの組み方の総当たりを毎週、最新の結果で探し直す
+      - name: final odds (JRA の最終オッズ, odds ブランチ)
+        run: |
+          git fetch -q origin odds && mkdir -p data/cache && git archive origin/odds odds | tar -x -C data/cache/
+          ls data/cache/odds | wc -l
+      - name: out-of-sample flags (材料を2021-24だけで選んだフラグで2025年以降を作り直す)
+        run: |
+          COURSE_BLOOD_TRAIN=1 python3 tools/course_blood.py
+          MYOMI_SCAN_FILE=data/cache/myomi_train.json MULTI_ANGLE_SCAN_FILE=data/cache/multi_angle_train.json COND_SIRE_SCAN_FILE= CONN_CLASS_SCAN_FILE= \
+            SFX=_oos python3 tools/flag_backtest.py 2025-01-01 "$(date -u +%F)" 4 | tail -2
+          python3 tools/course_blood_rows.py 2024-01-01 "$(date -u +%F)" 4
+          COURSE_BLOOD_FILE=data/cache/course_blood_train.json CB_SFX=_oos python3 tools/course_blood_rows.py 2025-01-01 "$(date -u +%F)" 4
+      - name: predictions rebuild (★血統穴・★特推し・走る条件・妙味条件を2024年以降で記録)
+        run: |
+          sed -i "s/^START, END = .*/START, END = \"2024-01-01\", \"$(date -u +%F)\"/" tools/boost_check.py
+          BOOST_SFX=_v2 python3 tools/boost_check.py collect 4
+          git checkout -- tools/boost_check.py data/knowledge/cond_rates.json 2>/dev/null || true
+      - name: formation search (3連複フォーメーションの組み方の総当たり・実際の最終オッズ)
+        run: |
+          python3 tools/formation_search.py 4 | sed -n 1,20p
+          BOOST_SFX=_v2 CB_OOS=1 python3 tools/set_formation_search.py | sed -n 1,25p
+          python3 tools/regress_hits.py
+      - name: save
+        run: |
+          git config user.name "keiba-bot"
+          git config user.email "keiba-bot@users.noreply.github.com"
+          git add data/knowledge/flag_weights.json docs/analysis/flag_items_check.md docs/analysis/flag_backtest_items.md \
+                  data/knowledge/claims_mochida.json data/knowledge/blood_traits.json data/knowledge/ped5_flags.json docs/analysis/blood_traits.md \
+                  data/knowledge/cond_sire_scan.json docs/analysis/cond_sire_scan.md data/knowledge/conn_class_scan.json docs/analysis/conn_class_scan.md data/knowledge/multi_angle_scan.json docs/analysis/multi_angle_scan.md data/knowledge/myomi_scan.json docs/analysis/myomi_scan.md data/knowledge/jockey_profile.json \
+                  docs/analysis/formation_search.md docs/analysis/set_formation_search.md
+          git commit -qm "flag-refresh $(date -u +%F)（材料の重み・効かない材料・血×条件を最新の結果で更新）" || exit 0
+          git checkout -- . 2>/dev/null; git clean -fdq -e data/cache data docs tools 2>/dev/null || true   # 保存しない残りの変更を捨てる（残っていると pull --rebase が拒否される）
+          ok=0
+          for t in 1 2 3 4; do
+            git pull --rebase -X theirs origin main && git push origin HEAD:main && ok=1 && break
+            sleep $((t * 10))
+          done
+          [ "$ok" = 1 ] || { echo "::error::push failed"; exit 1; }

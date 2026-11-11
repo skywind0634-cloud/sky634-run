@@ -11,6 +11,8 @@
 """
 from __future__ import annotations
 
+from functools import lru_cache
+
 import datetime as dt
 import re
 
@@ -190,8 +192,12 @@ def ticket_card(card: dict, evals: list[HorseEval]) -> list[str]:
                      + "、".join(f"{c}（{o:.1f}倍・比{r:.2f}）" for c, o, r in cp["ワイド"]))
     e5 = flag_axis_package(card, evals, th=5)
     if e5:
-        L.append("  - ◎フラグ点+5（本命枠。人気に関係なく3番人気以下でフラグ点+5以上の1頭を軸に ワイド→1〜5番人気＋3連複 軸−1〜2番人気−1〜4番人気。"
+        L.append("  - ◎フラグ点+5（本命枠。人気を問わずフラグ点+5以上の1頭を軸に（2026-11-07 人気の条件を外した: 回収141/97/111%・的中34〜37%） ワイド→1〜5番人気＋3連複 軸−1〜2番人気−1〜4番人気。"
                  "5年で回収256%/148%/141%・的中19〜29%, docs/analysis/himo_width_check.md）: " + e5)
+    bx = picked_box(card, evals)
+    if bx:
+        L.append("  - ◎拾った馬ボックス（本命枠。単勝20倍未満でフラグ点+3以上の上位4頭を軸なしのボックスで。5年で3連複＋ワイド10点が回収103%/115%/121%・的中62〜66%、"
+                 "3連複ボックス4点だけなら110%/153%/106%。2026-11-01 天皇賞(秋)で候補3頭が来たのに1頭軸で外した反省, docs/analysis/box_check.md）: " + bx)
     e78 = flag_axis_package(card, evals, hi=10) if card.get("race_no") in (7, 8) else None
     if e5 and e78 and e78.split("（")[0] == e5.split("（")[0]:
         e78 = None
@@ -203,11 +209,39 @@ def ticket_card(card: dict, evals: list[HorseEval]) -> list[str]:
     if fa and any(x and fa.split("（")[0] == x.split("（")[0] for x in (e78, e5)):
         fa = None
     if ch:
-        L.append("  - ★混戦穴（1番人気4.1倍以上の混戦で、7〜12番人気・フラグ点+3以上の1頭を軸に ワイド→1〜3番人気＋3連複 軸−1〜2番人気−1〜5番人気。"
+        L.append("  - ★混戦穴（1番人気4.1倍以上の混戦で、人気の順位は問わず単勝50倍未満・フラグ点+3以上の1頭を軸に（2026-11-07 変更: 回収113/102/109%・的中21〜24%） ワイド→1〜3番人気＋3連複 軸−1〜2番人気−1〜5番人気。"
                  "実オッズ5年で回収186%/120%/138%・的中12〜21%・万馬券12本。フラグ選定期間内の確認, docs/analysis/shape_flag.md）: " + ch)
     if fa and (not ch or fa.split("（")[0] != ch.split("（")[0]):
-        L.append("  - ★フラグ軸（高配当狙い。3番人気以下（人気の上限なし）でフラグ点+4以上の1頭を軸に ワイド→1〜5番人気＋3連複 軸−1〜2番人気−1〜4番人気。"
+        L.append("  - ★フラグ軸（高配当狙い。人気を問わずフラグ点+4以上の1頭を軸に（2026-11-07 人気の条件を外した: 回収114/90/103%・的中31〜34%） ワイド→1〜5番人気＋3連複 軸−1〜2番人気−1〜4番人気。"
                  "5年で回収142%/104%/120%・的中20〜27%（docs/analysis/himo_width_check.md）。勝ち週は3割、最大12週連敗。フラグ選定期間内の確認）: " + fa)
+    bw = bigshot_wide(card, evals)
+    if bw:
+        L.append("  - ◇大穴ワイド（少額。単勝50倍以上でもフラグ点+4以上の1頭→ワイド1〜3番人気。人気は無くても材料がそろう大穴は市場の見込みより3着内に来る"
+                 "（3着内A/E 1.0〜2.3）。5年で回収126%/91%/112%・的中4〜5%（20回に1回）, docs/analysis/bigshot_check.md）: " + bw)
+    for x in flag_set_formation(card, evals):
+        L.append("  - " + x.split(" ", 1)[0] + "（1番人気2.5倍以上。フラグ点の集まり同士の3連複。未来を見ない2025-26で118〜121%, docs/analysis/set_formation_search.md）: " + x.split(" ", 1)[1])
+    cbf = course_blood_formation(card, evals)
+    if cbf:
+        L.append("  - ◎コース血統×フラグ（コース別血統○×フラグ+3 → +4 → 1〜3番人気と+4 の3連複。未来を見ない2025-26 190%・的中15%, docs/analysis/set_formation_search.md）: " + cbf)
+    vf = value_flag_formation(card, evals)
+    if vf:
+        L.append("  - ◎妙味×フラグ（1番人気2.5倍以上。妙味条件×フラグ+3 → 1〜3番人気・+4 → 1〜3番人気・+3 の3連複。2024 470%・2025-26 121%・的中9%, docs/analysis/set_formation_search.md）: " + vf)
+    pt = flag_pair_trio(card, evals)
+    if pt:
+        L.append("  - ◎人気薄2頭軸（1番人気3.5倍以上の混戦で、単勝10倍以上・フラグ点+4以上の上位2頭→1〜3番人気とフラグ点+2以上へ3連複。"
+                 "実オッズ 2021-23 240%・2024 152%・未来を見ない 2025-26 193%・的中3%, docs/analysis/formation_search.md）: " + pt)
+    lp = flag_longshot_pack(card, evals)
+    if lp:
+        L.append("  - ◎人気薄フラグ（単勝10倍以上・フラグ点+5以上 → 単勝各100円＋3頭以上なら上位3頭のワイドボックス＋+6以上が2頭以上なら2頭×1〜3番人気の3連複。"
+                 "未来を見ない確かめ 2025-26で単勝121%・ワイドボックス106%・3連複119%（実戦10月〜 250%/256%/588%）, docs/analysis/flag_ticket_search.md）: " + lp)
+    cw = flag_crowd_wide(card, evals)
+    if cw:
+        L.append("  - ◎人気薄フラグ×人気ワイド（単勝10倍以上・フラグ点+4以上が3頭以上 → 上位5頭それぞれから1〜3番人気へワイド。"
+                 "5年で回収197%/154%/149%・的中レース47%（2026-11-08 総当たり, docs/analysis/flag_ticket_search.md）: " + cw)
+    lb = longshot_flag_box(card, evals)
+    if lb:
+        L.append("  - ◇人気薄フラグボックス（別枠・1点100円。非根幹距離で単勝10倍以上・フラグ点+4以上が3頭以上 → その馬たち（上位6頭まで）のワイド＋3連複ボックス。"
+                 "当たるのは数年に数回の宝くじ型: 5年で投資65,200円・払戻63,790円（115%/24%/134%）、11/8 AR杯なら3,500円→1,717,010円, docs/analysis/longshot_box_check.md）: " + lb)
     lw = longshot_wide(card, evals)
     if lw:
         L.append("  - 穴ワイド（7番人気以下で材料が重なる上位2頭→1〜4番人気。検証 回収94%/108%・的中17〜19%・払戻中央約2,000円。"
@@ -240,7 +274,7 @@ def race_shape(evals: list[HorseEval]) -> str | None:
 
 def flag_axis_package(card: dict, evals: list[HorseEval], chaos: bool = False, th: int | None = None, hi: int = 18) -> str | None:
     """★フラグ軸: 4〜9番人気でフラグ点+4以上の上位1頭 → ワイド 1〜3番人気＋3連複 軸−1〜2番人気−1〜5番人気（10点, tools/longshot_grid.py）.
-    chaos=True は★混戦穴: 1番人気4.1倍以上のレースだけ、7〜12番人気でフラグ点+3以上（tools/shape_flag.py）."""
+    chaos=True は★混戦穴: 1番人気4.1倍以上のレースだけ、単勝50倍未満でフラグ点+3以上（2026-11-07 に7〜12番人気から変更, tools/lowrank_check.py）."""
     sc = flag_scores(card, evals)
     if chaos:
         o1, _ = fav_odds(evals)
@@ -248,10 +282,17 @@ def flag_axis_package(card: dict, evals: list[HorseEval], chaos: bool = False, t
             return None
         if card.get("race_no") in (7, 8):   # 7R・8Rの★混戦穴は5年で回収75%/0%/17%（38レース, docs/analysis/himo_width_check.md）→ 出さない
             return None
-        lo, hi, th = 7, 12, 3
+        # 2026-11-07 ユーザー「下位人気の区切りに合理的根拠はない」: 7〜12番人気→人気の順位は問わず単勝50倍未満（来る確率で切る）。
+        # 5年で的中15/11/16%→21/22/24%・回収148/93/102%→113/102/109%（3期とも100%超, docs/analysis/lowrank_check.md）
+        lo, hi, th = 1, 18, 3
     else:
         lo, th = 3, th or 4   # 2026-10-24: 4〜9番人気→3番人気以下すべて（人気の境目に根拠はなく、人気薄ほど効くのはフラグ点。docs/analysis/axis_band_check.md）
-    cand = sorted([h for h in evals if lo <= (h.pop_rank or 0) <= hi and sc.get(h.number, 0) >= th],
+        if hi >= 18:
+            # 2026-11-07 ユーザー「人気順で買い目を変えるのはおかしい」: 軸は人気を問わずフラグ点だけで選ぶ。5年で ◎+5 は回収142/97/114%→141/97/111%（ほぼ同じ）・
+            # 的中24〜28%→34〜37%、+4 は 113/85/105%→114/90/103%・的中23〜25%→31〜34%（docs/analysis/popfree_axis.md）。◎7・8R（3〜10番人気）は未検証なので従来のまま
+            lo = 1
+    cand = sorted([h for h in evals if lo <= (h.pop_rank or 0) <= hi and sc.get(h.number, 0) >= th
+                   and (not chaos or (h.odds or 999) < 50)],
                   key=lambda h: (-sc[h.number], h.pop_rank))
     if not cand:
         return None
@@ -264,6 +305,172 @@ def flag_axis_package(card: dict, evals: list[HorseEval], chaos: bool = False, t
     trio = sorted({"-".join(map(str, sorted((a.number, pop[x], pop[y])))) for x in (1, 2) for y in tl
                    if x != y and x in pop and y in pop}, key=lambda t: [int(v) for v in t.split("-")])
     return f"軸 {a.number}{a.name}（{a.pop_rank}人気・点{sc[a.number]:+d}）→ ワイド " + "、".join(wide) + " ／ 3連複 " + "、".join(trio)
+
+
+def bigshot_wide(card: dict, evals: list[HorseEval], th: int = 4, omin: float = 50) -> str | None:
+    """◇大穴ワイド（2026-11-07, ユーザー「確率が低くても勝つ可能性はあり、その時こそ狙い目。人気で買っていたら当てられない」）:
+    単勝 omin 倍以上でフラグ点 th 以上の最上位1頭 → ワイド 1〜3番人気（tools/bigshot_check.py）."""
+    sc = flag_scores(card, evals)
+    cand = sorted([h for h in evals if (h.odds or 0) >= omin and sc.get(h.number, 0) >= th], key=lambda h: (-sc[h.number], h.odds))
+    if not cand:
+        return None
+    a = cand[0]
+    pop = {h.pop_rank: h.number for h in evals if h.pop_rank and h.number != a.number}
+    wide = [f"{a.number}-{pop[p]}" for p in (1, 2, 3) if p in pop]
+    return f"軸 {a.number}{a.name}（{a.pop_rank}人気・{a.odds:.0f}倍・点{sc[a.number]:+d}）→ ワイド " + "、".join(wide)
+
+
+def flag_set_formation(card: dict, evals: list[HorseEval]) -> list[str]:
+    """意味のある馬の集まり同士の3連複（2026-11-08 ユーザー「全頭買う必要はない。3番人気までとフラグ+4以上などを組み合わせろ」,
+    tools/set_formation_search.py。実際の最終オッズ・払戻、2025-26 は材料を2021-24だけで選んだフラグで採点）:
+    ①◎フラグ+4ボックス: 1番人気2.5倍以上で、フラグ点+4以上の馬の3連複ボックス（40点以内）. 2025-26 118%（853レース・的中6%）・実戦10月〜145%.
+    ②◎フラグ+5→+4→人気: 1番人気2.5倍以上で、1列目フラグ点+5以上・2列目+4以上・3列目1〜3番人気と+4以上（40点以内）. 2025-26 121%（962レース・的中13%）・実戦92%."""
+    from itertools import combinations
+    out = []
+    odds = [h.odds for h in evals if h.odds]
+    if not odds or min(odds) < 2.5:
+        return out
+    sc = flag_scores(card, evals)
+    f4 = sorted(h.number for h in evals if sc.get(h.number, 0) >= 4)
+    f5 = [h.number for h in evals if sc.get(h.number, 0) >= 5]
+    p3 = [h.number for h in sorted([h for h in evals if h.pop_rank], key=lambda h: h.pop_rank)[:3]]
+    box = [tuple(c) for c in combinations(f4, 3)]
+    if 0 < len(box) <= 40:
+        out.append("◎フラグ+4ボックス " + "・".join(map(str, f4)) + " → 3連複 " + "、".join("-".join(map(str, c)) for c in box))
+    fm = sorted({tuple(sorted((a, b, c))) for a in f5 for b in f4 for c in set(p3) | set(f4) if len({a, b, c}) == 3})
+    if 0 < len(fm) <= 40:
+        out.append(f"◎フラグ+5→+4→人気 1列目{'・'.join(map(str, sorted(f5)))} 2列目{'・'.join(map(str, f4))} 3列目{'・'.join(map(str, sorted(set(p3) | set(f4))))} → 3連複 "
+                   + "、".join("-".join(map(str, c)) for c in fm))
+    return out
+
+
+def course_blood_formation(card: dict, evals: list[HorseEval]) -> str | None:
+    """◎コース血統×フラグ（2026-11-08 ユーザー「コース別血統の指標もね」, tools/set_formation_search.py）:
+    1列目＝コース別血統○（course_blood_horses の○が▼より多い）かつフラグ点+3以上、2列目＝フラグ点+4以上、3列目＝1〜3番人気とフラグ点+4以上 の3連複（40点以内）.
+    実際の最終オッズ・払戻で、コース別血統を2021-24だけで選び直した確かめ（未来を見ない）でも 2025-26 190%（409レース・的中15%・平均12点）. 実戦10月〜は9レースで42%."""
+    sc = flag_scores(card, evals)
+    cb = {}
+    for num, t in course_blood_horses(card, evals):
+        cb[num] = t.count("○") - t.count("▼")
+    c1 = [h.number for h in evals if cb.get(h.number, 0) > 0 and sc.get(h.number, 0) >= 3]
+    f4 = [h.number for h in evals if sc.get(h.number, 0) >= 4]
+    p3 = [h.number for h in sorted([h for h in evals if h.pop_rank], key=lambda h: h.pop_rank)[:3]]
+    fm = sorted({tuple(sorted((a, b, c))) for a in c1 for b in f4 for c in set(p3) | set(f4) if len({a, b, c}) == 3})
+    if not fm or len(fm) > 40:
+        return None
+    return (f"1列目{'・'.join(map(str, sorted(c1)))}（コース別血統○×フラグ+3） 2列目{'・'.join(map(str, sorted(f4)))} 3列目{'・'.join(map(str, sorted(set(p3) | set(f4))))} → 3連複 "
+            + "、".join("-".join(map(str, c)) for c in fm))
+
+
+def value_flag_formation(card: dict, evals: list[HorseEval]) -> str | None:
+    """◎妙味×フラグ（2026-11-08 ユーザー「妙味条件の指標は？」, tools/set_formation_search.py, boost_rows_v2）:
+    1番人気2.5倍以上で、1列目＝妙味条件かつフラグ点+3以上、2列目＝1〜3番人気とフラグ点+4以上、3列目＝1〜3番人気とフラグ点+3以上 の3連複（40点以内）.
+    妙味条件は2023年までで作り直した条件・実際の最終オッズ/払戻で 2024 470%・2025-26 121%（654レース・的中9%・平均16点）. 実戦10月〜は14レースで86%.
+    妙味条件を軸にした他の形（1列目=妙味条件だけ等）は2025-26で51〜100%で負け."""
+    odds = [h.odds for h in evals if h.odds]
+    if not odds or min(odds) < 2.5:
+        return None
+    sc = flag_scores(card, evals)
+    val = {h.number for h in evals if h.value_segments or (h.value_edge or 0) > 0.15}
+    p3 = [h.number for h in sorted([h for h in evals if h.pop_rank], key=lambda h: h.pop_rank)[:3]]
+    c1 = [h.number for h in evals if h.number in val and sc.get(h.number, 0) >= 3]
+    c2 = set(p3) | {h.number for h in evals if sc.get(h.number, 0) >= 4}
+    c3 = set(p3) | {h.number for h in evals if sc.get(h.number, 0) >= 3}
+    fm = sorted({tuple(sorted((a, b, c))) for a in c1 for b in c2 for c in c3 if len({a, b, c}) == 3})
+    if not fm or len(fm) > 40:
+        return None
+    return (f"1列目{'・'.join(map(str, sorted(c1)))}（妙味条件×フラグ+3） 2列目{'・'.join(map(str, sorted(c2)))} 3列目{'・'.join(map(str, sorted(c3)))} → 3連複 "
+            + "、".join("-".join(map(str, c)) for c in fm))
+
+
+def flag_pair_trio(card: dict, evals: list[HorseEval], th: int = 4, omin: float = 10, fav_min: float = 3.5) -> str | None:
+    """◎人気薄2頭軸（2026-11-08 3連複フォーメーションの組み方の総当たり tools/formation_search.py）:
+    1番人気が単勝3.5倍以上の混戦で、単勝10倍以上・フラグ点+4以上の上位2頭を2頭軸 → 1〜3番人気とフラグ点+2以上の馬へ3連複（均等買い）.
+    実際の最終オッズ・払戻で 2021-23 240%・2024 152%、材料を2021-24だけで選んだフラグで 2025-26/9 193%（306レース・的中3%）.
+    同じ形の変形144通り（1列目の区切り・2列目・買い方）でも 2025-26 の中央値149%（最低84%）. 実戦10月〜は6レースで0%."""
+    sc = flag_scores(card, evals)
+    odds = [h.odds for h in evals if h.odds]
+    if not odds or min(odds) < fav_min:
+        return None
+    cand = sorted([h for h in evals if (h.odds or 0) >= omin and sc.get(h.number, 0) >= th], key=lambda h: (-sc[h.number], h.odds))
+    if len(cand) < 2:
+        return None
+    a, b = cand[0].number, cand[1].number
+    top3 = [h.number for h in sorted([h for h in evals if h.pop_rank], key=lambda h: h.pop_rank)[:3]]
+    rest = sorted({h.number for h in evals if sc.get(h.number, 0) >= 2} | set(top3) - {a, b})
+    if not rest:
+        return None
+    names = "、".join(f"{h.number}{h.name}（{h.pop_rank}人気・{h.odds:.0f}倍・点{sc[h.number]:+d}）" for h in cand[:2])
+    return f"軸 {names} → 3連複 " + "、".join("-".join(map(str, sorted((a, b, c)))) for c in rest)
+
+
+def flag_longshot_pack(card: dict, evals: list[HorseEval], th: int = 5, omin: float = 10) -> str | None:
+    """◎人気薄フラグ（2026-11-08 ユーザー「あらゆる分析しろ」→ 多角的な総当たりを足したフラグで、未来を見ない確かめ（材料は2021-24だけで選び、2025-01〜26-09で答え合わせ）:
+    単勝10倍以上・フラグ点+5以上の馬 → ①単勝（各100円, 2025-26 121%・実戦10月〜250%）②3頭以上ならフラグ点上位3頭のワイドボックス（106%・実戦256%）
+    ③+6以上が2頭以上なら上位5頭から2頭×1〜3番人気の3連複（119%・実戦588%）. 騎手・調教師の材料を含めた確かめ（2026-11-08 夜）. tools/flag_ticket_search.py（ROWS_SFX=_oos）."""
+    from itertools import combinations
+    sc = flag_scores(card, evals)
+    cand = sorted([h for h in evals if (h.odds or 0) >= omin and sc.get(h.number, 0) >= th], key=lambda h: (-sc[h.number], h.odds))
+    if not cand:
+        return None
+    tk = [f"単勝 {h.number}" for h in cand[:6]]
+    if len(cand) >= 3:
+        tk += [f"ワイド {a}-{b}" for a, b in combinations(sorted(h.number for h in cand[:3]), 2)]
+    c6 = [h for h in cand if sc[h.number] >= 6]  # 3連複は+6以上の馬だけ（+5だと2025-26で95%、+6で119%・実戦588%）
+    if len(c6) >= 2:
+        top3 = [h.number for h in sorted([h for h in evals if h.pop_rank], key=lambda h: h.pop_rank)[:3]]
+        g = [h.number for h in c6[:5]]
+        tk += sorted({"3連複 " + "-".join(map(str, sorted((a, b, t)))) for a, b in combinations(g, 2) for t in top3 if t not in (a, b)})
+    names = "、".join(f"{h.number}{h.name}（{h.pop_rank}人気・{h.odds:.0f}倍・点{sc[h.number]:+d}）" for h in cand[:6])
+    return f"{names} → " + " / ".join(tk)
+
+
+def flag_crowd_wide(card: dict, evals: list[HorseEval], th: int = 4, omin: float = 10, k: int = 3, top: int = 5) -> str | None:
+    """◎人気薄フラグ×人気ワイド（2026-11-08 総当たり tools/flag_ticket_search.py, docs/analysis/flag_ticket_search.md）:
+    単勝 omin 倍以上・フラグ点 th 以上の馬が k 頭以上いるレース → フラグ点の上位 top 頭それぞれから1〜3番人気へワイド.
+    5年で回収197%/154%/149%（2021-23/2024/2025-26/9）・的中レース47%・156レース（年27,000円ほど）. 実戦10月〜は1レースで0%."""
+    sc = flag_scores_base(card, evals)  # 確かめたときの目盛り（2026-11-08 ユーザー指摘で戻した）
+    cand = sorted([h for h in evals if (h.odds or 0) >= omin and sc.get(h.number, 0) >= th], key=lambda h: (-sc[h.number], h.odds))
+    if len(cand) < k:
+        return None
+    cand = cand[:top]
+    top3 = [h.number for h in sorted([h for h in evals if h.pop_rank], key=lambda h: h.pop_rank)[:3]]
+    ws = sorted({tuple(sorted((h.number, t))) for h in cand for t in top3 if t != h.number})
+    names = "、".join(f"{h.number}{h.name}（{h.pop_rank}人気・{h.odds:.0f}倍・点{sc[h.number]:+d}）" for h in cand)
+    return f"{len(cand)}頭 {names} → ワイド " + "、".join(f"{a}-{b}" for a, b in ws)
+
+
+def longshot_flag_box(card: dict, evals: list[HorseEval], th: int = 4, omin: float = 10, k: int = 3, top: int = 6) -> str | None:
+    """◇人気薄フラグボックス（2026-11-08 アルゼンチン共和国杯 6→15→12（17・14・11番人気・フラグ点+5/+6/+8）を相手1〜3番人気の買い方で全部外した反省。
+    ユーザー「こういう変則的なコースは特に。フラグ出ているのに。こういうのあてろよ」）: 非根幹距離（1200/1600/2000/2400以外）で、
+    単勝 omin 倍以上・フラグ点 th 以上の馬が k 頭以上 → フラグ点の上位 top 頭でワイドボックス＋3連複ボックス.
+    5年（今日の分を除く）で非根幹・上位6頭は投資65,200円・払戻63,790円（2021-23/2024/2025-26 = 115%/24%/134%。上位5頭だと同点の+5で11/8の6番が切れて3連複を外す）、根幹距離は82%/33%/100%で外す（tools/longshot_box_check.py）."""
+    from itertools import combinations
+    if (card.get("distance") or 0) in (1200, 1600, 2000, 2400):
+        return None
+    sc = flag_scores_base(card, evals)  # 確かめたときの目盛り（2026-11-08 ユーザー指摘で戻した）
+    cand = sorted([h for h in evals if (h.odds or 0) >= omin and sc.get(h.number, 0) >= th], key=lambda h: (-sc[h.number], h.odds))[:top]
+    if len(cand) < k:
+        return None
+    nums = sorted(h.number for h in cand)
+    names = "、".join(f"{h.number}{h.name}（{h.pop_rank}人気・{h.odds:.0f}倍・点{sc[h.number]:+d}）" for h in sorted(cand, key=lambda h: h.pop_rank or 99))
+    return (f"{len(nums)}頭 {names} → ワイド " + "、".join(f"{a}-{b}" for a, b in combinations(nums, 2))
+            + " ／ 3連複 " + "、".join(f"{a}-{b}-{c}" for a, b, c in combinations(nums, 3)))
+
+
+def picked_box(card: dict, evals: list[HorseEval], th: int = 3, k: int = 4, omax: float = 20) -> str | None:
+    """◎拾った馬ボックス: 1〜8番人気でフラグ点+3以上の上位4頭（4頭そろうレースだけ）→ ワイドボックス6点＋3連複ボックス4点（tools/box_check.py）."""
+    from itertools import combinations
+    sc = flag_scores(card, evals)
+    # 2026-11-07: 1〜8番人気（順位の区切り）→単勝20倍未満（来る確率で切る）。5年で的中58/57/60%→62/62/66%・回収100/121/104%→103/115/121%（docs/analysis/lowrank_check.md）
+    cand = sorted([h for h in evals if h.pop_rank and (h.odds or 999) < omax and sc.get(h.number, 0) >= th],
+                  key=lambda h: (-sc[h.number], h.pop_rank))[:k]
+    if len(cand) < k:
+        return None
+    nums = sorted(h.number for h in cand)
+    names = "、".join(f"{h.number}{h.name}（{h.pop_rank}人気・点{sc[h.number]:+d}）" for h in sorted(cand, key=lambda h: h.pop_rank))
+    return (f"{k}頭 {names} → ワイド " + "、".join(f"{a}-{b}" for a, b in combinations(nums, 2))
+            + " ／ 3連複 " + "、".join(f"{a}-{b}-{c}" for a, b, c in combinations(nums, 3)))
 
 
 def r7_hit_line(card: dict, evals: list[HorseEval]) -> str | None:
@@ -443,6 +650,17 @@ def pace_l3_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int, str]]:
                 why.append("4-6番人気で前走上がり2-3位 ○（A/E 1.07/1.08/1.09）")
             if pr >= 7 and pos is not None and pos > 0.6:
                 why.append("人気薄で前走後方 ▽（A/E 0.95/0.87/0.88）")
+        # 2026-11-08 みやこS 9ラムジェット（6人気・4角最後方で12着）の反省: スロー予想×4-9番人気×近3走の平均位置が後方（60%以降）は
+        # 3期とも人気以下（芝ダ合計 A/E 0.96/0.89/0.93）。前走だけでなく近3走の平均で見る
+        if pace == "スロー" and 4 <= pr <= 9:
+            ps = []
+            for x in (e.get("recent") or [])[:3]:
+                try:
+                    ps.append(int(str(x.get("passing")).split("-")[0]) / max(x.get("n_runners") or 16, 1))
+                except (ValueError, TypeError):
+                    pass
+            if ps and sum(ps) / len(ps) >= 0.6:
+                why.append(f"スロー予想×4-9番人気×近3走の平均位置が後方（{sum(ps) / len(ps):.0%}） ▽（A/E 0.96/0.89/0.93）")
         if why:
             out.append((h.number, f"{tag}: " + "、".join(why)))
     return out
@@ -661,6 +879,79 @@ def BLOOD_TRAITS() -> list:
     return _BT
 
 
+@lru_cache(maxsize=1)
+def MYOMI_SCAN() -> list:
+    import json
+    import os
+    from .config import KNOWLEDGE_DIR
+    alt = os.environ.get("MYOMI_SCAN_FILE")
+    try:
+        if alt is not None:
+            return json.loads(open(alt, encoding="utf-8").read())["items"] if alt else []
+        return json.loads((KNOWLEDGE_DIR / "myomi_scan.json").read_text(encoding="utf-8"))["items"]
+    except (OSError, ValueError, KeyError):
+        return []
+
+
+@lru_cache(maxsize=1)
+def MULTI_ANGLE_SCAN() -> list:
+    import json
+    from .config import KNOWLEDGE_DIR
+    try:
+        import os
+        alt = os.environ.get("MULTI_ANGLE_SCAN_FILE")  # 未来を見ない確かめ用（学習期間だけで選んだ組に差し替える。空ファイル名なら使わない）
+        if alt is not None:
+            return json.loads(open(alt, encoding="utf-8").read())["items"] if alt else []
+        return json.loads((KNOWLEDGE_DIR / "multi_angle_scan.json").read_text(encoding="utf-8"))["items"]
+    except (OSError, ValueError, KeyError):
+        return []
+
+
+@lru_cache(maxsize=1)
+def CONN_CLASS_SCAN() -> list:
+    import json
+    from .config import KNOWLEDGE_DIR
+    try:
+        import os
+        alt = os.environ.get("CONN_CLASS_SCAN_FILE")  # 未来を見ない確かめ用（学習期間だけで選んだ組に差し替える。空ファイル名なら使わない）
+        if alt is not None:
+            return json.loads(open(alt, encoding="utf-8").read())["items"] if alt else []
+        return json.loads((KNOWLEDGE_DIR / "conn_class_scan.json").read_text(encoding="utf-8"))["items"]
+    except (OSError, ValueError, KeyError):
+        return []
+
+
+@lru_cache(maxsize=1)
+def COND_SIRE_SCAN() -> list:
+    import json
+    from .config import KNOWLEDGE_DIR
+    try:
+        import os
+        alt = os.environ.get("COND_SIRE_SCAN_FILE")  # 未来を見ない確かめ用（学習期間だけで選んだ組に差し替える。空ファイル名なら使わない）
+        if alt is not None:
+            return json.loads(open(alt, encoding="utf-8").read())["items"] if alt else []
+        return json.loads((KNOWLEDGE_DIR / "cond_sire_scan.json").read_text(encoding="utf-8"))["items"]
+    except (OSError, ValueError, KeyError):
+        return []
+
+
+def race_scan_conds(card: dict) -> set:
+    """tools/cond_sire_scan.py の conds と同じ区分（芝・非根幹 / 東京芝 / ダ・道悪 など）."""
+    co, su, d = card.get("course"), card.get("surface"), card.get("distance") or 0
+    go, lay = card.get("going") or "良", card.get("layout") or ""
+    s = {f"{co}{su}"}
+    if go[0] in "稍重不":
+        s.add(f"{su}・道悪")
+    if co == "東京" or (co in ("新潟", "京都", "阪神") and "外" in lay):
+        s.add(f"{su}・大箱")
+    elif co in ("中山", "福島", "小倉", "札幌", "函館") or "内" in lay:
+        s.add(f"{su}・小回り")
+    if d:
+        s.add(f"{su}・" + ("短距離" if d <= 1400 else "マイル" if d <= 1800 else "長距離" if d >= 2200 else "中距離"))
+        s.add(f"{su}・" + ("根幹" if d in (1200, 1600, 2000, 2400) else "非根幹"))
+    return s
+
+
 def race_trait_conds(card: dict, e: dict) -> set:
     """レース前に分かる条件（tools/trait_check.py の conds と同じ区分）。ペースは予想展開（前走で前にいた馬の数, front_count）で
     0-1頭→瞬発、4頭以上→持続 とみなす."""
@@ -677,6 +968,7 @@ def race_trait_conds(card: dict, e: dict) -> set:
         s.add("小回り")
     if d:
         s.add("短距離" if d <= 1400 else "マイル" if d <= 1800 else "長距離" if d >= 2200 else "中距離")
+        s.add("根幹" if d in (1200, 1600, 2000, 2400) else "非根幹")
     if su == "ダ":
         s.add("ダート")
     if su == "芝" and co in ("札幌", "函館"):
@@ -812,6 +1104,71 @@ def book_condition_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int,
                 why.append("芝の大箱×5代にRoberto×7番人気以下 ▽（A/E 0.79/0.97/0.89。小回りは0.99/0.97/1.06。望田潤ブログ「Robertoは小回り」の裏返し）")
             if small and "Princequillo" in pf:
                 why.append("芝の小回り×5代にPrincequillo（大箱向き） ▽（A/E 0.92/0.86/0.97）")
+        # 条件×父・母父の総当たり（tools/cond_sire_scan.py, 2026-11-08 AR杯1着 6ファミリータイム＝非根幹×父リアルスティールを材料にしていなかった反省）
+        ped = e.get("pedigree") or {}
+        for it in COND_SIRE_SCAN():
+            nm = (ped.get("S") or e.get("sire")) if it["who"] == "父" else (ped.get("DS") or e.get("damsire"))
+            if nm == it["name"] and it["cond"] in race_scan_conds(card):
+                why.append(f"{it['cond']}×{it['who']}{it['name']} {'○' if it['dir'] == '+' else '▽'}（A/E {'/'.join(map(str, it['ae']))}・条件外の{'/'.join(map(str, it['ratio']))}倍。条件×血統の総当たり）")
+        # 多角的な総当たり（tools/multi_angle_scan.py, 2026-11-08 ユーザー「多角的に分析しろ」）: 誰（父・母父・父系・母父系・調教師・騎手）×切り口
+        from .multi_angles import race_conds as _rc, horse_conds as _hc, region as _reg
+        _prev = (e.get("recent") or [None])[0]
+        _pv = None
+        if _prev:
+            _pv = dict(_prev); _pv["behind"] = _prev.get("behind")
+        _rcs = _rc(co, su, d, card.get("going"), card.get("layout"), len(card.get("entries") or []), card.get("date"))
+        _hcs = _hc(su, d, e.get("gate"), len(card.get("entries") or []), e.get("age"), e.get("sex"), card.get("date"), _pv,
+                   e.get("weight"), e.get("jockey"), card.get("grade"), e.get("body_weight_diff"), _reg(co))
+        _cs = set(_rcs + _hcs) | {f"{a_}×{b_.split('・', 1)[-1]}" for a_ in _rcs for b_ in _hcs}
+        # 騎手の腕前・乗り方の癖（tools/jockey_profile.py, 2026-11-08 ユーザー「騎手のうまさで結果は変わる。逃げ先行差し追込・乗り替わりも芝ダ別に」）。
+        # 3期（2022-23/2024/2025-26）とも同じ向きだったものだけ。乗り替わりでの強化・弱化は3期で向きがそろわず材料にしない
+        _pr = h.pop_rank or 0
+        if f"{su}・騎手の腕前上位" in _hcs:
+            why.append("騎手の腕前上位（過去2年のA/E1.10以上） ○（" + ("芝 A/E 1.05/1.09/1.05" if su == "芝" else "ダ A/E 1.02/1.04/1.06") + "）")
+            if su == "ダ" and _pr >= 10:
+                why.append("ダート×騎手の腕前上位×10番人気以下 ○（A/E 1.09/1.21/1.18）")
+        if f"{su}・騎手の腕前下位" in _hcs:
+            why.append("騎手の腕前下位（過去2年のA/E0.90以下） ▽（" + ("芝 A/E 0.99/0.93/0.96" if su == "芝" else "ダ A/E 0.98/0.93/0.97") + "）")
+        if su == "芝" and "芝・先行させる騎手" in _hcs and 4 <= _pr <= 9:
+            why.append("芝×先行させる騎手（1角前25%が35%以上）×4-9番人気 ○（A/E 1.15/1.11/1.14）")
+        if su == "ダ" and "ダ・位置を下げる騎手" in _hcs and 4 <= _pr <= 9 and front_count(card) is not None and 2 <= front_count(card) <= 3:
+            why.append("ダート×位置を下げる騎手（乗ると馬の近3走より1角で3%以上後ろ）×4-9番人気×平均ペース予想 ▽（A/E 0.94/0.96/0.90）")
+        if su == "芝" and "芝・騎手が遠征（本拠と逆の地域）" in _hcs and _pr >= 10:
+            why.append("芝×騎手が本拠と逆の地域へ遠征×10番人気以下 ○（A/E 1.39/1.18/1.23。わざわざ乗りに来る人気薄）")
+        if su == "ダ" and "ダ・前走中団×先行させる騎手" in _hcs:
+            why.append("ダート×前走中団×先行させる騎手 ○（A/E 1.08/1.11/1.07）")
+        _sire, _dsl = ped.get("S") or e.get("sire"), h.damsire_line
+        _who = {"父": _sire, "母父": ped.get("DS") or e.get("damsire"), "父系": h.sire_line, "母父系": _dsl,
+                "調教師": e.get("trainer"), "騎手": e.get("jockey"), "全体": "",
+                "騎手×調教師": f"{e.get('jockey')}×{e.get('trainer')}", "父×母父系": f"{_sire}×{_dsl}"}
+        _seen = {(it["who"], it["name"], it["cond"]) for it in COND_SIRE_SCAN()}
+        for it in MULTI_ANGLE_SCAN():
+            if it["cond"] in _cs and _who.get(it["who"]) == it["name"] and (it["who"], it["name"], it["cond"]) not in _seen:
+                lab = it["cond"] if it["who"] == "全体" else f"{it['cond']}×{it['who']}{it['name']}"
+                why.append(f"{lab} {'○' if it['dir'] == '+' else '▽'}（A/E {'/'.join(map(str, it['ae']))}。多角的な総当たり）")
+        # 妙味度（卍『中央競馬 妙味度名鑑 2026』の考え方をこちらのDBで作り直し, tools/myomi_scan.py。未来を見ない確かめで2025-26の妙味度≈113）
+        _ms = MYOMI_SCAN()
+        if _ms:
+            import sys as _sys
+            from pathlib import Path as _P
+            _sys.path.insert(0, str(_P(__file__).resolve().parents[1] / "tools"))
+            from myomi_scan import conds as _mc, rest_label as _rl
+            _dirn = "左" if co in ("東京", "中京", "新潟") and d != 1000 else "右" if co else None
+            _hist = sorted(x.get("date") for x in (e.get("recent") or []) if x.get("date"))
+            _mcs = set(_mc(co, su, d, card.get("going"), _dirn, card.get("grade"), e.get("age"), _rl(_hist, str(card.get("date") or ""))))
+            _done = set()  # 同じ騎手・調教師で何個も数えない（1人1つ、妙味度の低い期が一番高い組だけ。items は min の高い順）
+            for it in _ms:
+                if it["who"] not in _done and it["cond"] in _mcs and (e.get("jockey") if it["who"] == "騎手" else e.get("trainer")) == it["name"]:
+                    _done.add(it["who"])
+                    why.append(f"{it['who']}{it['name']}×{it['cond']}の妙味度 ○（{'/'.join(map(str, it['myomi']))}。100が平均）")
+        # 調教師・騎手×クラス×単勝の倍率帯（tools/conn_class_scan.py, 2026-11-08 みやこS 11ロードクロンヌ＝四位厩舎の重賞9.9倍以下を材料にしていなかった反省）
+        g_, nm_ = card.get("grade"), card.get("name") or ""
+        kcls = "重賞" if g_ in ("G1", "G2", "G3") else "OP" if g_ in ("OP", "L") or "ステークス" in nm_ or nm_.endswith("S") else None
+        if kcls and h.odds:
+            band = "〜9.9倍" if h.odds < 10 else "10倍〜"
+            for it in CONN_CLASS_SCAN():
+                if it["cls"] == kcls and it["band"] == band and (e.get("trainer") if it["who"] == "調教師" else e.get("jockey")) == it["name"]:
+                    why.append(f"{it['who']}{it['name']}×{kcls}×単勝{band} ○（A/E {'/'.join(map(str, it['ae']))}。3期とも人気以上）")
         # コラムの「血×条件」（望田潤ブログ・坂上明大の血統査定の本文から拾い、実績で裏付けのあったもの, tools/trait_check.py, 2026-10-27）
         tcs = race_trait_conds(card, e)
         for t in BLOOD_TRAITS():
@@ -1361,7 +1718,9 @@ def course_blood_horses(card: dict, evals: list[HorseEval]) -> list[tuple[int, s
     import json
     from .config import KNOWLEDGE_DIR
     try:
-        kb = json.loads((KNOWLEDGE_DIR / "course_blood.json").read_text(encoding="utf-8"))["rows"]
+        import os
+        alt = os.environ.get("COURSE_BLOOD_FILE")  # 未来を見ない確かめ用
+        kb = json.loads(open(alt, encoding="utf-8").read() if alt else (KNOWLEDGE_DIR / "course_blood.json").read_text(encoding="utf-8"))["rows"]
     except (OSError, ValueError, KeyError):
         return []
     course = f"{card.get('course')}{card.get('surface')}{card.get('distance')}"
@@ -1492,6 +1851,26 @@ def flag_scores(card: dict, evals: list[HorseEval]) -> dict:
     return {n: pl - mi for n, (pl, mi) in flag_marks(card, evals, txt).items()}
 
 
+NEW_1108 = ("条件×血統の総当たり", "多角的な総当たり", "の妙味度 ○", "3期とも人気以上）", "近3走の平均位置が後方", "騎手の腕前", "先行させる騎手", "位置を下げる騎手", "遠征×10番人気以下")
+
+
+def flag_scores_base(card: dict, evals: list[HorseEval]) -> dict:
+    """11/8 夜に足した材料（条件×血統・多角的な総当たり・妙味度・騎手調教師×クラス・スロー後方▽）を数えない「元のフラグ点」.
+    ◇人気薄フラグボックス・◎人気薄フラグ×人気ワイドはこの目盛りで確かめた（5年 115/24/134%・197/154/149%）ので、この点で判定する
+    （2026-11-08 ユーザー「アルゼンチン共和国杯の買い方で、前は当たるのに勝手に指標を変えて当たらないようにするな」）."""
+    import re
+    txt = {}
+    for f in (book_condition_horses, pace_l3_horses, course_check_horses):
+        try:
+            for num, t in f(card, evals):
+                txt[num] = txt.get(num, "") + " " + t
+        except Exception:  # noqa: BLE001
+            pass
+    for k, t in txt.items():
+        txt[k] = "、".join(seg for seg in re.split(r"、", t) if not any(m in seg for m in NEW_1108))
+    return {n: pl - mi for n, (pl, mi) in flag_marks(card, evals, txt).items()}
+
+
 def flag_marks(card: dict, evals: list[HorseEval], txt: dict | None = None) -> dict:
     """馬番 → (○◎の数, ×▽▼の数)."""
     import re
@@ -1503,7 +1882,40 @@ def flag_marks(card: dict, evals: list[HorseEval], txt: dict | None = None) -> d
                     txt[num] = txt.get(num, "") + " " + t
             except Exception:  # noqa: BLE001
                 pass
-    return {h.number: (len(re.findall(r"[◎○]（", txt.get(h.number, ""))), len(re.findall(r"[×▽▼]（", txt.get(h.number, "")))) for h in evals}
+    # 2026-11-07 ユーザー指摘「単純に＋−しているから意味ない」「フラグのもとのデータも毎週更新しろ」: 毎週の自動更新
+    # （.github/workflows/flag-refresh.yml → tools/flag_items_check.py）で効いていないと分かった材料は数えない
+    ex = FLAG_EXCLUDED()
+    out = {}
+    for h in evals:
+        t = txt.get(h.number, "")
+        pl = mi = 0
+        for name, mark in re.findall(r"(?:^|、|\s)([^、]+?) ([◎○×▽▼])（", t):
+            name = re.sub(r"^.*?予想（[^）]*）: ", "", name.strip())[:80]
+            if f"{name}|{mark}" in ex:
+                continue
+            if mark in "◎○":
+                pl += 1
+            else:
+                mi += 1
+        out[h.number] = (pl, mi)
+    return out
+
+
+_FLAG_EX = None
+
+
+def FLAG_EXCLUDED() -> set:
+    """data/knowledge/flag_weights.json の excluded（効いていない材料。毎週の自動更新）."""
+    global _FLAG_EX
+    if _FLAG_EX is None:
+        import json
+        from pathlib import Path
+        f = Path(__file__).resolve().parents[1] / "data" / "knowledge" / "flag_weights.json"
+        try:
+            _FLAG_EX = set(json.load(open(f, encoding="utf-8")).get("excluded", []))
+        except (OSError, ValueError):
+            _FLAG_EX = set()
+    return _FLAG_EX
 
 
 def flag_picks(card: dict, evals: list[HorseEval]) -> list[str]:
@@ -1624,10 +2036,9 @@ def text(card: dict, evals: list[HorseEval], title: str) -> str:
     L += ticket_card(card, evals)
     pop = {h.pop_rank: h.number for h in evals if h.pop_rank}
     for h, why in star_boost(card, evals, d):
-        tk = [f"ワイド {'-'.join(map(str, sorted((pop[p], h.number))))}" for p in (1, 2, 3) if p in pop and pop[p] != h.number]
-        tk += [f"3連複 {'-'.join(map(str, sorted((pop[1], pop[p], h.number))))}" for p in (2, 3) if 1 in pop and p in pop and h.number not in (pop[1], pop[p])]
-        L.append(f"  - ★特推し（★血統穴×{'・'.join(why)}。過去1年で3着内A/E 1.40〜1.79・複勝回収103〜121%。複勝は安いのでワイド・3連複の相手に, docs/analysis/star_check.md）: "
-                 f"{h.number}{h.name}（{h.pop_rank}人気） → " + " / ".join(tk))
+        # 2026-11-08 ユーザー指示「今日から単勝だけにして」（docs/analysis/boost_check.md: 2024-26年でワイド＋3連複は回収81%/90%、単勝は127%/160%）
+        L.append(f"  - ★特推し（★血統穴×{'・'.join(why)}。2024/2025-26で3着内A/E 1.20/1.32・単勝回収127%/160%（ワイド＋3連複は81%/90%なので単勝だけ）, docs/analysis/boost_check.md）: "
+                 f"{h.number}{h.name}（{h.pop_rank}人気） → 単勝 {h.number}")
     if d["本線"]:
         from .betting import value_plan
         vp = value_plan(evals, len(card.get("entries") or evals))
@@ -1744,7 +2155,7 @@ GUIDE = """## 買い方の早見表（過去1年の実払戻で検証した結�
 | 項目 | 買う？ | 買い方 | 検証の回収率（前半/後半） |
 |---|---|---|---|
 | ◎妙味条件(厳格)の軸 | **買う（中心）** | 穴の軸から人気馬へ流す: 軸の単勝＋ワイド（軸→1〜5番人気）＋馬連（軸→1〜3番人気）＋3連複（軸−1・2番人気−モデル上位5頭）。買い目カードの点をそのまま | 146% / 140% |
-| ★混戦穴 | **買う（高配当）** | 1番人気4.1倍以上の混戦だけ。7〜12番人気でフラグ点+3以上を軸に ワイド→1〜3番人気＋3連複 軸−1〜2番人気−1〜5番人気 | 実オッズ5年 186% / 120% / 138% |
+| ★混戦穴 | **買う（高配当）** | 1番人気4.1倍以上の混戦だけ。単勝50倍未満でフラグ点+3以上を軸に ワイド→1〜3番人気＋3連複 軸−1〜2番人気−1〜5番人気 | 実オッズ5年 186% / 120% / 138% |
 | ★フラグ軸 | **買う（高配当）** | 4〜9番人気でフラグ点+4以上を軸に 同じワイド＋3連複 | 実オッズ5年 128% / 110% / 114% |
 | 本線 | 買う（少なめ） | 本線馬の単勝＋本線馬から馬連（複勝は実オッズで88%/90%なので外した） | 単勝139% / 142% |
 | 準本線 | 少額 | 単勝・複勝だけ | 単勝124%/175%・複勝97%/133% |

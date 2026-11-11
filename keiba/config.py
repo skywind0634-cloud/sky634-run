@@ -22,6 +22,10 @@ EXCLUDED_GRADES = {"未勝利"}
 
 def is_target_race(race_no: int | None, grade: str | None = None, surface: str | None = None,
                    name: str | None = None) -> bool:
+    # 2026-11-08 ユーザー「亀谷・望田氏は1Rから結果を集めて分析している。前半のレースや新馬・未勝利も集めろ」:
+    # 分析用の全レースDB（data/keiba_all.db, all-races ワークフロー）を作るときだけ、障害以外を全部取り込む。予想の対象は変えない
+    if os.environ.get("KEIBA_ALL_RACES") == "1":
+        return surface != "障" and not (name and "障害" in name)
     if race_no is not None and race_no < MIN_RACE_NO:
         return False
     if grade in EXCLUDED_GRADES or (name and "未勝利" in name):
