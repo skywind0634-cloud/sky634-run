@@ -37,8 +37,9 @@ jobs:
           git show origin/ped-data:data/ped5_full.json > /tmp/ped5_full.json
           python3 tools/trait_check.py /tmp/ped5_full.json data/knowledge/claims_mochida.json data/knowledge/claims_sakagami.json | sed -n 1,3p
           python3 tools/ped5_flags.py /tmp/ped5_full.json
+      # 多角的な総当たりは全レースDB（1R〜・新馬・未勝利）で選ぶ（2026-11-11: 全レースで2021-24に選んだ組は7R以降の2025-26で ○1.056・▽0.942、7R以降で選ぶと 1.048・0.965）。条件×父・母父と妙味度は7R以降で選ぶ方が良いか同じなので変えない
       - name: cond x sire scan (条件×父・母父の総当たり)
-        run: python3 tools/jockey_profile.py && python3 tools/cond_sire_scan.py | sed -n 1,5p && python3 tools/conn_class_scan.py | sed -n 1,5p && python3 tools/multi_angle_scan.py | sed -n 1,6p && python3 tools/myomi_scan.py | sed -n 1,7p
+        run: python3 tools/jockey_profile.py && python3 tools/cond_sire_scan.py | sed -n 1,5p && python3 tools/conn_class_scan.py | sed -n 1,5p && { git fetch -q origin all-races && git show origin/all-races:keiba_all.db.gz | gunzip > /tmp/keiba_all.db && ANALYSIS_DB=/tmp/keiba_all.db python3 tools/multi_angle_scan.py || python3 tools/multi_angle_scan.py; } | sed -n 1,6p && python3 tools/myomi_scan.py | sed -n 1,7p
       - name: flag rows (5年分・材料ごと)
         run: SFX=_items python3 tools/flag_backtest.py 2021-01-01 "$(date -u +%F)" 4 | tail -3
       - name: flag weights (材料を1つずつ確かめる)
