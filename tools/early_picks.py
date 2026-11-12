@@ -44,6 +44,29 @@ def scores(card):
     return {e["number"]: (len(PLUS.findall(txt[e["number"]])) - len(MINUS.findall(txt[e["number"]])), txt[e["number"]].strip()) for e in ents}
 
 
+_ST = {}
+
+
+def notable(card):
+    """9R以降の予想と同じ判定（keiba/digest.py の race_digest）で、面白い馬・危険な人気馬を拾う（2026-11-12 ユーザー「8R以前はフラグの高い馬や血統注目馬、走る条件、妙味条件などで面白い馬が入れば出して。危険な人気馬も」）."""
+    from keiba import analysis, db, digest
+    from keiba.model import evaluate_race
+    if "st" not in _ST:
+        _ST["conn"] = db.connect(); _ST["st"] = analysis.build_stats(_ST["conn"])
+    try:
+        ev = evaluate_race(card, _ST["st"], _ST["conn"], n_sims=0)
+        d = digest.race_digest(ev, digest.flag_scores(card, ev))
+    except Exception as ex:  # noqa: BLE001
+        print(f"{card.get('race_id')} race_digest: {ex}", file=sys.stderr)
+        return {}, []
+    tags = defaultdict(list)
+    for cat, lab in (("★", "血統注目"), ("専門家", "専門家"), ("検証済み", "検証済み"), ("走る条件", "走る条件"), ("妙味条件", "妙味条件"), ("牝系", "牝系")):
+        for h, why in d.get(cat, []):
+            tags[h.number].append(lab + (f"（{why[:60]}）" if why and cat in ("★", "専門家") else ""))
+    danger = [(h.number, why) for h, why in d.get("危険", [])]
+    return tags, danger
+
+
 def main(sat):
     s = dt.date.fromisoformat(sat)
     L = [f"# 1〜8R・新馬・未勝利のおすすめ {s}〜{s + dt.timedelta(days=1)}（tools/early_picks.py）", "",
@@ -52,7 +75,7 @@ def main(sat):
          "- 新馬（◎+5以上）: ◎→1〜3番人気の馬連 188%/125%・的中20〜28%（161・100レースと少なめ）。単勝は 61%/73% で負け。",
          "- 7・8R: +4以上の上位3頭（◎○▲）の馬連ボックス3点 102%/150%・的中11%。穴馬（単勝10〜50倍・+5以上）の単勝 111%/145%。7・8Rの本線の単勝は【今日買うもの】の方。",
          "- 1〜6Rの1勝クラスは年でぶれるので馬だけ参考。馬券は自己責任で。", ""]
-    recs = []
+    recs, notes = [], []
     for d in (s, s + dt.timedelta(days=1)):
         folder = ROOT / "cards_early" / d.isoformat()
         cards = [json.load(open(p)) for p in folder.glob("*.json")]
@@ -87,25 +110,39 @@ def main(sat):
                     tk.append("馬連ボックス " + "・".join(map(str, top3)) + "（3点）")
                 ana = [n for n, (v, _) in rank if v >= TH and (10 <= (ents[n].get("odds") or 0) < 50 or not ents[n].get("odds"))]
                 tk += [f"穴馬 {n}の単勝" + ("" if ents[n].get("odds") else "（10〜50倍なら）") for n in ana]
+            tags, danger = notable(c)
+            fun = [n for n in ents if (n in tags and sc[n][0] >= -2) or sc[n][0] >= 4]   # フラグ点が大きくマイナスの馬は材料が1つあっても出さない
+            fun.sort(key=lambda n: (-sc[n][0] - 2 * len(tags.get(n, [])), ents[n].get("popularity") or 99))
+            fun_s = "、".join(f"{marks.get(n, '')}{n}{ents[n].get('name') or ''}（{'+' if sc[n][0] >= 0 else ''}{sc[n][0]}"
+                              + (f"・{ents[n]['popularity']}人気" if ents[n].get("popularity") else "")
+                              + ("・" + "・".join(t.split("（")[0] for t in tags.get(n, [])) if tags.get(n) else "") + "）" for n in fun[:5])
+            dng_s = "、".join(f"{n}{ents[n].get('name') or ''}（{ents[n].get('popularity')}人気）" for n, _ in danger)
+            if fun_s or dng_s:
+                notes.append(f"{tag}: " + (f"面白い馬 {fun_s}" if fun_s else "") + (f" ／ 危険な人気馬 {dng_s}" if dng_s else ""))
             head = f"### {c.get('course')}{c.get('race_no')}R {c.get('name') or ''}（{k}・{c.get('surface')}{c.get('distance')}m・{len(ents)}頭）"
             L.append(head + ("　**おすすめ**" if tk else ""))
             if tk:
                 recs.append(f"{tag}: " + "、".join(nm(n) for n in marks) + " → " + " ／ ".join(tk))
                 L.append("- 券の目安: " + " ／ ".join(tk))
-            for n, (v, t) in rank:
-                if v < 3:
-                    break
-                e = ents[n]
+            shown = [n for n, (v, _) in rank if v >= 3] + [n for n in ents if n in tags and -2 <= sc[n][0] < 3]
+            for n in shown:
+                v, t = sc[n]; e = ents[n]
                 pop = f"{e['popularity']}人気 {e.get('odds')}倍" if e.get("popularity") else "人気未定"
-                L.append(f"- {marks.get(n, '')}{n} {e.get('name')}（{pop}・父{e.get('sire')}・母父{e.get('damsire')}）フラグ点+{v}: {t[:300]}")
-            if rank[0][1][0] < 3:
-                L.append("- フラグ点+3以上の馬なし")
+                tg = ("【" + "・".join(tags[n]) + "】") if tags.get(n) else ""
+                L.append(f"- {marks.get(n, '')}{n} {e.get('name')}（{pop}・父{e.get('sire')}・母父{e.get('damsire')}）フラグ点{v:+d}{tg}: {t[:300]}")
+            for n, why in danger:
+                e = ents[n]
+                L.append(f"- ⚠危険な人気馬 {n} {e.get('name')}（{e.get('popularity')}人気）: {why[:200]}（消しではなく軸・1着付けにしない）")
+            if not shown and not danger:
+                L.append("- 目立つ馬なし")
             L.append("")
-    L[8:8] = ["## 【おすすめのレースと馬】（券は目安。1点100円）", ""] + ([f"- {b}" for b in recs] or ["- なし"]) + [""]
+    L[8:8] = (["## 【おすすめのレースと馬】（前に確かめた配当狙いの券の目安。1点100円）", ""] + ([f"- {b}" for b in recs] or ["- なし"]) + [""]
+              + ["## 【面白い馬・危険な人気馬】（フラグ点の高い馬・血統注目・専門家・検証済み・走る条件・妙味条件・牝系。危険な人気馬は消しではなく軸・1着付けにしない）", ""]
+              + ([f"- {b}" for b in notes] or ["- なし"]) + [""])
     out = ROOT / "predictions" / sat / "early.md"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text("\n".join(L) + "\n", encoding="utf-8")
-    print("\n".join(L[:12 + len(recs)]))
+    print("\n".join(L[:14 + len(recs) + len(notes)]))
 
 
 if __name__ == "__main__":
