@@ -77,6 +77,13 @@ def cap_per_race(lines):
     return [l for l in out if "（1レース10点を超えるので外す）" not in l] + [l for l in out if "（1レース10点を超えるので外す）" in l]
 
 
+def short_race(title):
+    """7R・8R（2026-11-12 ユーザー「7R・8Rはおすすめのレースと穴馬だけ。全部出すのは9R以降」）。おすすめの穴馬は tools/early_picks.py（early.md）に出す.
+    ここでは本線の単勝だけ残す（11/8 福島7R 単勝15 2,020円を取った券。本線の単勝は実オッズで139%/142%）."""
+    m = re.search(r"(\d+)R", title or "")
+    return bool(m) and int(m.group(1)) in (7, 8)
+
+
 def buy_list(rows):
     """【今日買うもの】（2026-11-07 改定）: 実戦11日分の買い方ごとの収支（docs/analysis/preday_backtest.md）で、儲かっていた買い方だけを買う.
     本命枠＝◎厳格（11日で +124,390円・的中7/23）。少額枠＝★フラグ軸（+16,700円）→★特推し（+12,170円）→本線（+5,940円）の順（1日30点まで）。
@@ -109,7 +116,8 @@ def buy_list(rows):
         tk = _tickets(b)
         # 2026-11-08: 本線の単勝は上限の外で必ず買う（11/8 福島7R 単勝15 2,020円・福島12R 単勝16 930円・福島8R 単勝6 430円を上限で外した）
         tan_main += [(t, x) for x in tk if x.startswith("単勝")][:1]
-        cand.append((t, "本線", [x for x in tk if x.startswith("馬連")][:5]))
+        if not short_race(t):
+            cand.append((t, "本線", [x for x in tk if x.startswith("馬連")][:5]))
     seen = {}
     for t, key, tk in cand:
         # 同じレースで同じ券が既に入っていれば外す（★フラグ軸と◇大穴ワイドの軸が同じ馬のとき等）
@@ -168,6 +176,8 @@ def card_summary(path):
         for l in b.splitlines():
             t = l.strip().lstrip("- ").strip()
             for pre, key, _ in ORDER:
+                if short_race(title) and key != "本線":
+                    continue   # 7R・8R は本線の単勝だけ（穴馬は early.md）
                 if t.startswith(pre) and not t.startswith(("本線の買い目", "本線（単勝）", "本線: なし")):
                     body = t.split("）: ", 1)[-1] if "）: " in t else t.split("** → ", 1)[-1]
                     pts = len(re.findall(r"\d+-\d+(?:-\d+)?", body)) + len(re.findall(r"単勝 \d+", body)) + 2 * len(re.findall(r"単複 \d+", body))
@@ -186,8 +196,8 @@ def main(path):
     horses = OrderedDict(); buys = []; cat = None; info = []
 
     def flush():
-        if race is None:
-            return
+        if race is None or short_race(race.split(" ")[1] if " " in race else race):
+            return   # 7R・8R のレース別シートは出さない（early.md におすすめの穴馬だけ）
         out.append(f"\n■ {race}")
         out.extend(info)
         out.append("【買う】" + (" ／ ".join(buys) if buys else "なし（このレースは見送り。下は材料）"))

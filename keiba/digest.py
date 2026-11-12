@@ -397,7 +397,7 @@ def flag_pair_trio(card: dict, evals: list[HorseEval], th: int = 4, omin: float 
         return None
     a, b = cand[0].number, cand[1].number
     top3 = [h.number for h in sorted([h for h in evals if h.pop_rank], key=lambda h: h.pop_rank)[:3]]
-    rest = sorted({h.number for h in evals if sc.get(h.number, 0) >= 2} | set(top3) - {a, b})
+    rest = sorted(({h.number for h in evals if sc.get(h.number, 0) >= 2} | set(top3)) - {a, b})
     if not rest:
         return None
     names = "、".join(f"{h.number}{h.name}（{h.pop_rank}人気・{h.odds:.0f}倍・点{sc[h.number]:+d}）" for h in cand[:2])
