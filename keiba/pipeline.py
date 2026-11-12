@@ -298,7 +298,7 @@ def update_results_jra(conn, start: dt.date, end: dt.date, with_pedigree: bool =
     return n, True
 
 
-def build_cards_jra(conn, dates: list[dt.date], out_dir: Path = CARDS_DIR) -> list[Path]:
+def build_cards_jra(conn, dates: list[dt.date], out_dir: Path = CARDS_DIR, only_early: bool = False) -> list[Path]:
     """JRA公式の出馬表から、前4走つきのカード JSON を作る."""
     targets = {d.isoformat() for d in dates}
     out = []
@@ -326,6 +326,9 @@ def build_cards_jra(conn, dates: list[dt.date], out_dir: Path = CARDS_DIR) -> li
                 continue
             if not is_target_race(card.get("race_no"), card.get("grade"), card.get("surface"), card.get("name")):
                 continue   # 未勝利戦・障害は対象外
+            if only_early and not ((card.get("race_no") or 99) < 7 or card.get("grade") in ("新馬", "未勝利")
+                                   or any(w in (card.get("name") or "") for w in ("新馬", "未勝利"))):
+                continue   # 7R以降の特別戦などは通常の cards/ にある
             for e in card["entries"]:
                 ingest_horse_jra(conn, e.get("horse_id"), e.pop("_horse_cname", None), e["name"], e.get("sex"))
                 if e.get("horse_id"):

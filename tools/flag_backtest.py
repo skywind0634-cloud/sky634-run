@@ -27,7 +27,9 @@ def flag_items(t):
 
 def cards(conn, start, end):
     conn.row_factory = sqlite3.Row
-    ids = [r[0] for r in conn.execute("select race_id from races where date between ? and ? and surface in ('芝','ダ') order by date", (start, end))]
+    # EARLY=1: 1〜6R・新馬・未勝利だけ（全レースDB FB_DB=data/keiba_all.db で使う。2026-11-12 ユーザー「7レースより前もおすすめを出して」）
+    early = " and (race_no < 7 or grade in ('新馬','未勝利') or name like '%未勝利%' or name like '%新馬%')" if os.environ.get("EARLY") == "1" else ""
+    ids = [r[0] for r in conn.execute("select race_id from races where date between ? and ? and surface in ('芝','ダ')" + early + " order by date", (start, end))]
     for rid in ids:
         R = dict(conn.execute("select * from races where race_id=?", (rid,)).fetchone())
         rows = conn.execute("select r.*, h.sire, h.damsire, h.sire_line, h.damsire_line, h.pedigree from results r left join horses h using(horse_id) "
@@ -56,7 +58,7 @@ ERRS = {}
 def run(args):
     start, end = args
     from keiba import digest as D
-    conn = sqlite3.connect(ROOT / "data" / "keiba.db")
+    conn = sqlite3.connect(os.environ.get("FB_DB") or (ROOT / "data" / "keiba.db"))
     out = []
     for R, ents in cards(conn, start, end):
         card = dict(R)
@@ -96,7 +98,7 @@ def main(start, end, workers=6):
         for r in ex.map(run, chunks):
             rows += r
     base = defaultdict(lambda: [0, 0])
-    conn = sqlite3.connect(ROOT / "data" / "keiba.db")
+    conn = sqlite3.connect(os.environ.get("FB_DB") or (ROOT / "data" / "keiba.db"))
     for p, f in conn.execute("select popularity, finish from results where finish is not null and popularity is not null"):
         b = base[min(p, 14)]; b[0] += 1; b[1] += f <= 3
     exp = {p: v[1] / v[0] for p, v in base.items()}

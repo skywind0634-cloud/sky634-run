@@ -54,11 +54,20 @@ jobs:
       - name: predict
         continue-on-error: true
         run: python -m keiba.cli predict ${{ inputs.weekend && format('--weekend {0}', inputs.weekend) || '' }}
+      # 1〜6R・新馬・未勝利のおすすめ（2026-11-12 ユーザー指示, tools/early_picks.py → predictions/<土曜>/early.md）
+      - name: early races (1〜6R・新馬・未勝利)
+        continue-on-error: true
+        run: |
+          python -m keiba.cli build-cards --source jra --early ${{ inputs.weekend && format('--weekend {0}', inputs.weekend) || '' }}
+          sat=${WEEKEND:-$(python -c "from keiba.cli import current_weekend, today_jst; print(current_weekend(today_jst()))")}
+          python tools/early_picks.py "$sat" | sed -n 1,40p
+        env:
+          WEEKEND: ${{ inputs.weekend }}
       - name: commit cards and predictions
         run: |
           git config user.name "keiba-bot"
           git config user.email "keiba-bot@users.noreply.github.com"
-          git add cards predictions
+          git add cards cards_early predictions
           git diff --cached --quiet && exit 0
           git commit -qm "cards/predictions $(date -u +%F)"
           git checkout -- . && git clean -fdq data   # DB 等の未コミットの変更は捨てる（カード・予想だけを保存）

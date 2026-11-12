@@ -252,6 +252,14 @@ def cmd_build_cards(a):
     conn = db.connect()
     sat = dt.date.fromisoformat(a.weekend) if a.weekend else current_weekend(today_jst())
     days = [sat, sat + dt.timedelta(days=1)]
+    if getattr(a, "early", False):
+        # 1〜6R・新馬・未勝利（2026-11-12 ユーザー「7レースより前もおすすめを出して」）→ cards_early/<日付>/。予想の対象（cards/）とは分ける
+        import os
+        from .config import ROOT
+        os.environ["KEIBA_ALL_RACES"] = "1"
+        ps = pipeline.build_cards_jra(conn, days, out_dir=ROOT / "cards_early", only_early=True)
+        print(f"{days[0]}〜{days[1]}: {len(ps)} カード（1〜6R・新馬・未勝利）")
+        return
     if getattr(a, "source", "jra") == "jra":
         ps = pipeline.build_cards_jra(conn, days)
         print(f"{days[0]}〜{days[1]}: {len(ps)} カード（JRA公式）")
@@ -400,7 +408,7 @@ def main(argv=None):
     p.add_argument("--days", type=int, default=180); p.add_argument("--no-save", action="store_true")
     p.set_defaults(fn=cmd_validate)
     p = sub.add_parser("analyze"); p.set_defaults(fn=cmd_analyze)
-    p = sub.add_parser("build-cards"); p.add_argument("--weekend")
+    p = sub.add_parser("build-cards"); p.add_argument("--weekend"); p.add_argument("--early", action="store_true")
     p.add_argument("--source", choices=["jra", "netkeiba"], default="jra"); p.set_defaults(fn=cmd_build_cards)
     p = sub.add_parser("predict"); p.add_argument("--weekend"); p.add_argument("--max-races", type=int, default=0)
     p.set_defaults(fn=cmd_predict)
