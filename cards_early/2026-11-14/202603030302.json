@@ -366,7 +366,16 @@
      "behind": 1.0
     }
    ],
-   "pedigree": {}
+   "pedigree": {
+    "S": "ダノンバラード",
+    "D": "オレゴンレディ",
+    "DS": "Shamardal",
+    "DD": "Oregon Trail",
+    "SS": "ディープインパクト",
+    "SSS": "サンデーサイレンス",
+    "SSSS": "Halo",
+    "DSS": "Giant's Causeway"
+   }
   },
   {
    "gate": null,

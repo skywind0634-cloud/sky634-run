@@ -1069,16 +1069,7 @@
      "behind": 1.1
     }
    ],
-   "pedigree": {
-    "S": "ミスチヴィアスアレックス",
-    "D": "メモリアルイヤー",
-    "DS": "ゴールドアリュール",
-    "DD": "アーバンクイーン",
-    "SS": "Into Mischief",
-    "SSS": "Harlan",
-    "DSS": "サンデーサイレンス",
-    "DSSS": "Halo"
-   }
+   "pedigree": {}
   },
   {
    "gate": null,

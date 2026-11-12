@@ -1649,7 +1649,16 @@
      "behind": 1.7
     }
    ],
-   "pedigree": {}
+   "pedigree": {
+    "S": "リオンディーズ",
+    "D": "クリーンファンキー",
+    "DS": "タイキシャトル",
+    "DD": "マヤノメメント",
+    "SS": "キングカメハメハ",
+    "SSS": "Kingmambo",
+    "SSSS": "Mr. Prospector",
+    "DSS": "Devil's Bag"
+   }
   }
  ]
 }

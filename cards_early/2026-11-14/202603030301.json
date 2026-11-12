@@ -657,7 +657,15 @@
      "behind": 2.2
     }
    ],
-   "pedigree": {}
+   "pedigree": {
+    "S": "チュウワウィザード",
+    "D": "ナムラビーム",
+    "DS": "スウェプトオーヴァーボード",
+    "DD": "クールベット",
+    "DSS": "エンドスウィープ",
+    "DSSS": "Forty Niner",
+    "DSSSS": "Mr. Prospector"
+   }
   },
   {
    "gate": null,

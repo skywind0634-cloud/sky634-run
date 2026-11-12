@@ -192,17 +192,7 @@
    "dam": "デイジーフローラ",
    "damsire": "キングカメハメハ",
    "recent": [],
-   "pedigree": {
-    "S": "エフフォーリア",
-    "D": "デイジーフローラ",
-    "DS": "キングカメハメハ",
-    "DD": "ブラボーデイジー",
-    "SS": "エピファネイア",
-    "SSS": "シンボリクリスエス",
-    "SSSS": "Kris S.",
-    "DSS": "Kingmambo",
-    "DSSS": "Mr. Prospector"
-   }
+   "pedigree": {}
   },
   {
    "gate": null,

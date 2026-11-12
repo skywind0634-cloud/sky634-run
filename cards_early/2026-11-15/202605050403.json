@@ -828,7 +828,14 @@
      "behind": 1.1
     }
    ],
-   "pedigree": {}
+   "pedigree": {
+    "S": "ディスクリートキャット",
+    "D": "ネリッサ",
+    "DS": "タートルボウル",
+    "DD": "ポーシア",
+    "SS": "Forestry",
+    "DSS": "Dyhim Diamond"
+   }
   },
   {
    "gate": null,
