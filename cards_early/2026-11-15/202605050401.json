@@ -712,17 +712,7 @@
      "behind": 2.5
     }
    ],
-   "pedigree": {
-    "S": "パイロ",
-    "D": "ニシノフローラル",
-    "DS": "リーチザクラウン",
-    "DD": "パープルストック",
-    "SS": "Pulpit",
-    "SSS": "A.P. Indy",
-    "DSS": "スペシャルウィーク",
-    "DSSS": "サンデーサイレンス",
-    "DSSSS": "Halo"
-   }
+   "pedigree": {}
   },
   {
    "gate": null,

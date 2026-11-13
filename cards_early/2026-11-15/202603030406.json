@@ -80,16 +80,7 @@
    "dam": "スイートミーティア",
    "damsire": "ルーラーシップ",
    "recent": [],
-   "pedigree": {
-    "S": "シニスターミニスター",
-    "D": "スイートミーティア",
-    "DS": "ルーラーシップ",
-    "DD": "ホワイトミーティア",
-    "SS": "Old Trieste",
-    "DSS": "キングカメハメハ",
-    "DSSS": "Kingmambo",
-    "DSSSS": "Mr. Prospector"
-   }
+   "pedigree": {}
   },
   {
    "gate": null,
