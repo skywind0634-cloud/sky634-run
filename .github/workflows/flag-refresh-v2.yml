@@ -37,9 +37,9 @@ jobs:
           git show origin/ped-data:data/ped5_full.json > /tmp/ped5_full.json
           python3 tools/trait_check.py /tmp/ped5_full.json data/knowledge/claims_mochida.json data/knowledge/claims_sakagami.json | sed -n 1,3p
           python3 tools/ped5_flags.py /tmp/ped5_full.json
-      # 多角的な総当たりは全レースDB（1R〜・新馬・未勝利）で選ぶ（2026-11-11: 全レースで2021-24に選んだ組は7R以降の2025-26で ○1.056・▽0.942、7R以降で選ぶと 1.048・0.965）。条件×父・母父と妙味度は7R以降で選ぶ方が良いか同じなので変えない
+      # 多角的な総当たりは2つ作る（2026-11-13）: 全レースDBで選んだ版 multi_angle_scan_all.json は1〜8Rの券（tools/early_picks.py）用、7R以降で選んだ版 multi_angle_scan.json は9R以降の予想用（それぞれ確かめたときの目盛り。全レースの版を9R以降に使うと材料が倍になりフラグ点の目盛りが上がって別枠の対象が増えた）
       - name: cond x sire scan (条件×父・母父の総当たり)
-        run: python3 tools/jockey_profile.py && python3 tools/cond_sire_scan.py | sed -n 1,5p && python3 tools/conn_class_scan.py | sed -n 1,5p && { git fetch -q origin all-races && git show origin/all-races:keiba_all.db.gz | gunzip > /tmp/keiba_all.db && ANALYSIS_DB=/tmp/keiba_all.db python3 tools/multi_angle_scan.py || python3 tools/multi_angle_scan.py; } | sed -n 1,6p && python3 tools/myomi_scan.py | sed -n 1,7p
+        run: python3 tools/jockey_profile.py && python3 tools/cond_sire_scan.py | sed -n 1,5p && python3 tools/conn_class_scan.py | sed -n 1,5p && { git fetch -q origin all-races && git show origin/all-races:keiba_all.db.gz | gunzip > /tmp/keiba_all.db && ANALYSIS_DB=/tmp/keiba_all.db python3 tools/multi_angle_scan.py && mv data/knowledge/multi_angle_scan.json data/knowledge/multi_angle_scan_all.json && cp data/cache/multi_angle_train.json data/cache/multi_angle_train_all.json || true; python3 tools/multi_angle_scan.py; } | sed -n 1,6p && python3 tools/myomi_scan.py | sed -n 1,7p
       - name: flag rows (5年分・材料ごと)
         run: SFX=_items python3 tools/flag_backtest.py 2021-01-01 "$(date -u +%F)" 4 | tail -3
       - name: flag weights (材料を1つずつ確かめる)
@@ -72,7 +72,7 @@ jobs:
           git config user.email "keiba-bot@users.noreply.github.com"
           git add data/knowledge/flag_weights.json docs/analysis/flag_items_check.md docs/analysis/flag_backtest_items.md \
                   data/knowledge/claims_mochida.json data/knowledge/blood_traits.json data/knowledge/ped5_flags.json docs/analysis/blood_traits.md \
-                  data/knowledge/cond_sire_scan.json docs/analysis/cond_sire_scan.md data/knowledge/conn_class_scan.json docs/analysis/conn_class_scan.md data/knowledge/multi_angle_scan.json docs/analysis/multi_angle_scan.md data/knowledge/myomi_scan.json docs/analysis/myomi_scan.md data/knowledge/jockey_profile.json \
+                  data/knowledge/cond_sire_scan.json docs/analysis/cond_sire_scan.md data/knowledge/conn_class_scan.json docs/analysis/conn_class_scan.md data/knowledge/multi_angle_scan.json data/knowledge/multi_angle_scan_all.json docs/analysis/multi_angle_scan.md data/knowledge/myomi_scan.json docs/analysis/myomi_scan.md data/knowledge/jockey_profile.json \
                   docs/analysis/formation_search.md docs/analysis/set_formation_search.md
           git commit -qm "flag-refresh $(date -u +%F)（材料の重み・効かない材料・血×条件を最新の結果で更新）" || exit 0
           git checkout -- . 2>/dev/null; git clean -fdq -e data/cache data docs tools 2>/dev/null || true   # 保存しない残りの変更を捨てる（残っていると pull --rebase が拒否される）

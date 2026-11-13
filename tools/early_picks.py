@@ -17,6 +17,10 @@ from types import SimpleNamespace
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+# 1〜8Rの券は、全レースDBで選んだ多角的な総当たり（multi_angle_scan_all.json）の目盛りで確かめたので、その版で判定する（2026-11-13）
+import os  # noqa: E402
+if (ROOT / "data" / "knowledge" / "multi_angle_scan_all.json").exists():
+    os.environ.setdefault("MULTI_ANGLE_SCAN_FILE", str(ROOT / "data" / "knowledge" / "multi_angle_scan_all.json"))
 PLUS, MINUS = re.compile(r"[◎○]（"), re.compile(r"[×▽▼]（")
 TH = 5
 
