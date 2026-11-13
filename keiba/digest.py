@@ -324,7 +324,8 @@ def flag_set_formation(card: dict, evals: list[HorseEval]) -> list[str]:
     """意味のある馬の集まり同士の3連複（2026-11-08 ユーザー「全頭買う必要はない。3番人気までとフラグ+4以上などを組み合わせろ」,
     tools/set_formation_search.py。実際の最終オッズ・払戻、2025-26 は材料を2021-24だけで選んだフラグで採点）:
     ①◎フラグ+4ボックス: 1番人気2.5倍以上で、フラグ点+4以上の馬の3連複ボックス（40点以内）. 2025-26 118%（853レース・的中6%）・実戦10月〜145%.
-    ②◎フラグ+5→+4→人気: 1番人気2.5倍以上で、1列目フラグ点+5以上・2列目+4以上・3列目1〜3番人気と+4以上（40点以内）. 2025-26 121%（962レース・的中13%）・実戦92%."""
+    ②◎フラグ+5→+4→人気: 1番人気2.5倍以上で、1列目フラグ点+5以上・2列目+4以上・3列目1〜3番人気と+4以上（40点以内）. 2025-26 121%（962レース・的中13%）・実戦92%.
+    ③◎フラグ+5→+4→人気★: 1番人気3.5倍以上なら3列目に★血統穴も足した版（2024 144%・2025-26 125%）で②の代わりに出す."""
     from itertools import combinations
     out = []
     odds = [h.odds for h in evals if h.odds]
@@ -338,6 +339,15 @@ def flag_set_formation(card: dict, evals: list[HorseEval]) -> list[str]:
     if 0 < len(box) <= 40:
         out.append("◎フラグ+4ボックス " + "・".join(map(str, f4)) + " → 3連複 " + "、".join("-".join(map(str, c)) for c in box))
     fm = sorted({tuple(sorted((a, b, c))) for a in f5 for b in f4 for c in set(p3) | set(f4) if len({a, b, c}) == 3})
+    # ③◎フラグ+5→+4→人気★（2026-11-13 ユーザー了承）: 1番人気3.5倍以上の混戦では3列目に★血統穴（50倍未満）も足す.
+    # tools/set_formation_search.py で F5 → F4 → P3∪F4∪STAR・1番人気3.5倍以上 が 2024 144%・2025-26 125%. ②と同じレースに出るときはこの版1つにまとめる.
+    if min(odds) >= 3.5:
+        star = {h.number for h in longshot_picks(evals) if (h.odds or 999) < 50}
+        fs = sorted({tuple(sorted((a, b, c))) for a in f5 for b in f4 for c in set(p3) | set(f4) | star if len({a, b, c}) == 3})
+        if star - set(p3) - set(f4) and 0 < len(fs) <= 40:
+            out.append(f"◎フラグ+5→+4→人気★ 1列目{'・'.join(map(str, sorted(f5)))} 2列目{'・'.join(map(str, f4))} 3列目{'・'.join(map(str, sorted(set(p3) | set(f4) | star)))}（★血統穴 {'・'.join(map(str, sorted(star)))}） → 3連複 "
+                       + "、".join("-".join(map(str, c)) for c in fs))
+            return out
     if 0 < len(fm) <= 40:
         out.append(f"◎フラグ+5→+4→人気 1列目{'・'.join(map(str, sorted(f5)))} 2列目{'・'.join(map(str, f4))} 3列目{'・'.join(map(str, sorted(set(p3) | set(f4))))} → 3連複 "
                    + "、".join("-".join(map(str, c)) for c in fm))
