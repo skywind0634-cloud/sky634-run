@@ -28,7 +28,15 @@
    "dam": "ディサーン",
    "damsire": "Tapit",
    "recent": [],
-   "pedigree": {}
+   "pedigree": {
+    "S": "Curlin",
+    "D": "ディサーン",
+    "DS": "Tapit",
+    "DD": "Lacadena",
+    "SS": "Smart Strike",
+    "DSS": "Pulpit",
+    "DSSS": "A.P. Indy"
+   }
   },
   {
    "gate": null,
