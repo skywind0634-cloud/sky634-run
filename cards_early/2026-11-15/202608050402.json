@@ -71,7 +71,13 @@
      "behind": 0.5
     }
    ],
-   "pedigree": {}
+   "pedigree": {
+    "S": "キタサンブラック",
+    "D": "クールサンバ",
+    "DS": "The Wow Signal",
+    "DD": "Marechale",
+    "SS": "ブラックタイド"
+   }
   },
   {
    "gate": null,

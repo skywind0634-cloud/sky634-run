@@ -197,7 +197,16 @@
    "dam": "アリシア",
    "damsire": "キズナ",
    "recent": [],
-   "pedigree": {}
+   "pedigree": {
+    "S": "デクラレーションオブウォー",
+    "D": "アリシア",
+    "DS": "キズナ",
+    "DD": "サビアーレ",
+    "SS": "War Front",
+    "DSS": "ディープインパクト",
+    "DSSS": "サンデーサイレンス",
+    "DSSSS": "Halo"
+   }
   },
   {
    "gate": null,
