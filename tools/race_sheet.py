@@ -334,6 +334,7 @@ def main(path):
             if mm:
                 h = horses.setdefault(int(mm.group(1)), dict(name=mm.group(2), pop=int(mm.group(3)), odds=mm.group(4).replace("倍", ""), tags=[], buy=[]))
                 h["buy"].append("本線")
+                horses.move_to_end(int(mm.group(1)))   # 根拠の行をこの馬に付ける
             cat = "本線根拠"; continue
         if cat == "本線根拠" and l.startswith("  - "):
             last = next(reversed(horses.values()))
