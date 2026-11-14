@@ -286,6 +286,8 @@ def main(path):
             tags = "・".join(h["tags"]) or "材料なし"
             buy = " ★買う:" + "+".join(h["buy"]) if h["buy"] else ""
             fl = h.get("flag")
+            if fl is None and any("flag" in x for x in horses.values()):
+                fl = 0   # フラグ点の行に出ない馬は○×が無い＝0
             fs = f"・点{fl:+d}" if fl is not None else ""
             od = "" if not h["odds"] else ("・オッズ前" if h["odds"] == "オッズ前" else f"・{h['odds']}倍")
             tb = mine.get(rk, {}).get(num)
