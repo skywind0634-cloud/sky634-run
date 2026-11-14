@@ -160,6 +160,18 @@ def buy_list(rows):
         ws = re.findall(r"(?<![\d-])(\d+-\d+)(?!-)", b.split("／")[0]); ts = re.findall(r"\d+-\d+-\d+", b.split("／")[-1])
         tk = [f"ワイド {w}" for w in ws] + [f"3連複 {x}" for x in ts]
         lot.append(f"  - {t} ◇人気薄フラグボックス: " + " / ".join(tk) + f"（{len(tk)}点）")
+    # 2026-11-14 ユーザー「各レース40点以内がそもそも多すぎる」: 同じレースで別の買い方と同じ券は1回だけ買う（11/14 京都10R 3連複1-2-13 を2回買っていた）
+    seen, dd = {}, []
+    for l in lot:
+        m = re.match(r"  - (\S+\d+R) (.+?): (.*)（\d+点[^）]*）$", l)
+        if not m:
+            dd.append(l); continue
+        s = seen.setdefault(m.group(1), set())
+        tk = [x for x in m.group(3).split(" / ") if x not in s]
+        s.update(tk)
+        if tk:
+            dd.append(f"  - {m.group(1)} {m.group(2)}: " + " / ".join(tk) + f"（{len(tk)}点）")
+    lot = dd
     if lot:
         out.append("■ 別枠（1点100円。◎人気薄フラグ（単勝・ワイドボックス・3連複, 2025-26 121%/106%/119%）＋◎人気薄フラグ×人気ワイド（5年197/154/149%）＋◇人気薄フラグボックス（非根幹・宝くじ型, 11/8 AR杯の形））")
         out += lot

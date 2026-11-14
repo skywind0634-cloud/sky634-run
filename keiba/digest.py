@@ -320,11 +320,19 @@ def bigshot_wide(card: dict, evals: list[HorseEval], th: int = 4, omin: float = 
     return f"軸 {a.number}{a.name}（{a.pop_rank}人気・{a.odds:.0f}倍・点{sc[a.number]:+d}）→ ワイド " + "、".join(wide)
 
 
+# 別枠の3連複フォーメーションの1レースの点数の上限（2026-11-14 ユーザー「各レース40点以内がそもそも多すぎる」）.
+# 上限を超えるレースは買わない（削らない）。tools/set_formation_search.py の score で上限ごとに採点（2024 / 2025-26/9, 実際の最終オッズ・払戻）:
+#   10点まで ①+4ボックス 892/147%・②+5→+4→人気 138/118%・★版 170/134%・コース血統 1034/455% → 10点.
+#   ◎妙味×フラグは10点だと2024 30%で負け、15点で 259/116% → 15点.（6点まではどれも片方の期間で100%割れ）
+SET_CAP = 10
+VAL_CAP = 15
+
+
 def flag_set_formation(card: dict, evals: list[HorseEval]) -> list[str]:
     """意味のある馬の集まり同士の3連複（2026-11-08 ユーザー「全頭買う必要はない。3番人気までとフラグ+4以上などを組み合わせろ」,
     tools/set_formation_search.py。実際の最終オッズ・払戻、2025-26 は材料を2021-24だけで選んだフラグで採点）:
-    ①◎フラグ+4ボックス: 1番人気2.5倍以上で、フラグ点+4以上の馬の3連複ボックス（40点以内）. 2025-26 118%（853レース・的中6%）・実戦10月〜145%.
-    ②◎フラグ+5→+4→人気: 1番人気2.5倍以上で、1列目フラグ点+5以上・2列目+4以上・3列目1〜3番人気と+4以上（40点以内）. 2025-26 121%（962レース・的中13%）・実戦92%.
+    ①◎フラグ+4ボックス: 1番人気2.5倍以上で、フラグ点+4以上の馬の3連複ボックス（SET_CAP点以内・2026-11-14 に40点から下げた）. 2025-26 118%（853レース・的中6%）・実戦10月〜145%.
+    ②◎フラグ+5→+4→人気: 1番人気2.5倍以上で、1列目フラグ点+5以上・2列目+4以上・3列目1〜3番人気と+4以上（SET_CAP点以内・2026-11-14 に40点から下げた）. 2025-26 121%（962レース・的中13%）・実戦92%.
     ③◎フラグ+5→+4→人気★: 1番人気3.5倍以上なら3列目に★血統穴も足した版（2024 144%・2025-26 125%）で②の代わりに出す."""
     from itertools import combinations
     out = []
@@ -336,7 +344,7 @@ def flag_set_formation(card: dict, evals: list[HorseEval]) -> list[str]:
     f5 = [h.number for h in evals if sc.get(h.number, 0) >= 5]
     p3 = [h.number for h in sorted([h for h in evals if h.pop_rank], key=lambda h: h.pop_rank)[:3]]
     box = [tuple(c) for c in combinations(f4, 3)]
-    if 0 < len(box) <= 40:
+    if 0 < len(box) <= SET_CAP:
         out.append("◎フラグ+4ボックス " + "・".join(map(str, f4)) + " → 3連複 " + "、".join("-".join(map(str, c)) for c in box))
     fm = sorted({tuple(sorted((a, b, c))) for a in f5 for b in f4 for c in set(p3) | set(f4) if len({a, b, c}) == 3})
     # ③◎フラグ+5→+4→人気★（2026-11-13 ユーザー了承）: 1番人気3.5倍以上の混戦では3列目に★血統穴（50倍未満）も足す.
@@ -344,11 +352,11 @@ def flag_set_formation(card: dict, evals: list[HorseEval]) -> list[str]:
     if min(odds) >= 3.5:
         star = {h.number for h in longshot_picks(evals) if (h.odds or 999) < 50}
         fs = sorted({tuple(sorted((a, b, c))) for a in f5 for b in f4 for c in set(p3) | set(f4) | star if len({a, b, c}) == 3})
-        if star - set(p3) - set(f4) and 0 < len(fs) <= 40:
+        if star - set(p3) - set(f4) and 0 < len(fs) <= SET_CAP:
             out.append(f"◎フラグ+5→+4→人気★ 1列目{'・'.join(map(str, sorted(f5)))} 2列目{'・'.join(map(str, f4))} 3列目{'・'.join(map(str, sorted(set(p3) | set(f4) | star)))}（★血統穴 {'・'.join(map(str, sorted(star)))}） → 3連複 "
                        + "、".join("-".join(map(str, c)) for c in fs))
             return out
-    if 0 < len(fm) <= 40:
+    if 0 < len(fm) <= SET_CAP:
         out.append(f"◎フラグ+5→+4→人気 1列目{'・'.join(map(str, sorted(f5)))} 2列目{'・'.join(map(str, f4))} 3列目{'・'.join(map(str, sorted(set(p3) | set(f4))))} → 3連複 "
                    + "、".join("-".join(map(str, c)) for c in fm))
     return out
@@ -356,7 +364,7 @@ def flag_set_formation(card: dict, evals: list[HorseEval]) -> list[str]:
 
 def course_blood_formation(card: dict, evals: list[HorseEval]) -> str | None:
     """◎コース血統×フラグ（2026-11-08 ユーザー「コース別血統の指標もね」, tools/set_formation_search.py）:
-    1列目＝コース別血統○（course_blood_horses の○が▼より多い）かつフラグ点+3以上、2列目＝フラグ点+4以上、3列目＝1〜3番人気とフラグ点+4以上 の3連複（40点以内）.
+    1列目＝コース別血統○（course_blood_horses の○が▼より多い）かつフラグ点+3以上、2列目＝フラグ点+4以上、3列目＝1〜3番人気とフラグ点+4以上 の3連複（SET_CAP点以内・2026-11-14 に40点から下げた）.
     実際の最終オッズ・払戻で、コース別血統を2021-24だけで選び直した確かめ（未来を見ない）でも 2025-26 190%（409レース・的中15%・平均12点）. 実戦10月〜は9レースで42%."""
     sc = flag_scores(card, evals)
     cb = {}
@@ -366,7 +374,7 @@ def course_blood_formation(card: dict, evals: list[HorseEval]) -> str | None:
     f4 = [h.number for h in evals if sc.get(h.number, 0) >= 4]
     p3 = [h.number for h in sorted([h for h in evals if h.pop_rank], key=lambda h: h.pop_rank)[:3]]
     fm = sorted({tuple(sorted((a, b, c))) for a in c1 for b in f4 for c in set(p3) | set(f4) if len({a, b, c}) == 3})
-    if not fm or len(fm) > 40:
+    if not fm or len(fm) > SET_CAP:
         return None
     return (f"1列目{'・'.join(map(str, sorted(c1)))}（コース別血統○×フラグ+3） 2列目{'・'.join(map(str, sorted(f4)))} 3列目{'・'.join(map(str, sorted(set(p3) | set(f4))))} → 3連複 "
             + "、".join("-".join(map(str, c)) for c in fm))
@@ -374,7 +382,7 @@ def course_blood_formation(card: dict, evals: list[HorseEval]) -> str | None:
 
 def value_flag_formation(card: dict, evals: list[HorseEval]) -> str | None:
     """◎妙味×フラグ（2026-11-08 ユーザー「妙味条件の指標は？」, tools/set_formation_search.py, boost_rows_v2）:
-    1番人気2.5倍以上で、1列目＝妙味条件かつフラグ点+3以上、2列目＝1〜3番人気とフラグ点+4以上、3列目＝1〜3番人気とフラグ点+3以上 の3連複（40点以内）.
+    1番人気2.5倍以上で、1列目＝妙味条件かつフラグ点+3以上、2列目＝1〜3番人気とフラグ点+4以上、3列目＝1〜3番人気とフラグ点+3以上 の3連複（SET_CAP点以内・2026-11-14 に40点から下げた）.
     妙味条件は2023年までで作り直した条件・実際の最終オッズ/払戻で 2024 470%・2025-26 121%（654レース・的中9%・平均16点）. 実戦10月〜は14レースで86%.
     妙味条件を軸にした他の形（1列目=妙味条件だけ等）は2025-26で51〜100%で負け."""
     odds = [h.odds for h in evals if h.odds]
@@ -387,7 +395,7 @@ def value_flag_formation(card: dict, evals: list[HorseEval]) -> str | None:
     c2 = set(p3) | {h.number for h in evals if sc.get(h.number, 0) >= 4}
     c3 = set(p3) | {h.number for h in evals if sc.get(h.number, 0) >= 3}
     fm = sorted({tuple(sorted((a, b, c))) for a in c1 for b in c2 for c in c3 if len({a, b, c}) == 3})
-    if not fm or len(fm) > 40:
+    if not fm or len(fm) > VAL_CAP:
         return None
     return (f"1列目{'・'.join(map(str, sorted(c1)))}（妙味条件×フラグ+3） 2列目{'・'.join(map(str, sorted(c2)))} 3列目{'・'.join(map(str, sorted(c3)))} → 3連複 "
             + "、".join("-".join(map(str, c)) for c in fm))
