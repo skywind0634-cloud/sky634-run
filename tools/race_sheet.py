@@ -186,6 +186,45 @@ def buy_list(rows):
     return out
 
 
+def card_odds(title):
+    """レース名（"11/15(日) 京都7R ..."）から cards/<日付>/ の単勝オッズを引く."""
+    import glob, json
+    m = re.match(r"(\d+)/(\d+)\S* (\S+?)(\d+)R", title)
+    if not m:
+        return {}
+    for d in sorted(glob.glob(f"cards/*-{int(m.group(1)):02d}-{int(m.group(2)):02d}"), reverse=True):
+        for f in glob.glob(d + "/*.json"):
+            try:
+                c = json.load(open(f))
+            except Exception:
+                continue
+            if c.get("course") == m.group(3) and int(c.get("race_no", 0)) == int(m.group(4)):
+                return {int(e["number"]): e.get("odds") for e in c["entries"]}
+    return {}
+
+
+def today_buys(summary):
+    """【今日買うもの】の行から {レース: {馬番: [買い方]}} を作る."""
+    out = {}
+    head = summary.split("【参考")[0]
+    for l in head.splitlines():
+        m = re.match(r"\s+- (\S+\d+R) (\S+?)(?: \d+\S*（\d+人気）| 軸\d+)?:\s*(.*)", l)
+        if not m:
+            continue
+        race, how, body = m.groups()
+        body = re.sub(r"（\d+点[^）]*）\s*$", "", body)
+        nums = set()
+        for t in body.split(" / "):
+            parts = t.split(" ", 1)
+            if len(parts) == 2:
+                nums |= {int(x) for x in re.findall(r"\d+", parts[1])}
+        for n in nums:
+            lst = out.setdefault(race, {}).setdefault(n, [])
+            if how not in lst:
+                lst.append(how)
+    return out
+
+
 def card_summary(path):
     """買い目カードを、買い方ごと（強い順）に全レース分まとめる."""
     txt = open(path, encoding="utf-8").read()
@@ -214,9 +253,18 @@ def main(path):
     race = None
     horses = OrderedDict(); buys = []; cat = None; info = []
 
+    summary = card_summary(path)
+    mine = today_buys(summary)
+
     def flush():
-        if race is None or short_race(race.split(" ")[1] if " " in race else race):
-            return   # 7R・8R のレース別シートは出さない（early.md におすすめの穴馬だけ）
+        if race is None:
+            return
+        # 2026-11-14 ユーザー「血統穴やどのフラグが付いているかで最終の購入判断や追加購入をするから、レースごとの詳細も出して。ルール化して」:
+        # 7R・8Rも含め全レース・全出走馬を、フラグ点・付いた材料・【今日買うもの】のどの買い方に入っているかと一緒に出す.
+        rk = (re.search(r"(\S+\d+R)", race) or [None, ""])[1]
+        for num, od in card_odds(race).items():
+            if num in horses and not horses[num]["odds"] and od:
+                horses[num]["odds"] = str(od)
         out.append(f"\n■ {race}")
         out.extend(info)
         out.append("【買う】" + (" ／ ".join(buys) if buys else "なし（このレースは見送り。下は材料）"))
@@ -235,9 +283,14 @@ def main(path):
                 if kind not in horses[n]["buy"]:
                     horses[n]["buy"].append(kind)
         for num, h in sorted(horses.items(), key=lambda x: x[1]["pop"]):
-            tags = "・".join(h["tags"])
+            tags = "・".join(h["tags"]) or "材料なし"
             buy = " ★買う:" + "+".join(h["buy"]) if h["buy"] else ""
-            out.append(f"  {num:>2} {h['name']}（{h['pop']}人気・{h['odds'] if h['odds'] == 'オッズ前' else h['odds'] + '倍'}）{buy}｜{tags}")
+            fl = h.get("flag")
+            fs = f"・点{fl:+d}" if fl is not None else ""
+            od = "" if not h["odds"] else ("・オッズ前" if h["odds"] == "オッズ前" else f"・{h['odds']}倍")
+            tb = mine.get(rk, {}).get(num)
+            tbs = f" 【今日買う: {'・'.join(tb)}】" if tb else ""
+            out.append(f"  {num:>2} {h['name']}（{h['pop']}人気{od}{fs}）{tbs}{buy}｜{tags}")
     for l in open(path, encoding="utf-8").read().split("\n"):
         if l.startswith("### "):
             flush()
@@ -255,6 +308,11 @@ def main(path):
         else:
             key = None
         if key:
+            continue
+        if l.startswith("フラグ点（○−×）"):
+            for n, nm, pp, fv in re.findall(r"(\d+)(\S+?)\((\d+)人気\)([+-]?\d+)", l):
+                h = horses.setdefault(int(n), dict(name=nm, pop=int(pp), odds="", tags=[], buy=[]))
+                h["flag"] = int(fv)
             continue
         if l.startswith("レースの形"):
             info.append("  " + l); continue
@@ -285,6 +343,8 @@ def main(path):
         if cat and mm:
             num = int(mm.group(1))
             h = horses.setdefault(num, dict(name=mm.group(2), pop=int(mm.group(3)), odds=mm.group(4).replace("倍", ""), tags=[], buy=[]))
+            if not h["odds"]:
+                h["odds"] = mm.group(4).replace("倍", "")
             body = l.split("：", 1)[1] if "：" in l else ""
             ms = re.findall(r"([◎○▽×▼])（", body) + re.findall(r"）([○▼]) A/E", body) + re.findall(r"最新の傾向 ([○▼])", body)
             marks = "".join(sorted(set(ms), key="◎○▽×▼".index))
@@ -297,7 +357,8 @@ def main(path):
         # ★特推し・本線・◎フラグ点+5 の人気の条件）が当日に入れ替わる。オッズ前の版は軸候補の確認用で、買い目は確定ではないと明示する。
         print("※ オッズ前の仮の版（人気はこちらの推定）。買い目は前売りオッズが入った版（金曜20:40以降の cards-now）か当日朝の版で確定する。"
               "ここでは軸候補・材料の確認用にとどめ、この版の買い目では買わない。\n")
-    print(card_summary(path))
+    print(summary)
+    print("\n【レース別の詳細（全レース・全出走馬。点＝フラグ点、【今日買う】＝今日買うものに入っている買い方、★買う＝参考カードの買い方、｜の後ろ＝付いた材料）】")
     print(txt)
 
 
