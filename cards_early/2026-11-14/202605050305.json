@@ -28,18 +28,7 @@
    "dam": "メジロツボネ",
    "damsire": "スウェプトオーヴァーボード",
    "recent": [],
-   "pedigree": {
-    "S": "キズナ",
-    "D": "メジロツボネ",
-    "DS": "スウェプトオーヴァーボード",
-    "DD": "メジロルバート",
-    "SS": "ディープインパクト",
-    "SSS": "サンデーサイレンス",
-    "SSSS": "Halo",
-    "DSS": "エンドスウィープ",
-    "DSSS": "Forty Niner",
-    "DSSSS": "Mr. Prospector"
-   }
+   "pedigree": {}
   },
   {
    "gate": 2,
