@@ -1,6 +1,6 @@
 {
  "race_id": "202608050410",
- "provisional_numbers": false,
+ "provisional_numbers": true,
  "date": "2026-11-15",
  "course": "京都",
  "race_no": 10,
@@ -12,7 +12,7 @@
  "going": null,
  "entries": [
   {
-   "gate": 1,
+   "gate": null,
    "number": 1,
    "horse_id": "2022102394",
    "name": "マーウォルス",
@@ -124,7 +124,7 @@
    }
   },
   {
-   "gate": 2,
+   "gate": null,
    "number": 2,
    "horse_id": "2021107278",
    "name": "ユーヴェリア",
@@ -236,7 +236,7 @@
    }
   },
   {
-   "gate": 3,
+   "gate": null,
    "number": 3,
    "horse_id": "2016100126",
    "name": "ダディーズトリップ",
@@ -345,7 +345,7 @@
    }
   },
   {
-   "gate": 4,
+   "gate": null,
    "number": 4,
    "horse_id": "2022103186",
    "name": "テーオーライマン",
@@ -454,7 +454,7 @@
    }
   },
   {
-   "gate": 5,
+   "gate": null,
    "number": 5,
    "horse_id": "2021105637",
    "name": "テンエースワン",
@@ -564,7 +564,7 @@
    }
   },
   {
-   "gate": 6,
+   "gate": null,
    "number": 6,
    "horse_id": "2022105987",
    "name": "アートレスマインド",
@@ -676,7 +676,7 @@
    }
   },
   {
-   "gate": 7,
+   "gate": null,
    "number": 7,
    "horse_id": "2023103532",
    "name": "シーミハットク",
@@ -788,7 +788,7 @@
    }
   },
   {
-   "gate": 7,
+   "gate": null,
    "number": 8,
    "horse_id": "2023103176",
    "name": "セイントホース",
@@ -898,7 +898,7 @@
    }
   },
   {
-   "gate": 8,
+   "gate": null,
    "number": 9,
    "horse_id": "2022105075",
    "name": "タイセイドラード",
@@ -1008,7 +1008,7 @@
    }
   },
   {
-   "gate": 8,
+   "gate": null,
    "number": 10,
    "horse_id": "2021104295",
    "name": "トモジャザーン",

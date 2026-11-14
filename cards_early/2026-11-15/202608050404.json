@@ -54,17 +54,7 @@
    "dam": "アリエスムーン",
    "damsire": "アドマイヤムーン",
    "recent": [],
-   "pedigree": {
-    "S": "マテラスカイ",
-    "D": "アリエスムーン",
-    "DS": "アドマイヤムーン",
-    "DD": "キミーズキッド",
-    "SS": "Speightstown",
-    "SSS": "Gone West",
-    "DSS": "エンドスウィープ",
-    "DSSS": "Forty Niner",
-    "DSSSS": "Mr. Prospector"
-   }
+   "pedigree": {}
   },
   {
    "gate": 2,
