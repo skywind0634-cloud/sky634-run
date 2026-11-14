@@ -683,17 +683,7 @@
      "behind": 0.8
     }
    ],
-   "pedigree": {
-    "S": "Kingman",
-    "D": "サウンドパラダイス",
-    "DS": "ワークフォース",
-    "DD": "フレジェール",
-    "SS": "Invincible Spirit",
-    "SSS": "Green Desert",
-    "DSS": "King's Best",
-    "DSSS": "Kingmambo",
-    "DSSSS": "Mr. Prospector"
-   }
+   "pedigree": {}
   },
   {
    "gate": 7,
