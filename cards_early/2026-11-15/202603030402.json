@@ -71,7 +71,14 @@
      "behind": 0.3
     }
    ],
-   "pedigree": {}
+   "pedigree": {
+    "S": "サリオス",
+    "D": "シーユーオールウェイズ",
+    "DS": "Siyouni",
+    "DD": "Elegant Times",
+    "DSS": "Pivotal",
+    "DSSS": "Polar Falcon"
+   }
   },
   {
    "gate": null,
