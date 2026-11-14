@@ -355,7 +355,8 @@ def flag_set_formation(card: dict, evals: list[HorseEval]) -> list[str]:
         if star - set(p3) - set(f4) and 0 < len(fs) <= SET_CAP:
             out.append(f"◎フラグ+5→+4→人気★ 1列目{'・'.join(map(str, sorted(f5)))} 2列目{'・'.join(map(str, f4))} 3列目{'・'.join(map(str, sorted(set(p3) | set(f4) | star)))}（★血統穴 {'・'.join(map(str, sorted(star)))}） → 3連複 "
                        + "、".join("-".join(map(str, c)) for c in fs))
-            # 2026-11-14 ユーザー「②★版は外す」: ★版は参考カードだけにして、②を同じレースでも出す（買うのは②）.
+            # 2026-11-14 ユーザー「どちらかしか出ていないなら残して良い」: 1番人気3.5倍以上では★版が②の代わり（同じレースはどちらか1つ）.
+            return out
     if 0 < len(fm) <= SET_CAP:
         out.append(f"◎フラグ+5→+4→人気 1列目{'・'.join(map(str, sorted(f5)))} 2列目{'・'.join(map(str, f4))} 3列目{'・'.join(map(str, sorted(set(p3) | set(f4))))} → 3連複 "
                    + "、".join("-".join(map(str, c)) for c in fm))
