@@ -92,7 +92,15 @@
      "behind": 1.2
     }
    ],
-   "pedigree": {}
+   "pedigree": {
+    "S": "リアルインパクト",
+    "D": "リーサルヒート",
+    "DS": "Unusual Heat",
+    "DD": "Lethal Leta",
+    "SS": "ディープインパクト",
+    "SSS": "サンデーサイレンス",
+    "SSSS": "Halo"
+   }
   },
   {
    "gate": 2,
