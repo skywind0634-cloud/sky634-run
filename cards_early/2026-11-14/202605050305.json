@@ -141,7 +141,16 @@
    "dam": "コスモピーコック",
    "damsire": "Medicean",
    "recent": [],
-   "pedigree": {}
+   "pedigree": {
+    "S": "ウインブライト",
+    "D": "コスモピーコック",
+    "DS": "Medicean",
+    "DD": "レッドピオニー",
+    "SS": "ステイゴールド",
+    "SSS": "サンデーサイレンス",
+    "SSSS": "Halo",
+    "DSS": "Machiavellian"
+   }
   },
   {
    "gate": 6,
