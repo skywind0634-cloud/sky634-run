@@ -1457,7 +1457,16 @@
      "behind": 0.3
     }
    ],
-   "pedigree": {}
+   "pedigree": {
+    "S": "ファインニードル",
+    "D": "サマーエモーション",
+    "DS": "Dubawi",
+    "DD": "Midsummer Fair",
+    "SS": "アドマイヤムーン",
+    "SSS": "エンドスウィープ",
+    "SSSS": "Forty Niner",
+    "DSS": "Dubai Millennium"
+   }
   },
   {
    "gate": null,
