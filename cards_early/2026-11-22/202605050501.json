@@ -502,14 +502,7 @@
      "behind": 1.7
     }
    ],
-   "pedigree": {
-    "S": "ルヴァンスレーヴ",
-    "D": "カリフォルニアネクター",
-    "DS": "Stormy Atlantic",
-    "DD": "Absolute Nectar",
-    "SS": "シンボリクリスエス",
-    "SSS": "Kris S."
-   }
+   "pedigree": {}
   },
   {
    "gate": null,
