@@ -1172,7 +1172,15 @@
      "behind": 5.3
     }
    ],
-   "pedigree": {}
+   "pedigree": {
+    "S": "ウインブライト",
+    "D": "ドリームエンプレス",
+    "DS": "Bernstein",
+    "DD": "Chinese Empress",
+    "SS": "ステイゴールド",
+    "SSS": "サンデーサイレンス",
+    "SSSS": "Halo"
+   }
   },
   {
    "gate": null,
