@@ -85,7 +85,16 @@
    "dam": "ハーマフロダイト",
    "damsire": "Le Havre",
    "recent": [],
-   "pedigree": {}
+   "pedigree": {
+    "S": "American Pharoah",
+    "D": "ハーマフロダイト",
+    "DS": "Le Havre",
+    "DD": "Decency",
+    "SS": "Pioneerof the Nile",
+    "SSS": "Empire Maker",
+    "SSSS": "Unbridled",
+    "DSS": "Noverre"
+   }
   },
   {
    "gate": 2,
