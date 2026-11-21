@@ -74,6 +74,17 @@ jobs:
             --time-budget-min "${{ inputs.budget_min }}" --newest-first
           python -m keiba.cli analyze
 
+      - name: fill missing win odds
+        # 2026-11-21: JRA の結果ページには単勝オッズの列が無く、10/17 以降の取り込みで勝ち馬以外のオッズが空だった。
+        # odds ブランチの最終オッズと day-results（netkeiba）の単勝オッズで埋める。
+        continue-on-error: true
+        run: |
+          mkdir -p data/cache/odds /tmp/dr
+          git fetch -q origin odds day-results || true
+          git archive origin/odds odds | tar -x -C data/cache/ || true
+          for f in $(git ls-tree --name-only origin/day-results results/ 2>/dev/null); do git show origin/day-results:$f > /tmp/dr/$(basename $f); done
+          python tools/fill_odds.py /tmp/dr/*.json
+
       - name: deep analysis & model validation
         # 取り込みの区切りごとに、徹底分析レポートと学習適性を更新し、バックテストで重みを調整
         if: ${{ inputs.mode == 'backfill' || github.event_name == 'schedule' || inputs.mode == 'weekly' }}
