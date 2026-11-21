@@ -224,7 +224,17 @@
    "dam": "モハー",
    "damsire": "バトルプラン",
    "recent": [],
-   "pedigree": {}
+   "pedigree": {
+    "S": "ルーラーシップ",
+    "D": "モハー",
+    "DS": "バトルプラン",
+    "DD": "サイタ",
+    "SS": "キングカメハメハ",
+    "SSS": "Kingmambo",
+    "SSSS": "Mr. Prospector",
+    "DSS": "Empire Maker",
+    "DSSS": "Unbridled"
+   }
   },
   {
    "gate": 7,

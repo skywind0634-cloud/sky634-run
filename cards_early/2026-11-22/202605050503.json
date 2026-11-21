@@ -763,15 +763,7 @@
      "behind": 1.0
     }
    ],
-   "pedigree": {
-    "S": "ディーマジェスティ",
-    "D": "ギャルソンヌ",
-    "DS": "Henrythenavigator",
-    "DD": "Totally Cosmic",
-    "SS": "ディープインパクト",
-    "SSS": "サンデーサイレンス",
-    "SSSS": "Halo"
-   }
+   "pedigree": {}
   },
   {
    "gate": 7,
@@ -912,16 +904,7 @@
      "behind": 1.0
     }
    ],
-   "pedigree": {
-    "S": "マクフィ",
-    "D": "ペルラネーラ",
-    "DS": "ディープインパクト",
-    "DD": "シユーマ",
-    "SS": "Dubawi",
-    "SSS": "Dubai Millennium",
-    "DSS": "サンデーサイレンス",
-    "DSSS": "Halo"
-   }
+   "pedigree": {}
   },
   {
    "gate": 8,
