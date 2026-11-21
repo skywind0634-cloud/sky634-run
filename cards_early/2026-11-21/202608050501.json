@@ -380,7 +380,15 @@
      "behind": 3.0
     }
    ],
-   "pedigree": {}
+   "pedigree": {
+    "S": "シャンハイボビー",
+    "D": "フギン",
+    "DS": "Street Sense",
+    "DD": "Aria Pura",
+    "SS": "Harlan's Holiday",
+    "DSS": "Street Cry",
+    "DSSS": "Machiavellian"
+   }
   },
   {
    "gate": 4,
