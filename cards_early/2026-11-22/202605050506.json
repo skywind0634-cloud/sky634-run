@@ -87,7 +87,16 @@
    "dam": "マローネメタリコ",
    "damsire": "ヘニーヒューズ",
    "recent": [],
-   "pedigree": {}
+   "pedigree": {
+    "S": "ダノンキングリー",
+    "D": "マローネメタリコ",
+    "DS": "ヘニーヒューズ",
+    "DD": "ウエスタンダンサー",
+    "SS": "ディープインパクト",
+    "SSS": "サンデーサイレンス",
+    "SSSS": "Halo",
+    "DSS": "Hennessy"
+   }
   },
   {
    "gate": 2,
@@ -106,7 +115,17 @@
    "dam": "ナリタブルースター",
    "damsire": "マンハッタンカフェ",
    "recent": [],
-   "pedigree": {}
+   "pedigree": {
+    "S": "ホッコータルマエ",
+    "D": "ナリタブルースター",
+    "DS": "マンハッタンカフェ",
+    "DD": "ストームティグレス",
+    "SS": "キングカメハメハ",
+    "SSS": "Kingmambo",
+    "SSSS": "Mr. Prospector",
+    "DSS": "サンデーサイレンス",
+    "DSSS": "Halo"
+   }
   },
   {
    "gate": 3,
@@ -179,7 +198,13 @@
    "dam": "ターシャズスター",
    "damsire": "Spanish Steps",
    "recent": [],
-   "pedigree": {}
+   "pedigree": {
+    "S": "ドレフォン",
+    "D": "ターシャズスター",
+    "DS": "Spanish Steps",
+    "DD": "Ms. Cuvee Napa",
+    "SS": "Gio Ponti"
+   }
   },
   {
    "gate": 4,

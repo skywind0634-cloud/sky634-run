@@ -577,7 +577,14 @@
      "behind": 3.6
     }
    ],
-   "pedigree": {}
+   "pedigree": {
+    "S": "ミスターメロディ",
+    "D": "リュポメルー",
+    "DS": "Dubawi",
+    "DD": "Star of Akkar",
+    "SS": "Scat Daddy",
+    "DSS": "Dubai Millennium"
+   }
   },
   {
    "gate": 6,
