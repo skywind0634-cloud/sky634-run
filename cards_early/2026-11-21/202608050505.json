@@ -283,15 +283,7 @@
    "dam": "ドリームアンドドゥ",
    "damsire": "Siyouni",
    "recent": [],
-   "pedigree": {
-    "S": "キタサンブラック",
-    "D": "ドリームアンドドゥ",
-    "DS": "Siyouni",
-    "DD": "Venetias Dream",
-    "SS": "ブラックタイド",
-    "DSS": "Pivotal",
-    "DSSS": "Polar Falcon"
-   }
+   "pedigree": {}
   },
   {
    "gate": 6,
