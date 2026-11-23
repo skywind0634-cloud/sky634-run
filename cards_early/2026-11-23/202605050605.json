@@ -190,7 +190,16 @@
    "dam": "アップルトンドローヴ",
    "damsire": "Street Cry",
    "recent": [],
-   "pedigree": {}
+   "pedigree": {
+    "S": "サトノダイヤモンド",
+    "D": "アップルトンドローヴ",
+    "DS": "Street Cry",
+    "DD": "Enticement",
+    "SS": "ディープインパクト",
+    "SSS": "サンデーサイレンス",
+    "SSSS": "Halo",
+    "DSS": "Machiavellian"
+   }
   },
   {
    "gate": 5,

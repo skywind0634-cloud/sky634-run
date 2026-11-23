@@ -50,7 +50,15 @@
      "behind": 0.8
     }
    ],
-   "pedigree": {}
+   "pedigree": {
+    "S": "フォーウィールドライブ",
+    "D": "ベルエアシズル",
+    "DS": "Unusual Heat",
+    "DD": "Bel Air Belle",
+    "SS": "American Pharoah",
+    "SSS": "Pioneerof the Nile",
+    "SSSS": "Empire Maker"
+   }
   },
   {
    "gate": 1,

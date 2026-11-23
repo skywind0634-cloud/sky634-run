@@ -113,15 +113,7 @@
      "behind": 0.8
     }
    ],
-   "pedigree": {
-    "S": "ジャンダルム",
-    "D": "ルージュヴィッフ",
-    "DS": "ドゥラメンテ",
-    "DD": "サセッティ",
-    "DSS": "キングカメハメハ",
-    "DSSS": "Kingmambo",
-    "DSSSS": "Mr. Prospector"
-   }
+   "pedigree": {}
   },
   {
    "gate": 1,
