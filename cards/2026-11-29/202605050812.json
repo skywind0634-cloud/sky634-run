@@ -1337,7 +1337,12 @@
      "behind": -1.2
     }
    ],
-   "pedigree": {}
+   "pedigree": {
+    "S": "Ya Primo",
+    "D": "Ti Ricorderai",
+    "DS": "Seeking the Dia",
+    "DD": "Tan Hermosa"
+   }
   },
   {
    "gate": 7,

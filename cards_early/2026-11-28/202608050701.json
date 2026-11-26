@@ -1265,7 +1265,13 @@
      "behind": 0.5
     }
    ],
-   "pedigree": {}
+   "pedigree": {
+    "S": "Epicenter",
+    "D": "Tocame Linda",
+    "DS": "Speightstown",
+    "DD": "Touching Beauty",
+    "DSS": "Gone West"
+   }
   }
  ]
 }
