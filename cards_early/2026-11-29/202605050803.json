@@ -282,16 +282,7 @@
      "behind": 2.9
     }
    ],
-   "pedigree": {
-    "S": "ディーマジェスティ",
-    "D": "シュンラン",
-    "DS": "アルデバラン2",
-    "DD": "ハナガスミ",
-    "SS": "ディープインパクト",
-    "SSS": "サンデーサイレンス",
-    "SSSS": "Halo",
-    "DSS": "Mr. Prospector"
-   }
+   "pedigree": {}
   },
   {
    "gate": null,
