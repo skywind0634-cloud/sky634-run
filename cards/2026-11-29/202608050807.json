@@ -1004,18 +1004,7 @@
      "behind": 0.2
     }
    ],
-   "pedigree": {
-    "S": "ロジャーバローズ",
-    "D": "ネガイ",
-    "DS": "ルーラーシップ",
-    "DD": "ラヴィアンフルール",
-    "SS": "ディープインパクト",
-    "SSS": "サンデーサイレンス",
-    "SSSS": "Halo",
-    "DSS": "キングカメハメハ",
-    "DSSS": "Kingmambo",
-    "DSSSS": "Mr. Prospector"
-   }
+   "pedigree": {}
   },
   {
    "gate": null,

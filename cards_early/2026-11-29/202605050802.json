@@ -548,16 +548,7 @@
      "behind": 5.1
     }
    ],
-   "pedigree": {
-    "S": "ベンバトル",
-    "D": "ネオザミスティック",
-    "DS": "ハーツクライ",
-    "DD": "ルヴァーガール",
-    "SS": "Dubawi",
-    "SSS": "Dubai Millennium",
-    "DSS": "サンデーサイレンス",
-    "DSSS": "Halo"
-   }
+   "pedigree": {}
   },
   {
    "gate": null,
