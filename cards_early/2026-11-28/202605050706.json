@@ -28,7 +28,12 @@
    "dam": "ムーチョマッチョモマ",
    "damsire": "Mucho Macho Man",
    "recent": [],
-   "pedigree": {}
+   "pedigree": {
+    "S": "Vekoma",
+    "D": "ムーチョマッチョモマ",
+    "DS": "Mucho Macho Man",
+    "DD": "Tacit Approval"
+   }
   },
   {
    "gate": 2,
