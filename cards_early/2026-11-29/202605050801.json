@@ -92,15 +92,7 @@
      "behind": 0.7
     }
    ],
-   "pedigree": {
-    "S": "ロジユニヴァース",
-    "D": "ピエルフ",
-    "DS": "エピファネイア",
-    "DD": "グローリアスデイズ",
-    "SS": "ネオユニヴァース",
-    "DSS": "シンボリクリスエス",
-    "DSSS": "Kris S."
-   }
+   "pedigree": {}
   },
   {
    "gate": 1,
@@ -486,7 +478,18 @@
      "behind": 4.1
     }
    ],
-   "pedigree": {}
+   "pedigree": {
+    "S": "ゴールドドリーム",
+    "D": "ゴーハッピーゴー",
+    "DS": "オルフェーヴル",
+    "DD": "バルドウィナ",
+    "SS": "ゴールドアリュール",
+    "SSS": "サンデーサイレンス",
+    "SSSS": "Halo",
+    "DSS": "ステイゴールド",
+    "DSSS": "サンデーサイレンス",
+    "DSSSS": "Halo"
+   }
   },
   {
    "gate": 4,
@@ -617,7 +620,12 @@
      "behind": 0.2
     }
    ],
-   "pedigree": {}
+   "pedigree": {
+    "S": "Army Mule",
+    "D": "Marching Fire",
+    "DS": "Midnight Lute",
+    "DD": "Accusation"
+   }
   },
   {
    "gate": 5,
@@ -1049,17 +1057,7 @@
      "behind": 1.1
     }
    ],
-   "pedigree": {
-    "S": "ウインブライト",
-    "D": "デスティニーソング",
-    "DS": "メイショウボーラー",
-    "DD": "マルカデスティニー",
-    "SS": "ステイゴールド",
-    "SSS": "サンデーサイレンス",
-    "SSSS": "Halo",
-    "DSS": "タイキシャトル",
-    "DSSS": "Devil's Bag"
-   }
+   "pedigree": {}
   },
   {
    "gate": 8,
