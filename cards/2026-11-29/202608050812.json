@@ -1,6 +1,6 @@
 {
  "race_id": "202608050812",
- "provisional_numbers": false,
+ "provisional_numbers": true,
  "date": "2026-11-29",
  "course": "京都",
  "race_no": 12,
@@ -12,7 +12,7 @@
  "going": null,
  "entries": [
   {
-   "gate": 1,
+   "gate": null,
    "number": 1,
    "horse_id": "2021103932",
    "name": "ジェニファー",
@@ -21,8 +21,8 @@
    "weight": 55.0,
    "jockey": "松山弘平",
    "trainer": "浜田多実雄",
-   "odds": 30.0,
-   "popularity": 12,
+   "odds": 12.5,
+   "popularity": 7,
    "body_weight_diff": null,
    "sire": "アニマルキングダム",
    "dam": "スイングサンデー",
@@ -123,7 +123,7 @@
    }
   },
   {
-   "gate": 1,
+   "gate": null,
    "number": 2,
    "horse_id": "2022100490",
    "name": "モズナナスター",
@@ -132,8 +132,8 @@
    "weight": 55.0,
    "jockey": "吉田隼人",
    "trainer": "矢作芳人",
-   "odds": 18.0,
-   "popularity": 9,
+   "odds": 34.1,
+   "popularity": 13,
    "body_weight_diff": null,
    "sire": "モズアスコット",
    "dam": "グランプリエンゼル",
@@ -234,7 +234,7 @@
    }
   },
   {
-   "gate": 2,
+   "gate": null,
    "number": 3,
    "horse_id": "2021103116",
    "name": "ヤブサメ",
@@ -243,8 +243,8 @@
    "weight": 57.0,
    "jockey": "田山旺佑",
    "trainer": "石橋守",
-   "odds": 6.9,
-   "popularity": 3,
+   "odds": 11.8,
+   "popularity": 6,
    "body_weight_diff": null,
    "sire": "ファインニードル",
    "dam": "ステラーホープ",
@@ -345,7 +345,7 @@
    }
   },
   {
-   "gate": 2,
+   "gate": null,
    "number": 4,
    "horse_id": "2019105658",
    "name": "オタルエバー",
@@ -354,8 +354,8 @@
    "weight": 57.0,
    "jockey": "岩田康誠",
    "trainer": "中竹和也",
-   "odds": 60.1,
-   "popularity": 17,
+   "odds": 42.1,
+   "popularity": 15,
    "body_weight_diff": null,
    "sire": "リオンディーズ",
    "dam": "ルージュクール",
@@ -457,7 +457,7 @@
    }
   },
   {
-   "gate": 3,
+   "gate": null,
    "number": 5,
    "horse_id": "2022103066",
    "name": "レイピア",
@@ -466,7 +466,7 @@
    "weight": 57.0,
    "jockey": "佐々木大輔",
    "trainer": "中竹和也",
-   "odds": 6.0,
+   "odds": 6.6,
    "popularity": 2,
    "body_weight_diff": null,
    "sire": "タワーオブロンドン",
@@ -567,7 +567,7 @@
    }
   },
   {
-   "gate": 3,
+   "gate": null,
    "number": 6,
    "horse_id": "2022101686",
    "name": "インブロリオ",
@@ -576,8 +576,8 @@
    "weight": 55.0,
    "jockey": "川田将雅",
    "trainer": "吉村圭司",
-   "odds": 24.8,
-   "popularity": 11,
+   "odds": 7.1,
+   "popularity": 3,
    "body_weight_diff": null,
    "sire": "アドマイヤムーン",
    "dam": "プリディカメント",
@@ -677,7 +677,7 @@
    }
   },
   {
-   "gate": 4,
+   "gate": null,
    "number": 7,
    "horse_id": "2023105312",
    "name": "リリージョワ",
@@ -686,7 +686,7 @@
    "weight": 54.0,
    "jockey": "浜中俊",
    "trainer": "武幸四郎",
-   "odds": 3.6,
+   "odds": 4.9,
    "popularity": 1,
    "body_weight_diff": null,
    "sire": "シルバーステート",
@@ -791,7 +791,7 @@
    }
   },
   {
-   "gate": 4,
+   "gate": null,
    "number": 8,
    "horse_id": "2018101343",
    "name": "ゾンニッヒ",
@@ -800,8 +800,8 @@
    "weight": 57.0,
    "jockey": "田口貫太",
    "trainer": "池江泰寿",
-   "odds": 103.0,
-   "popularity": 18,
+   "odds": 58.7,
+   "popularity": 17,
    "body_weight_diff": null,
    "sire": "ラブリーデイ",
    "dam": "エンドレスノット",
@@ -902,7 +902,7 @@
    }
   },
   {
-   "gate": 5,
+   "gate": null,
    "number": 9,
    "horse_id": "2019103714",
    "name": "メイショウソラフネ",
@@ -911,8 +911,8 @@
    "weight": 57.0,
    "jockey": "幸英明",
    "trainer": "石橋守",
-   "odds": 48.1,
-   "popularity": 16,
+   "odds": 40.9,
+   "popularity": 14,
    "body_weight_diff": null,
    "sire": "モーリス",
    "dam": "メイショウデイム",
@@ -1015,7 +1015,7 @@
    }
   },
   {
-   "gate": 5,
+   "gate": null,
    "number": 10,
    "horse_id": "2022103592",
    "name": "ルシード",
@@ -1024,8 +1024,8 @@
    "weight": 57.0,
    "jockey": "鮫島克駿",
    "trainer": "田島俊明",
-   "odds": 16.4,
-   "popularity": 7,
+   "odds": 43.6,
+   "popularity": 16,
    "body_weight_diff": null,
    "sire": "スクリーンヒーロー",
    "dam": "ローゼンタール",
@@ -1125,7 +1125,7 @@
    }
   },
   {
-   "gate": 6,
+   "gate": null,
    "number": 11,
    "horse_id": "2021110164",
    "name": "インビンシブルパパ",
@@ -1134,8 +1134,8 @@
    "weight": 57.0,
    "jockey": "小沢大仁",
    "trainer": "伊藤大士",
-   "odds": 17.6,
-   "popularity": 8,
+   "odds": 9.9,
+   "popularity": 5,
    "body_weight_diff": null,
    "sire": "Shalaa",
    "dam": "Shwaimsa",
@@ -1234,7 +1234,7 @@
    }
   },
   {
-   "gate": 6,
+   "gate": null,
    "number": 12,
    "horse_id": "2023107264",
    "name": "デアヴェローチェ",
@@ -1243,8 +1243,8 @@
    "weight": 55.0,
    "jockey": "北村友一",
    "trainer": "上村洋行",
-   "odds": 16.0,
-   "popularity": 6,
+   "odds": 13.6,
+   "popularity": 8,
    "body_weight_diff": null,
    "sire": "マテラスカイ",
    "dam": "ミニーアイル",
@@ -1346,7 +1346,7 @@
    }
   },
   {
-   "gate": 7,
+   "gate": null,
    "number": 13,
    "horse_id": "2018106055",
    "name": "ヨシノイースター",
@@ -1355,8 +1355,8 @@
    "weight": 57.0,
    "jockey": "角田大和",
    "trainer": "中尾秀正",
-   "odds": 42.4,
-   "popularity": 14,
+   "odds": 29.5,
+   "popularity": 12,
    "body_weight_diff": null,
    "sire": "ルーラーシップ",
    "dam": "アースプレイ",
@@ -1458,7 +1458,7 @@
    }
   },
   {
-   "gate": 7,
+   "gate": null,
    "number": 14,
    "horse_id": "2022106394",
    "name": "クラスペディア",
@@ -1467,7 +1467,7 @@
    "weight": 57.0,
    "jockey": "小崎綾也",
    "trainer": "河嶋宏樹",
-   "odds": 20.6,
+   "odds": 20.0,
    "popularity": 10,
    "body_weight_diff": null,
    "sire": "ミスターメロディ",
@@ -1570,7 +1570,7 @@
    }
   },
   {
-   "gate": 7,
+   "gate": null,
    "number": 15,
    "horse_id": "2023105273",
    "name": "フォーゲル",
@@ -1579,8 +1579,8 @@
    "weight": 56.0,
    "jockey": "池添謙一",
    "trainer": "斉藤崇史",
-   "odds": 37.9,
-   "popularity": 13,
+   "odds": 19.8,
+   "popularity": 9,
    "body_weight_diff": null,
    "sire": "アルアイン",
    "dam": "エリカポンシャン",
@@ -1682,7 +1682,7 @@
    }
   },
   {
-   "gate": 8,
+   "gate": null,
    "number": 16,
    "horse_id": "2020100896",
    "name": "ビッグシーザー",
@@ -1691,8 +1691,8 @@
    "weight": 57.0,
    "jockey": "斎藤新",
    "trainer": "杉山晴紀",
-   "odds": 9.4,
-   "popularity": 4,
+   "odds": null,
+   "popularity": null,
    "body_weight_diff": null,
    "sire": "ビッグアーサー",
    "dam": "アンナペレンナ",
@@ -1793,7 +1793,7 @@
    }
   },
   {
-   "gate": 8,
+   "gate": null,
    "number": 17,
    "horse_id": "2022102887",
    "name": "ナムラクララ",
@@ -1802,8 +1802,8 @@
    "weight": 55.0,
    "jockey": "吉村誠之助",
    "trainer": "長谷川浩大",
-   "odds": 45.1,
-   "popularity": 15,
+   "odds": 22.4,
+   "popularity": 11,
    "body_weight_diff": null,
    "sire": "アドマイヤマーズ",
    "dam": "サンクイーン2",
@@ -1906,7 +1906,7 @@
    }
   },
   {
-   "gate": 8,
+   "gate": null,
    "number": 18,
    "horse_id": "2019105859",
    "name": "エーティーマクフィ",
@@ -1915,8 +1915,8 @@
    "weight": 58.0,
    "jockey": "富田暁",
    "trainer": "武英智",
-   "odds": 11.6,
-   "popularity": 5,
+   "odds": 8.1,
+   "popularity": 4,
    "body_weight_diff": null,
    "sire": "マクフィ",
    "dam": "テンシンランマン",
