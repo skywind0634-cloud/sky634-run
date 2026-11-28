@@ -222,7 +222,16 @@
      "behind": 2.4
     }
    ],
-   "pedigree": {}
+   "pedigree": {
+    "S": "モーリス",
+    "D": "ナオミマリア",
+    "DS": "キングカメハメハ",
+    "DD": "メジロオードリー",
+    "SS": "スクリーンヒーロー",
+    "SSS": "グラスワンダー",
+    "DSS": "Kingmambo",
+    "DSSS": "Mr. Prospector"
+   }
   },
   {
    "gate": 3,
